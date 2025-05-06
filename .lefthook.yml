@@ -1,0 +1,29 @@
+#
+#   Refer for explanation to following link:
+#   https://github.com/evilmartians/lefthook/blob/master/docs/configuration.md
+#
+#   ❗ For special local purposes please use lefthook-local.yml instead of changing this file
+#
+pre-push:
+  parallel: true
+  commands:
+    "Audit packages":
+      tags: security
+      run: npm audit
+    "Check git branch":
+      tags: convention
+      run: npx --yes validate-branch-name
+pre-commit:
+  parallel: true
+  commands:
+    "Run tests":
+      tags: test
+      run: npm test
+    "Check and fix code format and lint":
+      tags: convention
+      run: npx --yes biome check --apply --no-errors-on-unmatched --files-ignore-unknown=true {staged_files} && git update-index --again
+commit-msg:
+  commands:
+    "Check commit message":
+      tags: convention
+      run: npx --yes -- commitlint --edit "$1"
