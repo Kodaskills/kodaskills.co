@@ -1,0 +1,2 @@
+pattern: "^(main){1}$|^(feat|fix|hotfix|release)/.+$"
+errorMsg: Your branch name is not valid. Branch names in this project must be named either 'main', or begin with 'feature/', 'fix/', 'hotfix/', or 'release/'.

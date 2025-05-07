@@ -1,0 +1,27 @@
+{
+  "name": "kodaskills.co",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"No test specified\" && exit 0",
+    "knip": "knip"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kodaskills/kodaskills.co.git"
+  },
+  "author": "yudao, williamgentil",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Kodaskills/kodaskills.co/issues"
+  },
+  "homepage": "https://github.com/Kodaskills/kodaskills.co#readme",
+  "description": "",
+  "devDependencies": {
+    "@commitlint/config-conventional": "^19.8.0",
+    "@types/node": "^22.15.15",
+    "knip": "^5.55.0",
+    "lefthook": "^1.11.12",
+    "typescript": "^5.8.3"
+  }
+}
