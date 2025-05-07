@@ -1,0 +1,12 @@
+version: "1.0.0"
+
+services:
+  astro:
+    build: .
+    container_name: kodaskills.co
+    ports:
+      - "4321:4321"
+    working_dir: /home/node/
+    volumes:
+      - .:/home/node
+    command: npm run dev   
