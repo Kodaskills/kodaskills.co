@@ -14,8 +14,8 @@ pre-push:
       tags: convention
       run: npx --yes validate-branch-name
     "Check unused files, dependencies...":
-      tags: convention
-      run: npx knip 
+      tags: maintenance
+      run: npx --yes knip 
 pre-commit:
   parallel: true
   commands:
