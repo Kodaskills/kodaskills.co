@@ -3,10 +3,11 @@ version: "1.0.0"
 services:
   astro:
     build: .
-    container_name: kodaskills.co
+    container_name: astro
     ports:
       - "4321:4321"
     working_dir: /home/node/
     volumes:
       - .:/home/node
-    command: npm run dev   
+      - /home/node/node_modules
+    command: npm run dev
