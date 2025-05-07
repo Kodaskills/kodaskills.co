@@ -13,6 +13,9 @@ pre-push:
     "Check git branch":
       tags: convention
       run: npx --yes validate-branch-name
+    "Check unused files, dependencies...":
+      tags: convention
+      run: npx knip 
 pre-commit:
   parallel: true
   commands:
