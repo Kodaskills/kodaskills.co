@@ -2,18 +2,10 @@ version: "1.0.0"
 
 services:
   astro:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    develop:
-      watch:
-        - action: sync
-          path: .
-          target: working_dir
-    image: node:23-alpine
+    build: .
     container_name: kodaskills.co
     ports:
-      - "4321:4321"    
+      - "4321:4321"
     working_dir: /home/node/
     volumes:
       - .:/home/node
