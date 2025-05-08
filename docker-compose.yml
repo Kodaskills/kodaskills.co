@@ -11,3 +11,8 @@ services:
       - .:/home/node
       - /home/node/node_modules
     command: npm run dev
+    develop:
+      watch:
+        - action: rebuild
+          path: package.json
+          target: /
