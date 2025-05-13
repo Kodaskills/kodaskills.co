@@ -1,0 +1,24 @@
+---
+const {
+  imageSrc = "https://imgs.search.brave.com/ZGKZILBT-Ftxa9snn2h547yBn7VF0sYa8v9mEUDImt0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cGhvdG9zLWdyYXR1/aXRlL2hlcm9zLWZv/dS1leHByZXNzaW9u/LWNvbGVyZV8xMTk0/LTQwMjMuanBnP3Nl/bXQ9YWlzX2h5YnJp/ZCZ3PTc0MA"
+} = Astro.props;
+---
+
+<section class="flex px-20 bg-base-200 min-h-screen">
+  <!-- Left: Centered Text -->
+  <div class="w-1/2 flex flex-col justify-start mt-40">
+    <div class="max-w-xl">
+      <h1 class="text-8xl font-bold">Kodaskills</h1>
+      <p class="py-6 text-3xl">No hype, just skills.</p>
+      <p class="py-6 text-lg">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste, veniam aliquam mollitia obcaecati inventore enim facilis error dicta officia? Nobis quis in ducimus, dolor soluta ex asperiores eos! Cumque, sequi!
+      </p>
+      <a href="#target-service-section" class="btn btn-primary w-fit">Explore</a>
+    </div>
+  </div>
+
+  <!-- Right: Centered Image -->
+  <div class="w-1/2 hidden md:flex items-start mt-32">
+    <img src={imageSrc} alt="Hero illustration" class="rounded-lg shadow-lg max-h-[80vh]" />
+  </div>
+</section>
