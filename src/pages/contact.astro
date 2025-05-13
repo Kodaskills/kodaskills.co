@@ -1,9 +1,58 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Form from "../components/Form.astro";
+import Layout from '../layouts/Layout.astro';
+import Form from '../components/Form.astro';
 ---
 
-<Layout>
-  <h1>This will be the contact section</h1>
-  <Form />
+<Layout title="Contact">
+  <section class="bg-base-100 py-16">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col lg:flex-row gap-12">
+      <!-- Text Content -->
+      <div class="flex-1">
+        <h2 class="text-4xl font-bold mb-4">Let’s talk</h2>
+        <p class="mb-6">
+          I’m here to help you find a solution to your specific problem. If you want to, you can book a free 30min call and we’ll work it out together.
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes.
+        </p>
+
+        <h3 class="text-2xl font-semibold mb-4">Working with me you'll get :</h3>
+        <ul class="list-disc list-inside space-y-2">
+          <li>Lorem ipsum dolor sit amet, consectetur elit.</li>
+          <li>Aliquam tincidunt mauris eu risus.</li>
+          <li>Vestibulum auctor dapibus neque.</li>
+          <li>Morbi in sem quis dui placerat ornare.</li>
+          <li>Praesent dapibus, neque id cursus faucibus.</li>
+        </ul>
+      </div>
+
+      <div class="flex-1">
+        <div class="bg-base-200 rounded-box p-6 shadow-md">
+          <Form />
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Meeting section -->
+  <section class="bg-neutral text-neutral-content py-16">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col lg:flex-row items-center gap-12">
+      <div class="flex-1">
+        <h2 class="text-3xl font-bold mb-4">Meeting setup</h2>
+        <p class="mb-4">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+        </p>
+        <p class="mb-6">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.
+        </p>
+        <button class="btn btn-primary">Meet me</button>
+      </div>
+
+      <!-- Placeholder Image -->
+      <div class="flex-1">
+        <div class="bg-base-100 rounded-box aspect-video flex items-center justify-center">
+          <div class="w-24 h-24 bg-base-300 rounded-box">
+            <span class="text-sm text-center block">Image</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </Layout>
