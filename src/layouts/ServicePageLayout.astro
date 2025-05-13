@@ -1,0 +1,23 @@
+---
+import Layout from "./Layout.astro"
+
+const { frontmatter } = Astro.props;
+
+const { title, image } = frontmatter;
+
+---
+<Layout {title}>
+  <header class="py-10">
+    <div class="container mx-auto text-center">
+      <h1 class="text-5xl font-bold">{title}</h1>
+    </div>
+    <img src="" alt="">
+  </header>
+
+  <div class="post-content flex gap-8 px-4 py-8 max-w-7xl mx-auto"> 
+    <div class="content flex-1">
+      <slot />
+    </div>
+    <div class="sidebar w-64 hidden lg:block"></div>
+  </div>
+</Layout>
