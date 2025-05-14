@@ -23,13 +23,14 @@
   "homepage": "https://github.com/Kodaskills/kodaskills.co#readme",
   "description": "",
   "dependencies": {
-    "astro": "^5.7.12",
+    "@astrojs/mdx": "^4.2.6",
     "@tailwindcss/vite": "^4.1.6",
     "tailwindcss": "^4.1.6"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^19.8.0",
     "@types/node": "^22.15.15",
+    "astro": "^5.7.12",
     "daisyui": "^5.0.35",
     "knip": "^5.55.0",
     "lefthook": "^1.11.12",

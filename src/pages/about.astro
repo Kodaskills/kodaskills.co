@@ -1,0 +1,18 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="About">
+    <header class="py-10">
+        <div class="container mx-auto text-center">
+            <h1>This is the about page</h1>
+        </div>
+    </header>
+
+    <div class="post-content flex gap-8 px-4 py-8 max-w-7xl mx-auto"> 
+        <div class="content flex-1">
+            <slot />
+        </div>
+    </div>
+    
+</Layout
