@@ -10,7 +10,9 @@
 			"@layouts/*": ["src/layouts/*"],
 			"@pages/*": ["src/pages/*"],
 			"@functions/*": ["src/ts/*"],
-			"@styles/*": ["src/styles/*"]
-		}
+			"@styles/*": ["src/styles/*"],
+			"@types": ["src/types.ts"]
+		},
+		"noImplicitAny": true
 	}
 }
