@@ -1,19 +1,22 @@
 ---
-import "../styles/global.css";
-import MainHead from "./MainHead.astro";
-import Header from "../components/Header.astro"
-import Footer from "../components/Footer.astro";
+import "@styles/global.css";
+import MainHead from "@layouts/MainHead.astro";
+import Header from "@components/Header.astro"
+import Footer from "@components/Footer.astro";
+import type { Layout } from "@types";
+
+interface Props extends Layout {}
 
 const {title, description} = Astro.props;
 ---
 
 <!doctype html>
 <html data-theme="light" lang="en">
-	<MainHead {title} />
+	<MainHead {title} {description} />
 	<Header />
 	<body class="min-h-screen flex flex-col">
     	<main class="flex-1">
-      	<slot>Default Text</slot>
+      	<slot>Default Text</slot>	
     	</main>
 		<Footer />
   	</body>
