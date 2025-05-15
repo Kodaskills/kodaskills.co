@@ -7,10 +7,13 @@ services:
     working_dir: /home/node/
     volumes:
       - .:/home/node
-      - /home/node/node_modules
+      - node_modules:/home/node/node_modules
     command: npm run dev
     develop:
       watch:
         - action: rebuild
           path: package.json
           target: /
+
+volumes:
+  node_modules:
