@@ -1,4 +1,13 @@
 {
-    "ignoreDependencies": ["@commitlint/config-conventional", "tailwindcss", "daisyui"],
-    "ignore": ["src/layouts/BlogPostLayout.astro", "src/layouts/ServicePageLayout.astro", "src/ts/utils.ts"]
+  "ignoreDependencies": [
+    "@commitlint/config-conventional",
+    "tailwindcss",
+    "daisyui",
+    "vite"
+  ],
+  "ignore": [
+    "src/layouts/BlogPostLayout.astro",
+    "src/layouts/ServicePageLayout.astro",
+    "src/ts/utils.ts"
+  ]
 }
