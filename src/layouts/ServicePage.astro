@@ -1,20 +1,14 @@
 ---
-import Layout from "@layouts/Layout.astro"
-import { formatDate } from "@functions/utils"
+import MainLayout from "@layouts/Main.astro"
 
 const {frontmatter} = Astro.props;
-const{
-	title,
-	description,
-	date = Date(),
-} = frontmatter;
----
+const { title, description} = frontmatter;
 
-<Layout {title} {description}>
+---
+<MainLayout {title} {description} >
   <header class="py-10">
     <div class="container mx-auto text-center">
       <h1 class="text-5xl font-bold">{title}</h1>
-      <p>{formatDate(date)}</p>
     </div>
     <img src="" alt="">
   </header>
@@ -24,4 +18,4 @@ const{
       <slot />
     </div>
   </div>
-</Layout>
+</MainLayout>
