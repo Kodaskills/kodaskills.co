@@ -6,8 +6,8 @@
     "vite"
   ],
   "ignore": [
-    "src/layouts/BlogPostLayout.astro",
-    "src/layouts/ServicePageLayout.astro",
+    "src/layouts/BlogPost.astro",
+    "src/layouts/ServicePage.astro",
     "src/ts/utils.ts"
   ]
 }
