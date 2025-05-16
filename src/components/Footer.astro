@@ -1,3 +1,11 @@
+---
+import { Picture  } from "astro:assets"
+import GitHubIcon from "@assets/socials/github.svg"
+import TwitterIcon from "@assets/socials/twitter.svg"
+import LinkedInIcon from "@assets/socials/linkedin.svg"
+
+---
+
 <footer class="footer sm:footer-horizontal bg-base-100 shadow-sm text-base-content p-10">
   <aside class="flex flex-col items-start gap-3">
   <!-- Title -->
@@ -11,13 +19,13 @@
   <!-- Social Icons -->
   <div class="flex gap-2">
     <a href="https://github.com/Kodaskills/kodaskills.co" target="_blank" aria-label="GitHub">
-      <img src="/public/socials/github.svg" alt="GitHub" class="w-4 h-4">
+      <GitHubIcon class="w-4 h-4">
     </a>
     <a href="https://twitter.com" target="_blank" aria-label="Twitter">
-      <img src="/public/socials/twitter.svg" alt="Twitter" class="w-4 h-4">
+      <TwitterIcon class="w-4 h-4">
     </a>
     <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
-      <img src="/public/socials/linkedin.svg" alt="LinkedIn" class="w-4 h-4">
+      <LinkedInIcon class="w-4 h-4">
     </a>
   </div>
 

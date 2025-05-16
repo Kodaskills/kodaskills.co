@@ -1,3 +1,8 @@
+---
+import { Picture } from 'astro:assets';
+---
+
+
 <section id="blog-section" class="px-20 py-20 bg-base-100 min-h-screen">
   <div class="flex justify-between items-start mb-12">
     <div class="max-w-5xl">
@@ -16,8 +21,10 @@
     <!-- Card 1 -->
     <div class="card bg-base-100 w-96 shadow-sm">
       <figure class="h-60 overflow-hidden">
-        <img
+        <Picture
           src="https://media.istockphoto.com/id/516313981/fr/photo/chaussure-de-randonn%C3%A9e-sur-le-sentier-de-pierre-carr%C3%A9s.jpg?s=612x612&w=0&k=20&c=DpLuUwHDDDcfYStcIJaVenTXu9me2XUzecMmZIISNz8="
+          width="612"
+          height="408"
           alt="Shoes"
           class="object-cover w-full h-full"
         />
@@ -34,8 +41,10 @@
     <!-- Card 2 -->
     <div class="card bg-base-100 w-96 shadow-sm">
       <figure class="h-60 overflow-hidden">
-        <img
+        <Picture
           src="https://images.interestingengineering.com/images/SEPTEMBER/computer_bug_-_debug.jpg"
+          width="960"
+          height="672"
           alt="Bug"
           class="object-cover w-full h-full"
         />
