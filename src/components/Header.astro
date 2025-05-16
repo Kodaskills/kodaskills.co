@@ -1,5 +1,6 @@
 ---
 import MegaMenu from "@components/MegaMenu.astro"
+import ThemeController from "./ThemeController.astro"
 import LinkedInIcon from "@assets/socials/linkedin.svg"
 ---
 
@@ -30,8 +31,11 @@ import LinkedInIcon from "@assets/socials/linkedin.svg"
   </div>
   <div class="navbar-end">
     <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
-      <LinkedInIcon class="w-6 h-6 mr-3 ">
+      <LinkedInIcon class="w-6 h-6 mr-3">
     </a>
+    <div class="mr-3">
+      <ThemeController />
+    </div>
     <a href="/contact" class="btn">Contact</a>
   </div>
 </div>
