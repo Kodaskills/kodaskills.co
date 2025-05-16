@@ -1,14 +1,9 @@
 ---
 import Layout from "@layouts/Main.astro";
+import { Link } from "@components/atoms";
+import BlogCard from "@components/molecules/BlogCard.astro";
 ---
 
-<Layout title="Blog" description="Blog page">
-    <ul>
-        <li>
-            <a href="/blog/article-1">Post 1</a>
-        </li>
-        <li>
-            <a href="/blog/article-2">Post 2</a>
-        </li>  
-    </ul>    
+<Layout title="Blog" description="Blog page">   
+    <BlogCard />
 </Layout> 
