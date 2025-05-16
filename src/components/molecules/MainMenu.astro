@@ -1,0 +1,24 @@
+---
+import MegaMenu from "@components/MegaMenu.astro" 
+import { Link } from "@components/atoms"
+---
+
+<ul class="menu menu-horizontal">
+    <li>
+      <details>
+        <summary>Services</summary>
+          <MegaMenu />
+      </details>
+    </li>
+    <li>
+      <details>
+        <summary>Ressources</summary>
+        <ul class="p-2">
+          <li><Link href="404" aria-label="Ressource 1">Ressource 1</Link></li>
+          <li><Link href="404" aria-label="Ressource 2">Ressource 2</Link></li>
+        </ul>
+      </details>
+    </li>
+    <li><Link href="/about">About</Link></li>
+    <li><Link href="/blog">Blog</Link></li>
+  </ul>

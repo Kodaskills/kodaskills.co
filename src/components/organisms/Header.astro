@@ -1,0 +1,23 @@
+---
+import { Link, Logo, ThemeController } from "@components/atoms"
+import LinkedInIcon from "@assets/socials/linkedin.svg"
+import { MainMenu } from "@components/molecules"
+---
+
+<div class="navbar bg-base-100 shadow-sm px-17">
+  <div class="navbar-start">
+    <Logo />
+  </div>
+  <div class="navbar-center hidden lg:flex">
+    <MainMenu />
+  </div>
+  <div class="navbar-end">
+    <Link href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
+      <LinkedInIcon class="w-6 h-6 mr-3">
+    </Link>
+    <div class="mr-3">
+      <ThemeController />
+    </div>
+    <Link href="/contact" class="btn">Contact</Link>
+  </div>
+</div>
