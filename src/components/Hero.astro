@@ -1,10 +1,11 @@
 ---
+import { Picture } from 'astro:assets';
 interface Props {
   imageSrc?: string 
 }
 
 const {
-  imageSrc
+  imageSrc = ""
 } = Astro.props;
 ---
 
@@ -23,6 +24,6 @@ const {
 
   <!-- Right: Centered Image -->
   <div class="w-1/2 hidden md:flex items-start mt-32">
-    <img src={imageSrc} alt="Hero illustration" class="rounded-lg shadow-lg max-h-[80vh]" />
+    <Picture src={imageSrc} width="740" height="528" loading="eager" decoding="sync" alt="Hero illustration" class="rounded-lg shadow-lg max-h-[80vh]" />
   </div>
 </section>

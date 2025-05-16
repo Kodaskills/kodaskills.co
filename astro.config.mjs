@@ -9,6 +9,10 @@ const { ASTRO_SERVER_PORT, ASTRO_SERVER_HOST, ASTRO_SERVER_PREVIEW_PORT } =
 
 // https://astro.build/config
 export default defineConfig({
+  prefetch: {
+    defaultStrategy: "hover",
+    prefetchAll: true,
+  },
   server: ({ command }) => ({
     port:
       command === "preview"

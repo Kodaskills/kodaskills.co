@@ -1,5 +1,7 @@
 ---
 import MegaMenu from "@components/MegaMenu.astro"
+import ThemeController from "./ThemeController.astro"
+import LinkedInIcon from "@assets/socials/linkedin.svg"
 ---
 
 <div class="navbar bg-base-100 shadow-sm px-17">
@@ -18,8 +20,8 @@ import MegaMenu from "@components/MegaMenu.astro"
         <details>
           <summary>Ressources</summary>
           <ul class="p-2">
-            <li><a>Ressource 1</a></li>
-            <li><a>Ressource 2</a></li>
+            <li><a href="404" aria-label="Ressource 1">Ressource 1</a></li>
+            <li><a href="404" aria-label="Ressource 2">Ressource 2</a></li>
           </ul>
         </details>
       </li>
@@ -29,8 +31,11 @@ import MegaMenu from "@components/MegaMenu.astro"
   </div>
   <div class="navbar-end">
     <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
-      <img src="/public/socials/linkedin.svg" alt="LinkedIn" class="w-6 h-6 mr-3 ">
+      <LinkedInIcon class="w-6 h-6 mr-3">
     </a>
+    <div class="mr-3">
+      <ThemeController />
+    </div>
     <a href="/contact" class="btn">Contact</a>
   </div>
 </div>
