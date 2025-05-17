@@ -18,23 +18,39 @@
 ## 🖥️ Tech Stack
 
 - **Frontend**: Typescript, TailwindCSS
-- **SSG**: Astro.js 🚀
+- **SSG**: [Astro.js](https://astro.build/) 🚀
+- **Command runner**: [Just](https://just.systems/)
 - **CI/CD**: GitHub Actions, Docker
 - **Hosting**: Github, Cloudflare
 
+## 🧩 Integration with Just
+
+This project integrates with [Just](https://just.systems/), a handy way to run project-specific commands.
+
+Please [install it](https://just.systems/man/en/packages.html) to have a better developer experience with this project managed by docker as first plan.
+You can [install its plugin for the most important code editors](https://just.systems/man/en/editor-support.html) actually too.
+
+For a list of commands acesssible for the project please use only this command into your terminal under the project path:
+
+```bash
+just
+```
+
 ## 🚀 Getting Started
 
-### 1. Clone the Repository
+### Clone the Repository
 
 ```bash
 git clone https://github.com/Kodaskills/kodaskills.co.git
 cd kodaskills.co
 ```
 
-### 2. Start the Docker server
+### Start the Docker server
 
 ```bash
-docker compose watch
+just start
+# for watch mode on by default
+just start -w
 ```
 
 ## 🧪 Running Tests
