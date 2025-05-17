@@ -15,7 +15,7 @@ pre-push:
       run: npx --yes validate-branch-name
     "Check unused files, dependencies...":
       tags: maintenance
-      run: npx --yes knip 
+      run: npx --yes knip
 pre-commit:
   parallel: true
   commands:
@@ -24,7 +24,7 @@ pre-commit:
       run: npm test
     "Check and fix code format and lint":
       tags: convention
-      run: npx --yes biome check --apply --no-errors-on-unmatched --files-ignore-unknown=true {staged_files} && git update-index --again
+      run: npx --yes @biomejs/biome check --apply --no-errors-on-unmatched --files-ignore-unknown=true {staged_files} && git update-index --again
 commit-msg:
   commands:
     "Check commit message":
