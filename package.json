@@ -22,17 +22,16 @@
   },
   "homepage": "https://github.com/Kodaskills/kodaskills.co#readme",
   "description": "",
-  "dependencies": {},
   "devDependencies": {
+    "@astrojs/mdx": "^4.2.6",
     "@commitlint/config-conventional": "^19.8.1",
+    "@tailwindcss/vite": "^4.1.7",
     "@types/node": "^22.15.18",
     "astro": "^5.7.13",
     "daisyui": "^5.0.35",
     "knip": "^5.56.0",
     "lefthook": "^1.11.13",
-    "typescript": "^5.8.3",
-    "@astrojs/mdx": "^4.2.6",
-    "@tailwindcss/vite": "^4.1.7",
-    "tailwindcss": "^4.1.7"
+    "tailwindcss": "^4.1.7",
+    "typescript": "^5.8.3"
   }
 }

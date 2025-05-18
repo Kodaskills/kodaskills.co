@@ -15,7 +15,7 @@ pre-push:
       run: npx --yes validate-branch-name
     "Check unused files, dependencies...":
       tags: maintenance
-      run: npx --yes knip
+      run: npm run knip
     "Check modules to update":
       tags: maintenance
       run: npx --yes npm-check-updates
