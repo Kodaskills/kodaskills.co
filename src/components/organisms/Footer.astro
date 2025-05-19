@@ -1,7 +1,5 @@
 ---
-import GitHubIcon from "@assets/socials/github.svg";
-import LinkedInIcon from "@assets/socials/linkedin.svg";
-import TwitterIcon from "@assets/socials/twitter.svg";
+import { Icon } from "astro-icon/components";
 ---
 
 <footer class="footer sm:footer-horizontal bg-base-100 shadow-sm text-base-content p-10">
@@ -17,13 +15,13 @@ import TwitterIcon from "@assets/socials/twitter.svg";
   <!-- Social Icons -->
   <div class="flex gap-2">
     <a href="https://github.com/Kodaskills/kodaskills.co" target="_blank" aria-label="GitHub">
-      <GitHubIcon class="w-4 h-4">
+      <Icon name="ri:github-fill" class="w-4 h-4">
     </a>
-    <a href="https://twitter.com" target="_blank" aria-label="Twitter">
-      <TwitterIcon class="w-4 h-4">
+    <a href="https://x.com" target="_blank" aria-label="X">
+      <Icon name="ri:twitter-x-fill" class="w-4 h-4">
     </a>
     <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
-      <LinkedInIcon class="w-4 h-4">
+      <Icon name="ri:linkedin-box-fill" class="w-4 h-4">
     </a>
   </div>
 

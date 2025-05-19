@@ -1,10 +1,10 @@
 ---
-import { Link, Logo, ThemeController } from "@components/atoms"
-import LinkedInIcon from "@assets/socials/linkedin.svg"
-import { MainMenu } from "@components/molecules"
+import { Link, Logo, ThemeController } from "@components/atoms";
+import { MainMenu } from "@components/molecules";
+import { Icon } from "astro-icon/components";
 ---
 
-<div class="navbar bg-base-100 shadow-sm px-17">
+<div class="navbar bg-base-100 shadow-sm px-17 fixed z-10">
   <div class="navbar-start">
     <Logo />
   </div>
@@ -13,7 +13,7 @@ import { MainMenu } from "@components/molecules"
   </div>
   <div class="navbar-end">
     <Link href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
-      <LinkedInIcon class="w-6 h-6 mr-3">
+      <Icon name="ri:linkedin-box-fill" class="w-8 h-8 mr-3">
     </Link>
     <div class="mr-3">
       <ThemeController />

@@ -1,7 +1,8 @@
+import mdx from "@astrojs/mdx";
+import tailwindcss from "@tailwindcss/vite";
+import icon from "astro-icon";
 // @ts-check
 import { defineConfig } from "astro/config";
-import tailwindcss from "@tailwindcss/vite";
-import mdx from "@astrojs/mdx";
 import { loadEnv } from "vite";
 
 const { ASTRO_SERVER_PORT, ASTRO_SERVER_HOST, ASTRO_SERVER_PREVIEW_PORT } =
@@ -24,5 +25,12 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
 
-  integrations: [mdx()],
+  integrations: [
+    mdx(),
+    icon({
+      include: {
+        ri: ["*"],
+      },
+    }),
+  ],
 });
