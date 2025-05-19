@@ -6,6 +6,7 @@
     "vite"
   ],
   "ignore": [
+    "blog/*",
     "src/layouts/BlogPost.astro",
     "src/layouts/ServicePage.astro",
     "src/ts/utils.ts"
