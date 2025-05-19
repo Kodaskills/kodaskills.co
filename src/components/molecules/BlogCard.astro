@@ -1,22 +1,24 @@
 ---
-import Picture from "astro/components/Picture.astro"
+import type { CollectionEntry } from "astro:content";
 import { Link } from "@components/atoms";
-import { getCollection, type CollectionEntry } from 'astro:content';
+import Picture from "astro/components/Picture.astro";
 
-const blogPosts = await getCollection('blog');
+interface Props {
+  post: CollectionEntry<"blog">;
+}
+
+const { post } = Astro.props;
 ---
 
 <div class="card bg-base-100 w-96 shadow-sm">
-    {blogPosts.map((post:CollectionEntry<'blog'>) => (
-        <figure class="h-60 overflow-hidden">
-            {post.data.image && <Picture {...post.data.image} class="object-cover w-full h-full"/>}
-        </figure>
-        <div class="card-body">
-            <h2 class="card-title">{post.data.title}</h2>
-            <p>{post.data.description}</p>
-            <div class="card-actions justify-end">
-                <Link href="/blog/article-1" class="btn btn-primary">Let's go</Link>
-            </div>
-        </div>
-    ))}
+  <figure class="h-60 overflow-hidden">
+      {post.data.image && <Picture {...post.data.image} class="object-cover w-full h-full"/>}
+  </figure>
+  <div class="card-body">
+      <h2 class="card-title">{post.data.title}</h2>
+      <p>{post.data.description}</p>
+      <div class="card-actions justify-end">
+          <Link href={`/blog/${post.id}`} class="btn btn-primary">Let's go</Link>
+      </div>
+  </div>
 </div>
