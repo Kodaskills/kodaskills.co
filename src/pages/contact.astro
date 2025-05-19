@@ -1,6 +1,6 @@
 ---
-import MainLayout from '@layouts/Main.astro';
-import Form from '@components/Form.astro';
+import { ContactForm } from "@components/organisms";
+import MainLayout from "@layouts/Main.astro";
 ---
 
 <MainLayout title="Contact" description='This is the contact page'>
@@ -26,7 +26,7 @@ import Form from '@components/Form.astro';
 
       <div class="flex-1">
         <div class="bg-base-200 rounded-box p-6 shadow-md">
-          <Form />
+          <ContactForm />
         </div>
       </div>
     </div>
