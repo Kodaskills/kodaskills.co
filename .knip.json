@@ -1,5 +1,6 @@
 {
   "ignoreDependencies": [
+    "@iconify-json/*",
     "@commitlint/config-conventional",
     "tailwindcss",
     "daisyui",
