@@ -1,4 +1,40 @@
 @import "tailwindcss";
+
 @plugin "daisyui" {
-    themes: light --default, dark --prefersdark, luxury;
+    themes: light --default, dark --prefersdark;
 }
+
+@theme {
+    --color-primary: "#1A515E";
+}
+
+@layer base {
+    h1 {
+      font-size: var(--text-7xl);
+      font-weight: var(--font-weight-bold);
+    }
+    h2 {
+      font-size: var(--text-5xl);
+      font-weight: var(--font-weight-semibold);
+    }
+    h3 {
+        font-size: var(--text-3xl);
+        font-weight: var(--font-weight-medium);
+      }
+
+  }
+
+
+
+  primary	--color-primary	Primary brand color, The main color of your brand
+primary-content	--color-primary-content	Foreground content color to use onprimarycolor
+
+secondary	--color-secondary	Secondary brand color, The optional, secondary color of your brand
+secondary-content	--color-secondary-content	Foreground content color to use onsecondarycolor
+
+accent	--color-accent	Accent brand color, The optional, accent color of your brand
+accent-content	--color-accent-content	Foreground content color to use onaccentcolor
+
+neutral	--color-neutral	Neutral dark color, For not-saturated parts of UI
+neutral-content	--color-neutral-content
+

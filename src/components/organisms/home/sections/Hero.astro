@@ -7,21 +7,16 @@ interface Props {
 const { imageSrc = "" } = Astro.props;
 ---
 
-<section class="flex px-20 bg-base-200 min-h-screen">
-  <!-- Left: Centered Text -->
-  <div class="w-1/2 flex flex-col justify-start mt-40">
-    <div class="max-w-xl">
-      <h1 class="text-8xl font-bold">Kodaskills</h1>
-      <p class="py-6 text-3xl">No hype, just skills.</p>
-      <p class="py-6 text-lg">
+<section class="hero bg-base-200 min-h-screen">
+  <div class="hero-content flex-row-reverse">
+    <Picture src={imageSrc} width="740" height="528" loading="eager" decoding="sync" alt="Hero illustration" class="rounded-lg shadow-lg max-h-[80vh]" />
+    <div>
+      <h1>Kodaskills</h1>
+      <h2>No hype, just skills.</h2>
+      <p>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste, veniam aliquam mollitia obcaecati inventore enim facilis error dicta officia? Nobis quis in ducimus, dolor soluta ex asperiores eos! Cumque, sequi!
       </p>
-      <a href="#target-service-section" class="btn btn-primary w-fit">Explore</a>
+      <a href="#target-service-section" class="btn btn-primary">Explore</a>
     </div>
-  </div>
-
-  <!-- Right: Centered Image -->
-  <div class="w-1/2 hidden md:flex items-start mt-32">
-    <Picture src={imageSrc} width="740" height="528" loading="eager" decoding="sync" alt="Hero illustration" class="rounded-lg shadow-lg max-h-[80vh]" />
   </div>
 </section>

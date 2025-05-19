@@ -1,20 +1,19 @@
 ---
-import MainLayout from "@layouts/Main.astro"
+import MainLayout from "@layouts/Main.astro";
 
-const {frontmatter} = Astro.props;
-const { title, description} = frontmatter;
-
+const { frontmatter } = Astro.props;
+const { title, description } = frontmatter;
 ---
 <MainLayout {title} {description} >
-  <header class="py-10">
-    <div class="container mx-auto text-center">
-      <h1 class="text-5xl font-bold">{title}</h1>
+  <header class="">
+    <div class="">
+      <h1 class="">{title}</h1>
     </div>
     <img src="" alt="">
   </header>
 
-  <div class="post-content flex gap-8 px-4 py-8 max-w-7xl mx-auto"> 
-    <div class="content flex-1">
+  <div class=""> 
+    <div class="">
       <slot />
     </div>
   </div>
