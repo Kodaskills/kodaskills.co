@@ -1,0 +1,23 @@
+---
+import { BlogList } from "@components/organisms";
+---
+
+
+<section id="blog-section" class="px-20 py-20 bg-base-100 min-h-screen">
+  <div class="flex justify-between items-start mb-12">
+    <div class="max-w-5xl">
+      <h2 class="text-5xl font-bold">Check out my blog</h2>
+      <p class="mt-4 text-2xl leading-relaxed">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nunc dolor, finibus lacinia varius ac, viverra id metus. 
+        Sed at condimentum lacus. Morbi velit arcu, imperdiet non mauris id, efficitur blandit urna. Aliquam erat volutpat.
+      </p>
+    </div>
+
+    <a href="/blog/" class="btn btn-neutral text-sm h-10 mt-50">All articles →</a>
+  </div>
+
+  <!-- Cards Section -->
+  <div class="flex justify-center gap-30 flex-wrap">
+    <BlogList />
+  </div>
+</section>

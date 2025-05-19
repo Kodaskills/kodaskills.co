@@ -1,0 +1,24 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { Link } from "@components/atoms";
+import Picture from "astro/components/Picture.astro";
+
+interface Props {
+  post: CollectionEntry<"blog">;
+}
+
+const { post } = Astro.props;
+---
+
+<div class="card bg-base-100 w-96 shadow-sm">
+  <figure class="h-60 overflow-hidden">
+      {post.data.image && <Picture {...post.data.image} class="object-cover w-full h-full"/>}
+  </figure>
+  <div class="card-body">
+      <h2 class="card-title">{post.data.title}</h2>
+      <p>{post.data.description}</p>
+      <div class="card-actions justify-end">
+          <Link href={`/blog/${post.id}`} class="btn btn-primary">Let's go</Link>
+      </div>
+  </div>
+</div>

@@ -1,11 +1,13 @@
 {
   "ignoreDependencies": [
+    "@iconify-json/*",
     "@commitlint/config-conventional",
     "tailwindcss",
     "daisyui",
     "vite"
   ],
   "ignore": [
+    "blog/*",
     "src/layouts/BlogPost.astro",
     "src/layouts/ServicePage.astro",
     "src/ts/utils.ts"

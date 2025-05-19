@@ -1,13 +1,12 @@
 ---
 import "@styles/global.css";
+import { Footer, Header } from "@components/organisms";
 import MainHead from "@layouts/MainHead.astro";
-import Header from "@components/Header.astro"
-import Footer from "@components/Footer.astro";
 import type { Layout } from "@types";
 
 interface Props extends Layout {}
 
-const {title, description} = Astro.props;
+const { title, description } = Astro.props;
 ---
 
 <!doctype html>
