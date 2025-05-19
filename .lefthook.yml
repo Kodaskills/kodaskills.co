@@ -28,7 +28,7 @@ pre-commit:
     "Check and fix code format and lint":
       tags: convention
       run: |
-        npx --yes @biomejs/biome check --apply --no-errors-on-unmatched --files-ignore-unknown=true {staged_files}
+        npx --yes @biomejs/biome check --write --no-errors-on-unmatched --files-ignore-unknown=true {staged_files}
         command -v just && just --fmt --unstable && find just -name '*.just' -exec just --fmt --unstable -f $1 {} \;
         git update-index --again
 commit-msg:
