@@ -1,0 +1,18 @@
+/* Override Tailwind */
+
+@layer base {
+  h1 {
+    font-size: var(--text-7xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+  }
+  h2 {
+    font-size: var(--text-5xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-secondary);
+  }
+  h3 {
+    font-size: var(--text-3xl);
+    font-weight: var(--font-weight-medium);
+  }
+}

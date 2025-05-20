@@ -1,0 +1,19 @@
+@utility hero {
+  @apply min-h-screen;
+}
+
+@utility hero-content {
+  @apply flex-row-reverse;
+}
+
+@utility navbar {
+  @apply bg-base-100 shadow-sm;
+}
+
+@utility navbar-center {
+  @apply hidden lg:flex;
+}
+
+@utility navbar-end {
+  @apply flex-row;
+}
