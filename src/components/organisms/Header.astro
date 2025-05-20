@@ -4,20 +4,20 @@ import { MainMenu } from "@components/molecules";
 import { Icon } from "astro-icon/components";
 ---
 
-<div class="navbar bg-base-100 shadow-sm px-17 fixed z-10">
+<header class="navbar">
   <div class="navbar-start">
     <Logo />
   </div>
-  <div class="navbar-center hidden lg:flex">
+  <nav class="navbar-center">
     <MainMenu />
-  </div>
+  </nav>
   <div class="navbar-end">
     <Link href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
-      <Icon name="ri:linkedin-box-fill" class="w-8 h-8 mr-3">
+      <Icon name="ri:linkedin-box-fill" />
     </Link>
-    <div class="mr-3">
+    <div>
       <ThemeController />
     </div>
-    <Link href="/contact" class="btn">Contact</Link>
+    <Link href="/contact" class="btn btn-accent">Contact</Link>
   </div>
-</div>
+</header>

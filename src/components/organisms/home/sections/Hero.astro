@@ -7,8 +7,8 @@ interface Props {
 const { imageSrc = "" } = Astro.props;
 ---
 
-<section class="hero bg-base-200 min-h-screen">
-  <div class="hero-content flex-row-reverse">
+<section class="hero">
+  <article class="hero-content">
     <Picture src={imageSrc} width="740" height="528" loading="eager" decoding="sync" alt="Hero illustration" class="rounded-lg shadow-lg max-h-[80vh]" />
     <div>
       <h1>Kodaskills</h1>
@@ -18,5 +18,5 @@ const { imageSrc = "" } = Astro.props;
       </p>
       <a href="#target-service-section" class="btn btn-primary">Explore</a>
     </div>
-  </div>
+  </article>
 </section>
