@@ -6,8 +6,12 @@
   @apply flex-row-reverse;
 }
 
+@utility navbar-wrapper {
+  @apply shadow-sm flex justify-center;
+}
+
 @utility navbar {
-  @apply bg-base-100 shadow-sm;
+  @apply bg-base-100 container;
 }
 
 @utility navbar-center {
@@ -16,4 +20,16 @@
 
 @utility navbar-end {
   @apply flex-row;
+}
+
+@utility footer-wrapper {
+  @apply flex justify-center;
+}
+
+@utility footer {
+  @apply container;
+}
+
+@utility main-content {
+  @apply container flex flex-col justify-center;
 }
