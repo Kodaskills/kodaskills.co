@@ -4,55 +4,58 @@ import MainLayout from "@layouts/Main.astro";
 ---
 
 <MainLayout title="Contact" description='This is the contact page'>
-  <section class="">
-    <div class="">
-      <!-- Text Content -->
-      <div class="">
-        <h2 class="">Let’s talk</h2>
-        <p class="">
-          I’m here to help you find a solution to your specific problem. If you want to, you can book a free 30min call and we’ll work it out together.
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes.
-        </p>
-
-        <h3 class="">Working with me you'll get :</h3>
-        <ul class="">
-          <li>Lorem ipsum dolor sit amet, consectetur elit.</li>
-          <li>Aliquam tincidunt mauris eu risus.</li>
-          <li>Vestibulum auctor dapibus neque.</li>
-          <li>Morbi in sem quis dui placerat ornare.</li>
-          <li>Praesent dapibus, neque id cursus faucibus.</li>
-        </ul>
-      </div>
-
-      <div class="flex-1">
-        <div class="bg-base-200 rounded-box p-6 shadow-md">
-          <ContactForm />
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- Meeting section -->
-  <section class="">
-    <div class="">
-      <div class="">
-        <h2 class="">Meeting setup</h2>
-        <p class="">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-        </p>
-        <p class="">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.
-        </p>
-        <button class="btn btn-primary">Meet me</button>
-      </div>
-
-      <!-- Placeholder Image -->
-      <div class="">
+  <section class="grid-for-sections">
+    <article>
+      <div>
         <div class="">
-          <div class="">
-            <span class="">Image</span>
+          <h2 class="">Let’s talk</h2>
+          <p class="">
+            I’m here to help you find a solution to your specific problem. If you want to, you can book a free 30min call and we’ll work it out together.
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes.
+          </p>
+
+          <h3 class="">Working with me you'll get :</h3>
+          <ul class="">
+            <li>Lorem ipsum dolor sit amet, consectetur elit.</li>
+            <li>Aliquam tincidunt mauris eu risus.</li>
+            <li>Vestibulum auctor dapibus neque.</li>
+            <li>Morbi in sem quis dui placerat ornare.</li>
+            <li>Praesent dapibus, neque id cursus faucibus.</li>
+          </ul>
+        </div>
+
+        <h2 class="">Meeting setup</h2>
+            <p class="">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+            </p>
+          <p class="">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.
+          </p>
+          <button class="btn btn-primary">Meet me</button>
+        </div>
+
+        <div>
+          <div>
+            <div>
+              <span>Image</span>
+            </div>
           </div>
         </div>
+
+
       </div>
-    </div>
+    </article>
+
+    <article class="">
+      <div class="">
+        <div class="">
+          <div class="flex-1">
+            <div class="bg-base-200 rounded-box p-6 shadow-md">
+              <ContactForm />
+            </div>
+          </div>
+      </div>
+    </article>
   </section>
+
 </MainLayout>

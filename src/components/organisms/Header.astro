@@ -4,7 +4,7 @@ import { MainMenu } from "@components/molecules";
 import { Icon } from "astro-icon/components";
 ---
 
-<header class="navbar">
+<div class="navbar">
   <div class="navbar-start">
     <Logo />
   </div>
@@ -15,9 +15,7 @@ import { Icon } from "astro-icon/components";
     <Link href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
       <Icon name="ri:linkedin-box-fill" />
     </Link>
-    <div>
-      <ThemeController />
-    </div>
+    <ThemeController />
     <Link href="/contact" class="btn btn-accent">Contact</Link>
   </div>
-</header>
+</div>

@@ -1,15 +1,3 @@
-@utility hero {
-  @apply min-h-screen;
-}
-
-@utility hero-content {
-  @apply flex-row-reverse;
-}
-
-@utility navbar-wrapper {
-  @apply shadow-sm flex justify-center;
-}
-
 @utility navbar {
   @apply bg-base-100 container;
 }
@@ -22,14 +10,34 @@
   @apply flex-row;
 }
 
-@utility footer-wrapper {
-  @apply flex justify-center;
+@utility footer {
+  @apply container grid-cols-4;
 }
 
-@utility footer {
-  @apply container;
+@utility main-wrapper {
+  @apply min-h-screen grid grid-rows-[auto_1fr_auto];
+}
+
+@utility main-header {
+  @apply shadow-md;
+}
+
+@utility main-header-content {
+  @apply container mx-auto;
 }
 
 @utility main-content {
-  @apply container flex flex-col justify-center;
+  @apply container mx-auto;
+}
+
+@utility main-footer {
+  @apply w-full bg-base-300 py-8;
+}
+
+@utility main-footer-content {
+  @apply container mx-auto;
+}
+
+@utility grid-for-sections {
+  @apply grid grid-cols-2 items-center py-16;
 }

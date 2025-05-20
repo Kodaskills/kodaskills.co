@@ -11,16 +11,22 @@ const { title, description } = Astro.props;
 
 <!doctype html>
 <html lang="en">
-	<MainHead {title} {description} />
-	<body>
-    <div class="navbar-wrapper">
-      <Header />
-    </div>
+  <MainHead {title} {description} />
+  <body>
+    <div class="main-wrapper">
+      <header class="main-header">
+        <div class="main-header-content">
+          <Header />
+        </div>
+      </header>
       <main class="main-content">
-        <slot>Default Text</slot>	
+        <slot />
       </main>
-    <div class="footer-wrapper">
-      <Footer />
+      <footer class="main-footer">
+        <div class="main-footer-content">
+          <Footer />
+        </div>
+      </footer>
     </div>
-	</body>
+  </body>
 </html>

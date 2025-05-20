@@ -7,16 +7,15 @@ interface Props {
 const { imageSrc = "" } = Astro.props;
 ---
 
-<section class="hero">
-  <article class="hero-content">
-    <Picture src={imageSrc} width="740" height="528" loading="eager" decoding="sync" alt="Hero illustration" class="rounded-lg shadow-lg max-h-[80vh]" />
-    <div>
-      <h1>Kodaskills</h1>
-      <h2>No hype, just skills.</h2>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste, veniam aliquam mollitia obcaecati inventore enim facilis error dicta officia? Nobis quis in ducimus, dolor soluta ex asperiores eos! Cumque, sequi!
-      </p>
-      <a href="#target-service-section" class="btn btn-primary">Explore</a>
-    </div>
-  </article>
+<section class="min-h-screen grid-for-sections">
+  <div>
+    <h1>Kodaskills</h1>
+    <h2>No hype, just skills.</h2>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste, veniam aliquam mollitia obcaecati inventore enim facilis error dicta officia? Nobis quis in ducimus, dolor soluta ex asperiores eos! Cumque, sequi!
+    </p>
+    <a href="#target-service-section" class="btn btn-primary">Explore</a>
+  </div>
+  <Picture src={imageSrc} width="740" height="528" loading="eager" decoding="sync" alt="Hero illustration" class="rounded-lg shadow-lg max-h-[80vh]" />
+  
 </section>
