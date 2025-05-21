@@ -9,17 +9,11 @@ const { title, description, date = Date(), image } = frontmatter;
 ---
 
 <MainLayout {title} {description}>
-  <header class="">
-    <div class="">
-      <h1 class="">{title}</h1>
+  <header>
+      <h1>{title}</h1>
       <p>{formatDate(date)}</p>
-    </div>
     <Picture {...image} loading="eager" decoding="sync">
   </header>
-
-  <div class=""> 
-    <div class="">
-      <slot />
-    </div>
-  </div>
+      
+  <slot />
 </MainLayout>

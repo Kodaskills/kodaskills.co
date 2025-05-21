@@ -1,23 +1,23 @@
 ---
+import { Link } from "@components/atoms";
 import { BlogList } from "@components/organisms";
 ---
 
 
-<section id="blog-section" class="py-20">
-  <div class="flex justify-between items-start mb-12">
-    <div class="max-w-5xl">
-      <h2 class="text-5xl font-bold">Check out my blog</h2>
-      <p class="mt-4 text-2xl leading-relaxed">
+<section id="blog-section" class="grid-for-blog-section">
+  <article class="grid-for-sections">
+    <div>
+      <h2>Check out my blog</h2>
+      <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nunc dolor, finibus lacinia varius ac, viverra id metus. 
         Sed at condimentum lacus. Morbi velit arcu, imperdiet non mauris id, efficitur blandit urna. Aliquam erat volutpat.
       </p>
     </div>
+    <Link href="/blog/" class="btn btn-neutral justify-self-end">All articles →</Link>
 
-    <a href="/blog/" class="btn btn-neutral text-sm h-10 mt-50">All articles →</a>
-  </div>
+  </article>
 
-  <!-- Cards Section -->
-  <div class="flex justify-center gap-30 flex-wrap">
-    <BlogList />
-  </div>
+  <article class="grid-for-bloglist">
+    <BlogList count={3} />
+  </article>
 </section>

@@ -1,3 +1,7 @@
+@utility image-hero-section {
+  @apply rounded-lg shadow-lg max-h-[80vh] justify-self-end;
+}
+
 @utility navbar {
   @apply bg-base-100 container;
 }
@@ -42,6 +46,14 @@
   @apply grid grid-cols-2 items-center py-16;
 }
 
+@utility grid-for-blog-section {
+  @apply grid-rows-2 items-center;
+}
+
+@utility grid-for-bloglist {
+  @apply grid grid-cols-3 place-items-center;
+}
+
 @utility contact-form-fieldset {
-  @apply bg-base-200 border-base-300 rounded-box w-xs border p-4;
+  @apply bg-base-200 border-base-300 rounded-box w-xs border p-4 justify-self-center;
 }
