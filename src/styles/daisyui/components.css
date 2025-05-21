@@ -1,3 +1,7 @@
+@utility theme-controller-icons {
+  @apply fill-current w-8 h-8;
+}
+
 @utility image-hero-section {
   @apply rounded-lg shadow-lg max-h-[80vh] justify-self-end;
 }
@@ -11,7 +15,7 @@
 }
 
 @utility navbar-end {
-  @apply flex-row;
+  @apply flex-row items-center gap-4 text-2xl;
 }
 
 @utility footer {
