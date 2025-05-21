@@ -2,9 +2,15 @@
 import { type CollectionEntry, getCollection } from "astro:content";
 import { BlogCard } from "@components/molecules";
 
+export interface Props {
+  count?: number;
+}
+
+const { count } = Astro.props;
 const blogPosts = await getCollection("blog");
+const limitedPosts = count ? blogPosts.slice(0, count) : blogPosts;
 ---
 
-{blogPosts.map((post:CollectionEntry<'blog'>) => (
-    <BlogCard {post}/>
+{limitedPosts.map((post: CollectionEntry<'blog'>) => (
+  <BlogCard {post} />
 ))}
