@@ -42,16 +42,24 @@
   @apply container mx-auto;
 }
 
-@utility grid-for-sections {
-  @apply grid grid-cols-2 items-center py-16;
+@utility hero-section {
+  @apply grid-sections items-center min-h-screen;
 }
 
-@utility grid-for-blog-section {
-  @apply grid-rows-2 items-center;
+@utility grid-sections {
+  @apply grid grid-cols-2 items-start pb-24;
 }
 
-@utility grid-for-bloglist {
+@utility grid-blog-section {
+  @apply grid-rows-2 items-center pb-16;
+}
+
+@utility grid-bloglist {
   @apply grid grid-cols-3 place-items-center;
+}
+
+@utility border-service-content {
+  @apply bg-base-100 border border-base-300 p-6;
 }
 
 @utility contact-form-fieldset {

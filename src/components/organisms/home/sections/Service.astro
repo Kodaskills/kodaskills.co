@@ -1,5 +1,9 @@
-<section id="target-service-section" class="grid-for-sections">
-  <div>
+---
+import ServiceTabs from "@components/organisms/ServiceTabs.astro";
+---
+
+<section id="target-service-section" class="grid-sections">
+  <article>
     <div>
       <h2>You need a toolkit?</h2>
       <p>
@@ -14,67 +18,9 @@
         Learn to grow your mindset and sharpen your perspective for better outcomes.
       </p>
     </div>
-  </div>
+  </article>
 
-  <div class="tabs tabs-lift tabs-boxed">
-    <input type="radio" name="toolkit_tabs" class="tab" aria-label="Build" />
-    <div class="tab-content">
-      <h3 class="">Build (...)</h3>
-      <p class="">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit...
-      </p>
-      <p class="">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt officiis corporis deserunt voluptatibus itaque delectus amet totam odit minus culpa, nesciunt est voluptas fugit odio animi sequi soluta sed blanditiis asperiores nam. Quos cupiditate facilis ad quo soluta voluptatibus iure ex enim vero. Quaerat quod magnam accusamus dolor quam iure animi eveniet nam modi unde omnis nihil facilis at illo officiis saepe, ea, nisi impedit, expedita voluptatibus debitis itaque natus! Minima dolores ipsa accusantium, qui, sequi libero enim reprehenderit molestiae alias laborum quo temporibus eveniet consequuntur fugit laboriosam similique rem ab eligendi quae fuga, vitae quibusdam non sapiente quia. Ullam.
-      </p>
-      <p class="">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident sunt inventore sequi magnam distinctio perferendis facilis odio placeat dignissimos, quidem, soluta optio aliquam eligendi dicta modi repellat cum illo totam ipsam atque architecto laudantium? Veniam.
-      </p>
-      <a href="/services/build" class="btn">More →</a>
-    </div>
-
-    <input type="radio" name="toolkit_tabs" class="tab" aria-label="Strategy" checked />
-    <div class="tab-content">
-      <h3 class="">(...)</h3>
-      <p class="">
-        Bring clarity to your goals and plan smartly to reach them.
-      </p>
-      <p class="">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt officiis corporis deserunt voluptatibus itaque delectus amet totam odit minus culpa, nesciunt est voluptas fugit odio animi sequi soluta sed blanditiis asperiores nam. Quos cupiditate facilis ad quo soluta voluptatibus iure ex enim vero. Quaerat quod magnam accusamus dolor quam iure animi eveniet nam modi unde omnis nihil facilis at illo officiis saepe, ea, nisi impedit, expedita voluptatibus debitis itaque natus! Minima dolores ipsa accusantium, qui, sequi libero enim reprehenderit molestiae alias laborum quo temporibus eveniet consequuntur fugit laboriosam similique rem ab eligendi quae fuga, vitae quibusdam non sapiente quia. Ullam.
-      </p>
-      <p class="text-lg">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident sunt inventore sequi magnam distinctio perferendis facilis odio placeat dignissimos, quidem, soluta optio aliquam eligendi dicta modi repellat cum illo totam ipsam atque architecto laudantium? Veniam.
-      </p>
-      <a href="/services/strategy" class="btn">More →</a>
-    </div>
-
-    <input type="radio" name="toolkit_tabs" class="tab" aria-label="Security" />
-    <div class="tab-content">
-      <h3 class="">a shield?</h3>
-      <p class="">
-        Protect your ideas, your users, and your workflow from risks.
-      </p>
-      <p class="">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt officiis corporis deserunt voluptatibus itaque delectus amet totam odit minus culpa, nesciunt est voluptas fugit odio animi sequi soluta sed blanditiis asperiores nam. Quos cupiditate facilis ad quo soluta voluptatibus iure ex enim vero. Quaerat quod magnam accusamus dolor quam iure animi eveniet nam modi unde omnis nihil facilis at illo officiis saepe, ea, nisi impedit, expedita voluptatibus debitis itaque natus! Minima dolores ipsa accusantium, qui, sequi libero enim reprehenderit molestiae alias laborum quo temporibus eveniet consequuntur fugit laboriosam similique rem ab eligendi quae fuga, vitae quibusdam non sapiente quia. Ullam.
-      </p>
-      <p class="">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident sunt inventore sequi magnam distinctio perferendis facilis odio placeat dignissimos, quidem, soluta optio aliquam eligendi dicta modi repellat cum illo totam ipsam atque architecto laudantium? Veniam.
-      </p>
-      <a href="/services/security" class="btn">More →</a>
-    </div>
-
-    <input type="radio" name="toolkit_tabs" class="tab" aria-label="Crisis" />
-    <div class="tab-content">
-      <h3 class="">Emergency?</h3>
-      <p class="">
-        Something went wrong? Let’s respond fast and smart.
-      </p>
-      <p class="">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt officiis corporis deserunt voluptatibus itaque delectus amet totam odit minus culpa, nesciunt est voluptas fugit odio animi sequi soluta sed blanditiis asperiores nam. Quos cupiditate facilis ad quo soluta voluptatibus iure ex enim vero. Quaerat quod magnam accusamus dolor quam iure animi eveniet nam modi unde omnis nihil facilis at illo officiis saepe, ea, nisi impedit, expedita voluptatibus debitis itaque natus! Minima dolores ipsa accusantium, qui, sequi libero enim reprehenderit molestiae alias laborum quo temporibus eveniet consequuntur fugit laboriosam similique rem ab eligendi quae fuga, vitae quibusdam non sapiente quia. Ullam.
-      </p>
-      <p class="">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident sunt inventore sequi magnam distinctio perferendis facilis odio placeat dignissimos, quidem, soluta optio aliquam eligendi dicta modi repellat cum illo totam ipsam atque architecto laudantium? Veniam.
-      </p>
-      <a href="/services/crisis" class="btn">More →</a>
-    </div>
-  </div>
+  <article>
+    <ServiceTabs />
+  </article>
 </section>

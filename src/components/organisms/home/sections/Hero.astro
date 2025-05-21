@@ -7,7 +7,7 @@ interface Props {
 const { imageSrc = "" } = Astro.props;
 ---
 
-<section class="min-h-screen grid-for-sections">
+<section class="hero-section">
   <div>
     <h1>Kodaskills</h1>
     <h2>No hype, just skills.</h2>
@@ -17,5 +17,4 @@ const { imageSrc = "" } = Astro.props;
     <a href="#target-service-section" class="btn btn-primary">Explore</a>
   </div>
   <Picture src={imageSrc} width="740" height="528" loading="eager" decoding="sync" alt="Hero illustration" class="image-hero-section" />
-  
 </section>
