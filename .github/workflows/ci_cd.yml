@@ -64,11 +64,18 @@ jobs:
         with:
           name: Kodaskills.co
           path: ./dist/
+      
+      - name: 🚨 Run Lighthouse 
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          configPath: ".lighthouserc.yml"
 
   deploy:
     if: github.event_name == 'push'
     needs: build
     runs-on: ubuntu-latest
+    outputs:
+      deploy_page_url: ${{ steps.deployment.outputs.page_url }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -80,3 +87,21 @@ jobs:
         if: env.ACT != 'true'
         with:
           artifact_name: Kodaskills.co
+
+  # lighthouse:
+  #   needs: deploy
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: 📥 Checkout code
+  #       uses: actions/checkout@v4
+
+  #     - name: 📦 Download site artifact
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         name: Kodaskills.co
+  #         path: dist
+
+  #     - name: 🚨 Run Lighthouse 
+  #       uses: treosh/lighthouse-ci-action@v12
+  #       with:
+  #         configPath: ".lighthouserc.yml"
