@@ -5,6 +5,7 @@ build:
     set +a
     source ".env.production"
     set -a
+    just start -d
     docker compose exec astro npm run build
 
 # Build and preview the production artifact [--no-build: bypass build sequence]
@@ -14,5 +15,9 @@ preview *FLAGS:
     set +a
     source ".env.production"
     set -a
-    if [[ "{{ FLAGS }}" != *"--no-build"* ]]; then just build; fi
+    if [[ "{{ FLAGS }}" != *"--no-build"* ]]; then 
+        just build; 
+    else
+        just start -d
+    fi
     docker compose exec astro npm run preview

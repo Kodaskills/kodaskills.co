@@ -1,9 +1,14 @@
-# Test the CD workflow locally
+# Output the CI/CD workflow as graph
+[group('CI/CD commands')]
+workflow:
+    @act --graph
+
+# Test the whole CI/CD locally
 [group('CI/CD commands')]
 cd:
-    act --artifact-server-path /tmp/artifacts
+    @act --artifact-server-path /tmp/artifacts
 
-# Test the CI only workflow locally
+# Test only the CI job locally
 [group('CI/CD commands')]
 ci:
-    act -j 'build' --artifact-server-path /tmp/artifacts
+    @act -j 'build' --artifact-server-path /tmp/artifacts

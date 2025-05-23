@@ -1,10 +1,13 @@
-name: 🚀 GitHub Pages
+name: 🚀 CI/CD
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
+      - feat/github-actions-setup-#66
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
@@ -14,94 +17,115 @@ permissions:
 
 jobs:
   build:
+    name: 🏗️ Build & Test
     runs-on: ubuntu-latest
-
+    environment: github-pages
     steps:
       - name: 🧪 Set ACT flag
         run: echo "ACT=$(echo $ACT | false)" >> $GITHUB_ENV
 
-      - name: 📥 Checkout code
+      - name: 📋 Checkout repository
         uses: actions/checkout@v4
 
-      - name: ⚙️ Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: 'npm'
+      - name: 📥 Setup Just command runner
+        uses: extractions/setup-just@v2
+
+      - name: ⚙️ Setup Node.js with Volta
+        uses: volta-cli/action@v4
 
       - name: 📦 Install dependencies
         run: npm ci
 
-      # - name: 📦 Audit packages
-      #   run: npm audit
-
-      # - name: 📦 Check depenencies to update
-      #   run: npx --yes npm-check-updates
-
-      # - name: 📦 Check unused files, dependencies...
-      #   run: npm run knip
-
-      - name: 🧹 Run Lefthook checks
-        if: env.ACT != 'true'
+      - name: 📝 Create .env file
         run: |
-          npx --yes lefthook run pre-commit
-          npx --yes lefthook run pre-push
+          cat << EOF > .env
+          ASTRO_SERVER_PORT=${{ vars.ASTRO_SERVER_PORT }}
+          ASTRO_SERVER_HOST=${{ vars.ASTRO_SERVER_HOST }}
+          ASTRO_SERVER_PREVIEW_PORT=${{ vars.ASTRO_SERVER_PREVIEW_PORT }}
+          EOF
+        shell: bash
 
-      - name: 📥 Set just
-        uses: extractions/setup-just@v2
+      - name: 🗏 Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
 
-      - name: 🧹 Run just format
-        if: env.ACT != 'true'
+      - name: 🧹 Run Lefthook pre-commit & pre-push
         run: |
-          command -v just && just --fmt --unstable && \ 
-          find just -name '*.just' -exec just --fmt --unstable -f $1 {} \;
+          npx --yes lefthook run pre-commit --all-files
+          npx --yes lefthook run pre-push  --all-files
 
-      - name: 🏗️ Build site
-        run: npm run build
+      - name: 🏗️ Build Astro site
+        run: npm run build -- --site "${{ steps.pages.outputs.origin }}" --base "${{ steps.pages.outputs.base_path }}"
 
-      - name: 📦 Upload site artifact
-        uses: actions/upload-artifact@v4
+      - name: 🚀 Deploy to GitHub Pages
+        uses: actions/upload-pages-artifact@v3
         with:
-          name: Kodaskills.co
+          name: github-pages
           path: ./dist/
-      
-      - name: 🚨 Run Lighthouse 
-        uses: treosh/lighthouse-ci-action@v12
-        with:
-          configPath: ".lighthouserc.yml"
+          retention-days: 1
 
   deploy:
-    if: github.event_name == 'push'
+    name: 🚀 Deploy to GitHub Pages
+    if: ${{ github.event_name == 'push' }}
     needs: build
     runs-on: ubuntu-latest
-    outputs:
-      deploy_page_url: ${{ steps.deployment.outputs.page_url }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-
-    steps:  
-      - name: 🚚 Deploy to GitHub Pages
+    outputs:
+      deploy_page_url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: 🚚 Deploy
         id: deployment
         uses: actions/deploy-pages@v4
         if: env.ACT != 'true'
         with:
-          artifact_name: Kodaskills.co
+          artifact_name: github-pages
 
-  # lighthouse:
-  #   needs: deploy
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: 📥 Checkout code
-  #       uses: actions/checkout@v4
+  audit:
+    name: 📊 Performance Audit
+    if: ${{ github.event_name == 'push' }}
+    needs:
+      - build
+      - deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📋 Checkout repository
+        uses: actions/checkout@v4
 
-  #     - name: 📦 Download site artifact
-  #       uses: actions/download-artifact@v4
-  #       with:
-  #         name: Kodaskills.co
-  #         path: dist
+      - name: ⚙️ Setup Chrome locally (aka act)
+        id: setup-chrome
+        uses: browser-actions/setup-chrome@v1
+        if: env.ACT == 'true'
+        with:
+          install-dependencies: true
 
-  #     - name: 🚨 Run Lighthouse 
-  #       uses: treosh/lighthouse-ci-action@v12
-  #       with:
-  #         configPath: ".lighthouserc.yml"
+      - name: ⚙️ Set local or CI env vars
+        run: |
+          if [ "${{ env.ACT }}" == 'true' ]; then
+            echo "CHROME_PATH=${{ steps.setup-chrome.outputs.chrome-path }}" >> $GITHUB_ENV
+            echo "UPLOAD_ARTIFACT=false" >> $GITHUB_ENV
+          else
+            echo "UPLOAD_ARTIFACT=true" >> $GITHUB_ENV
+          fi
+        shell: bash
+
+      - name: 🚨 Run Lighthouse Audit
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          configPath: ".github/.lighthouserc.yml"
+          uploadArtifacts: ${{ env.UPLOAD_ARTIFACT }}
+          temporaryPublicStorage: ${{ env.UPLOAD_ARTIFACT }}
+
+      - name: 🏅 Generate Lighthouse badge
+        env:
+          CHROME_PATH: ${{ steps.setup-chrome.outputs.chrome-path }}
+        run: |
+          npx --yes lighthouse-badges --url https://kodaskills.co  -o ./lighthouse-badges -s
+
+      - name: 📤 Upload Lighthouse badge artifact
+        id: lighthouse-cache-badge
+        uses: actions/cache@v4
+        with:
+          path: lighthouse-badge.svg
+          key: ./lighthouse-badges/lighthouse.svg

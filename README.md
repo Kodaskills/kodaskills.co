@@ -7,6 +7,8 @@
 [![Website](https://img.shields.io/website?down_message=offline&up_message=online&url=https%3A%2F%2Fkodaskills.co)](https://kodaskills.co)
 [![MIT License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Contributors](https://img.shields.io/github/contributors/Kodaskills/kodaskills.co)](https://github.com/Kodaskills/kodaskills.co/graphs/contributors)
+![🚀 GitHub Pages CI/CD](https://github.com/kodaskills/kodaskills.co/actions/workflows/ci_cd.yml/badge.svg)
+![🗼 Lighthouse score]()
 
 ## ✨ Features
 
