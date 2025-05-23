@@ -1,0 +1,49 @@
+/* Select Daisy UI themes */
+
+@plugin "daisyui" {
+  themes: Kodaskills --default, dark --preferdark;
+}
+
+/* Override Daisy UI themes */
+
+@plugin "daisyui/theme" {
+  name: "Kodaskills";
+  default: true;
+  /* prefersdark: false; */
+  color-scheme: "light";
+  --color-base-100: oklch(100% 0 0);
+  --color-base-200: oklch(98% 0 0);
+  --color-base-300: oklch(95% 0 0);
+  --color-base-content: oklch(21% 0.006 285.885);
+  --color-primary: oklch(0.4052 0.0601 216.5);
+  --color-primary-content: oklch(93% 0.034 272.788);
+  --color-secondary: oklch(0.6723 0.1194 220.64);
+  --color-secondary-content: oklch(94% 0.028 342.258);
+  --color-accent: oklch(0.7871 0.1486 100.08);
+  --color-accent-content: oklch(38% 0.063 188.416);
+  --color-neutral: oklch(0.2529 0.0294 214.24);
+  --color-neutral-content: oklch(92% 0.004 286.32);
+  --color-info: oklch(74% 0.16 232.661);
+  --color-info-content: oklch(29% 0.066 243.157);
+  --color-success: oklch(76% 0.177 163.223);
+  --color-success-content: oklch(37% 0.077 168.94);
+  --color-warning: oklch(0.7217 0.1273 74.22);
+  --color-warning-content: oklch(41% 0.112 45.904);
+  --color-error: oklch(0.631 0.1597 27.98);
+  --color-error-content: oklch(27% 0.105 12.094);
+  --radius-selector: 0.5rem;
+  --radius-field: 0.5rem;
+  --radius-box: 1rem;
+  --size-selector: 0.3125rem;
+  --size-field: 0.3125rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 1;
+}
+
+@plugin "daisyui/theme" {
+  name: "dark";
+  prefersdark: true;
+  /* --color-primary: var(--color-green-800);
+  --color-secondary: teal; */
+}

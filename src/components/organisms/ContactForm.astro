@@ -1,16 +1,12 @@
-<div class="w-full max-w-lg">
-  <fieldset class="fieldset bg-base-200 border-base-300 rounded-box border p-6">
-    <legend class="fieldset-legend text-2xl font-bold mb-4">Contact</legend>
+<article class="contact-form-fieldset">
+  <label for="Name" class="label">Name</label>
+  <input name="Name" type="text" class="input" placeholder="Dako Liks" />
 
-    <label for="Name" class="label text-lg">Name</label>
-    <input name="Name" type="text" class="input input-bordered w-full text-lg h-14" placeholder="Dako Liks" />
+  <label for="Email" class="label">Email</label>
+  <input name="Email" type="email" class="input" placeholder="dako.liks@hotmail.com" />
 
-    <label for="Email" class="label text-lg mt-4">Email</label>
-    <input name="Email" type="email" class="input input-bordered w-full text-lg h-14" placeholder="dako.liks@hotmail.com" />
+  <label for="Message" class="label">Message</label>
+  <textarea name="Message" class="textarea resize-none" maxlength="1000" placeholder="Hi! My name is Dako Liks and I'm currently leading a tech team that needs to be helped. Let's get in touch."></textarea>
 
-    <label for="Message" class="label text-lg mt-4">Message</label>
-    <textarea name="Message" class="textarea textarea-bordered w-full text-lg h-36" placeholder="Hi! My name is Dako Liks and I'm currently leading a tech team that needs to be helped. Let's get in touch."></textarea>
-
-    <button class="btn btn-neutral mt-6 w-full text-lg h-14">Submit</button>
-  </fieldset>
-</div>
+  <button class="btn btn-neutral">Submit</button>
+</article>

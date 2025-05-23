@@ -1,0 +1,71 @@
+@utility theme-controller-icons {
+  @apply fill-current w-8 h-8;
+}
+
+@utility image-hero-section {
+  @apply rounded-lg shadow-lg max-h-[80vh] justify-self-end;
+}
+
+@utility navbar {
+  @apply bg-base-100 container;
+}
+
+@utility navbar-center {
+  @apply hidden lg:flex;
+}
+
+@utility navbar-end {
+  @apply flex-row items-center gap-4 text-2xl;
+}
+
+@utility footer {
+  @apply container grid-cols-4;
+}
+
+@utility main-wrapper {
+  @apply min-h-screen grid grid-rows-[auto_1fr_auto];
+}
+
+@utility main-header {
+  @apply shadow-md;
+}
+
+@utility main-header-content {
+  @apply container mx-auto;
+}
+
+@utility main-content {
+  @apply container mx-auto;
+}
+
+@utility main-footer {
+  @apply w-full bg-base-300 py-8;
+}
+
+@utility main-footer-content {
+  @apply container mx-auto;
+}
+
+@utility hero-section {
+  @apply grid-sections items-center min-h-screen;
+}
+
+@utility grid-sections {
+  @apply grid grid-cols-2 items-start pb-24;
+}
+
+@utility grid-blog-section {
+  @apply grid-rows-2 items-center pb-16;
+}
+
+@utility grid-bloglist {
+  @apply grid grid-cols-3 place-items-center;
+}
+
+@utility border-service-content {
+  @apply bg-base-100 border border-base-300 p-6;
+}
+
+@utility contact-form-fieldset {
+  @apply bg-base-200 border-base-300 rounded-box w-xs border p-4 justify-self-center;
+}

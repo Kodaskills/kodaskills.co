@@ -1,8 +1,11 @@
 ---
 import { BlogList } from "@components/organisms";
-import Layout from "@layouts/Main.astro";
+import MainLayout from "@layouts/Main.astro";
 ---
 
-<Layout title="Blog" description="Blog page">   
-    <BlogList />
-</Layout> 
+<MainLayout title="Blog" description="Blog page">   
+    <section class="grid-bloglist">
+        <BlogList />
+    </section>
+    
+</MainLayout> 

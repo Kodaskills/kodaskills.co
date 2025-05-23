@@ -1,30 +1,19 @@
 ---
-import MainLayout from "@layouts/Main.astro"
-import { Picture } from 'astro:assets';
+import { Picture } from "astro:assets";
+import MainLayout from "@layouts/Main.astro";
 
-import { formatDate } from "@functions/utils"
+import { formatDate } from "@functions/utils";
 
-const {frontmatter} = Astro.props;
-const{
-	title,
-	description,
-	date = Date(),
-  image,
-} = frontmatter;
+const { frontmatter } = Astro.props;
+const { title, description, date = Date(), image } = frontmatter;
 ---
 
 <MainLayout {title} {description}>
-  <header class="py-10">
-    <div class="container mx-auto text-center">
-      <h1 class="text-5xl font-bold">{title}</h1>
+  <header>
+      <h1>{title}</h1>
       <p>{formatDate(date)}</p>
-    </div>
     <Picture {...image} loading="eager" decoding="sync">
   </header>
-
-  <div class="post-content flex gap-8 px-4 py-8 max-w-7xl mx-auto"> 
-    <div class="content flex-1">
-      <slot />
-    </div>
-  </div>
+      
+  <slot />
 </MainLayout>
