@@ -1,0 +1,11 @@
+ci:
+  assert:
+    assertions:
+      first-contentful-paint:
+        - error
+        - minScore: 0.9
+  collect:
+    headful: false,
+    url: https://kodaskills.github.io/kodaskills.co/
+    settings:
+      chromeFlags: --disable-gpu --no-sandbox --no-zygote

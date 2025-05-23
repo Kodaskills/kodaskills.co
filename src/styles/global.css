@@ -2,3 +2,7 @@
 @import "./daisyui/themes.css";
 @import "./daisyui/components.css";
 @import "./base.css";
+@plugin "daisyui" {
+  /* biome-ignore lint/correctness/noUnknownProperty :plugin DaisyUI */
+  themes: light --default, dark --prefersdark, luxury;
+}
