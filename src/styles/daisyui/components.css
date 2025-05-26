@@ -7,7 +7,7 @@
 }
 
 @utility navbar {
-  @apply bg-base-100 container;
+  @apply container;
 }
 
 @utility navbar-center {
@@ -27,7 +27,7 @@
 }
 
 @utility main-header {
-  @apply shadow-md;
+  @apply shadow-md bg-base-100;
 }
 
 @utility main-header-content {
@@ -39,7 +39,7 @@
 }
 
 @utility main-footer {
-  @apply w-full bg-base-300 py-8;
+  @apply w-full bg-base-100 py-8;
 }
 
 @utility main-footer-content {
