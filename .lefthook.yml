@@ -16,9 +16,6 @@ pre-push:
     "Check unused files, dependencies...":
       tags: maintenance
       run: npm run knip
-    "Check modules to update":
-      tags: maintenance
-      run: npx --yes npm-check-updates
 pre-commit:
   parallel: true
   commands:
