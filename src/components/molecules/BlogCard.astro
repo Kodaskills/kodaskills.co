@@ -15,7 +15,7 @@ const { post } = Astro.props;
       <Picture {...post.data.image} class="object-cover w-full h-full"/>
   </figure>
   <div class="card-body">
-      <h2 class="card-title">{post.data.title}</h2>
+      <h1 class="card-title">{post.data.title}</h1>
       <p>{post.data.description}</p>
       <div class="card-actions justify-end">
           <Link href={`/blog/${post.id}`} class="btn btn-primary">Let's go</Link>

@@ -52,6 +52,8 @@ jobs:
         run: |
           npx --yes lefthook run pre-commit --all-files
           npx --yes lefthook run pre-push  --all-files
+        env:
+          LEFTHOOK_EXCLUDE: no-ci
 
       - name: 🏗️ Build Astro site
         run: npm run build -- --site "${{ steps.pages.outputs.origin }}" --base "${{ steps.pages.outputs.base_path }}"
@@ -107,6 +109,13 @@ jobs:
           fi
         shell: bash
 
+      - name: 🚨 Run Lighthouse Audit
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          configPath: ".github/.lighthouserc.yml"
+          uploadArtifacts: ${{ env.UPLOAD_ARTIFACT }}
+          temporaryPublicStorage: ${{ env.UPLOAD_ARTIFACT }}
+
       - name: 🏅 Generate Lighthouse badge
         env:
           CHROME_PATH: ${{ steps.setup-chrome.outputs.chrome-path }}
@@ -119,10 +128,3 @@ jobs:
         with:
           path: ./.lighthouse-badges/lighthouse.svg
           key: badge-lightouse.svg
-
-      - name: 🚨 Run Lighthouse Audit
-        uses: treosh/lighthouse-ci-action@v12
-        with:
-          configPath: ".github/.lighthouserc.yml"
-          uploadArtifacts: ${{ env.UPLOAD_ARTIFACT }}
-          temporaryPublicStorage: ${{ env.UPLOAD_ARTIFACT }}

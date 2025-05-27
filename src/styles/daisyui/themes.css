@@ -1,13 +1,16 @@
 /* Select Daisy UI themes */
 
 @plugin "daisyui" {
+  /* biome-ignore lint/correctness/noUnknownProperty: <explanation> */
   themes: Kodaskills --default, dark --preferdark;
 }
 
 /* Override Daisy UI themes */
 
 @plugin "daisyui/theme" {
+  /* biome-ignore lint/correctness/noUnknownProperty: <explanation> */
   name: "Kodaskills";
+  /* biome-ignore lint/correctness/noUnknownProperty: <explanation> */
   default: true;
   /* prefersdark: false; */
   color-scheme: "light";
@@ -42,7 +45,9 @@
 }
 
 @plugin "daisyui/theme" {
+  /* biome-ignore lint/correctness/noUnknownProperty: <explanation> */
   name: "dark";
+  /* biome-ignore lint/correctness/noUnknownProperty: <explanation> */
   prefersdark: true;
   /* --color-primary: var(--color-green-800);
   --color-secondary: teal; */
