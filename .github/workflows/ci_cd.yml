@@ -107,6 +107,13 @@ jobs:
           fi
         shell: bash
 
+      - name: 🚨 Run Lighthouse Audit
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          configPath: ".github/.lighthouserc.yml"
+          uploadArtifacts: ${{ env.UPLOAD_ARTIFACT }}
+          temporaryPublicStorage: ${{ env.UPLOAD_ARTIFACT }}
+
       - name: 🏅 Generate Lighthouse badge
         env:
           CHROME_PATH: ${{ steps.setup-chrome.outputs.chrome-path }}
@@ -119,10 +126,3 @@ jobs:
         with:
           path: ./.lighthouse-badges/lighthouse.svg
           key: badge-lightouse.svg
-
-      - name: 🚨 Run Lighthouse Audit
-        uses: treosh/lighthouse-ci-action@v12
-        with:
-          configPath: ".github/.lighthouserc.yml"
-          uploadArtifacts: ${{ env.UPLOAD_ARTIFACT }}
-          temporaryPublicStorage: ${{ env.UPLOAD_ARTIFACT }}
