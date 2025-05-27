@@ -3,6 +3,7 @@
 #   https://github.com/evilmartians/lefthook/blob/master/docs/configuration.md
 #
 #   ❗ For special local purposes please use lefthook-local.yml instead of changing this file
+#   ❗ We use lefthook in CI/CD, so please add tag "no-ci" to bypass a command on CI/CD
 #
 pre-push:
   parallel: true
@@ -11,7 +12,9 @@ pre-push:
       tags: security
       run: npm audit
     "Check git branch":
-      tags: convention
+      tags:
+        - convention
+        - no-ci
       run: npx --yes validate-branch-name
     "Check unused files, dependencies...":
       tags: maintenance
@@ -27,9 +30,13 @@ pre-commit:
       run: |
         npx --yes @biomejs/biome check --write --no-errors-on-unmatched --files-ignore-unknown=true {staged_files}
         command -v just && just --fmt --unstable && find just -name '*.just' -exec just --fmt --unstable -f $1 {} \;
-        git update-index --again
+        if [ "${CI}" != "true" ]; then
+          git update-index --again
+        fi
 commit-msg:
   commands:
     "Check commit message":
-      tags: convention
+      tags:
+        - convention
+        - no-ci
       run: npx --yes -- commitlint --edit "$1"

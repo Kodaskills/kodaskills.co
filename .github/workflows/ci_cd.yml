@@ -52,6 +52,8 @@ jobs:
         run: |
           npx --yes lefthook run pre-commit --all-files
           npx --yes lefthook run pre-push  --all-files
+        env:
+          LEFTHOOK_EXCLUDE: no-ci
 
       - name: 🏗️ Build Astro site
         run: npm run build -- --site "${{ steps.pages.outputs.origin }}" --base "${{ steps.pages.outputs.base_path }}"
