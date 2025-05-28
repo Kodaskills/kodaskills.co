@@ -10,6 +10,7 @@
     "blog/*",
     "src/layouts/BlogPost.astro",
     "src/layouts/ServicePage.astro",
-    "src/ts/utils.ts"
+    "src/ts/utils.ts",
+    "keystatic.config.ts"
   ]
 }
