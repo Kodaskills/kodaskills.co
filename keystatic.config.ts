@@ -16,7 +16,21 @@ export default config({
       format: { contentField: "content" },
       schema: {
         title: fields.slug({ name: { label: "Title" } }),
-        content: fields.markdoc({ label: "Content" }),
+        content: fields.mdx({ label: "Content" }),
+        layout: fields.text({ label: "Layout" }),
+        date: fields.date({ label: "Publish date" }),
+        image: fields.object(
+          {
+            src: fields.text({ label: "Image Path or URL" }),
+            alt: fields.text({ label: "Alt Text" }),
+            width: fields.integer({ label: "Width (px)" }),
+            height: fields.integer({ label: "Height (px)" }),
+          },
+          {
+            label: "Image", // ✅ Correct placement
+          },
+        ),
+        description: fields.text({ label: "Description" }),
       },
     }),
   },
