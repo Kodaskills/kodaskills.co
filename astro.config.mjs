@@ -23,7 +23,7 @@ export default defineConfig({
       command === "preview"
         ? Number.parseInt(ASTRO_SERVER_PREVIEW_PORT)
         : Number.parseInt(ASTRO_SERVER_PORT),
-    host: Boolean(ASTRO_SERVER_HOST),
+    host: Boolean(ASTRO_SERVER_HOST === "true"),
   }),
   vite: {
     plugins: [tailwindcss()],
