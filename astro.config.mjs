@@ -5,6 +5,10 @@ import icon from "astro-icon";
 import { defineConfig } from "astro/config";
 import { loadEnv } from "vite";
 
+import markdoc from "@astrojs/markdoc";
+import react from "@astrojs/react";
+import keystatic from "@keystatic/astro";
+
 const { ASTRO_SERVER_PORT, ASTRO_SERVER_HOST, ASTRO_SERVER_PREVIEW_PORT } =
   loadEnv(process.env.NODE_ENV || "development", process.cwd(), "");
 
@@ -32,5 +36,8 @@ export default defineConfig({
         ri: ["*"],
       },
     }),
+    react(),
+    markdoc(),
+    keystatic(),
   ],
 });
