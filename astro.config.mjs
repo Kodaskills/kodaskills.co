@@ -5,7 +5,6 @@ import icon from "astro-icon";
 import { defineConfig } from "astro/config";
 import { loadEnv } from "vite";
 
-import markdoc from "@astrojs/markdoc";
 import react from "@astrojs/react";
 import keystatic from "@keystatic/astro";
 
@@ -37,7 +36,6 @@ export default defineConfig({
       },
     }),
     react(),
-    markdoc(),
     keystatic(),
   ],
 });
