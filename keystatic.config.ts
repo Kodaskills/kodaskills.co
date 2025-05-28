@@ -17,6 +17,7 @@ export default config({
       schema: {
         title: fields.slug({ name: { label: "Title" } }),
         content: fields.mdx({ label: "Content" }),
+        description: fields.text({ label: "Description" }),
         layout: fields.text({ label: "Layout" }),
         date: fields.date({ label: "Publish date" }),
         image: fields.object(
@@ -27,10 +28,9 @@ export default config({
             height: fields.integer({ label: "Height (px)" }),
           },
           {
-            label: "Image", // ✅ Correct placement
+            label: "Image",
           },
         ),
-        description: fields.text({ label: "Description" }),
       },
     }),
   },
