@@ -8,17 +8,22 @@ interface Props {
 }
 
 const { post } = Astro.props;
+const { title, description, cover, coverAlt } = post.data;
 ---
 
 <div class="card bg-base-100 w-96 shadow-sm">
   <figure class="h-60 overflow-hidden">
-      <Picture {...post.data.image} class="object-cover w-full h-full"/>
+    <Picture
+      src={cover}
+      alt={coverAlt || "image"}
+      class="object-cover w-full h-full"
+    />
   </figure>
   <div class="card-body">
-      <h1 class="card-title">{post.data.title}</h1>
-      <p>{post.data.description}</p>
-      <div class="card-actions justify-end">
-          <Link href={`/blog/${post.id}`} class="btn btn-primary">Let's go</Link>
-      </div>
+    <h2 class="card-title">{title}</h2>
+    <p>{description}</p>
+    <div class="card-actions justify-end">
+      <Link href={`/blog/${post.id}`} class="btn btn-primary">Let's go</Link>
+    </div>
   </div>
 </div>

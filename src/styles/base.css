@@ -1,6 +1,9 @@
 /* Override Tailwind */
 
 @layer base {
+  a {
+    @apply text-blue-900;
+  }
   h1 {
     font-size: var(--text-7xl);
     font-weight: var(--font-weight-bold);

@@ -1,36 +1,58 @@
 import { collection, config, fields } from "@keystatic/core";
+import { wrapper } from "@keystatic/core/content-components";
+
+const isGithub = import.meta.env.KEYSTATIC_STORAGE === "github";
+const imageConfig = {
+  directory: "src/assets/images/posts",
+  publicPath: "@assets/images/posts/",
+};
 
 export default config({
-  storage: {
-    kind: "github",
-    repo: {
-      owner: "Kodaskills",
-      name: "kodaskills.co",
-    },
+  ui: {
+    brand: { name: "Kodaskills" },
   },
+  storage: isGithub
+    ? {
+        kind: "github",
+        repo: {
+          owner: "Kodaskills",
+          name: "kodaskills.co",
+        },
+      }
+    : {
+        kind: "local",
+      },
+
   collections: {
     posts: collection({
       label: "Posts",
       slugField: "title",
+      entryLayout: "content",
       path: "blog/*",
       format: { contentField: "content" },
       schema: {
         title: fields.slug({ name: { label: "Title" } }),
-        content: fields.mdx({ label: "Content" }),
         description: fields.text({ label: "Description" }),
-        layout: fields.text({ label: "Layout" }),
+        content: fields.mdx({
+          label: "Content",
+          options: {
+            image: imageConfig,
+          },
+          components: {
+            Link: wrapper({
+              label: "Link",
+              schema: {
+                href: fields.text({ label: "href" }),
+              },
+            }),
+          },
+        }),
         date: fields.date({ label: "Publish date" }),
-        image: fields.object(
-          {
-            src: fields.text({ label: "Image Path or URL" }),
-            alt: fields.text({ label: "Alt Text" }),
-            width: fields.integer({ label: "Width (px)" }),
-            height: fields.integer({ label: "Height (px)" }),
-          },
-          {
-            label: "Image",
-          },
-        ),
+        cover: fields.image({
+          label: "Cover",
+          ...imageConfig,
+        }),
+        coverAlt: fields.text({ label: "Cover alt" }),
       },
     }),
   },
