@@ -1,9 +1,32 @@
 ---
+import { Icon } from "astro-icon/components";
 import type { HTMLAttributes } from "astro/types";
 
-interface Props extends HTMLAttributes<"a"> {}
+interface Props extends HTMLAttributes<"a"> {
+  "data-no-external-icon"?: boolean;
+}
 
 const props = Astro.props;
+const href = props.href as string | undefined;
+const noIcon = props["data-no-external-icon"] === true;
+
+const isExternal = href?.includes("://") && !noIcon;
 ---
 
-<a {...props}><slot /></a>
+<a
+  {...props}
+  target={isExternal ? "_blank" : undefined}
+  rel={isExternal ? "noopener noreferrer" : undefined}
+  style="display: inline-flex; align-items: center;"
+>
+  <slot />
+  {
+    isExternal && (
+      <Icon
+        name="ri:external-link-line"
+        style="margin-left: 0.25em; color: #999999;"
+        aria-hidden="true"
+      />
+    )
+  }
+</a>
