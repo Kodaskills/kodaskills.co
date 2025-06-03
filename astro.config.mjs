@@ -8,8 +8,14 @@ import { loadEnv } from "vite";
 import react from "@astrojs/react";
 import keystatic from "@keystatic/astro";
 
-const { ASTRO_SERVER_PORT, ASTRO_SERVER_HOST, ASTRO_SERVER_PREVIEW_PORT } =
-  loadEnv(process.env.NODE_ENV || "development", process.cwd(), "");
+const {
+  ASTRO_SERVER_PORT,
+  ASTRO_SERVER_HOST,
+  ASTRO_SERVER_PREVIEW_PORT,
+  NODE_ENV,
+} = loadEnv(process.env.NODE_ENV || "development", process.cwd(), "");
+
+const isProd = NODE_ENV === "production";
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,6 +23,7 @@ export default defineConfig({
     defaultStrategy: "hover",
     prefetchAll: true,
   },
+
   server: ({ command }) => ({
     port:
       command === "preview"
@@ -24,6 +31,7 @@ export default defineConfig({
         : Number.parseInt(ASTRO_SERVER_PORT),
     host: Boolean(ASTRO_SERVER_HOST === "true"),
   }),
+
   vite: {
     plugins: [tailwindcss()],
   },
@@ -36,6 +44,6 @@ export default defineConfig({
       },
     }),
     react(),
-    keystatic(),
+    ...[!isProd && keystatic()],
   ],
 });
