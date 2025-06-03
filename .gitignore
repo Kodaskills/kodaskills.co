@@ -243,3 +243,4 @@ $RECYCLE.BIN/
 .config
 .reports/
 .lighthouse-badges/
+bin/
