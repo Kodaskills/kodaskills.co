@@ -1,7 +1,26 @@
-import { collection, config, fields } from "@keystatic/core";
+import {
+  type GitHubConfig,
+  type LocalConfig,
+  collection,
+  config,
+  fields,
+} from "@keystatic/core";
 import { wrapper } from "@keystatic/core/content-components";
 
-const isGithub = import.meta.env.KEYSTATIC_STORAGE === "github";
+const { PROD } = import.meta.env;
+
+const githubStorage = {
+  kind: "github",
+  repo: {
+    owner: "Kodaskills",
+    name: "kodaskills.co",
+  },
+} as GitHubConfig["storage"];
+
+const localStorage = {
+  kind: "local",
+} as LocalConfig["storage"];
+
 const imageConfig = {
   directory: "src/assets/images/posts",
   publicPath: "@assets/images/posts/",
@@ -11,18 +30,7 @@ export default config({
   ui: {
     brand: { name: "Kodaskills" },
   },
-  storage: isGithub
-    ? {
-        kind: "github",
-        repo: {
-          owner: "Kodaskills",
-          name: "kodaskills.co",
-        },
-      }
-    : {
-        kind: "local",
-      },
-
+  storage: PROD ? githubStorage : localStorage,
   collections: {
     posts: collection({
       label: "Posts",
@@ -43,6 +51,7 @@ export default config({
               label: "Link",
               schema: {
                 href: fields.text({ label: "href" }),
+                class: fields.text({ label: "class" }),
               },
             }),
           },
