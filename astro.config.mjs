@@ -5,8 +5,17 @@ import icon from "astro-icon";
 import { defineConfig } from "astro/config";
 import { loadEnv } from "vite";
 
-const { ASTRO_SERVER_PORT, ASTRO_SERVER_HOST, ASTRO_SERVER_PREVIEW_PORT } =
-  loadEnv(process.env.NODE_ENV || "development", process.cwd(), "");
+import react from "@astrojs/react";
+import keystatic from "@keystatic/astro";
+
+const {
+  ASTRO_SERVER_PORT,
+  ASTRO_SERVER_HOST,
+  ASTRO_SERVER_PREVIEW_PORT,
+  NODE_ENV,
+} = loadEnv(process.env.NODE_ENV || "development", process.cwd(), "");
+
+const isProd = NODE_ENV === "production";
 
 // https://astro.build/config
 export default defineConfig({
@@ -14,13 +23,15 @@ export default defineConfig({
     defaultStrategy: "hover",
     prefetchAll: true,
   },
+
   server: ({ command }) => ({
     port:
       command === "preview"
         ? Number.parseInt(ASTRO_SERVER_PREVIEW_PORT)
         : Number.parseInt(ASTRO_SERVER_PORT),
-    host: Boolean(ASTRO_SERVER_HOST),
+    host: Boolean(ASTRO_SERVER_HOST === "true"),
   }),
+
   vite: {
     plugins: [tailwindcss()],
   },
@@ -32,5 +43,7 @@ export default defineConfig({
         ri: ["*"],
       },
     }),
+    react(),
+    ...[!isProd && keystatic()],
   ],
 });

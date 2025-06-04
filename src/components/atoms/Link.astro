@@ -1,9 +1,30 @@
 ---
+import { Icon } from "astro-icon/components";
 import type { HTMLAttributes } from "astro/types";
 
 interface Props extends HTMLAttributes<"a"> {}
 
-const props = Astro.props;
+const { class: className, ...props } = Astro.props;
+const href = props.href as string;
+const noIcon = className?.includes("no-ext-icon");
+
+const isExternal = href?.includes("://") && !noIcon;
 ---
 
-<a {...props}><slot /></a>
+<a
+  {...props}
+  target={isExternal ? "_blank" : undefined}
+  rel={isExternal ? "noopener noreferrer" : undefined}
+  class={`${className} ${isExternal && "inline-flex items-center"}`}
+>
+  <slot />
+  {
+    isExternal && (
+      <Icon
+        name="ri:external-link-line"
+        class={`${className} ml-1 text-stone-500`}
+        aria-hidden="true"
+      />
+    )
+  }
+</a>

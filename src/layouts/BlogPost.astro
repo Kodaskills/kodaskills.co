@@ -1,19 +1,22 @@
 ---
 import { Picture } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import { formatDate } from "@functions/utils";
 import MainLayout from "@layouts/Main.astro";
 
-import { formatDate } from "@functions/utils";
+interface Props {
+  post: CollectionEntry<"blog">;
+}
 
-const { frontmatter } = Astro.props;
-const { title, description, date = Date(), image } = frontmatter;
+const { post } = Astro.props;
+const { title, description, date, cover, coverAlt } = post.data;
 ---
 
 <MainLayout {title} {description}>
   <header>
-      <h1>{title}</h1>
-      <p>{formatDate(date)}</p>
-    <Picture {...image} loading="eager" decoding="sync">
+    <h1>{title}</h1>
+    <p>{formatDate(date)}</p>
+    <Picture src={cover} alt={coverAlt || "image"} />
+    <slot />
   </header>
-      
-  <slot />
 </MainLayout>

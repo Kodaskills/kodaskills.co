@@ -5,7 +5,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@assets/*": ["src/assets/*"],
+      "@assets/*": ["./src/assets/*"],
       "@components/*": ["src/components/*"],
       "@layouts/*": ["src/layouts/*"],
       "@pages/*": ["src/pages/*"],
@@ -13,6 +13,8 @@
       "@styles/*": ["src/styles/*"],
       "@types": ["src/types.ts"]
     },
-    "noImplicitAny": true
+    "noImplicitAny": true,
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
   }
 }
