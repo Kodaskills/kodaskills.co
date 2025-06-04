@@ -2,7 +2,7 @@ import mdx from "@astrojs/mdx";
 import tailwindcss from "@tailwindcss/vite";
 import icon from "astro-icon";
 // @ts-check
-import { defineConfig, envField } from "astro/config";
+import { defineConfig } from "astro/config";
 import { loadEnv } from "vite";
 
 import react from "@astrojs/react";
