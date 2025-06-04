@@ -19,6 +19,7 @@ const isProd = NODE_ENV === "production";
 
 // https://astro.build/config
 export default defineConfig({
+  base: isProd ? "/kodaskills.co/" : "/",
   prefetch: {
     defaultStrategy: "hover",
     prefetchAll: true,
