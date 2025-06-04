@@ -12,6 +12,7 @@ const {
   ASTRO_SERVER_PORT,
   ASTRO_SERVER_HOST,
   ASTRO_SERVER_PREVIEW_PORT,
+  ASTRO_SERVER_BASE_PATH = "/",
   NODE_ENV,
 } = loadEnv(process.env.NODE_ENV || "development", process.cwd(), "");
 
@@ -19,7 +20,7 @@ const isProd = NODE_ENV === "production";
 
 // https://astro.build/config
 export default defineConfig({
-  base: isProd ? "/kodaskills.co/" : "/",
+  base: ASTRO_SERVER_BASE_PATH,
   prefetch: {
     defaultStrategy: "hover",
     prefetchAll: true,
