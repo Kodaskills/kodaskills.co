@@ -30,6 +30,7 @@
     "@keystatic/astro": "^5.0.6",
     "@keystatic/core": "^0.5.47",
     "@tailwindcss/vite": "^4.1.7",
+    "@types/js-yaml": "^4.0.9",
     "@types/node": "^22.15.21",
     "@types/react": "^19.1.6",
     "@types/react-dom": "^19.1.5",
