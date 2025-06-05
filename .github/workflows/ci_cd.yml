@@ -41,6 +41,7 @@ jobs:
           ASTRO_SERVER_PORT=${{ vars.ASTRO_SERVER_PORT }}
           ASTRO_SERVER_HOST=${{ vars.ASTRO_SERVER_HOST }}
           ASTRO_SERVER_PREVIEW_PORT=${{ vars.ASTRO_SERVER_PREVIEW_PORT }}
+          ASTRO_SERVER_BASE_PATH=${{ vars.ASTRO_SERVER_BASE_PATH }}
           EOF
         shell: bash
 
