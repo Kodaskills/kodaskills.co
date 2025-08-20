@@ -33,7 +33,7 @@
     "@types/node": "^22.15.21",
     "@types/react": "^19.1.6",
     "@types/react-dom": "^19.1.6",
-    "astro": "^5.8.0",
+    "astro": "^5.13.2",
     "astro-icon": "^1.1.5",
     "daisyui": "^5.0.37",
     "knip": "^5.58.0",
