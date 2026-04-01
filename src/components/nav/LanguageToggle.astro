@@ -1,0 +1,80 @@
+---
+import Icon from "@components/primitives/Icon.astro";
+
+const lang = (Astro.currentLocale ?? "en") as "en" | "fr";
+const first = lang;
+const second = lang === "en" ? "fr" : "en";
+
+const meta = {
+  en: {
+    flag: "flag-en" as const,
+    label: "EN",
+    title: "Switch to English",
+    aria: "Switch to English",
+  },
+  fr: {
+    flag: "flag-fr" as const,
+    label: "FR",
+    title: "Passer en français",
+    aria: "Passer en français",
+  },
+};
+---
+
+<div
+  class="hidden md:block relative"
+  style="width: 60px; height: 32px;"
+  x-data={`{ open: false, ready: false, snap: false, currentLang: '${lang}' }`}
+  x-init="
+    const prev = sessionStorage.getItem('ks-lang');
+    sessionStorage.setItem('ks-lang', currentLang);
+    if (prev && prev !== currentLang) {
+      requestAnimationFrame(() => requestAnimationFrame(() => { ready = true; }));
+    } else {
+      snap = true;
+      ready = true;
+    }
+  "
+  @mouseenter="open = true"
+  @mouseleave="open = false"
+  role="radiogroup"
+  aria-label="Language"
+>
+  <div
+    class="absolute top-0 left-0 overflow-hidden"
+    style="width: 60px; border-radius: 0; background: var(--color-surface); box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-outline-variant) 40%, transparent); z-index: 50;"
+    :style="open ? 'height: 64px' : 'height: 32px'"
+  >
+    <div
+      class="flex flex-col"
+      :style="ready ? 'transform: translateY(0)' : 'transform: translateY(32px)'"
+    >
+      <!-- Active language -->
+      <button
+        @click={`window.location.href = $store.lang.pathFor('${first}')`}
+        role="radio"
+        aria-checked="true"
+        class="text-primary shrink-0 h-8 px-3 flex items-center gap-2 text-[10px] font-mono font-bold cursor-pointer"
+        title={meta[first].title}
+        aria-label={meta[first].aria}
+      >
+        <Icon name={meta[first].flag} size={14} />
+        {meta[first].label}
+      </button>
+
+      <!-- Inactive language -->
+      <button
+        @click={`window.posthog?.capture('language_changed', { from_lang: '${first}', to_lang: '${second}' }); window.location.href = $store.lang.pathFor('${second}')`}
+        role="radio"
+        aria-checked="false"
+        class="text-outline hover:text-on-surface shrink-0 h-8 px-3 flex items-center gap-2 transition-colors duration-150 text-[10px] font-mono font-bold cursor-pointer"
+        style="filter: grayscale(1);"
+        title={meta[second].title}
+        aria-label={meta[second].aria}
+      >
+        <Icon name={meta[second].flag} size={14} />
+        {meta[second].label}
+      </button>
+    </div>
+  </div>
+</div>

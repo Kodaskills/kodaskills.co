@@ -1,0 +1,17 @@
+---
+/**
+ * PageHero — full-viewport hero section wrapper shared across all pages.
+ *
+ * Provides: min-h-[819px] centering, operator-grid background, px padding,
+ * bottom border, and max-w-7xl content constraint.
+ * All hero content goes through the default slot.
+ */
+---
+
+<section
+  class="relative min-h-[819px] flex flex-col justify-center px-6 md:px-12 border-b border-outline-variant operator-grid"
+>
+  <div class="max-w-7xl mx-auto w-full relative">
+    <slot />
+  </div>
+</section>

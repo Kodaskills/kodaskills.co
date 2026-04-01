@@ -1,0 +1,20 @@
+---
+/**
+ * SpecRow — a single key/value row in monospace type.
+ * Used at the bottom of expertise cards and system parameter panels.
+ *
+ * Set `highlight` to render the value in primary color (for status values like READY, ACTIVE).
+ */
+interface Props {
+  label: string;
+  value: string;
+  highlight?: boolean;
+}
+
+const { label, value, highlight = false } = Astro.props;
+---
+
+<div class="flex justify-between text-[10px] font-mono">
+  <span class="text-outline uppercase">{label}</span>
+  <span class={highlight ? "text-primary" : "text-on-surface"}>{value}</span>
+</div>

@@ -1,0 +1,552 @@
+# French translations
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Language: fr\n"
+"Project-Id-Version: kodaskills\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/index.astro:114
+msgid "1_OPEN_SLOT"
+msgstr "1_SLOT_DISPONIBLE"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/index.astro:125
+msgid "20_YEARS_OPERATIONAL_EXCELLENCE."
+msgstr "20_ANS_EXCELLENCE_OPÉRATIONNELLE."
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/index.astro:99
+msgid "ACCESS_CONTROL"
+msgstr "CONTRÔLE_ACCÈS"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/expertises.astro:60
+msgid "AI Transformation & Strategy"
+msgstr "Transformation IA & Stratégie"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/contact.astro:133
+msgid "All diagnostic data is encrypted via military-grade AES-256 protocols. Your system architecture remains confidential. Kodaskills does not store raw telemetry beyond the diagnostic session duration."
+msgstr "Toutes les données diagnostiques sont chiffrées via des protocoles AES-256 de qualité militaire. Votre architecture système reste confidentielle. Kodaskills ne stocke pas les données brutes de télémétrie au-delà de la session de diagnostic."
+
+#. js-lingui-explicit-id
+#: src/components/nav/Footer.astro:57
+msgid "Approach"
+msgstr "Approche"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/expertises.astro:49
+msgid "Architecting systems that grow without friction. Kubernetes orchestration, serverless migrations, and database optimization to ensure 99.99% uptime during peak traffic loads."
+msgstr "Concevoir des systèmes qui croissent sans friction. Orchestration Kubernetes, migrations serverless et optimisation des bases de données pour 99,99% de disponibilité."
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/approach.astro:102
+msgid "Authority_Lock"
+msgstr "Autorité_Verrouillée"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/contact.astro:48
+msgid "Awaiting local operator input for diagnostic deployment."
+msgstr "En attente de l'opérateur local pour le déploiement diagnostique."
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/index.astro:156
+msgid "Book a 30-minute technical health diagnostic. No sales pitch. Just hard data and expert assessment."
+msgstr "Réservez un diagnostic technique de 30 minutes. Pas d'argumentaire commercial. Juste des données réelles et une expertise pointue."
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/expertises.astro:23
+msgid "Bridging the gap between business objectives and technical execution. We provide high-level architectural oversight, talent roadmapping, and vendor management for scaling operations."
+msgstr "Combler le fossé entre les objectifs commerciaux et l'exécution technique. Supervision architecturale, feuille de route des talents et gestion des fournisseurs pour les opérations en croissance."
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/expertises.astro:93
+msgid "CAPABILITIES_MANIFEST"
+msgstr "MANIFESTE_CAPACITÉS"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/index.astro:131
+msgid "CLIENT_CAP_MANAGED"
+msgstr "CAP_CLIENTS_GÉRÉS"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/index.astro:137
+msgid "Close up of a professional server room terminal with blue glowing status lights and intricate data cabling in a dark high-tech facility."
+msgstr "Gros plan d'un terminal de salle serveur professionnel avec des voyants bleus lumineux et un câblage complexe dans une installation sombre haute technologie."
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/contact.astro:158
+msgid "Close-up of complex circuit board circuitry with glowing blue and cyan lights in a dark industrial environment"
+msgstr "Gros plan de circuits imprimés complexes avec des lumières bleues et cyan brillantes dans un environnement industriel sombre"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/contact.astro:81
+msgid "Company"
+msgstr "Entreprise"
+
+#. js-lingui-explicit-id
+#: src/components/nav/Footer.astro:77
+msgid "Connect"
+msgstr "Se connecter"
+
+#. js-lingui-explicit-id
+#: src/components/nav/Header.astro:18
+msgid "Connect Us"
+msgstr "Se Connecter"
+
+#. js-lingui-explicit-id
+#: src/components/nav/Footer.astro:69
+msgid "Contact"
+msgstr "Contact"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/index.astro:43
+msgid "COORDINATES_LOC"
+msgstr "COORDONNÉES_LOC"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/expertises.astro:96
+msgid "Core"
+msgstr "Expertise"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/approach.astro:76
+msgid "CRISIS_TASK_FORCE"
+msgstr "FORCE_INTERVENTION_CRISE"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/approach.astro:174
+msgid "Critical system failure? Our rapid response task force is available for immediate deployment."
+msgstr "Défaillance critique du système ? Notre équipe de réponse rapide est disponible pour un déploiement immédiat."
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/index.astro:108
+msgid "CTO_AS_SERVICE"
+msgstr "DPT_EN_SERVICE"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/contact.astro:93
+msgid "Current Tech Challenge"
+msgstr "Défi Technologique Actuel"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/index.astro:113
+msgid "CURRENT_AVAILABILITY"
+msgstr "DISPONIBILITÉ_ACTUELLE"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/index.astro:66
+msgid "DEBT_AUDITS"
+msgstr "AUDITS_DETTE"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/approach.astro:114
+msgid "Deep_Diagnostic"
+msgstr "Diagnostic_Approfondi"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/approach.astro:173
+msgid "EMERGENCY_ACCESS"
+msgstr "ACCÈS_URGENCE"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/index.astro:98
+msgid "ENCRYPTION_AT_REST"
+msgstr "CHIFFREMENT_AU_REPOS"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/expertises.astro:36
+msgid "End-to-end engineering of resilient digital products. We specialize in high-performance web applications, complex data dashboards, and mobile ecosystems built on modern, maintainable stacks."
+msgstr "Ingénierie bout-en-bout de produits numériques résilients. Applications web haute performance, tableaux de bord complexes et écosystèmes mobiles sur des stacks modernes et maintenables."
+
+#. js-lingui-explicit-id
+#: src/components/nav/Footer.astro:51
+#: src/pages/[...locale]/expertises.astro:96
+msgid "Expertise"
+msgstr "Expertise"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/index.astro:28
+msgid "Fractional CTO services for growth companies. We bridge the gap between aggressive business goals and technical debt."
+msgstr "Services de CTO Fractionnaire pour entreprises en croissance. Nous comblons le fossé entre les objectifs business ambitieux et la dette technique."
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/index.astro:110
+msgid "Fractional leadership for teams needing senior guidance without the $400k+ overhead of a full-time hire."
+msgstr "Leadership fractionnel pour les équipes nécessitant des orientations seniors sans les 400k€+ d'un recrutement à temps plein."
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/contact.astro:69
+msgid "Full Name"
+msgstr "Nom Complet"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/approach.astro:41
+msgid "Full-spectrum diagnostic of infrastructure, code integrity, and architectural bottlenecks. 48-hour rapid intake cycle."
+msgstr "Diagnostic complet de l'infrastructure, de l'intégrité du code et des goulets d'étranglement architecturaux. Cycle d'intégration rapide de 48 heures."
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/index.astro:24
+msgid "FULL-SPECTRUM."
+msgstr "SPECTRE COMPLET."
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/expertises.astro:160
+msgid "Global Financial Terminal Upgrade"
+msgstr "Mise à Niveau Terminal Financier Global"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/index.astro:94
+msgid "Hardening systems from the core out. SOC2 readiness, penetration testing, and zero-trust protocol implementation."
+msgstr "Durcissement des systèmes de l'intérieur. Préparation SOC2, tests de pénétration et mise en œuvre du protocole zéro-confiance."
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/expertises.astro:173
+msgid "High-contrast close-up of computer circuit board with cyan glowing lights and technical server hardware in a dark room"
+msgstr "Gros plan à fort contraste d'une carte mère avec des lumières cyan brillantes et du matériel serveur dans une pièce sombre"
+
+#. js-lingui-explicit-id
+#: src/components/nav/MobileBottomNav.astro:14
+#: src/i18n/index.ts:7
+msgid "Home"
+msgstr "Accueil"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/contact.astro:63
+msgid "Identity & Entity mapping for session clearance."
+msgstr "Identification & cartographie d'entité pour la session."
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/index.astro:143
+msgid "IDENTITY_VERIFIED"
+msgstr "IDENTITÉ_VÉRIFIÉE"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/approach.astro:78
+msgid "Immediate intervention for critical system failures or high-stakes launches. Deployment of elite senior engineers within 4 hours."
+msgstr "Intervention immédiate pour les défaillances critiques ou les lancements à enjeux élevés. Déploiement d'ingénieurs seniors d'élite dans les 4 heures."
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/expertises.astro:47
+msgid "Infrastructure & Scalability"
+msgstr "Infrastructure & Scalabilité"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/expertises.astro:133
+msgid "INITIALIZE_CONTACT"
+msgstr "INITIALISER_CONTACT"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/approach.astro:176
+msgid "INITIATE_CONTACT"
+msgstr "INITIALISER_CONTACT"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/index.astro:35
+msgid "INITIATE_DIAGNOSTIC"
+msgstr "LANCER_DIAGNOSTIC"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/index.astro:162
+msgid "INITIATE_DIAGNOSTIC_PROTOCOL"
+msgstr "LANCER_PROTOCOLE_DIAGNOSTIC"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/contact.astro:25
+msgid "INITIATING THE"
+msgstr "INITIATION DU"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/approach.astro:60
+msgid "INTEGRATED_SUPPORT"
+msgstr "SUPPORT_INTÉGRÉ"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/approach.astro:17
+msgid "KODASKILLS | Approach & Methodology"
+msgstr "KODASKILLS | Approche & Méthodologie"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/expertises.astro:86
+msgid "KODASKILLS | Core Expertise"
+msgstr "KODASKILLS | Expertise Principale"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/contact.astro:15
+msgid "KODASKILLS | DIAGNOSTIC_INITIATION"
+msgstr "KODASKILLS | INITIATION_DIAGNOSTIC"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/index.astro:18
+msgid "KODASKILLS | Fractional CTO & Senior Tech Advisory"
+msgstr "KODASKILLS | CTO Fractionnaire & Conseil Senior"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/contact.astro:29
+msgid "Kodaskills operates at the intersection of technical rigor and operational excellence. Provide the parameters below to authorize a deep-system audit of your technical architecture."
+msgstr "Kodaskills opère à l'intersection de la rigueur technique et de l'excellence opérationnelle. Fournissez les paramètres ci-dessous pour autoriser un audit approfondi de votre architecture technique."
+
+#. js-lingui-explicit-id
+#: src/components/nav/Header.astro:15
+msgid "Kodaskills?"
+msgstr "Kodaskills ?"
+
+#. js-lingui-explicit-id
+#: src/components/nav/Footer.astro:102
+#: src/components/nav/Footer.astro:113
+msgid "Legal"
+msgstr "Mentions légales"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/expertises.astro:62
+msgid "Leveraging Large Language Models and custom machine learning pipelines to automate workflows, enhance data analysis, and build next-generation user experiences."
+msgstr "Exploiter les grands modèles de langage et des pipelines ML personnalisés pour automatiser les flux de travail, améliorer l'analyse des données et créer des expériences de nouvelle génération."
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/approach.astro:62
+msgid "Long-term structural alignment. We embed as senior technical leads within your existing ecosystem to ensure sustained evolution."
+msgstr "Alignement structurel à long terme. Nous nous intégrons en tant que responsables techniques seniors dans votre écosystème existant pour assurer une évolution soutenue."
+
+#. js-lingui-explicit-id
+#: src/components/nav/Footer.astro:63
+msgid "Methodology"
+msgstr "Méthodologie"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/expertises.astro:163
+msgid "Modernizing a legacy transactional system for a tier-1 banking client. We implemented a micro-services architecture that reduced operational overhead by 40% and improved security compliance scores by 2 grades."
+msgstr "Modernisation d'un système transactionnel hérité pour un client bancaire de premier rang. Architecture micro-services qui a réduit les coûts opérationnels de 40% et amélioré les scores de conformité sécurité de 2 niveaux."
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/index.astro:82
+msgid "MULTI_REGION_STRAT"
+msgstr "STRATÉGIE_MULTI_RÉGION"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/expertises.astro:131
+msgid "Need a custom audit?"
+msgstr "Besoin d'un audit personnalisé ?"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/index.astro:52
+msgid "OPERATIONAL_EXPERTISE"
+msgstr "EXPERTISE_OPÉRATIONNELLE"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/approach.astro:20
+msgid "OPERATIONAL_FRAMEWORK"
+msgstr "CADRE_OPÉRATIONNEL"
+
+#. js-lingui-explicit-id
+#: src/components/nav/Footer.astro:34
+msgid "OPERATOR-GRADE PRECISION FOR ENTERPRISE ARCHITECTURE. WE BUILD WHAT OTHERS ONLY THEORIZE."
+msgstr "PRÉCISION DE NIVEAU OPÉRATIONNEL POUR L'ARCHITECTURE D'ENTREPRISE. NOUS CONSTRUISONS CE QUE D'AUTRES NE FONT QU'IMAGINER."
+
+#. js-lingui-explicit-id
+#: src/components/nav/Header.astro:17
+msgid "Our Approach"
+msgstr "Notre Approche"
+
+#. js-lingui-explicit-id
+#: src/components/nav/Header.astro:16
+msgid "Our Expertise"
+msgstr "Notre Expertise"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/approach.astro:128
+msgid "Our partnership is built on uptime and output. We function as a fail-safe layer for your core product team."
+msgstr "Notre partenariat est fondé sur la disponibilité et la performance. Nous fonctionnons comme une couche de sécurité pour votre équipe produit principale."
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/approach.astro:93
+msgid "PARTNER_ARCHETYPE"
+msgstr "ARCHÉTYPE_PARTENAIRE"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/approach.astro:22
+msgid "PRECISION THROUGH"
+msgstr "PRÉCISION PAR"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/index.astro:78
+msgid "Precision-engineered cloud infrastructure. High availability, low latency, and cost-optimized deployments."
+msgstr "Infrastructure cloud à ingénierie de précision. Haute disponibilité, faible latence et déploiements optimisés en coût."
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/contact.astro:105
+msgid "Preferred Contact"
+msgstr "Contact Préféré"
+
+#. js-lingui-explicit-id
+#: src/components/nav/Footer.astro:107
+msgid "Privacy"
+msgstr "Politique de confidentialité"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/expertises.astro:75
+msgid "Proactive vulnerability assessment and rapid-response recovery. We harden your perimeter and provide continuous monitoring against emerging digital threats."
+msgstr "Évaluation proactive des vulnérabilités et reprise rapide. Nous renforçons votre périmètre et fournissons une surveillance continue contre les menaces numériques émergentes."
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/expertises.astro:34
+msgid "Product Development"
+msgstr "Développement Produit"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/contact.astro:62
+msgid "Protocol 01"
+msgstr "Protocole 01"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/index.astro:153
+msgid "READY_TO_SECURE_YOUR_TECH_FUTURE?"
+msgstr "PRÊT_À_SÉCURISER_VOTRE_AVENIR_TECH ?"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/approach.astro:126
+msgid "Reliability_Mesh"
+msgstr "Fiabilité_Intégrée"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/index.astro:65
+msgid "SCALING_FRAMEWORKS"
+msgstr "CADRES_DE_SCALABILITÉ"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/index.astro:92
+msgid "SECURITY"
+msgstr "SÉCURITÉ"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/expertises.astro:73
+msgid "Security & Crisis Management"
+msgstr "Sécurité & Gestion de Crise"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/contact.astro:130
+msgid "Security Protocol"
+msgstr "Protocole de Sécurité"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/index.astro:23
+msgid "SENIOR"
+msgstr "SENIOR"
+
+#. js-lingui-explicit-id
+#: src/components/nav/Header.astro:76
+msgid "START_DIAGNOSTIC"
+msgstr "LANCER_DIAGNOSTIC"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/contact.astro:26
+msgid "STRATEGIC DIAGNOSTIC"
+msgstr "DIAGNOSTIC STRATÉGIQUE"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/expertises.astro:99
+msgid "Strategic engineering solutions for high-density information environments. We provide the technical rigor required for resilient digital infrastructure."
+msgstr "Solutions d'ingénierie stratégiques pour environnements à haute densité d'information. Nous fournissons la rigueur technique requise pour une infrastructure numérique résiliente."
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/index.astro:60
+msgid "STRATEGY"
+msgstr "STRATÉGIE"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/approach.astro:23
+msgid "STRUCTURAL RIGOR"
+msgstr "LA RIGUEUR STRUCTURELLE"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/index.astro:130
+msgid "SUCCESSFUL_DEPLOYS"
+msgstr "DÉPLOIEMENTS_RÉUSSIS"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/approach.astro:116
+msgid "Surface-level fixes are rejected. We investigate the root architectural cause of every failure point."
+msgstr "Les correctifs superficiels sont rejetés. Nous enquêtons sur la cause architecturale racine de chaque point de défaillance."
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/index.astro:21
+msgid "SYS_STATUS: ACTIVE_ADVISORY"
+msgstr "SYS_STATUS: CONSEIL_ACTIF"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/contact.astro:165
+msgid "SYSTEM_ARCHITECTURE_READY"
+msgstr "ARCHITECTURE_SYSTÈME_PRÊTE"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/approach.astro:39
+msgid "SYSTEM_AUDIT"
+msgstr "AUDIT_SYSTÈME"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/index.astro:67
+msgid "TALENT_PIPELINES"
+msgstr "PIPELINES_TALENTS"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/expertises.astro:21
+msgid "Tech Leadership & Strategy"
+msgstr "Leadership Tech & Stratégie"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/index.astro:62
+msgid "Technical roadmapping aligned with Series A-D business objectives. We prevent architecture from becoming a bottleneck."
+msgstr "Feuilles de route techniques alignées sur les objectifs Series A-D. Nous empêchons l'architecture de devenir un goulot d'étranglement."
+
+#. js-lingui-explicit-id
+#: src/components/nav/Footer.astro:119
+msgid "Terms of Op"
+msgstr "CGU"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/index.astro:97
+msgid "THREAT_MODELING"
+msgstr "MODÉLISATION_MENACES"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/contact.astro:117
+msgid "TRANSMIT_PARAMETERS"
+msgstr "TRANSMETTRE_PARAMÈTRES"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/index.astro:25
+msgid "TRUSTED."
+msgstr "DIGNE_DE_CONFIANCE"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/expertises.astro:182
+msgid "Verified System Architecture"
+msgstr "Architecture Système Vérifiée"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/index.astro:38
+msgid "VIEW_METHODOLOGY"
+msgstr "VOIR_MÉTHODOLOGIE"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/approach.astro:26
+msgid "We do not believe in generic consulting. Kodaskills operates as a high-density technical partner, applying surgical methodology to complex engineering challenges."
+msgstr "Nous ne croyons pas aux conseils génériques. Kodaskills opère comme un partenaire technique à haute densité, appliquant une méthodologie chirurgicale aux défis d'ingénierie complexes."
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/approach.astro:104
+msgid "We provide absolute clarity in decision-making. No ambiguous recommendations, only technical directives backed by data."
+msgstr "Nous fournissons une clarté absolue dans la prise de décision. Pas de recommandations ambiguës, uniquement des directives techniques étayées par des données."
+
+#. js-lingui-explicit-id
+#: src/components/nav/Footer.astro:46
+msgid "Your Journey"
+msgstr "Votre Parcours"

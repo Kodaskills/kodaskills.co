@@ -1,0 +1,34 @@
+---
+import Badge from "@components/primitives/Badge.astro";
+import Text from "@components/typography/Text.astro";
+import Title from "@components/typography/Title.astro";
+
+/**
+ * PageHeader — semantic page header composed of:
+ *   1. Badge  (pulsing dot + label)
+ *   2. h1     (slot: "title")
+ *   3. Lead   (slot: "description")
+ *
+ * Used at the top of every page inside PageHero.
+ * Pass `class` to override the default bottom margin when the hero contains
+ * additional content alongside the header (e.g., the contact telemetry panel).
+ */
+interface Props {
+  badge: string;
+  class?: string;
+}
+
+const { badge, class: className = "" } = Astro.props;
+---
+
+<header class={`relative z-10 space-y-8 mb-20 ${className}`}>
+  <Badge label={badge} />
+
+  <Title as="h1" variant="headline" >
+  	<slot name="title" />
+  </Title>
+
+  <Text as="p" variant="xl" color="muted" class="md:text-2xl max-w-2xl border-l-2 border-outline-variant pl-6">
+  	<slot name="description" />
+  </Text>
+</header>

@@ -1,0 +1,121 @@
+name: Deploy
+
+on:
+  workflow_run:
+    workflows: [Build]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Deployment environment'
+        required: true
+        default: 'production'
+        type: choice
+        options:
+          - preview
+          - production
+
+concurrency:
+  group: deploy-${{ github.event.inputs.environment || 'preview' }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  deploy-preview:
+    needs: build
+    if: >
+      (github.event.workflow_run.event == 'pull_request' || 
+       github.event.inputs.environment == 'preview')
+    runs-on: ubuntu-latest
+    environment:
+      name: preview
+      url: ${{ steps.deploy.outputs.url }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download dist artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Download astro-cache artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: astro-cache
+          path: .astro/
+        continue-on-error: true
+
+      - name: Deploy to Cloudflare Pages (Preview)
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: kodaskills
+          directory: dist/
+          branch: ${{ github.event.workflow_run.head_branch }}
+        id: deploy
+
+      - name: Post deployment comment
+        if: github.event.workflow_run.event == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const url = '${{ steps.deploy.outputs.url }}';
+            const branch = '${{ github.event.workflow_run.head_branch }}';
+            // Find PR for this branch
+            const { data: prs } = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              head: branch,
+              state: 'open'
+            });
+            if (prs.length > 0 && url) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prs[0].number,
+                body: `🚀 Preview deployed: ${url}`
+              });
+            }
+
+  deploy-production:
+    needs: build
+    if: >
+      github.event.workflow_run.event == 'push' &&
+      github.event.inputs.environment != 'preview'
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://kodaskills.co
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download dist artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Download astro-cache artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: astro-cache
+          path: .astro/
+        continue-on-error: true
+
+      - name: Deploy to Cloudflare Pages (Production)
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: kodaskills
+          directory: dist/

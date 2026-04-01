@@ -1,0 +1,88 @@
+---
+/**
+ * Showcase — generic story wrapper for rendering multiple component instances
+ * side by side with different props (variants, placements, sizes, etc.).
+ *
+ * Usage in a .stories.ts file:
+ *
+ *   export default { component: Showcase };
+ *
+ *   export const Variants = {
+ *     args: {
+ *       component: Tooltip,
+ *       items: [
+ *         { label: "Primary", props: { content: "...", variant: "primary", placement: "top" } },
+ *       ],
+ *     },
+ *   };
+ *
+ * layout:
+ *   "row"   (default) — flex row, wraps on small screens
+ *   "grid"            — 2-column grid, useful for placement grids
+ *   "stack"           — vertical column, full-width (for AlertBar, cards…)
+ *
+ * type:
+ *   "hover"           — wraps each item in a HOVER trigger button (for Tooltip, Popover…)
+ *   "text"            — renders the component directly with text as slot (for typography)
+ *   null    (default) — renders the component directly (for Tag, Badge, Button…)
+ */
+import StoryDecorator from "./StoryDecorator.astro";
+
+interface Item {
+  label: string;
+  props: Record<string, unknown>;
+  text?: string;
+}
+
+interface Props {
+  // biome-ignore lint/suspicious/noExplicitAny: Astro has no Component type
+  component: any;
+  items: Item[];
+  layout?: "row" | "grid" | "stack";
+  type?: "hover" | "text";
+}
+
+const { component: Component, items, layout = "row", type } = Astro.props;
+
+const containerClass =
+  layout === "grid"
+    ? "grid grid-cols-2 gap-24"
+    : layout === "stack"
+      ? "flex flex-col gap-4 w-full"
+      : "flex gap-12 items-end justify-center flex-wrap";
+---
+
+<StoryDecorator padding="py-20 px-16">
+  <div class={containerClass}>
+    {items.map(({ label, props }) => (
+      <div class="flex flex-col items-center gap-3">
+
+      <!-- Standard Type (none) -->
+      {!type && (
+       <Component {...props} />
+      )}
+
+      <!-- Text Type -->
+      {type === "text" && (
+        <Component {...props}>
+        	{props?.text}
+        </Component>
+      )}
+
+      <!-- Hover Type -->
+      {type === "hover" && (
+      <div class="relative inline-flex cursor-pointer">
+        <span class="bg-surface-container border border-outline-variant text-on-surface font-mono font-bold uppercase tracking-widest text-[10px] px-6 py-2 pointer-events-none select-none">
+          HOVER
+        </span>
+        <div class="absolute inset-0 [&>*]:block [&>*]:w-full [&>*]:h-full">
+          <Component {...props} />
+        </div>
+      </div>
+      )}
+
+        <span class="font-mono text-[8px] uppercase tracking-widest text-outline">{label}</span>
+      </div>
+    ))}
+  </div>
+</StoryDecorator>

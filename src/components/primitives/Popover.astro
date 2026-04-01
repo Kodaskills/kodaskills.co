@@ -1,0 +1,129 @@
+---
+/**
+ * Popover — rich contextual overlay with a title and description.
+ *
+ * Use for structured content that benefits from a label + explanation,
+ * e.g. service items, feature callouts, nav descriptions.
+ *
+ * For simple, single-line alt text use Tooltip instead.
+ */
+type Placement =
+  | "top"
+  | "top-start"
+  | "top-end"
+  | "bottom"
+  | "bottom-start"
+  | "bottom-end"
+  | "left"
+  | "left-start"
+  | "left-end"
+  | "right"
+  | "right-start"
+  | "right-end";
+
+type Variant = "primary" | "secondary" | "tertiary" | "neutral";
+
+interface Props {
+  title: string;
+  content: string;
+  variant?: Variant;
+  placement?: Placement;
+  offset?: number;
+  [key: string]: unknown;
+}
+
+const {
+  title,
+  content,
+  variant = "primary",
+  placement = "top",
+  offset = 12,
+  class: className = "inline-block",
+  ...rest
+} = Astro.props;
+---
+
+<div
+  class:list={["popover-root", className]}
+  data-popover-title={title}
+  data-popover-content={content}
+  data-popover-variant={variant}
+  data-placement={placement}
+  data-offset={offset}
+  {...rest}
+>
+  <slot />
+</div>
+
+<script>
+  import {
+    autoUpdate,
+    computePosition,
+    flip,
+    offset as floatingOffset,
+    shift,
+  } from "@floating-ui/dom";
+
+  // Full class strings per variant — kept static so UnoCSS scans every token.
+  const variantHtml: Record<string, (title: string, content: string) => string> = {
+    primary:   (t, c) => `<div class="bg-surface-container border-l-4 border-primary px-3 py-2.5 min-w-[200px] max-w-[260px]"><p class="font-headline text-[8px] uppercase tracking-widest text-primary font-bold">${t}</p><p class="font-headline text-[10px] text-on-surface-variant mt-1.5 leading-relaxed">${c}</p></div>`,
+    secondary: (t, c) => `<div class="bg-surface-container border-l-4 border-secondary px-3 py-2.5 min-w-[200px] max-w-[260px]"><p class="font-headline text-[8px] uppercase tracking-widest text-secondary font-bold">${t}</p><p class="font-headline text-[10px] text-on-surface-variant mt-1.5 leading-relaxed">${c}</p></div>`,
+    tertiary:  (t, c) => `<div class="bg-surface-container border-l-4 border-tertiary px-3 py-2.5 min-w-[200px] max-w-[260px]"><p class="font-headline text-[8px] uppercase tracking-widest text-tertiary font-bold">${t}</p><p class="font-headline text-[10px] text-on-surface-variant mt-1.5 leading-relaxed">${c}</p></div>`,
+    neutral:   (t, c) => `<div class="bg-surface-container border-l-4 border-outline px-3 py-2.5 min-w-[200px] max-w-[260px]"><p class="font-headline text-[8px] uppercase tracking-widest text-on-surface font-bold">${t}</p><p class="font-headline text-[10px] text-on-surface-variant mt-1.5 leading-relaxed">${c}</p></div>`,
+  };
+
+  function setupPopover(root: HTMLElement) {
+    if (root.dataset.popoverInit === "true") return;
+    root.dataset.popoverInit = "true";
+
+    const placement = (root.dataset.placement ?? "top") as "top" | "bottom" | "left" | "right" | "top-start" | "top-end" | "bottom-start" | "bottom-end" | "left-start" | "left-end" | "right-start" | "right-end";
+    const offsetPx = Number(root.dataset.offset ?? 12);
+    const build = variantHtml[root.dataset.popoverVariant ?? "primary"] ?? variantHtml.primary;
+
+    const popup = document.createElement("div");
+    popup.setAttribute("role", "tooltip");
+    popup.className =
+      "fixed z-[9999] pointer-events-none opacity-0 scale-95 transition-[opacity,transform] duration-150 ease-out";
+    popup.innerHTML = build(root.dataset.popoverTitle ?? "", root.dataset.popoverContent ?? "");
+    document.body.appendChild(popup);
+
+    let cleanup: (() => void) | null = null;
+
+    function updatePosition() {
+      computePosition(root, popup, {
+        placement,
+        strategy: "fixed",
+        middleware: [floatingOffset(offsetPx), flip(), shift({ padding: 8 })],
+      }).then(({ x, y }) => {
+        popup.style.left = `${x}px`;
+        popup.style.top = `${y}px`;
+      });
+    }
+
+    function show() {
+      cleanup = autoUpdate(root, popup, updatePosition);
+      popup.style.opacity = "1";
+      popup.style.transform = "scale(1)";
+    }
+
+    function hide() {
+      if (cleanup) { cleanup(); cleanup = null; }
+      popup.style.opacity = "0";
+      popup.style.transform = "scale(0.95)";
+    }
+
+    root.addEventListener("mouseenter", show);
+    root.addEventListener("mouseleave", hide);
+    root.addEventListener("focusin", show);
+    root.addEventListener("focusout", hide);
+  }
+
+  function initAll() {
+    document.querySelectorAll<HTMLElement>(".popover-root").forEach(setupPopover);
+  }
+
+  initAll();
+
+  document.addEventListener("swup:page:view", initAll);
+  document.addEventListener("astro:after-swap", initAll);
+</script>

@@ -1,0 +1,251 @@
+/* Google Fonts — must come before all other rules (CSS @import spec).
+   Also picked up by Astrobook via the css option in astro.config.book.ts. */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
+
+/* ── Design tokens (dark mode defaults) ── */
+:root {
+  /* ── Surface hierarchy ── */
+  --color-surface: #0e0e0e;
+  --color-surface-dim: #0e0e0e;
+  --color-surface-bright: #2b2c2c;
+  --color-surface-variant: #252626;
+  --color-surface-tint: #44d8f1;
+  --color-surface-container-lowest: #000000;
+  --color-surface-container-low: #131313;
+  --color-surface-container: #191a1a;
+  --color-surface-container-high: #1f2020;
+  --color-surface-container-highest: #252626;
+
+  /* ── On-surface ── */
+  --color-on-surface: #e7e5e5;
+  --color-on-surface-variant: #acabaa;
+  --color-background: #0e0e0e;
+  --color-on-background: #e7e5e5;
+
+  /* ── Outlines ── */
+  --color-outline: #767575;
+  --color-outline-variant: #484848;
+
+  /* ── Primary (cyan) ── */
+  --color-primary: #44d8f1;
+  --color-primary-dim: #2dcae2;
+  --color-primary-fixed: #a1efff;
+  --color-primary-fixed-dim: #58e6ff;
+  --color-primary-container: #004e59;
+  --color-on-primary: #004751;
+  --color-on-primary-container: #52e2fb;
+  --color-on-primary-fixed: #004650;
+  --color-on-primary-fixed-variant: #006573;
+  --color-inverse-primary: #006977;
+
+  /* ── Secondary ── */
+  --color-secondary: #93a0a7;
+  --color-secondary-dim: #93a0a7;
+  --color-secondary-fixed: #d7e4ec;
+  --color-secondary-fixed-dim: #c9d6de;
+  --color-secondary-container: #313d43;
+  --color-on-secondary: #162227;
+  --color-on-secondary-container: #b4c1c9;
+  --color-on-secondary-fixed: #354147;
+  --color-on-secondary-fixed-variant: #515d64;
+
+  /* ── Tertiary (amber) ── */
+  --color-tertiary: #ffc563;
+  --color-tertiary-dim: #eda600;
+  --color-tertiary-fixed: #feb300;
+  --color-tertiary-fixed-dim: #eda600;
+  --color-tertiary-container: #feb300;
+  --color-on-tertiary: #5e4000;
+  --color-on-tertiary-container: #523700;
+  --color-on-tertiary-fixed: #382400;
+  --color-on-tertiary-fixed-variant: #5e4000;
+
+  /* ── Error ── */
+  --color-error: #ee7d77;
+  --color-error-dim: #bb5551;
+  --color-error-container: #7f2927;
+  --color-on-error: #490106;
+  --color-on-error-container: #ff9993;
+
+  /* ── Inverse ── */
+  --color-inverse-surface: #fcf9f8;
+  --color-inverse-on-surface: #565555;
+}
+
+/* ────────────────────────────────────────────────────────────────
+   LIGHT MODE TOKEN OVERRIDES
+   Selector: html.light — set synchronously by the head script in
+   BaseLayout before first paint to prevent theme flash.
+──────────────────────────────────────────────────────────────── */
+html.light {
+  /* Surfaces */
+  --color-surface: #f9f9f9;
+  --color-surface-dim: #f0f0f0;
+  --color-surface-bright: #ffffff;
+  --color-surface-variant: #e2e2e2;
+  --color-surface-tint: #006876;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f4f3f3;
+  --color-surface-container: #eeeeee;
+  --color-surface-container-high: #e8e8e8;
+  --color-surface-container-highest: #e2e2e2;
+
+  /* On-surface */
+  --color-on-surface: #1a1c1c;
+  --color-on-surface-variant: #4a4e4e;
+  --color-background: #f9f9f9;
+  --color-on-background: #1a1c1c;
+
+  /* Outlines */
+  --color-outline: #787c7c;
+  --color-outline-variant: #bbc9cc;
+
+  /* Primary — deep cyan */
+  --color-primary: #006876;
+  --color-primary-dim: #004e59;
+  --color-primary-fixed: #006876;
+  --color-primary-fixed-dim: #004e59;
+  --color-primary-container: #00bcd4;
+  --color-on-primary: #ffffff;
+  --color-on-primary-container: #00363d;
+  --color-on-primary-fixed: #004650;
+  --color-on-primary-fixed-variant: #006573;
+  --color-inverse-primary: #44d8f1;
+
+  /* Secondary */
+  --color-secondary: #565f64;
+  --color-secondary-dim: #565f64;
+  --color-secondary-fixed: #d7e4ec;
+  --color-secondary-fixed-dim: #c9d6de;
+  --color-secondary-container: #bbebf5;
+  --color-on-secondary: #ffffff;
+  --color-on-secondary-container: #1a2e35;
+  --color-on-secondary-fixed: #354147;
+  --color-on-secondary-fixed-variant: #515d64;
+
+  /* Tertiary — dark amber */
+  --color-tertiary: #7c5800;
+  --color-tertiary-dim: #5e4000;
+  --color-tertiary-fixed: #7c5800;
+  --color-tertiary-fixed-dim: #5e4000;
+  --color-tertiary-container: #ffdea0;
+  --color-on-tertiary: #ffffff;
+  --color-on-tertiary-container: #271900;
+  --color-on-tertiary-fixed: #382400;
+  --color-on-tertiary-fixed-variant: #5e4000;
+
+  /* Error */
+  --color-error: #ba1a1a;
+  --color-error-dim: #93000a;
+  --color-error-container: #ffdad6;
+  --color-on-error: #ffffff;
+  --color-on-error-container: #410002;
+
+  /* Inverse */
+  --color-inverse-surface: #2f2d2d;
+  --color-inverse-on-surface: #f0edec;
+}
+
+/* ── Theme transition — active only during theme switch (class added/removed by JS) ── */
+html.theme-transitioning,
+html.theme-transitioning *,
+html.theme-transitioning *::before,
+html.theme-transitioning *::after {
+  transition:
+    background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    fill 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    stroke 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Alpine.js: hide elements before hydration ── */
+[x-cloak] {
+  display: none;
+}
+
+/* ── Cursor ── */
+a,
+button {
+  cursor: pointer;
+}
+
+/* ── Base ── */
+body {
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
+  font-family: "Inter", sans-serif;
+}
+
+::selection {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+/* ── vanilla-cookieconsent — override to match site design tokens ── */
+#cc-main {
+  --cc-font-family: "Space Grotesk", sans-serif;
+  --cc-modal-border-radius: 0;
+  --cc-btn-border-radius: 0;
+  --cc-bg: var(--color-surface-container);
+  --cc-primary-color: var(--color-on-surface);
+  --cc-secondary-color: var(--color-on-surface-variant);
+  --cc-btn-primary-bg: var(--color-primary);
+  --cc-btn-primary-color: var(--color-on-primary);
+  --cc-btn-primary-border-color: var(--color-primary);
+  --cc-btn-primary-hover-bg: var(--color-primary-dim);
+  --cc-btn-primary-hover-border-color: var(--color-primary-dim);
+  --cc-btn-primary-hover-color: var(--color-on-primary);
+  --cc-btn-secondary-bg: transparent;
+  --cc-btn-secondary-color: var(--color-on-surface-variant);
+  --cc-btn-secondary-border-color: var(--color-outline);
+  --cc-btn-secondary-hover-bg: var(--color-surface-container-high);
+  --cc-btn-secondary-hover-color: var(--color-on-surface);
+  --cc-btn-secondary-hover-border-color: var(--color-on-surface);
+  --cc-separator-border-color: var(--color-outline-variant);
+  --cc-footer-bg: var(--color-surface-container-low);
+  --cc-footer-color: var(--color-on-surface-variant);
+  --cc-footer-border-color: var(--color-outline-variant);
+  --cc-link-color: var(--color-primary);
+  --cc-overlay-bg: rgba(0, 0, 0, 0.5);
+  --cc-toggle-on-bg: var(--color-primary);
+  --cc-toggle-off-bg: var(--color-outline-variant);
+  --cc-toggle-on-knob-bg: var(--color-on-primary);
+  --cc-toggle-off-knob-bg: var(--color-on-surface);
+  --cc-cookie-category-block-bg: var(--color-surface-container-high);
+  --cc-cookie-category-block-border: var(--color-outline-variant);
+  --cc-cookie-category-block-hover-bg: var(--color-surface-container-highest);
+  --cc-cookie-category-block-hover-border: var(--color-outline);
+}
+
+/* Consent modal title — uppercase monospace aesthetic */
+#cc-main .cm__title {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  font-size: 0.75rem;
+  color: var(--color-primary);
+}
+
+/* ── Page background patterns (radial/linear gradients, not expressible in UnoCSS) ── */
+
+/* index.astro hero */
+.operator-grid {
+  background-image: radial-gradient(var(--color-outline-variant) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* expertises.astro overlay */
+.technical-grid-dots {
+  background-image: radial-gradient(circle, var(--color-outline-variant) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* approach.astro overlay */
+.technical-grid-lines {
+  background-image:
+    linear-gradient(to right, var(--color-outline-variant) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-outline-variant) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.1;
+}

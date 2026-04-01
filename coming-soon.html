@@ -1,0 +1,1729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KODASKILLS | Coming Soon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-surface: #0e0e0e;
+      --color-surface-dim: #0e0e0e;
+      --color-surface-bright: #2b2c2c;
+      --color-surface-variant: #252626;
+      --color-surface-container-lowest: #000000;
+      --color-surface-container-low: #131313;
+      --color-surface-container: #191a1a;
+      --color-surface-container-high: #1f2020;
+      --color-surface-container-highest: #252626;
+      --color-on-surface: #e7e5e5;
+      --color-on-surface-variant: #acabaa;
+      --color-background: #0e0e0e;
+      --color-on-background: #e7e5e5;
+      --color-outline: #767575;
+      --color-outline-variant: #484848;
+      --color-primary: #44d8f1;
+      --color-primary-dim: #2dcae2;
+      --color-tertiary: #ffc563;
+      --grid-color: #484848;
+    }
+
+    html.light {
+      --color-surface: #f9f9f9;
+      --color-surface-dim: #f0f0f0;
+      --color-surface-bright: #ffffff;
+      --color-surface-variant: #e2e2e2;
+      --color-surface-container-lowest: #ffffff;
+      --color-surface-container-low: #f4f3f3;
+      --color-surface-container: #eeeeee;
+      --color-surface-container-high: #e8e8e8;
+      --color-surface-container-highest: #e2e2e2;
+      --color-on-surface: #1a1c1c;
+      --color-on-surface-variant: #4a4e4e;
+      --color-background: #f9f9f9;
+      --color-on-background: #1a1c1c;
+      --color-outline: #787c7c;
+      --color-outline-variant: #bbc9cc;
+      --color-primary: #006876;
+      --color-primary-dim: #004e59;
+      --color-tertiary: #7c5800;
+      --grid-color: #bbc9cc;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background-color: var(--color-surface);
+      color: var(--color-on-surface);
+      min-height: 100vh;
+      overflow-x: hidden;
+      transition: background-color 0.5s ease, color 0.5s ease;
+    }
+
+    .grid-bg {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+      background-size: 48px 48px;
+      opacity: 0.15;
+      pointer-events: none;
+      transition: background-image 0.5s ease, opacity 0.5s ease;
+    }
+
+    .radial-glow {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 120vmax;
+      height: 120vmax;
+      background: radial-gradient(circle, var(--color-primary) 0%, transparent 70%);
+      opacity: 0.03;
+      pointer-events: none;
+      transition: background 0.5s ease, opacity 0.5s ease;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 48px;
+    }
+
+    .logo {
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.2em;
+      color: var(--color-primary);
+      cursor: pointer;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .logo:hover {
+      transform: scale(1.08);
+    }
+
+    .logo:active {
+      transform: scale(0.96);
+      transition-duration: 0.1s;
+    }
+
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: none;
+      border: 1px solid var(--color-outline-variant);
+      color: var(--color-on-surface-variant);
+      padding: 8px 16px;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .theme-toggle::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--color-primary);
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      border-radius: inherit;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .theme-toggle:hover::before {
+      opacity: 0.05;
+      transform: scale(1);
+    }
+
+    .theme-toggle:active {
+      transform: translateY(0) scale(0.97);
+      transition-duration: 0.1s;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .theme-toggle svg {
+      width: 14px;
+      height: 14px;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .theme-toggle:hover svg {
+      transform: rotate(20deg) scale(1.15);
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 32px 48px;
+      text-align: center;
+      gap: 24px;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      background: var(--color-surface-container);
+      border: 1px solid var(--color-outline-variant);
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: var(--color-primary);
+      transition: background 0.5s ease, border-color 0.5s ease, color 0.5s ease;
+    }
+
+    .status-badge span {
+      transition: color 0.5s ease;
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--color-primary);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+      transition: background 0.5s ease;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    h1 {
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 300;
+      font-size: clamp(48px, 10vw, 120px);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      transition: color 0.5s ease;
+    }
+
+    h1 .highlight {
+      color: var(--color-primary);
+      font-weight: 600;
+      transition: color 0.5s ease;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: var(--color-on-surface-variant);
+      max-width: 480px;
+      line-height: 1.6;
+      transition: color 0.5s ease;
+    }
+
+    .counter-section {
+      margin-bottom: 0;
+      margin-top: 32px;
+    }
+
+    .counter-label {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--color-on-surface-variant);
+      margin-bottom: 12px;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: default;
+    }
+
+    .counter-label:hover {
+      color: var(--color-primary);
+      letter-spacing: 0.28em;
+    }
+
+    .counter {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .counter-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .digit-pair {
+      display: flex;
+      gap: 4px;
+    }
+
+    /* Flip Clock Styles - Split-Flap Display */
+    /* Flip Clock Styles - Split-Flap Display using scaleY technique */
+    .flip-clock {
+      position: relative;
+      display: inline-block;
+      width: 64px;
+      height: 100px;
+      perspective: 400px;
+    }
+
+    .flip-clock-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 6px;
+      overflow: visible;
+      background: #222;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5), 0 2px 6px rgba(0, 0, 0, 0.3);
+      transition: background 0.5s ease, box-shadow 0.5s ease;
+    }
+
+    html.light .flip-clock-inner {
+      background: #222;
+    }
+
+    /* Static top half - shows current value */
+    .flip-clock .top {
+      position: relative;
+      display: block;
+      width: 100%;
+      height: 50%;
+      margin-bottom: 2px;
+      line-height: 1;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .flip-clock .top .inner {
+      position: static;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 200%;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 56px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      color: #fff;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+      background-color: #222;
+      border-radius: 6px 6px 0 0;
+      transition: background-color 0.5s ease, color 0.5s ease;
+    }
+
+    /* Static bottom half - shows next value */
+    .flip-clock .bottom {
+      position: relative;
+      display: block;
+      width: 100%;
+      height: 50%;
+      line-height: 0;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .flip-clock .bottom .inner {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 200%;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 56px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      color: #ccc;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+      background-color: #151515;
+      border-radius: 0 0 6px 6px;
+      transition: background-color 0.5s ease, color 0.5s ease;
+    }
+
+    /* Animating top flap - starts visible, scales down to 0 */
+    .flip-clock .flip-top {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 50%;
+      overflow: hidden;
+      transform-origin: 50% 100%;
+      transform: scaleY(1);
+      z-index: 3;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+
+    .flip-clock .flip-top .inner {
+      position: absolute;
+      left: 0;
+      top: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 200%;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 56px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      color: #fff;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+      background-color: #222;
+      border-radius: 6px 6px 0 0;
+      transition: background-color 0.5s ease, color 0.5s ease;
+    }
+
+    /* Animating bottom flap - starts scaled to 0, scales up to 1 */
+    .flip-clock .flip-bottom {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 50%;
+      overflow: hidden;
+      transform-origin: 50% 0%;
+      transform: scaleY(0);
+      z-index: 2;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+
+    .flip-clock .flip-bottom .inner {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 200%;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 56px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      color: #ccc;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+      background-color: #151515;
+      border-radius: 0 0 6px 6px;
+      transition: background-color 0.5s ease, color 0.5s ease;
+    }
+
+    /* Center split line */
+    .flip-clock .center-line {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: rgba(0, 0, 0, 0.4);
+      transform: translateY(-50%);
+      z-index: 20;
+      pointer-events: none;
+    }
+
+    /* Shadow overlays */
+    .flip-clock .flip-top .shadow,
+    .flip-clock .flip-bottom .shadow {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 2;
+      opacity: 0;
+    }
+
+    .flip-clock .flip-top .shadow {
+      top: 0;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 1) 100%);
+    }
+
+    .flip-clock .flip-bottom .shadow {
+      bottom: 0;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.1) 100%);
+    }
+
+    /* Animations - using scaleY for realistic flap effect */
+    @keyframes flipTop {
+      0% {
+        transform: scaleY(1);
+      }
+      100% {
+        transform: scaleY(0);
+      }
+    }
+
+    @keyframes flipBottom {
+      0% {
+        transform: scaleY(0);
+      }
+      100% {
+        transform: scaleY(1);
+      }
+    }
+
+    @keyframes showShadow {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes hideShadow {
+      0% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+
+    /* When flipping, animate top card folding down */
+    .flip-clock.flipping .flip-top {
+      animation: flipTop 110ms ease-out forwards;
+    }
+
+    /* Show shadow on top card during flip */
+    .flip-clock.flipping .flip-top .shadow {
+      animation: showShadow 110ms linear both;
+    }
+
+    /* When flipping, animate bottom card unfolding */
+    .flip-clock.flipping .flip-bottom {
+      animation: flipBottom 100ms 60ms ease-in forwards;
+    }
+
+    /* Show shadow on bottom card during flip */
+    .flip-clock.flipping .flip-bottom .shadow {
+      animation: showShadow 100ms 60ms linear both;
+    }
+    }
+
+    .flip-clock.flipping .flip-bottom .shadow {
+      opacity: 1;
+      transition-delay: 0.3s;
+    }
+
+    .counter-name {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: var(--color-on-surface-variant);
+      margin-top: 16px;
+      text-transform: uppercase;
+      transition: color 0.5s ease;
+    }
+
+    .counter-separator {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 36px;
+      font-weight: 300;
+      color: var(--color-outline-variant);
+      line-height: 100px;
+      padding: 0 2px;
+      user-select: none;
+      align-self: center;
+      transition: color 0.5s ease;
+    }
+
+    @media (max-width: 768px) {
+      .counter {
+        gap: 8px;
+      }
+
+      .flip-clock {
+        width: 48px;
+        height: 76px;
+      }
+
+      .flip-clock .top .inner,
+      .flip-clock .bottom .inner,
+      .flip-clock .flip-top .inner,
+      .flip-clock .flip-bottom .inner {
+        font-size: 42px;
+      }
+
+      .counter-separator {
+        font-size: 28px;
+        line-height: 76px;
+      }
+    }
+
+    .eta-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 20px;
+      background: var(--color-surface-container-low);
+      border: 1px solid var(--color-outline-variant);
+      margin-top: 64px;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: default;
+      position: relative;
+    }
+
+    .eta-badge::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      background: linear-gradient(135deg, var(--color-primary), var(--color-tertiary));
+      opacity: 0;
+      z-index: -1;
+      transition: opacity 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .eta-badge:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.15);
+      border-color: transparent;
+    }
+
+    .eta-badge:hover::before {
+      opacity: 0.1;
+    }
+
+    .eta-badge:active {
+      transform: translateY(-2px);
+      transition-duration: 0.1s;
+    }
+
+    .eta-badge .label {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.15em;
+      color: var(--color-on-surface-variant);
+      transition: color 0.5s ease;
+    }
+
+    .eta-badge .value {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--color-tertiary);
+      transition: color 0.5s ease;
+    }
+
+    footer {
+      padding: 12px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-info {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--color-on-surface-variant);
+    }
+
+    .copyright {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--color-on-surface-variant);
+      width: 100%;
+      text-align: center;
+      transition: color 0.5s ease;
+    }
+
+    /* Page entrance animations */
+    .animate-in {
+      opacity: 0;
+      transform: translateY(40px);
+      animation: slideUpFade 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    .line-delay-1 {
+      animation-delay: 0.3s;
+    }
+
+    .line-delay-2 {
+      animation-delay: 0.45s;
+    }
+
+    .line-delay-3 {
+      animation-delay: 0.6s;
+    }
+
+    .line-delay-4 {
+      animation-delay: 0.75s;
+    }
+
+    .line-delay-5 {
+      animation-delay: 0.9s;
+    }
+
+    .line-delay-6 {
+      animation-delay: 1.05s;
+    }
+
+    .line-delay-7 {
+      animation-delay: 1.2s;
+    }
+
+    .line-delay-8 {
+      animation-delay: 1.5s;
+    }
+
+    .line-delay-9 {
+      animation-delay: 1.7s;
+    }
+
+    .line-delay-9b {
+      animation-delay: 1.8s;
+    }
+
+    .line-delay-10 {
+      animation-delay: 1.9s;
+    }
+
+    .line-delay-10b {
+      animation-delay: 2.0s;
+    }
+
+    .line-delay-11 {
+      animation-delay: 2.1s;
+    }
+
+    .line-delay-11b {
+      animation-delay: 2.2s;
+    }
+
+    .line-delay-12 {
+      animation-delay: 2.3s;
+    }
+
+    .line-delay-13 {
+      animation-delay: 2.5s;
+    }
+
+    @keyframes slideUpFade {
+      0% {
+        opacity: 0;
+        transform: translateY(40px) scale(0.98);
+        filter: blur(4px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+      }
+    }
+
+    /* Staggered flip clock entrance - fade and blur only, NO movement */
+    .counter-fade-in {
+      animation: counterFadeIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .counter-delay-1 {
+      animation-delay: 1.6s;
+    }
+
+    .counter-delay-1b {
+      animation-delay: 1.7s;
+    }
+
+    .counter-delay-2 {
+      animation-delay: 1.75s;
+    }
+
+    .counter-delay-2b {
+      animation-delay: 1.85s;
+    }
+
+    .counter-delay-3 {
+      animation-delay: 1.9s;
+    }
+
+    .counter-delay-3b {
+      animation-delay: 2.0s;
+    }
+
+    .counter-delay-4 {
+      animation-delay: 2.05s;
+    }
+
+    .counter-delay-5 {
+      animation-delay: 2.2s;
+    }
+
+    /* Header elements - arrive from top with fade and blur, after everything else */
+    .header-fade-in {
+      animation: headerFadeIn 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .header-delay-1 {
+      animation-delay: 3.2s;
+    }
+
+    .header-delay-2 {
+      animation-delay: 3.35s;
+    }
+
+    @keyframes headerFadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(-30px);
+        filter: blur(6px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+    }
+
+    /* Footer - arrives from bottom with fade and blur, same time as header */
+    .footer-fade-in {
+      animation: footerFadeIn 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .footer-delay-1 {
+      animation-delay: 3.2s;
+    }
+
+    @keyframes footerFadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+        filter: blur(6px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+    }
+
+    /* Staggered flip clock entrance - fade and blur only, NO movement */
+    .counter-fade-in {
+      animation: counterFadeIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .counter-anim-delay-1 {
+      animation-delay: 1.5s;
+    }
+
+    .counter-anim-delay-2 {
+      animation-delay: 1.6s;
+    }
+
+    .counter-anim-delay-2b {
+      animation-delay: 1.7s;
+    }
+
+    .counter-anim-delay-3 {
+      animation-delay: 1.8s;
+    }
+
+    .counter-anim-delay-3b {
+      animation-delay: 1.9s;
+    }
+
+    .counter-anim-delay-4 {
+      animation-delay: 2.0s;
+    }
+
+    .counter-anim-delay-4b {
+      animation-delay: 2.1s;
+    }
+
+    .counter-anim-delay-5 {
+      animation-delay: 2.2s;
+    }
+
+    @keyframes counterFadeIn {
+      0% {
+        opacity: 0;
+        filter: blur(8px);
+      }
+      100% {
+        opacity: 1;
+        filter: blur(0);
+      }
+    }
+
+    /* Grid background entrance */
+    .grid-bg {
+      opacity: 0;
+      animation: fadeIn 2s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 0.15;
+      }
+    }
+
+    /* Radial glow entrance */
+    .radial-glow {
+      opacity: 0;
+      animation: glowPulse 3s cubic-bezier(0.22, 1, 0.36, 1) 0.5s forwards;
+    }
+
+    @keyframes glowPulse {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.7);
+        filter: blur(20px);
+      }
+      100% {
+        opacity: 0.03;
+        transform: translate(-50%, -50%) scale(1);
+        filter: blur(0);
+      }
+    }
+
+    /* Flowing grid animation with random direction changes */
+    .flowing-grid {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .flow-particle {
+      position: absolute;
+      opacity: 0;
+    }
+
+    /* Glowing glob at the front of each particle */
+    .flow-particle::before {
+      content: "";
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: var(--color-primary);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--color-primary), 0 0 16px var(--color-primary);
+    }
+
+    /* Base animation - properties set by JS */
+    .flow-particle {
+      animation: flowParticle linear infinite;
+    }
+
+    @keyframes flowParticle {
+      0% {
+        opacity: 0;
+      }
+      20% {
+        opacity: 0.7;
+      }
+      60% {
+        opacity: 0.35;
+      }
+      85% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+
+    /* Status dot pulse animation */
+    .status-dot {
+      animation: pulse 2s ease-in-out infinite, dotAppear 1s ease-out 0.3s both;
+    }
+
+    @keyframes dotAppear {
+      0% {
+        opacity: 0;
+        transform: scale(0);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 16px 24px;
+      }
+
+      main {
+        padding: 24px;
+      }
+
+      .flip-clock {
+        width: 36px;
+        height: 56px;
+      }
+
+      .flip-clock .top .inner,
+      .flip-clock .bottom .inner,
+      .flip-clock .flip-top .inner,
+      .flip-clock .flip-bottom .inner {
+        font-size: 28px;
+      }
+
+      .counter-separator {
+        font-size: 20px;
+        line-height: 56px;
+        padding: 0 1px;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 16px;
+        padding: 24px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="grid-bg"></div>
+  <div class="radial-glow"></div>
+  <div class="flowing-grid" id="flowingGrid">
+    <div class="flow-particle"></div>
+    <div class="flow-particle"></div>
+    <div class="flow-particle"></div>
+    <div class="flow-particle"></div>
+    <div class="flow-particle"></div>
+    <div class="flow-particle"></div>
+    <div class="flow-particle"></div>
+    <div class="flow-particle"></div>
+    <div class="flow-particle"></div>
+    <div class="flow-particle"></div>
+    <div class="flow-particle"></div>
+    <div class="flow-particle"></div>
+    <div class="flow-particle"></div>
+    <div class="flow-particle"></div>
+    <div class="flow-particle"></div>
+    <div class="flow-particle"></div>
+    <div class="flow-particle"></div>
+    <div class="flow-particle"></div>
+    <div class="flow-particle"></div>
+    <div class="flow-particle"></div>
+  </div>
+
+  <div class="container">
+    <header>
+      <div class="logo header-fade-in header-delay-1">KODASKILLS</div>
+      <button class="theme-toggle header-fade-in header-delay-2" onclick="toggleTheme()" id="themeBtn">
+        <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+        </svg>
+        <svg id="moonIcon" style="display:none" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+        </svg>
+        <span id="themeLabel">DARK</span>
+      </button>
+    </header>
+
+    <main>
+      <div class="status-badge animate-in line-delay-1">
+        <span class="status-dot"></span>
+        <span>SYSTEM STATUS: DEPLOYMENT_PENDING</span>
+      </div>
+
+      <h1>
+        <span class="highlight animate-in line-delay-2">SOMETHING</span><br>
+        <span class="animate-in line-delay-3">NEW IS</span><br>
+        <span class="animate-in line-delay-4">COMING</span>
+      </h1>
+
+      <p class="subtitle animate-in line-delay-5">
+        We're building something extraordinary. Our new platform will redefine how you experience our services.
+      </p>
+
+      <div class="counter-section">
+        <div class="counter-label counter-fade-in counter-anim-delay-1">LAUNCH COUNTDOWN</div>
+        <div class="counter" id="counter">
+          <!-- Days -->
+          <div class="counter-unit digits-group counter-fade-in counter-anim-delay-2">
+            <div class="digit-pair">
+              <div class="flip-clock" id="days-tens" data-value="0">
+                <div class="flip-clock-inner">
+                  <div class="top"><div class="inner">0</div></div>
+                  <div class="bottom"><div class="inner">0</div></div>
+                  <div class="flip-top"><div class="inner">0</div><div class="shadow"></div></div>
+                  <div class="flip-bottom"><div class="inner">0</div><div class="shadow"></div></div>
+                  <div class="center-line"></div>
+                </div>
+              </div>
+              <div class="flip-clock" id="days-ones" data-value="0">
+                <div class="flip-clock-inner">
+                  <div class="top"><div class="inner">0</div></div>
+                  <div class="bottom"><div class="inner">0</div></div>
+                  <div class="flip-top"><div class="inner">0</div><div class="shadow"></div></div>
+                  <div class="flip-bottom"><div class="inner">0</div><div class="shadow"></div></div>
+                  <div class="center-line"></div>
+                </div>
+              </div>
+            </div>
+            <div class="counter-name">days</div>
+          </div>
+          <div class="counter-separator counter-fade-in counter-anim-delay-2b">:</div>
+          <!-- Hours -->
+          <div class="counter-unit digits-group counter-fade-in counter-anim-delay-3">
+            <div class="digit-pair">
+              <div class="flip-clock" id="hours-tens" data-value="0">
+                <div class="flip-clock-inner">
+                  <div class="top"><div class="inner">0</div></div>
+                  <div class="bottom"><div class="inner">0</div></div>
+                  <div class="flip-top"><div class="inner">0</div><div class="shadow"></div></div>
+                  <div class="flip-bottom"><div class="inner">0</div><div class="shadow"></div></div>
+                  <div class="center-line"></div>
+                </div>
+              </div>
+              <div class="flip-clock" id="hours-ones" data-value="0">
+                <div class="flip-clock-inner">
+                  <div class="top"><div class="inner">0</div></div>
+                  <div class="bottom"><div class="inner">0</div></div>
+                  <div class="flip-top"><div class="inner">0</div><div class="shadow"></div></div>
+                  <div class="flip-bottom"><div class="inner">0</div><div class="shadow"></div></div>
+                  <div class="center-line"></div>
+                </div>
+              </div>
+            </div>
+            <div class="counter-name">hours</div>
+          </div>
+          <div class="counter-separator counter-fade-in counter-anim-delay-3b">:</div>
+          <!-- Minutes -->
+          <div class="counter-unit digits-group counter-fade-in counter-anim-delay-4">
+            <div class="digit-pair">
+              <div class="flip-clock" id="minutes-tens" data-value="0">
+                <div class="flip-clock-inner">
+                  <div class="top"><div class="inner">0</div></div>
+                  <div class="bottom"><div class="inner">0</div></div>
+                  <div class="flip-top"><div class="inner">0</div><div class="shadow"></div></div>
+                  <div class="flip-bottom"><div class="inner">0</div><div class="shadow"></div></div>
+                  <div class="center-line"></div>
+                </div>
+              </div>
+              <div class="flip-clock" id="minutes-ones" data-value="0">
+                <div class="flip-clock-inner">
+                  <div class="top"><div class="inner">0</div></div>
+                  <div class="bottom"><div class="inner">0</div></div>
+                  <div class="flip-top"><div class="inner">0</div><div class="shadow"></div></div>
+                  <div class="flip-bottom"><div class="inner">0</div><div class="shadow"></div></div>
+                  <div class="center-line"></div>
+                </div>
+              </div>
+            </div>
+            <div class="counter-name">minutes</div>
+          </div>
+          <div class="counter-separator counter-fade-in counter-anim-delay-4b">:</div>
+          <!-- Seconds -->
+          <div class="counter-unit digits-group counter-fade-in counter-anim-delay-5">
+            <div class="digit-pair">
+              <div class="flip-clock" id="seconds-tens" data-value="0">
+                <div class="flip-clock-inner">
+                  <div class="top"><div class="inner">0</div></div>
+                  <div class="bottom"><div class="inner">0</div></div>
+                  <div class="flip-top"><div class="inner">0</div><div class="shadow"></div></div>
+                  <div class="flip-bottom"><div class="inner">0</div><div class="shadow"></div></div>
+                  <div class="center-line"></div>
+                </div>
+              </div>
+              <div class="flip-clock" id="seconds-ones" data-value="0">
+                <div class="flip-clock-inner">
+                  <div class="top"><div class="inner">0</div></div>
+                  <div class="bottom"><div class="inner">0</div></div>
+                  <div class="flip-top"><div class="inner">0</div><div class="shadow"></div></div>
+                  <div class="flip-bottom"><div class="inner">0</div><div class="shadow"></div></div>
+                  <div class="center-line"></div>
+                </div>
+              </div>
+            </div>
+            <div class="counter-name">seconds</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="eta-badge animate-in line-delay-7">
+        <span class="label">ESTIMATED LAUNCH</span>
+        <span class="value" id="eta">Q2 2026</span>
+      </div>
+    </main>
+
+    <footer class="animate-in line-delay-13">
+      <div class="copyright">© <span id="year"></span> KODASKILLS. All rights reserved.</div>
+    </footer>
+  </div>
+
+  <script>
+    const targetDate = new Date('2026-05-01T00:00:00');
+
+    function updateFlipCard(elementId, newValue) {
+      const element = document.getElementById(elementId);
+      const currentValue = element.dataset.value;
+
+      if (currentValue === newValue) return;
+
+      const top = element.querySelector('.top .inner');
+      const bottom = element.querySelector('.bottom .inner');
+      const flipTop = element.querySelector('.flip-top');
+      const flipBottom = element.querySelector('.flip-bottom');
+      const flipTopInner = flipTop.querySelector('.inner');
+      const flipBottomInner = flipBottom.querySelector('.inner');
+
+      // Set up animation faces (scaleY technique):
+      // Static top: new value (revealed when flip-top scales down)
+      // Static bottom: old value (covered by flip-bottom)
+      // Flip-top: old value (scales from 1 to 0)
+      // Flip-bottom: new value (scales from 0 to 1)
+      top.textContent = newValue;
+      bottom.textContent = currentValue;
+      flipTopInner.textContent = currentValue;
+      flipBottomInner.textContent = newValue;
+
+      // Remove flipping class first to reset animations
+      element.classList.remove('flipping');
+
+      // Force reflow to reset animation state
+      void flipTop.offsetWidth;
+      void flipBottom.offsetWidth;
+
+      // Add flipping class to trigger animations
+      element.classList.add('flipping');
+
+      // After 110ms: top flap has scaled down, reveal new value in static bottom
+      setTimeout(() => {
+        bottom.textContent = newValue;
+      }, 110);
+
+      // After 170ms (110ms + 60ms delay): all done, reset for next flip
+      setTimeout(() => {
+        flipTopInner.textContent = newValue;
+        element.classList.remove('flipping');
+        element.dataset.value = newValue;
+      }, 170);
+    }
+
+    function updateCounter() {
+      const now = new Date();
+      const diff = targetDate - now;
+
+      if (diff <= 0) {
+        ['days', 'hours', 'minutes', 'seconds'].forEach(unit => {
+          updateFlipCard(`${unit}-tens`, '0');
+          updateFlipCard(`${unit}-ones`, '0');
+        });
+        return;
+      }
+
+      const days = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
+      const hours = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+      const minutes = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+      const seconds = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
+
+      updateFlipCard('days-tens', days[0]);
+      updateFlipCard('days-ones', days[1]);
+      updateFlipCard('hours-tens', hours[0]);
+      updateFlipCard('hours-ones', hours[1]);
+      updateFlipCard('minutes-tens', minutes[0]);
+      updateFlipCard('minutes-ones', minutes[1]);
+      updateFlipCard('seconds-tens', seconds[0]);
+      updateFlipCard('seconds-ones', seconds[1]);
+    }
+
+    // Initialize display
+    const now = new Date();
+    const diff = targetDate - now;
+    if (diff > 0) {
+      const days = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
+      const hours = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+      const minutes = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+      const seconds = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
+
+      const timeData = { days, hours, minutes, seconds };
+
+      Object.entries(timeData).forEach(([unit, value]) => {
+        document.getElementById(`${unit}-tens`).dataset.value = value[0];
+        document.getElementById(`${unit}-ones`).dataset.value = value[1];
+        document.getElementById(`${unit}-tens`).querySelectorAll('.inner').forEach(inner => inner.textContent = value[0]);
+        document.getElementById(`${unit}-ones`).querySelectorAll('.inner').forEach(inner => inner.textContent = value[1]);
+      });
+    }
+
+    setInterval(updateCounter, 1000);
+
+    function toggleTheme() {
+      const html = document.documentElement;
+      const isLight = html.classList.contains('light');
+
+      if (isLight) {
+        html.classList.remove('light');
+        document.getElementById('sunIcon').style.display = 'none';
+        document.getElementById('moonIcon').style.display = 'block';
+        document.getElementById('themeLabel').textContent = 'DARK';
+        localStorage.setItem('theme', 'dark');
+      } else {
+        html.classList.add('light');
+        document.getElementById('sunIcon').style.display = 'block';
+        document.getElementById('moonIcon').style.display = 'none';
+        document.getElementById('themeLabel').textContent = 'LIGHT';
+        localStorage.setItem('theme', 'light');
+      }
+    }
+
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+      document.documentElement.classList.add('light');
+      document.getElementById('sunIcon').style.display = 'block';
+      document.getElementById('moonIcon').style.display = 'none';
+      document.getElementById('themeLabel').textContent = 'LIGHT';
+    } else {
+      // Default dark mode - show moon icon
+      document.getElementById('sunIcon').style.display = 'none';
+      document.getElementById('moonIcon').style.display = 'block';
+      document.getElementById('themeLabel').textContent = 'DARK';
+    }
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Flowing grid - full randomization with collision detection
+    function initFlowingGrid() {
+      const container = document.getElementById('flowingGrid');
+      const directions = ['right', 'left', 'down', 'up'];
+
+      // Fixed particle sizes
+      const TRAIL_LENGTH = 100;
+      const THICKNESS = 2;
+      const GLOW_SIZE = 5;
+
+      // Track particles for flash on disappear
+      const activeParticles = [];
+      const FLASH_CHANCE = 0.15; // 15% chance to flash when disappearing
+      const FLASH_COOLDOWN = 300; // ms between flashes
+      let lastFlashTime = 0;
+
+      function randomizeParticle(particle, prevDir = null) {
+        // Pick a direction different from previous
+        let dir;
+        do {
+          dir = directions[Math.floor(Math.random() * directions.length)];
+        } while (dir === prevDir);
+
+        const duration = 1.5 + Math.random() * 7; // 1.5-8.5s wide range
+        const delay = Math.random() * 8; // 0-8s delay
+        const peakOpacity = 0.15 + Math.random() * 0.75; // 15-90%
+
+        const vw = window.innerWidth;
+        const vh = window.innerHeight;
+        const travelDist = Math.max(vw, vh) * (0.3 + Math.random() * 0.7); // 30-100% of screen
+
+        // Random start position - can be from edge OR middle
+        let sx, sy, ex, ey;
+        const startFromEdge = Math.random() > 0.3; // 70% from edge, 30% from middle
+
+        if (startFromEdge) {
+          switch(dir) {
+            case 'right':
+              sx = -TRAIL_LENGTH - Math.random() * 50;
+              sy = Math.random() * vh;
+              ex = sx + travelDist;
+              ey = sy;
+              break;
+            case 'left':
+              sx = vw + TRAIL_LENGTH + Math.random() * 50;
+              sy = Math.random() * vh;
+              ex = sx - travelDist;
+              ey = sy;
+              break;
+            case 'down':
+              sx = Math.random() * vw;
+              sy = -TRAIL_LENGTH - Math.random() * 50;
+              ex = sx;
+              ey = sy + travelDist;
+              break;
+            case 'up':
+              sx = Math.random() * vw;
+              sy = vh + TRAIL_LENGTH + Math.random() * 50;
+              ex = sx;
+              ey = sy - travelDist;
+              break;
+          }
+        } else {
+          // Start from middle, go to edge
+          const midX = Math.random() * vw;
+          const midY = Math.random() * vh;
+          switch(dir) {
+            case 'right':
+              sx = midX; sy = midY;
+              ex = sx + travelDist; ey = sy;
+              break;
+            case 'left':
+              sx = midX; sy = midY;
+              ex = sx - travelDist; ey = sy;
+              break;
+            case 'down':
+              sx = midX; sy = midY;
+              ex = sx; ey = sy + travelDist;
+              break;
+            case 'up':
+              sx = midX; sy = midY;
+              ex = sx; ey = sy - travelDist;
+              break;
+          }
+        }
+
+        // Set styles - uniform sizes
+        particle.style.cssText = '';
+        particle.style.width = (dir === 'left' || dir === 'right') ? `${TRAIL_LENGTH}px` : `${THICKNESS}px`;
+        particle.style.height = (dir === 'left' || dir === 'right') ? `${THICKNESS}px` : `${TRAIL_LENGTH}px`;
+        particle.style.left = `${sx}px`;
+        particle.style.top = `${sy}px`;
+
+        const gradients = {
+          'right': 'linear-gradient(to right, transparent, var(--color-primary))',
+          'left': 'linear-gradient(to left, transparent, var(--color-primary))',
+          'down': 'linear-gradient(to bottom, transparent, var(--color-primary))',
+          'up': 'linear-gradient(to top, transparent, var(--color-primary))'
+        };
+        particle.style.background = gradients[dir];
+
+        // Glob position - oval shape
+        const globWidth = GLOW_SIZE * 2;
+        const globHeight = GLOW_SIZE;
+        const globPos = {
+          'right': { right: `-${globWidth/2}px`, top: '50%', transform: 'translateY(-50%)' },
+          'left': { left: `-${globWidth/2}px`, top: '50%', transform: 'translateY(-50%)' },
+          'down': { bottom: `-${globHeight/2}px`, left: '50%', transform: 'translateX(-50%) rotate(90deg)' },
+          'up': { top: `-${globHeight/2}px`, left: '50%', transform: 'translateX(-50%) rotate(90deg)' }
+        };
+        const gp = globPos[dir];
+
+        particle.style.setProperty('--dx', `${ex - sx}px`);
+        particle.style.setProperty('--dy', `${ey - sy}px`);
+        particle.style.setProperty('--po', peakOpacity);
+        particle.style.setProperty('--gs', `${GLOW_SIZE}px`);
+        particle.style.setProperty('--gw', `${globWidth}px`);
+        particle.style.setProperty('--gi', 0.5 + Math.random() * 0.5);
+        particle.style.setProperty('--gr', gp.right || 'auto');
+        particle.style.setProperty('--gl', gp.left || 'auto');
+        particle.style.setProperty('--gt', gp.top || 'auto');
+        particle.style.setProperty('--gb', gp.bottom || 'auto');
+        particle.style.setProperty('--gtr', gp.transform || 'none');
+
+        particle.style.animation = `flowParticle ${duration}s linear ${delay}s infinite`;
+
+        // Store for tracking
+        const particleData = {
+          el: particle,
+          sx, sy,
+          dx: ex - sx,
+          dy: ey - sy,
+          duration: duration * 1000,
+          delay: delay * 1000,
+          startTime: null,
+          started: false,
+          flashTriggered: false
+        };
+
+        // Remove old data if exists
+        const oldIdx = activeParticles.findIndex(p => p.el === particle);
+        if (oldIdx !== -1) activeParticles.splice(oldIdx, 1);
+        activeParticles.push(particleData);
+
+        return dir;
+      }
+
+      // Create initial particles
+      function createParticles(count) {
+        for (let i = 0; i < count; i++) {
+          const p = document.createElement('div');
+          p.className = 'flow-particle';
+          container.appendChild(p);
+          p.dataset.prevDir = randomizeParticle(p);
+        }
+      }
+
+      // Start with random number of particles
+      const initialCount = 15 + Math.floor(Math.random() * 20); // 15-34
+      createParticles(initialCount);
+
+      // Continuously add/remove particles randomly
+      setInterval(() => {
+        const particles = container.querySelectorAll('.flow-particle');
+        const currentCount = particles.length;
+
+        // Randomly decide what to do
+        const action = Math.random();
+
+        if (action < 0.3 && currentCount < 40) {
+          // Add 1-3 new particles
+          const addCount = 1 + Math.floor(Math.random() * 3);
+          for (let i = 0; i < addCount; i++) {
+            const p = document.createElement('div');
+            p.className = 'flow-particle';
+            container.appendChild(p);
+            p.dataset.prevDir = randomizeParticle(p);
+          }
+        } else if (action < 0.5 && currentCount > 10) {
+          // Remove 1-2 random particles
+          const removeCount = 1 + Math.floor(Math.random() * 2);
+          for (let i = 0; i < removeCount; i++) {
+            const idx = Math.floor(Math.random() * particles.length);
+            if (particles[idx]) {
+              particles[idx].remove();
+              const pIdx = activeParticles.findIndex(p => p.el === particles[idx]);
+              if (pIdx !== -1) activeParticles.splice(pIdx, 1);
+            }
+          }
+        } else {
+          // Re-randomize 1-4 existing particles
+          const rerandomizeCount = 1 + Math.floor(Math.random() * 4);
+          for (let i = 0; i < rerandomizeCount; i++) {
+            const idx = Math.floor(Math.random() * particles.length);
+            if (particles[idx]) {
+              particles[idx].style.animation = 'none';
+              void particles[idx].offsetWidth;
+              const prevDir = particles[idx].dataset.prevDir;
+              particles[idx].dataset.prevDir = randomizeParticle(particles[idx], prevDir);
+            }
+          }
+        }
+      }, 1500 + Math.random() * 2000); // Every 1.5-3.5 seconds
+
+      // Check for particles about to disappear and trigger flash
+      function checkDisappearingParticles(timestamp) {
+        const now = Date.now();
+
+        // Update particle positions
+        for (const p of activeParticles) {
+          if (!p.started) {
+            if (timestamp >= p.delay) {
+              p.started = true;
+              p.startTime = timestamp;
+            } else {
+              continue;
+            }
+          }
+
+          const elapsed = (timestamp - p.startTime) % p.duration;
+          const progress = elapsed / p.duration;
+
+          // Track particles in the disappearing phase (85-95%)
+          if (progress >= 0.85 && progress <= 0.95) {
+            // Check if we should flash
+            if (!p.flashTriggered && Math.random() < FLASH_CHANCE && now - lastFlashTime >= FLASH_COOLDOWN) {
+              p.flashTriggered = true;
+              p.currentX = p.sx + p.dx * progress;
+              p.currentY = p.sy + p.dy * progress;
+              createCollisionFlash(p.currentX, p.currentY);
+              lastFlashTime = now;
+            }
+          } else if (progress < 0.85) {
+            // Reset flag if particle loops back
+            p.flashTriggered = false;
+          }
+        }
+
+        requestAnimationFrame(checkDisappearingParticles);
+      }
+
+      function createCollisionFlash(x, y) {
+        const flashContainer = document.createElement('div');
+        flashContainer.style.cssText = `
+          position: fixed;
+          left: ${x}px;
+          top: ${y}px;
+          pointer-events: none;
+          z-index: -1;
+        `;
+
+        // Central burst
+        const burst = document.createElement('div');
+        burst.style.cssText = `
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          width: 8px;
+          height: 8px;
+          transform: translate(-50%, -50%) scale(0);
+          border-radius: 50%;
+          background: var(--color-primary);
+          box-shadow: 0 0 10px var(--color-primary), 0 0 20px var(--color-primary), 0 0 40px var(--color-primary);
+          animation: flashBurst 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        `;
+        flashContainer.appendChild(burst);
+
+        // Expanding ring
+        const ring = document.createElement('div');
+        ring.style.cssText = `
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          width: 10px;
+          height: 10px;
+          transform: translate(-50%, -50%) scale(0);
+          border-radius: 50%;
+          border: 2px solid var(--color-primary);
+          animation: flashRing 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        `;
+        flashContainer.appendChild(ring);
+
+        // Spark particles
+        const sparkCount = 6 + Math.floor(Math.random() * 4);
+        for (let i = 0; i < sparkCount; i++) {
+          const spark = document.createElement('div');
+          const angle = (Math.PI * 2 * i) / sparkCount + (Math.random() - 0.5) * 0.5;
+          const distance = 20 + Math.random() * 30;
+          const size = 2 + Math.random() * 3;
+          spark.style.cssText = `
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: ${size}px;
+            height: ${size}px;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            background: var(--color-primary);
+            box-shadow: 0 0 ${size * 2}px var(--color-primary);
+            animation: flashSpark 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            --spark-x: ${Math.cos(angle) * distance}px;
+            --spark-y: ${Math.sin(angle) * distance}px;
+          `;
+          flashContainer.appendChild(spark);
+        }
+
+        document.body.appendChild(flashContainer);
+        setTimeout(() => flashContainer.remove(), 900);
+      }
+
+      // Add flash animations
+      const flashStyle = document.createElement('style');
+      flashStyle.textContent = `
+        @keyframes flashBurst {
+          0% {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0);
+          }
+          30% {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+          }
+          100% {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(3);
+          }
+        }
+        @keyframes flashRing {
+          0% {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0);
+            border-width: 3px;
+          }
+          20% {
+            opacity: 0.8;
+          }
+          100% {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(8);
+            border-width: 1px;
+          }
+        }
+        @keyframes flashSpark {
+          0% {
+            opacity: 0;
+            transform: translate(-50%, -50%) translate(0, 0) scale(0);
+          }
+          20% {
+            opacity: 1;
+            transform: translate(-50%, -50%) translate(0, 0) scale(1);
+          }
+          100% {
+            opacity: 0;
+            transform: translate(-50%, -50%) translate(var(--spark-x), var(--spark-y)) scale(0);
+          }
+        }
+      `;
+      document.head.appendChild(flashStyle);
+
+      // Start checking for disappearing particles
+      requestAnimationFrame(checkDisappearingParticles);
+    }
+
+    // Add animation styles
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes flowParticle {
+        0% {
+          opacity: 0;
+          transform: translate(0, 0);
+        }
+        15% {
+          opacity: var(--po, 0.6);
+        }
+        50% {
+          opacity: calc(var(--po, 0.6) * 0.8);
+        }
+        85% {
+          opacity: var(--po, 0.6);
+        }
+        100% {
+          opacity: 0;
+          transform: translate(var(--dx, 0), var(--dy, 0));
+        }
+      }
+      .flow-particle::before {
+        content: "";
+        position: absolute;
+        width: var(--gw, 16px);
+        height: var(--gs, 8px);
+        background: var(--color-primary);
+        border-radius: 50%;
+        box-shadow: 0 0 calc(var(--gs, 8px) * 2) var(--color-primary),
+                    0 0 calc(var(--gs, 8px) * 4) var(--color-primary);
+        opacity: var(--gi, 0.8);
+        right: var(--gr, auto);
+        left: var(--gl, auto);
+        top: var(--gt, auto);
+        bottom: var(--gb, auto);
+        transform: var(--gtr, none);
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Start flowing grid 1 second after all page animations end
+    setTimeout(initFlowingGrid, 5500);
+  </script>
+</body>
+</html>

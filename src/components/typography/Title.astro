@@ -1,0 +1,48 @@
+---
+/**
+ * Title — heading component with variant sizes and colors.
+ *
+ * Variants:
+ *  - "display": Large display text (text-4xl/tight)
+ *  - "h1": Page title (text-3xl/tight)
+ *  - "h2": Section title (text-2xl/tight)
+ *  - "h3": Subsection title (text-xl/snug)
+ *  - "h4": Card title (text-lg/snug)
+ *
+ * Colors:
+ *  - "default": text-on-surface
+ *  - "muted": text-on-surface-variant
+ *  - "primary": text-primary
+ *  - "error": text-error
+ */
+export interface Props {
+  as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "span" | "p";
+  variant?: "headline" | "display" | "h1" | "h2" | "h3" | "h4";
+  color?: "default" | "muted" | "primary" | "secondary" | "tertiary" | "error";
+  class?: string;
+}
+
+const { as: Tag = "h2", variant = "h2", color = "default", class: className = "" } = Astro.props;
+
+const variants: Record<string, string> = {
+  headline: "font-headline text-5xl md:text-8xl font-bold tracking-tighter leading-none",
+  display: "font-heading text-4xl leading-tight font-bold",
+  h1: "font-heading text-3xl leading-tight tracking-tight font-bold",
+  h2: "font-heading text-2xl leading-tight tracking-tight font-bold",
+  h3: "font-heading text-xl leading-snug font-semibold",
+  h4: "font-heading text-lg leading-snug font-semibold",
+};
+
+const colors: Record<string, string> = {
+  default: "text-on-surface",
+  muted: "text-on-surface-variant",
+  primary: "text-primary",
+  secondary: "text-secondary",
+  tertiary: "text-tertiary",
+  error: "text-error",
+};
+---
+
+<Tag class:list={[variants[variant], colors[color], className]}>
+  <slot />
+</Tag>

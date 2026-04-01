@@ -1,0 +1,131 @@
+---
+import Footer from "@components/nav/Footer.astro";
+import Header from "@components/nav/Header.astro";
+import MobileBottomNav from "@components/nav/MobileBottomNav.astro";
+import Sidebar from "@components/nav/Sidebar.astro";
+import PostHog from "@components/posthog.astro";
+import "@styles/global.css";
+
+interface Props {
+  title: string;
+  activePage: "home" | "expertises" | "approach" | "contact" | "none";
+  mainClass?: string;
+  alternates?: { locale: string; href: string }[];
+}
+
+const { title, activePage, mainClass = "", alternates = [] } = Astro.props;
+const locale = Astro.currentLocale ?? "en";
+
+// Build hreflang tags for SEO.
+// If the page provides explicit alternates (different slugs per locale), use them.
+// Otherwise, auto-derive from the current path by adding/removing the /fr prefix.
+const siteBase = (Astro.site?.origin ?? "https://kodaskills.co").replace(/\/$/, "");
+const currentPath = new URL(Astro.request.url).pathname;
+const enPath = currentPath.replace(/^\/fr(\/|$)/, (_, slash) => slash ?? "/") || "/";
+const frPath = enPath === "/" ? "/fr" : `/fr${enPath}`;
+
+const resolvedAlternates =
+  alternates.length > 0
+    ? alternates.map(({ locale: l, href }) => ({
+        locale: l,
+        href: href.startsWith("http") ? href : `${siteBase}${href}`,
+      }))
+    : [
+        { locale: "en", href: `${siteBase}${enPath}` },
+        { locale: "fr", href: `${siteBase}${frPath}` },
+      ];
+
+// x-default always points to the English version
+const xDefaultHref =
+  alternates.length > 0
+    ? (resolvedAlternates.find((a) => a.locale === "en")?.href ?? `${siteBase}${enPath}`)
+    : `${siteBase}${enPath}`;
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+
+    <!--
+      Synchronous theme initialisation — runs before first paint to prevent
+      a flash of the wrong color scheme. Reads "theme-mode" from localStorage
+      ("system" | "dark" | "light"), resolves "system" via prefers-color-scheme,
+      then adds the correct class to <html>.
+    -->
+    <script is:inline>
+      (() => {
+        var mode = localStorage.getItem("theme-mode") || "system";
+        var isDark =
+          mode === "dark" ||
+          (mode === "system" &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches);
+        document.documentElement.classList.add(isDark ? "dark" : "light");
+      })();
+    </script>
+
+    {resolvedAlternates.map(({ locale: l, href }) => (
+      <link rel="alternate" hreflang={l} href={href} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={xDefaultHref} />
+
+    <!-- Fonts are loaded via @import in global.css (also used by Astrobook) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <PostHog />
+  </head>
+
+  <!--
+    x-data on <body> creates a root Alpine scope so every child component
+    can access $store.sidebar and $store.theme without their own x-data.
+  -->
+  <body class="bg-surface" x-data>
+    <Header activePage={activePage} />
+    <Sidebar activePage={activePage} />
+
+    <main
+      id="swup"
+      class={`pt-16 lg:ml-20 ${mainClass}`}
+    >
+      <slot />
+    </main>
+
+    <Footer />
+    <MobileBottomNav activePage={activePage} />
+
+    <!-- Re-initialize Alpine directives on new page content after swup swap -->
+    <script>
+      document.addEventListener("swup:page:view", () => {
+        window.Alpine.initTree(document.getElementById("swup")!);
+        (window.Alpine.store("lang") as { update: () => void }).update();
+        updateNavActive();
+      });
+
+      function updateNavActive() {
+        const path = window.location.pathname;
+        // Strip locale prefix (/fr) and trailing slash, then match key
+        const stripped = path.replace(/^\/fr/, "").replace(/\/$/, "") || "/";
+        let activeKey = "home";
+        if (stripped.startsWith("/expertises")) activeKey = "expertises";
+        else if (stripped.startsWith("/approach")) activeKey = "approach";
+        else if (stripped.startsWith("/contact")) activeKey = "contact";
+
+        document.querySelectorAll<HTMLElement>("[data-nav-key]").forEach((el) => {
+          const key = el.dataset.navKey!;
+          const activeClasses = (el.dataset.activeClass ?? "").split(" ").filter(Boolean);
+          const inactiveClasses = (el.dataset.inactiveClass ?? "").split(" ").filter(Boolean);
+          if (key === activeKey) {
+            el.classList.remove(...inactiveClasses);
+            el.classList.add(...activeClasses);
+          } else {
+            el.classList.remove(...activeClasses);
+            el.classList.add(...inactiveClasses);
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

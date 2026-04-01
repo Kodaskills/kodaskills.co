@@ -1,0 +1,89 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "*.md"
+      - ".gitignore"
+      - ".dockerignore"
+      - ".env*"
+      - "biome.json"
+      - "knip.config.ts"
+      - "commitlint.config.ts"
+      - "Dockerfile"
+      - "docker-compose*.yml"
+      - "*.dockerfile"
+      - "Justfile"
+  pull_request:
+    branches: [main]
+    paths-ignore:
+      - "*.md"
+      - ".gitignore"
+      - ".dockerignore"
+      - ".env*"
+      - "biome.json"
+      - "knip.config.ts"
+      - "commitlint.config.ts"
+      - "Dockerfile"
+      - "docker-compose*.yml"
+      - "*.dockerfile"
+      - "Justfile"
+  workflow_dispatch:
+
+# Cancel in-progress builds for the same branch
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: ${{ vars.BUN_VERSION }}
+
+      - name: Cache node_modules
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-bun-${{ hashFiles('bun.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-bun-
+
+      - name: Cache .astro build
+        uses: actions/cache@v4
+        with:
+          path: .astro
+          key: ${{ runner.os }}-astro-${{ hashFiles('astro.config.ts', 'package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-astro-
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Build Astro site
+        run: bun run build
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+          retention-days: 7
+
+      - name: Upload .astro cache
+        uses: actions/upload-artifact@v4
+        with:
+          name: astro-cache
+          path: .astro/
+          retention-days: 7

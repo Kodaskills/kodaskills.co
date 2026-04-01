@@ -1,0 +1,104 @@
+---
+import type { IconName } from "@lib/icons";
+/**
+ * Button — action trigger or navigation CTA.
+ *
+ * Variants:
+ *  - "primary"            : filled bg-primary (default)
+ *  - "outlined"           : border-outline, surface hover
+ *  - "outlined-primary"   : border-primary, primary fill on hover
+ *  - "outlined-secondary" : border-secondary, secondary fill on hover
+ *  - "outlined-tertiary"  : border-tertiary, tertiary fill on hover
+ *  - "outlined-error"     : border-error, error fill on hover
+ *
+ * Sizes:
+ *  - "xs" : px-4 py-2 text-xs  — nav header
+ *  - "sm" : px-6 py-3 text-xs  — card CTAs
+ *  - "md" : px-8 py-4 text-sm  — hero CTAs (default)
+ *  - "lg" : px-12 py-4 text-sm — form submits
+ *
+ * Icons:
+ *  - iconLeft  : IconName — icon rendered before the label
+ *  - iconRight : IconName — icon rendered after the label
+ *
+ * Renders as <a> when href is provided, <button> otherwise.
+ */
+import Icon from "./Icon.astro";
+
+interface Props {
+  variant?:
+    | "primary"
+    | "outlined"
+    | "outlined-primary"
+    | "outlined-secondary"
+    | "outlined-tertiary"
+    | "outlined-error";
+  size?: "xs" | "sm" | "md" | "lg";
+  href?: string;
+  type?: "button" | "submit" | "reset";
+  class?: string;
+  disabled?: boolean;
+  onclick?: string;
+  label?: string;
+  iconLeft?: IconName;
+  iconRight?: IconName;
+}
+
+const {
+  variant = "primary",
+  size = "md",
+  href,
+  type = "button",
+  class: className,
+  disabled = false,
+  onclick,
+  label,
+  iconLeft,
+  iconRight,
+} = Astro.props;
+
+const base =
+  "font-headline font-bold uppercase tracking-widest transition-all inline-flex items-center gap-3";
+
+const sizes: Record<string, string> = {
+  xs: "text-xs px-4 py-2",
+  sm: "text-xs px-6 py-3",
+  md: "text-sm px-8 py-4",
+  lg: "text-sm px-12 py-4",
+};
+
+const variants: Record<string, string> = {
+  primary: "bg-primary text-on-primary hover:bg-primary-dim",
+  outlined: "border border-outline text-on-surface hover:bg-surface-container",
+  "outlined-primary": "border border-primary text-primary hover:bg-primary hover:text-on-primary",
+  "outlined-secondary":
+    "border border-secondary text-secondary hover:bg-secondary hover:text-on-secondary",
+  "outlined-tertiary":
+    "border border-tertiary text-tertiary hover:bg-tertiary hover:text-on-tertiary",
+  "outlined-error": "border border-error text-error hover:bg-error hover:text-on-error",
+};
+---
+
+{
+  href ? (
+    <a
+      href={href}
+      class:list={[base, sizes[size], variants[variant], className]}
+      onclick={onclick}
+    >
+      {iconLeft && <Icon name={iconLeft} size={16} />}
+      <slot>{label}</slot>
+      {iconRight && <Icon name={iconRight} size={16} />}
+    </a>
+  ) : (
+    <button
+      type={type}
+      class:list={[base, sizes[size], variants[variant], className]}
+      disabled={disabled}
+    >
+      {iconLeft && <Icon name={iconLeft} size={16} />}
+      <slot>{label}</slot>
+      {iconRight && <Icon name={iconRight} size={16} />}
+    </button>
+  )
+}

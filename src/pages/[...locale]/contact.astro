@@ -1,0 +1,173 @@
+---
+import Badge from "@components/primitives/Badge.astro";
+import Button from "@components/primitives/Button.astro";
+import Icon from "@components/primitives/Icon.astro";
+import { useI18n } from "@i18n/index";
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+export function getStaticPaths() {
+  return [{ params: { locale: undefined } }, { params: { locale: "fr" } }];
+}
+
+const { _ } = await useI18n(Astro.currentLocale);
+---
+
+<BaseLayout title={_("KODASKILLS | DIAGNOSTIC_INITIATION")} activePage="contact">
+  <div class="max-w-6xl mx-auto px-6 py-12 md:py-24">
+
+    <!-- Hero Section -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-24">
+      <div class="lg:col-span-7">
+        <div class="mb-4">
+          <Badge label={`Terminal Connection: Secured`} variant="primary" />
+        </div>
+        <h1 class="text-4xl md:text-6xl font-headline font-bold tracking-tighter text-on-surface mb-6 leading-none">
+          {_("INITIATING THE")}<br />
+          <span class="text-primary">{_("STRATEGIC DIAGNOSTIC")}</span>
+        </h1>
+        <p class="text-on-surface-variant max-w-lg font-body leading-relaxed text-lg">
+          {_("Kodaskills operates at the intersection of technical rigor and operational excellence. Provide the parameters below to authorize a deep-system audit of your technical architecture.")}
+        </p>
+      </div>
+
+      <!-- Telemetry Panel -->
+      <div class="lg:col-span-5 hidden lg:block">
+        <div class="p-6 bg-surface-container border border-outline-variant relative overflow-hidden h-64">
+          <div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: radial-gradient(#44d8f1 1px, transparent 1px); background-size: 20px 20px;"></div>
+          <div class="relative z-10 flex flex-col justify-between h-full">
+            <div class="flex justify-between items-start">
+              <Icon name="card-analytics" size={36} class="text-primary" />
+              <span class="text-[10px] font-mono text-outline">SYS_ID: 882-X9</span>
+            </div>
+            <div>
+              <div class="text-xs font-mono text-primary mb-2">CORE_METRIC: LATENCY_AUDIT</div>
+              <div class="h-1 w-full bg-outline-variant mb-4">
+                <div class="h-full bg-primary w-2/3"></div>
+              </div>
+              <p class="text-[10px] font-mono text-on-surface-variant uppercase tracking-widest">
+                {_("Awaiting local operator input for diagnostic deployment.")}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Diagnostic Form Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+
+      <!-- Form Column -->
+      <div class="space-y-12">
+        <div class="border-l-2 border-outline-variant pl-8 py-2">
+          <h3 class="font-headline font-bold text-xl uppercase tracking-widest mb-2">{_("Protocol 01")}</h3>
+          <p class="text-on-surface-variant font-body text-sm">{_("Identity & Entity mapping for session clearance.")}</p>
+        </div>
+
+        <form class="space-y-8" action="" method="POST">
+          <div class="group">
+            <label class="block font-headline text-[10px] font-bold uppercase tracking-widest text-outline mb-2 group-focus-within:text-primary transition-colors">
+              {_("Full Name")}
+            </label>
+            <input
+              type="text"
+              name="fullName"
+              class="w-full bg-surface-container border-0 border-b border-outline-variant focus:ring-0 focus:border-primary px-0 py-3 text-on-surface placeholder:text-outline-variant font-mono transition-all outline-none"
+              placeholder="OPERATOR_NAME"
+            />
+          </div>
+
+          <div class="group">
+            <label class="block font-headline text-[10px] font-bold uppercase tracking-widest text-outline mb-2 group-focus-within:text-primary transition-colors">
+              {_("Company")}
+            </label>
+            <input
+              type="text"
+              name="company"
+              class="w-full bg-surface-container border-0 border-b border-outline-variant focus:ring-0 focus:border-primary px-0 py-3 text-on-surface placeholder:text-outline-variant font-mono transition-all outline-none"
+              placeholder="ENTITY_IDENTIFIER"
+            />
+          </div>
+
+          <div class="group">
+            <label class="block font-headline text-[10px] font-bold uppercase tracking-widest text-outline mb-2 group-focus-within:text-primary transition-colors">
+              {_("Current Tech Challenge")}
+            </label>
+            <textarea
+              name="challenge"
+              rows="4"
+              class="w-full bg-surface-container border-0 border-b border-outline-variant focus:ring-0 focus:border-primary px-0 py-3 text-on-surface placeholder:text-outline-variant font-mono transition-all resize-none outline-none"
+              placeholder="DESCRIBE_SYSTEM_VULNERABILITY_OR_INEFFICIENCY"
+            ></textarea>
+          </div>
+
+          <div class="group">
+            <label class="block font-headline text-[10px] font-bold uppercase tracking-widest text-outline mb-2 group-focus-within:text-primary transition-colors">
+              {_("Preferred Contact")}
+            </label>
+            <input
+              type="email"
+              name="email"
+              class="w-full bg-surface-container border-0 border-b border-outline-variant focus:ring-0 focus:border-primary px-0 py-3 text-on-surface placeholder:text-outline-variant font-mono transition-all outline-none"
+              placeholder="COMM_UPLINK@DOMAIN.TLD"
+            />
+          </div>
+
+          <div class="pt-6">
+            <Button type="submit" size="lg">
+              {_("TRANSMIT_PARAMETERS")}
+              <Icon name="cta-send" />
+            </Button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Info Panel Column -->
+      <div class="grid grid-cols-2 gap-4 h-fit">
+        <!-- Security Protocol -->
+        <div class="col-span-2 p-6 bg-surface-container-high border border-outline-variant">
+          <div class="flex items-center gap-3 text-primary mb-4">
+            <Icon name="card-shield" />
+            <span class="font-headline font-bold uppercase tracking-widest text-xs">{_("Security Protocol")}</span>
+          </div>
+          <p class="text-xs font-body text-on-surface-variant leading-relaxed">
+            {_("All diagnostic data is encrypted via military-grade AES-256 protocols. Your system architecture remains confidential. Kodaskills does not store raw telemetry beyond the diagnostic session duration.")}
+          </p>
+        </div>
+
+        <!-- Integrity -->
+        <div class="aspect-square bg-surface-container border border-outline-variant flex flex-col items-center justify-center p-4">
+          <span class="text-outline-variant font-mono text-[10px] mb-2 uppercase">Integrity</span>
+          <div class="w-12 h-12 rounded-full border border-primary flex items-center justify-center">
+            <div class="w-2 h-2 bg-primary"></div>
+          </div>
+          <span class="text-primary font-mono text-[10px] mt-2">100.0%</span>
+        </div>
+
+        <!-- Processing -->
+        <div class="aspect-square bg-surface-container border border-outline-variant flex flex-col items-center justify-center p-4">
+          <span class="text-outline-variant font-mono text-[10px] mb-2 uppercase">Processing</span>
+          <div class="w-12 h-1 border-t border-b border-outline-variant relative">
+            <div class="absolute inset-y-0 left-0 bg-primary w-1/2"></div>
+          </div>
+          <span class="text-primary font-mono text-[10px] mt-2">ACTIVE</span>
+        </div>
+
+        <!-- Image -->
+        <div class="col-span-2 relative h-48 border border-outline-variant overflow-hidden group">
+          <img
+            alt={_("Close-up of complex circuit board circuitry with glowing blue and cyan lights in a dark industrial environment")}
+            class="w-full h-full object-cover grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzypZGtx_t8D5zYBLFTJlkerbdMwjrKGqmdjuIf09cBNWb1CqcPo1yEwh2gx0XTUp4gvkFue9tXw4eL2Fy-UuPU8MgzffiVuwA0aAK6hq84h3yXy6hPwssLIyRWs7mijW56WAbm1npgvRP6qTd1yH9Pu5iGDq-vp8DJynZ0MmSPNVApmodeNdpgjmrnjVQz5dR3RUa9zcNvReQLyWfVMc_jia3Cvnn_9Gn0SZjdMlxR2GS2vUCi3B9qFijrnnTdVJPSBUi9OarH"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent"></div>
+          <div class="absolute bottom-4 left-4">
+            <span class="font-headline font-bold uppercase tracking-widest text-[10px] text-on-surface">
+              {_("SYSTEM_ARCHITECTURE_READY")}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</BaseLayout>

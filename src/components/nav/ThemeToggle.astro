@@ -1,0 +1,59 @@
+---
+import Icon from "@components/primitives/Icon.astro";
+---
+
+<div
+  x-data="{ open: false }"
+  @mouseenter="open = true"
+  @mouseleave="open = false"
+  class="relative h-11 flex items-center"
+  role="radiogroup"
+  aria-label="Color scheme"
+  @keydown.left.prevent="$store.theme.set('light')"
+  @keydown.right.prevent="$store.theme.set('dark')"
+  @keydown.up.prevent="$store.theme.set('system')"
+>
+  <div class="flex items-center justify-center w-full">
+    <div class="relative shrink-0 w-[18px] h-[18px]">
+      <button
+        type="button"
+        role="radio"
+        :aria-checked="$store.theme.mode === 'light'"
+        @click="$store.theme.set('light')"
+        class="absolute inset-0 flex items-center justify-center transition-all duration-[260ms] ease-[cubic-bezier(0.4,0,0.2,1)] z-50"
+        :class="$store.theme.mode === 'light' ? 'text-primary' : 'text-outline hover:text-on-surface'"
+        :style="open ? 'transform:translate(-20px,0);opacity:1' : ($store.theme.mode === 'light' ? 'transform:translate(0,0);opacity:1' : 'transform:translate(0,0);opacity:0;pointer-events:none')"
+        title="Light"
+        aria-label="Light theme"
+      >
+        <Icon name="theme-light" size={18} />
+      </button>
+      <button
+        type="button"
+        role="radio"
+        :aria-checked="$store.theme.mode === 'system'"
+        @click="$store.theme.set('system')"
+        class="absolute inset-0 flex items-center justify-center transition-all duration-[260ms] ease-[cubic-bezier(0.4,0,0.2,1)] z-50"
+        :class="$store.theme.mode === 'system' ? 'text-primary' : 'text-outline hover:text-on-surface'"
+        :style="open ? 'transform:translate(0,0);opacity:1' : ($store.theme.mode === 'system' ? 'transform:translate(0,0);opacity:1' : 'transform:translate(0,0);opacity:0;pointer-events:none')"
+        title="System"
+        aria-label="System theme"
+      >
+        <Icon name="theme-auto" size={18} />
+      </button>
+      <button
+        type="button"
+        role="radio"
+        :aria-checked="$store.theme.mode === 'dark'"
+        @click="$store.theme.set('dark')"
+        class="absolute inset-0 flex items-center justify-center transition-all duration-[260ms] ease-[cubic-bezier(0.4,0,0.2,1)] z-50"
+        :class="$store.theme.mode === 'dark' ? 'text-primary' : 'text-outline hover:text-on-surface'"
+        :style="open ? 'transform:translate(20px,0);opacity:1' : ($store.theme.mode === 'dark' ? 'transform:translate(0,0);opacity:1' : 'transform:translate(0,0);opacity:0;pointer-events:none')"
+        title="Dark"
+        aria-label="Dark theme"
+      >
+        <Icon name="theme-dark" size={18} />
+      </button>
+    </div>
+  </div>
+</div>

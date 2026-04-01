@@ -1,0 +1,166 @@
+---
+import PageHeader from "@components/blocks/PageHeader.astro";
+import PageHero from "@components/blocks/PageHero.astro";
+import StatCard from "@components/blocks/StatCard.astro";
+import SectionTitle from "@components/patterns/SectionTitle.astro";
+import Button from "@components/primitives/Button.astro";
+import Icon from "@components/primitives/Icon.astro";
+import { useI18n } from "@i18n/index";
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+export function getStaticPaths() {
+  return [{ params: { locale: undefined } }, { params: { locale: "fr" } }];
+}
+
+const { _, lp } = await useI18n(Astro.currentLocale);
+---
+
+<BaseLayout title={_("KODASKILLS | Fractional CTO & Senior Tech Advisory")} activePage="home">
+  <!-- Hero Section -->
+  <PageHero>
+    <PageHeader badge={_("SYS_STATUS: ACTIVE_ADVISORY")}>
+      <Fragment slot="title">
+        {_("SENIOR")}.<br />
+        <span class="text-primary">{_("FULL-SPECTRUM.")}</span><br />
+        {_("TRUSTED.")}
+      </Fragment>
+      <Fragment slot="description">
+        {_("Fractional CTO services for growth companies. We bridge the gap between aggressive business goals and technical debt.")}
+      </Fragment>
+    </PageHeader>
+
+    <div class="flex flex-wrap gap-4 pt-4">
+      <Button href={lp("/contact")} size="md">
+        <Icon name="cta-rocket" />
+        {_("INITIATE_DIAGNOSTIC")}
+      </Button>
+      <Button href={lp("/approach")} variant="outlined" size="md">
+        {_("VIEW_METHODOLOGY")}
+      </Button>
+    </div>
+
+    <div class="absolute bottom-12 right-12 hidden xl:block text-right">
+      <div class="text-xs font-mono text-outline-variant mb-2">{_("COORDINATES_LOC")}</div>
+      <div class="text-sm font-mono text-on-surface-variant tracking-widest">52.3676° N, 4.9041° E</div>
+    </div>
+  </PageHero>
+
+  <!-- Expertise Bento Grid -->
+  <section class="py-24 px-6 md:px-12 bg-surface">
+    <div class="max-w-7xl mx-auto">
+      <div class="mb-16">
+        <SectionTitle number="01" title={_("OPERATIONAL_EXPERTISE")} />
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-0 border border-outline-variant">
+        <!-- Strategy -->
+        <div class="p-8 border-r border-b md:border-b-0 border-outline-variant hover:bg-surface-container transition-colors group">
+          <div class="mb-12">
+            <Icon name="card-strategy" size={36} class="text-primary" />
+          </div>
+          <h3 class="font-headline text-xl font-bold mb-4 uppercase">{_("STRATEGY")}</h3>
+          <p class="font-body text-sm text-on-surface-variant leading-relaxed">
+            {_("Technical roadmapping aligned with Series A-D business objectives. We prevent architecture from becoming a bottleneck.")}
+          </p>
+          <ul class="mt-8 space-y-2 font-mono text-[10px] text-primary">
+            <li>[01] {_("SCALING_FRAMEWORKS")}</li>
+            <li>[02] {_("DEBT_AUDITS")}</li>
+            <li>[03] {_("TALENT_PIPELINES")}</li>
+          </ul>
+        </div>
+
+        <!-- Infra Arch -->
+        <div class="p-8 border-r border-b md:border-b-0 border-outline-variant hover:bg-surface-container transition-colors group">
+          <div class="mb-12 text-tertiary">
+            <Icon name="card-infra" size={36} />
+          </div>
+          <h3 class="font-headline text-xl font-bold mb-4 uppercase">INFRA_ARCH</h3>
+          <p class="font-body text-sm text-on-surface-variant leading-relaxed">
+            {_("Precision-engineered cloud infrastructure. High availability, low latency, and cost-optimized deployments.")}
+          </p>
+          <ul class="mt-8 space-y-2 font-mono text-[10px] text-tertiary">
+            <li>[01] KUBERNETES_OPS</li>
+            <li>[02] {_("MULTI_REGION_STRAT")}</li>
+            <li>[03] CI_CD_PIPELINES</li>
+          </ul>
+        </div>
+
+        <!-- Security -->
+        <div class="p-8 border-r border-b md:border-b-0 border-outline-variant hover:bg-surface-container transition-colors group">
+          <div class="mb-12">
+            <Icon name="card-encrypted" size={36} class="text-primary" />
+          </div>
+          <h3 class="font-headline text-xl font-bold mb-4 uppercase">{_("SECURITY")}</h3>
+          <p class="font-body text-sm text-on-surface-variant leading-relaxed">
+            {_("Hardening systems from the core out. SOC2 readiness, penetration testing, and zero-trust protocol implementation.")}
+          </p>
+          <ul class="mt-8 space-y-2 font-mono text-[10px] text-primary">
+            <li>[01] {_("THREAT_MODELING")}</li>
+            <li>[02] {_("ENCRYPTION_AT_REST")}</li>
+            <li>[03] {_("ACCESS_CONTROL")}</li>
+          </ul>
+        </div>
+
+        <!-- CTO as Service -->
+        <div class="p-8 hover:bg-surface-container transition-colors group bg-surface-container-low">
+          <div class="mb-12">
+            <Icon name="card-cto" size={36} class="text-primary" />
+          </div>
+          <h3 class="font-headline text-xl font-bold mb-4 uppercase">{_("CTO_AS_SERVICE")}</h3>
+          <p class="font-body text-sm text-on-surface-variant leading-relaxed">
+            {_("Fractional leadership for teams needing senior guidance without the $400k+ overhead of a full-time hire.")}
+          </p>
+          <div class="mt-8 p-4 bg-surface-container-highest border border-primary">
+            <div class="text-[10px] font-mono text-primary mb-1">{_("CURRENT_AVAILABILITY")}</div>
+            <div class="text-sm font-bold font-headline uppercase">{_("1_OPEN_SLOT")}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Indicators / Experience -->
+  <section class="py-24 px-6 md:px-12 bg-surface-container-lowest overflow-hidden">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-12 items-center">
+      <div class="w-full md:w-1/2 space-y-6">
+        <h2 class="font-headline text-4xl font-bold tracking-tight">{_("20_YEARS_OPERATIONAL_EXCELLENCE.")}</h2>
+        <p class="font-body text-on-surface-variant leading-relaxed text-lg">
+          Kodaskills isn't just advisory—it's execution. We've built platforms for fintech, medtech, and high-frequency trading. We speak the language of engineering and the language of the boardroom.
+        </p>
+        <div class="grid grid-cols-2 gap-4">
+          <StatCard value="50+" label={_("SUCCESSFUL_DEPLOYS")} variant="accent" />
+          <StatCard value="$2B+" label={_("CLIENT_CAP_MANAGED")} variant="accent" />
+        </div>
+      </div>
+      <div class="w-full md:w-1/2 relative">
+        <div class="aspect-square bg-surface-container-high border border-outline-variant p-4 relative">
+          <img
+            alt={_("Close up of a professional server room terminal with blue glowing status lights and intricate data cabling in a dark high-tech facility.")}
+            class="w-full h-full object-cover grayscale opacity-50"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6RYgh71lZLQUr6HEIo_FOH5-cVgI5QE8hyvQ6wu_MvBEVBOQ0xp1-tErf2z9Qj3lkY4idevyZA9gFtjgs4_wLMT06nqCPg4z8euetTHeFJLF0U4UoUvfxRJSZ1lWtoHGj_7XM1GGUrRNJi78Ohfvtc954zYqrSg1LXM3lYj59nrMlqtjV2EvSDYldzXQYzOZ6EbUdCVKuOIjgH0ERVIPt0RoYXPQAasKTYRkYDVe7Z6eBOjO-BVMH2bx1RYss7HIX0ZsOb3Wdys4"
+          />
+          <div class="absolute inset-0 border-[20px] border-surface-container-lowest m-4 pointer-events-none"></div>
+          <div class="absolute top-8 left-8 bg-primary text-on-primary px-3 py-1 font-mono text-[10px] uppercase">
+            {_("IDENTITY_VERIFIED")}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="py-32 px-6 md:px-12 bg-primary flex flex-col items-center text-center">
+    <h2 class="font-headline text-4xl md:text-6xl font-extrabold tracking-tighter text-on-primary mb-8 max-w-3xl uppercase">
+      {_("READY_TO_SECURE_YOUR_TECH_FUTURE?")}
+    </h2>
+    <p class="font-body text-on-primary font-medium text-lg mb-12 max-w-xl opacity-90">
+      {_("Book a 30-minute technical health diagnostic. No sales pitch. Just hard data and expert assessment.")}
+    </p>
+    <a
+      href={lp("/contact")}
+      class="bg-surface text-primary font-headline font-bold uppercase tracking-widest text-sm px-12 py-4 hover:bg-surface-container transition-colors inline-flex items-center gap-4"
+    >
+      {_("INITIATE_DIAGNOSTIC_PROTOCOL")}
+      <Icon name="cta-bolt" />
+    </a>
+  </section>
+</BaseLayout>

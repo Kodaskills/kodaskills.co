@@ -1,0 +1,70 @@
+---
+import Button from "@components/primitives/Button.astro";
+/**
+ * AlertBar — full-width alert action bar with an icon, title, description,
+ * and a single CTA link. Used for system notices and status prompts.
+ *
+ * Variants:
+ *  - "tertiary"  : amber — warning (default)
+ *  - "primary"   : cyan  — informational
+ *  - "error"     : red   — critical / error
+ *  - "secondary" : gray  — neutral / inactive
+ */
+import Icon from "@components/primitives/Icon.astro";
+import Text from "@components/typography/Text.astro";
+import Title from "@components/typography/Title.astro";
+import type { IconName } from "@lib/icons";
+
+interface Props {
+  title: string;
+  description: string;
+  href: string;
+  ctaLabel: string;
+  variant?: "tertiary" | "primary" | "error" | "secondary";
+  icon?: IconName;
+}
+
+const {
+  title,
+  description,
+  href,
+  ctaLabel,
+  variant = "tertiary",
+  icon = "alert-warning",
+} = Astro.props;
+
+const colorMap = {
+  primary: {
+    section: "border-primary/20 bg-primary/5",
+    button: "outlined-primary",
+  },
+  secondary: {
+    section: "border-secondary/20 bg-secondary/5",
+    button: "outlined-secondary",
+  },
+  tertiary: {
+    section: "border-tertiary/20 bg-tertiary/5",
+    button: "outlined-tertiary",
+  },
+  error: { section: "border-error/20 bg-error/5", button: "outlined-error" },
+} as const;
+
+const { section, button } = colorMap[variant];
+---
+
+<section
+  class:list={["border p-8 flex flex-col md:flex-row items-center justify-between gap-6 relative z-10", section]}
+>
+  <div class="flex gap-6 items-center">
+    <div class={`text-${variant}`}>
+      <Icon name={icon} size={48} />
+    </div>
+    <div>
+     <Title as="h3" variant="h3" color={variant} >{title}</Title>
+     <Text as="p" variant="sm" weight="bold" color={variant}>{description}</Text>
+    </div>
+  </div>
+  <Button href={href} variant={button} size="md">
+    {ctaLabel}
+  </Button>
+</section>

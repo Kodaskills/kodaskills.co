@@ -1,0 +1,103 @@
+---
+import Text from "@components/typography/Text.astro";
+import Title from "@components/typography/Title.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+interface Props {
+  frontmatter: {
+    title: string;
+    lastUpdated: string;
+    lang?: string;
+    alternates?: { locale: string; href: string }[];
+  };
+}
+
+const { frontmatter } = Astro.props;
+const labelLastUpdated = frontmatter.lang === "en" ? "Last updated: " : "Dernière mise à jour : ";
+---
+
+<BaseLayout title={`${frontmatter.title} | Kodaskills`} activePage="none" alternates={frontmatter.alternates ?? []}>
+  <div class="px-6 md:px-12 py-16 max-w-4xl mx-auto">
+    <!-- Page header -->
+    <div class="mb-12 border-b border-outline-variant pb-8">
+      <div class="font-mono text-[10px] uppercase tracking-[0.2em] text-primary mb-4">
+        LEGAL_DOC
+      </div>
+      <Title as="h1" variant="h1" class="md:text-4xl mb-4">
+      	{frontmatter.title}
+      </Title>
+      <Text as="p" variant="captionMono">
+      	{labelLastUpdated} {frontmatter.lastUpdated}
+      </Text>
+    </div>
+    <!-- Prose content -->
+    <div class="legal-prose">
+      <slot />
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .legal-prose :global(h2) {
+    font-family: var(--font-headline, "Space Grotesk", sans-serif);
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-primary);
+    border-left: 2px solid var(--color-primary);
+    padding-left: 0.75rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .legal-prose :global(p) {
+    font-size: 0.875rem;
+    color: var(--color-on-surface-variant);
+    line-height: 1.75;
+    margin-bottom: 0.75rem;
+  }
+
+  .legal-prose :global(ul) {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .legal-prose :global(li) {
+    font-size: 0.875rem;
+    color: var(--color-on-surface-variant);
+    line-height: 1.75;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .legal-prose :global(li)::before {
+    content: "";
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    background-color: var(--color-primary);
+    margin-top: 0.625rem;
+    flex-shrink: 0;
+  }
+
+  .legal-prose :global(a) {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .legal-prose :global(a:hover) {
+    color: var(--color-primary-dim);
+  }
+
+  .legal-prose :global(strong) {
+    color: var(--color-on-surface);
+    font-weight: 600;
+  }
+</style>

@@ -1,0 +1,34 @@
+---
+import { ICON_REGISTRY, type IconName } from "@lib/icons";
+import { Icon as AstroIcon } from "astro-icon/components";
+
+interface Props {
+  /** Semantic icon name from the registry */
+  name: IconName;
+  /** Size in pixels (width = height). Default: 24 */
+  size?: number;
+  /** Override width independently */
+  width?: number;
+  /** Override height independently */
+  height?: number;
+  /** CSS classes applied to the SVG element */
+  class?: string;
+  /** Accessible label — set when the icon carries meaning (non-decorative) */
+  label?: string;
+}
+
+const { name, size = 24, width, height, class: cls, label } = Astro.props;
+
+const iconId = ICON_REGISTRY[name];
+const w = width ?? size;
+const h = height ?? size;
+---
+
+<AstroIcon
+  name={iconId}
+  width={w}
+  height={h}
+  class={cls}
+  aria-label={label}
+  aria-hidden={!label}
+/>

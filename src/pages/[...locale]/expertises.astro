@@ -1,0 +1,190 @@
+---
+import StatCard from "@components/blocks/StatCard.astro";
+import SpecRow from "@components/patterns/SpecRow.astro";
+import Button from "@components/primitives/Button.astro";
+import Icon from "@components/primitives/Icon.astro";
+import { useI18n } from "@i18n/index";
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+export function getStaticPaths() {
+  return [{ params: { locale: undefined } }, { params: { locale: "fr" } }];
+}
+
+const { _, lp } = await useI18n(Astro.currentLocale);
+
+const expertiseCards = [
+  {
+    icon: "card-leadership" as const,
+    num: "01",
+    title: _("Tech Leadership & Strategy"),
+    tag: "[ FRACTIONAL_CTO_PROTOCOL ]",
+    description: _(
+      "Bridging the gap between business objectives and technical execution. We provide high-level architectural oversight, talent roadmapping, and vendor management for scaling operations."
+    ),
+    specs: [
+      { label: "Module", value: "Execution_Sync", highlight: false },
+      { label: "Status", value: "READY", highlight: true },
+    ],
+  },
+  {
+    icon: "card-product" as const,
+    num: "02",
+    title: _("Product Development"),
+    tag: "[ FULLSTACK_FORGE ]",
+    description: _(
+      "End-to-end engineering of resilient digital products. We specialize in high-performance web applications, complex data dashboards, and mobile ecosystems built on modern, maintainable stacks."
+    ),
+    specs: [
+      { label: "Logic", value: "Atomic_Design", highlight: false },
+      { label: "Performance", value: "OPTIMIZED", highlight: true },
+    ],
+  },
+  {
+    icon: "card-dns" as const,
+    num: "03",
+    title: _("Infrastructure & Scalability"),
+    tag: "[ CLOUD_CHASSIS_V2 ]",
+    description: _(
+      "Architecting systems that grow without friction. Kubernetes orchestration, serverless migrations, and database optimization to ensure 99.99% uptime during peak traffic loads."
+    ),
+    specs: [
+      { label: "Provider", value: "AWS_AZURE_GCP", highlight: false },
+      { label: "Traffic_Load", value: "ELASTIC", highlight: true },
+    ],
+  },
+  {
+    icon: "card-ai" as const,
+    num: "04",
+    title: _("AI Transformation & Strategy"),
+    tag: "[ NEURAL_INTEGRATION ]",
+    description: _(
+      "Leveraging Large Language Models and custom machine learning pipelines to automate workflows, enhance data analysis, and build next-generation user experiences."
+    ),
+    specs: [
+      { label: "Engine", value: "LLM_CUSTOM_TUNED", highlight: false },
+      { label: "Process", value: "ACTIVE", highlight: true },
+    ],
+  },
+  {
+    icon: "card-encrypted" as const,
+    num: "05",
+    title: _("Security & Crisis Management"),
+    tag: "[ FORTRESS_PROTOCOL ]",
+    description: _(
+      "Proactive vulnerability assessment and rapid-response recovery. We harden your perimeter and provide continuous monitoring against emerging digital threats."
+    ),
+    specs: [
+      { label: "Encryption", value: "AES_256_FIPS", highlight: false },
+      { label: "Shield", value: "ENABLED", highlight: true },
+    ],
+  },
+];
+---
+
+<BaseLayout title={_("KODASKILLS | Core Expertise")} activePage="expertises">
+  <div class="py-24 px-6 md:px-12">
+    <div class="max-w-7xl mx-auto">
+
+      <!-- Page Header -->
+      <header class="mb-16 border-l-4 border-primary pl-6">
+        <div class="text-primary font-headline text-xs tracking-[0.3em] uppercase mb-2">
+          {_("CAPABILITIES_MANIFEST")}
+        </div>
+        <h1 class="text-5xl md:text-7xl font-headline font-bold uppercase tracking-tighter leading-none mb-4">
+          {_("Core")} <span class="text-primary">{_("Expertise")}</span>
+        </h1>
+        <p class="max-w-2xl text-on-surface-variant font-body text-lg leading-relaxed">
+          {_("Strategic engineering solutions for high-density information environments. We provide the technical rigor required for resilient digital infrastructure.")}
+        </p>
+      </header>
+
+      <!-- Expertise Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border border-outline-variant">
+        {expertiseCards.map((card) => (
+          <section class="bg-surface-container border border-outline-variant p-8 flex flex-col group hover:bg-surface-container-high transition-colors">
+            <div class="flex justify-between items-start mb-12">
+              <Icon name={card.icon} size={36} class="text-primary" />
+              <span class="text-outline-variant font-headline text-4xl font-bold">{card.num}</span>
+            </div>
+            <h3 class="text-2xl font-headline font-bold uppercase tracking-tight mb-4 group-hover:text-primary transition-colors">
+              {card.title}
+            </h3>
+            <div class="text-xs font-mono text-tertiary mb-6">{card.tag}</div>
+            <p class="text-on-surface-variant text-sm font-body leading-relaxed mb-8 flex-1">
+              {card.description}
+            </p>
+            <div class="space-y-2 border-t border-outline-variant pt-6">
+              {card.specs.map((spec) => (
+                <SpecRow label={spec.label} value={spec.value} highlight={spec.highlight} />
+              ))}
+            </div>
+          </section>
+        ))}
+
+        <!-- Custom Audit CTA Card -->
+        <section class="bg-surface-container-lowest border border-outline-variant p-8 flex flex-col justify-center items-center group relative overflow-hidden">
+          <div class="technical-grid-dots absolute inset-0 opacity-10"></div>
+          <div class="relative z-10 text-center">
+            <div class="text-outline-variant font-headline text-sm tracking-widest uppercase mb-4">Diagnostic_Ready</div>
+            <h4 class="text-xl font-headline font-bold uppercase mb-6">{_("Need a custom audit?")}</h4>
+            <Button href={lp("/contact")} variant="outlined-primary" size="sm">
+              {_("INITIALIZE_CONTACT")}
+            </Button>
+          </div>
+        </section>
+      </div>
+
+      <!-- System Parameters -->
+      <div class="mt-20">
+        <div class="flex items-center gap-4 mb-8">
+          <div class="h-px flex-1 bg-outline-variant"></div>
+          <div class="text-[10px] font-mono text-outline uppercase tracking-[0.5em]">System_Parameters</div>
+          <div class="h-px flex-1 bg-outline-variant"></div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <StatCard value="0ms" label="Latency_Target" variant="metric" />
+          <StatCard value="99.9%" label="Availability_SLA" variant="metric" />
+          <StatCard value="ISO_27001" label="Compliance_Standard" variant="metric" />
+          <StatCard value="24/7/365" label="Operator_Watch" variant="metric" />
+        </div>
+      </div>
+
+      <!-- Featured Project -->
+      <section class="mt-20 border border-outline-variant overflow-hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12">
+          <div class="lg:col-span-7 bg-surface-container p-12 border-b lg:border-b-0 lg:border-r border-outline-variant">
+            <div class="text-tertiary font-mono text-[10px] uppercase tracking-widest mb-4">Featured_Deployment</div>
+            <h2 class="text-4xl font-headline font-bold uppercase tracking-tighter mb-6">
+              {_("Global Financial Terminal Upgrade")}
+            </h2>
+            <p class="text-on-surface-variant font-body leading-relaxed mb-8">
+              {_("Modernizing a legacy transactional system for a tier-1 banking client. We implemented a micro-services architecture that reduced operational overhead by 40% and improved security compliance scores by 2 grades.")}
+            </p>
+            <div class="flex flex-wrap gap-2">
+              {["Rust", "gRPC", "PostgreSQL", "EKS"].map((tag) => (
+                <span class="bg-surface-variant text-on-surface text-[9px] px-2 py-1 font-mono uppercase">{tag}</span>
+              ))}
+            </div>
+          </div>
+          <div class="lg:col-span-5 relative min-h-[300px] bg-black">
+            <img
+              alt={_("High-contrast close-up of computer circuit board with cyan glowing lights and technical server hardware in a dark room")}
+              class="absolute inset-0 w-full h-full object-cover grayscale opacity-40"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyusT6KSIEWYW37EU37gk0pNVfK2QNnBWVz1c20BHLpX30IO8a8xlGVWeZekyCOI4xbw0klunqnOsbHJ5fkvIYHvSc0t5Oh5IgW_0Gf9qvCMXRsDaoQ5KB0mDN5hM2p8cVW3SyjQqjhtrNVsjZh5dWz3OLFIHScFCcvfixZNjYCxkD5VqkfAm_IxXc7i2kxKRh1_KWzFCHvPkzHz49befRQPU_7_BJdG4t5AjOvST4DzXDN05qZyi-q2pWH5zzXcMGJzFerNMnwb0"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
+            <div class="absolute bottom-6 left-6 right-6">
+              <div class="flex items-center gap-3">
+                <Icon name="card-verified" class="text-primary" />
+                <span class="text-xs font-mono uppercase tracking-widest text-on-surface">
+                  {_("Verified System Architecture")}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</BaseLayout>

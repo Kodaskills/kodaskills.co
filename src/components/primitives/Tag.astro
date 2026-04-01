@@ -1,0 +1,51 @@
+---
+/**
+ * Tag — monospace label for tech stacks, module identifiers, and system flags.
+ *
+ * Variants (shape):
+ *  - "filled"   : solid background, used for tech stack tags (Rust, gRPC…)
+ *  - "outlined" : border only, used for module/feature tags (SCALABILITY_L2…)
+ *
+ * Colors:
+ *  - "default"   : neutral surface tones (default)
+ *  - "primary"   : cyan accent
+ *  - "secondary" : secondary accent
+ *  - "tertiary"  : amber accent
+ *  - "error"     : error/critical tone
+ */
+interface Props {
+  text: string;
+  variant?: "filled" | "outlined";
+  color?: "default" | "primary" | "secondary" | "tertiary" | "error";
+}
+
+const { text, variant = "outlined", color = "default" } = Astro.props;
+
+const filledColors = {
+  default: "bg-surface-variant text-on-surface",
+  primary: "bg-primary-container text-on-primary-container",
+  secondary: "bg-secondary-container text-on-secondary-container",
+  tertiary: "bg-tertiary-container text-on-tertiary-container",
+  error: "bg-error-container text-on-error-container",
+};
+
+const outlinedColors = {
+  default: "border-outline-variant text-on-surface-variant",
+  primary: "border-primary text-primary",
+  secondary: "border-secondary text-secondary",
+  tertiary: "border-tertiary text-tertiary",
+  error: "border-error text-error",
+};
+---
+
+{
+  variant === "filled" ? (
+    <span class={`text-[9px] px-2 py-1 font-mono uppercase ${filledColors[color]}`}>
+      {text}
+    </span>
+  ) : (
+    <span class={`text-[10px] font-mono border px-2 py-1 ${outlinedColors[color]}`}>
+      {text}
+    </span>
+  )
+}

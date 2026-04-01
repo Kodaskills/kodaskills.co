@@ -1,0 +1,23 @@
+---
+/**
+ * StoryDecorator — lightweight Astrobook wrapper.
+ *
+ * Applies the surface background and padding so design tokens (colors,
+ * typography) render correctly in the story preview. Does NOT include
+ * nav or Alpine stores — stories are component-level, not page-level.
+ */
+interface Props {
+  /** Force a color scheme. Defaults to "dark" to match the site default. */
+  scheme?: "dark" | "light";
+  /** Extra padding classes. Defaults to "p-8". */
+  padding?: string;
+}
+
+const { scheme = "dark", padding = "p-8" } = Astro.props;
+---
+
+<div
+    class={`${scheme} bg-surface min-h-screen ${padding} flex items-center justify-center`}
+>
+    <slot />
+</div>

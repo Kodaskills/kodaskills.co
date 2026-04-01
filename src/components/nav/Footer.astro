@@ -1,0 +1,134 @@
+---
+/**
+ * Footer — left margin tracks the sidebar state via $store.sidebar (Alpine).
+ * 2-column grid layout: brand left, 3-column nav grid right.
+ */
+import Icon from "@components/primitives/Icon.astro";
+import { getI18n } from "@i18n/index";
+
+const { _, locale } = getI18n();
+const year = new Date().getFullYear();
+
+const legalLinks =
+  locale === "fr"
+    ? {
+        privacy: "/fr/politique-de-confidentialite",
+        legal: "/fr/mentions-legales",
+        terms: "/fr/cgu",
+      }
+    : {
+        privacy: "/privacy-policy",
+        legal: "/legal-notice",
+        terms: "/terms-of-use",
+      };
+---
+
+<footer class="lg:ml-20 bg-surface border-t border-outline-variant">
+  <div class="py-12 px-6 grid grid-cols-1 md:grid-cols-2 gap-12">
+    <!-- Brand -->
+    <div>
+      <div class="font-headline text-lg font-bold text-on-surface tracking-widest mb-4 uppercase">
+        KODASKILLS
+      </div>
+      <p class="font-sans text-xs text-outline mb-6 leading-relaxed">
+        {_("OPERATOR-GRADE PRECISION FOR ENTERPRISE ARCHITECTURE. WE BUILD WHAT OTHERS ONLY THEORIZE.")}
+      </p>
+      <div class="font-mono text-[10px] uppercase tracking-[0.2em] text-primary font-bold">
+        EST. 2024 / V6.0.4
+      </div>
+    </div>
+
+    <!-- Right: 3-column nav grid -->
+    <div class="grid grid-cols-3 gap-8">
+
+      <!-- Your Journey -->
+      <div class="space-y-4">
+        <div class="font-mono text-[10px] uppercase tracking-widest text-primary font-bold">{_("Your Journey")}</div>
+        <ul class="space-y-2 font-sans text-xs">
+          <li>
+            <a class="flex items-center gap-2 text-outline hover:text-primary transition-colors" href="#">
+              <span class="font-mono text-[10px] text-primary/60 shrink-0">01</span>
+              {_("Expertise")}
+            </a>
+          </li>
+          <li>
+            <a class="flex items-center gap-2 text-outline hover:text-primary transition-colors" href="#">
+              <span class="font-mono text-[10px] text-primary/60 shrink-0">02</span>
+              {_("Approach")}
+            </a>
+          </li>
+          <li>
+            <a class="flex items-center gap-2 text-outline hover:text-primary transition-colors" href="#">
+              <span class="font-mono text-[10px] text-primary/60 shrink-0">03</span>
+              {_("Methodology")}
+            </a>
+          </li>
+          <li>
+            <a class="flex items-center gap-2 text-outline hover:text-primary transition-colors" href="#">
+              <span class="font-mono text-[10px] text-primary/60 shrink-0">04</span>
+              {_("Contact")}
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Connect -->
+      <div class="space-y-4">
+        <div class="font-mono text-[10px] uppercase tracking-widest text-primary font-bold">{_("Connect")}</div>
+        <ul class="space-y-2 font-sans text-xs">
+          <li>
+            <a class="flex items-center gap-2 text-outline hover:text-primary transition-colors" href="https://www.linkedin.com/company/kodaskills/" target="_blank" rel="noopener noreferrer" onclick="window.posthog?.capture('social_link_clicked', { platform: 'linkedin' })">
+              <Icon name="social-linkedin" size={14} class="shrink-0" />
+              LinkedIn
+            </a>
+          </li>
+          <li>
+            <a class="flex items-center gap-2 text-outline hover:text-primary transition-colors" href="https://github.com/Kodaskills/kodaskills.co" target="_blank" rel="noopener noreferrer" onclick="window.posthog?.capture('social_link_clicked', { platform: 'github' })">
+              <Icon name="social-github" size={14} class="shrink-0" />
+              GitHub
+            </a>
+          </li>
+          <li>
+            <a class="flex items-center gap-2 text-outline hover:text-primary transition-colors" href="#" onclick="window.posthog?.capture('social_link_clicked', { platform: 'x' })">
+              <Icon name="social-x" size={14} class="shrink-0" />
+              X
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Legal -->
+      <div class="space-y-4">
+        <div class="font-mono text-[10px] uppercase tracking-widest text-primary font-bold">{_("Legal")}</div>
+        <ul class="space-y-2 font-sans text-xs">
+          <li>
+            <a class="flex items-center gap-2 text-outline hover:text-primary transition-colors" href={legalLinks.privacy}>
+              <Icon name="card-encrypted" size={14} class="shrink-0" />
+              {_("Privacy")}
+            </a>
+          </li>
+          <li>
+            <a class="flex items-center gap-2 text-outline hover:text-primary transition-colors" href={legalLinks.legal}>
+              <Icon name="card-shield" size={14} class="shrink-0" />
+              {_("Legal")}
+            </a>
+          </li>
+          <li>
+            <a class="flex items-center gap-2 text-outline hover:text-primary transition-colors" href={legalLinks.terms}>
+              <Icon name="card-verified" size={14} class="shrink-0" />
+              {_("Terms of Op")}
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bottom bar — same height as sidebar collapse button (py-2 pt-3 + 18px icon = ~38px) -->
+  <div class="border-t border-outline-variant px-6 h-11 flex items-center">
+    <span class="font-mono text-[10px] uppercase tracking-widest text-outline">
+      © {year} KODASKILLS_OPERATIONS. ALL_RIGHTS_RESERVED.
+    </span>
+  </div>
+</footer>

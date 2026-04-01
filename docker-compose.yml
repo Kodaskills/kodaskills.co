@@ -1,0 +1,32 @@
+services:
+  dev:
+    build:
+      context: .
+      target: dev
+    restart: on-failure
+    ports:
+      - "4321:4321"
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules
+    environment:
+      - NODE_ENV=development
+      - CI=true
+
+  book:
+    build:
+      context: .
+      target: dev
+    restart: on-failure
+    ports:
+      - "4322:4322"
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules
+    environment:
+      - NODE_ENV=development
+      - CI=true
+    command: bunx astro dev --config astro.config.book.ts --host 0.0.0.0 --port 4322
+
+volumes:
+  node_modules:

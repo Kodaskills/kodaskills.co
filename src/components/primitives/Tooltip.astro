@@ -1,0 +1,121 @@
+---
+type Placement =
+  | "top"
+  | "top-start"
+  | "top-end"
+  | "bottom"
+  | "bottom-start"
+  | "bottom-end"
+  | "left"
+  | "left-start"
+  | "left-end"
+  | "right"
+  | "right-start"
+  | "right-end";
+
+type Variant = "default" | "primary" | "secondary" | "tertiary" | "error";
+
+interface Props {
+  content: string;
+  variant?: Variant;
+  placement?: Placement;
+  offset?: number;
+  [key: string]: unknown;
+}
+
+const {
+  content,
+  variant = "default",
+  placement = "top",
+  offset = 8,
+  class: className = "inline-block",
+  ...rest
+} = Astro.props;
+---
+
+<div
+  class:list={["tooltip-root", className]}
+  data-tooltip={content}
+  data-tooltip-variant={variant}
+  data-placement={placement}
+  data-offset={offset}
+  {...rest}
+>
+  <slot />
+</div>
+
+<script>
+  import {
+    autoUpdate,
+    computePosition,
+    flip,
+    offset as floatingOffset,
+    shift,
+  } from "@floating-ui/dom";
+
+  // Full class strings per variant — kept static so UnoCSS scans every token.
+  const variantClasses: Record<string, string> = {
+    default:   "block bg-surface border border-outline-variant text-on-surface-variant font-mono text-[9px] uppercase tracking-[0.15em] px-2 py-1 whitespace-nowrap",
+    primary:   "block bg-primary text-on-primary font-mono text-[9px] uppercase tracking-[0.15em] px-2 py-1 whitespace-nowrap",
+    secondary: "block bg-secondary text-on-secondary font-mono text-[9px] uppercase tracking-[0.15em] px-2 py-1 whitespace-nowrap",
+    tertiary:  "block bg-tertiary text-on-tertiary font-mono text-[9px] uppercase tracking-[0.15em] px-2 py-1 whitespace-nowrap",
+    error:     "block bg-error text-on-error font-mono text-[9px] uppercase tracking-[0.15em] px-2 py-1 whitespace-nowrap",
+  };
+
+  function setupTooltip(root: HTMLElement) {
+    if (root.dataset.tooltipInit === "true") return;
+    root.dataset.tooltipInit = "true";
+
+    const placement = (root.dataset.placement ?? "top") as "top" | "bottom" | "left" | "right" | "top-start" | "top-end" | "bottom-start" | "bottom-end" | "left-start" | "left-end" | "right-start" | "right-end";
+    const offsetPx = Number(root.dataset.offset ?? 8);
+    const cls = variantClasses[root.dataset.tooltipVariant ?? "default"] ?? variantClasses.default;
+
+    // Portal: create popup in body to escape overflow:hidden containers
+    const popup = document.createElement("div");
+    popup.setAttribute("role", "tooltip");
+    popup.className =
+      "fixed z-[9999] pointer-events-none opacity-0 scale-95 transition-[opacity,transform] duration-150 ease-out";
+    popup.innerHTML = `<span class="${cls}">${root.dataset.tooltip ?? ""}</span>`;
+    document.body.appendChild(popup);
+
+    let cleanup: (() => void) | null = null;
+
+    function updatePosition() {
+      computePosition(root, popup, {
+        placement,
+        strategy: "fixed",
+        middleware: [floatingOffset(offsetPx), flip(), shift({ padding: 8 })],
+      }).then(({ x, y }) => {
+        popup.style.left = `${x}px`;
+        popup.style.top = `${y}px`;
+      });
+    }
+
+    function show() {
+      if (root.dataset.tooltipDisabled === "true") return;
+      cleanup = autoUpdate(root, popup, updatePosition);
+      popup.style.opacity = "1";
+      popup.style.transform = "scale(1)";
+    }
+
+    function hide() {
+      if (cleanup) { cleanup(); cleanup = null; }
+      popup.style.opacity = "0";
+      popup.style.transform = "scale(0.95)";
+    }
+
+    root.addEventListener("mouseenter", show);
+    root.addEventListener("mouseleave", hide);
+    root.addEventListener("focusin", show);
+    root.addEventListener("focusout", hide);
+  }
+
+  function initAll() {
+    document.querySelectorAll<HTMLElement>(".tooltip-root").forEach(setupTooltip);
+  }
+
+  initAll();
+
+  document.addEventListener("swup:page:view", initAll);
+  document.addEventListener("astro:after-swap", initAll);
+</script>

@@ -1,0 +1,32 @@
+[
+	{
+		"event": "cta_clicked",
+		"description": "User clicked a primary call-to-action button on the homepage hero section (Initiate Diagnostic or View Methodology)",
+		"file": "src/pages/[...locale]/index.astro"
+	},
+	{
+		"event": "contact_form_submitted",
+		"description": "User submitted the contact/diagnostic initiation form on the contact page",
+		"file": "src/pages/[...locale]/contact.astro"
+	},
+	{
+		"event": "expertise_cta_clicked",
+		"description": "User clicked the 'Initialize Contact' CTA on the expertises page (conversion intent from expertise browsing)",
+		"file": "src/pages/[...locale]/expertises.astro"
+	},
+	{
+		"event": "approach_cta_clicked",
+		"description": "User clicked the emergency access / Initiate Contact CTA on the approach page",
+		"file": "src/pages/[...locale]/approach.astro"
+	},
+	{
+		"event": "social_link_clicked",
+		"description": "User clicked a social media link (LinkedIn, GitHub, X) in the footer",
+		"file": "src/components/nav/Footer.astro"
+	},
+	{
+		"event": "language_changed",
+		"description": "User switched the site language using the language toggle (EN/FR)",
+		"file": "src/components/nav/LanguageToggle.astro"
+	}
+]

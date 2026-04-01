@@ -1,0 +1,38 @@
+prepare-commit-msg:
+  commands:
+    czg:
+      interactive: true
+      run: '[ "{2}" = "message" ] || docker compose run --rm dev bunx czg --hook --name {1} --source {2}'
+      skip:
+        - merge
+        - rebase
+
+pre-commit:
+  commands:
+    biome:
+      run: just lint --no-errors-on-unmatched .
+      stage_fixed: true
+
+commit-msg:
+  commands:
+    commitlint:
+      run: docker compose run --rm dev bun commitlint --edit {1}
+      skip:
+        - merge
+        - rebase
+
+pre-push:
+  commands:
+    validate-branch:
+      run: just check-branch-name
+    biome-lint:
+      run: just lint .
+    knip:
+      run: just knip
+    astro-ts-check:
+      run: just check
+    # Strict Lingui compile: fails if any non-source locale (.po) contains
+    # an empty msgstr — i.e. an untranslated label.
+    # Source locale (en) is exempt because sourceLocale is set in lingui.config.ts.
+    i18n-check:
+      run: just i18n-check

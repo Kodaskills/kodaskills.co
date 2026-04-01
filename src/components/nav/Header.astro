@@ -1,0 +1,181 @@
+---
+import LanguageToggle from "@components/nav/LanguageToggle.astro";
+import Button from "@components/primitives/Button.astro";
+import Icon from "@components/primitives/Icon.astro";
+import { getI18n } from "@i18n/index";
+
+interface Props {
+  activePage: "home" | "expertises" | "approach" | "contact" | "none";
+}
+
+const { activePage } = Astro.props;
+const { _, lp } = getI18n();
+
+const navLinks = [
+  { href: lp("/"), label: _("Kodaskills?"), key: "home" },
+  { href: lp("/expertises"), label: _("Our Expertise"), key: "expertises" },
+  { href: lp("/approach"), label: _("Our Approach"), key: "approach" },
+  { href: lp("/contact"), label: _("Connect Us"), key: "contact" },
+];
+---
+
+<header
+id="main-header"
+class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 border-b border-outline-variant transition-all duration-300"
+>
+	<!-- Left: mobile logo / desktop spacer -->
+	<div class="flex-1">
+		<a
+		href={lp("/")}
+		class="font-bold tracking-widest text-primary font-headline"
+		style="font-size: 2rem"
+		>K</a>
+	</div>
+
+	<nav
+	id="main-nav"
+	class="hidden md:flex items-center gap-8 font-headline uppercase tracking-tighter text-sm relative"
+	>
+		<div id="nav-indicator" class="absolute top-1/2 -translate-y-1/2 bg-primary transition-all duration-300 ease-out pointer-events-none" style="height:2rem;width:0;opacity:0"></div>
+		{
+		navLinks.map((link, i) => (
+		<>
+			{i > 0 && (
+				<span class="flex items-center gap-0.5 text-outline-variant pointer-events-none select-none" aria-hidden="true">
+					<span class="w-1 h-1 bg-current opacity-30"></span>
+					<span class="w-1 h-1 bg-current opacity-60"></span>
+					<span class="w-1 h-1 bg-current opacity-90"></span>
+				</span>
+			)}
+			<a
+			href={link.href}
+			data-nav-key={link.key}
+			data-active-class="text-on-primary nav-link--active"
+			data-inactive-class="text-on-surface transition-colors duration-200"
+			class={
+			activePage === link.key
+			? "nav-link relative text-on-primary nav-link--active"
+			: "nav-link relative text-on-surface transition-colors duration-200"
+			}
+			>
+				<span class="inline-flex items-baseline gap-2.5">
+					<span class="nav-num font-mono leading-none opacity-50" style="font-size:0.85em">{String(i + 1).padStart(2, "0")}</span>{link.label}
+				</span>
+			</a>
+		</>
+		))
+		}
+	</nav>
+
+	<!-- Right: controls -->
+	<div class="flex-1 flex justify-end items-center gap-3">
+		<LanguageToggle/>
+		<span class="w-px h-6 bg-outline-variant mx-2"></span>
+		<Button href={lp("/contact")} size="xs">
+			<Icon name="cta-rocket" />
+			{_("START_DIAGNOSTIC")}
+		</Button>
+	</div>
+</header>
+
+<script>
+  const header = document.getElementById("main-header")!;
+  const nav = document.getElementById("main-nav")!;
+  const indicator = document.getElementById("nav-indicator")!;
+  const links = nav.querySelectorAll<HTMLElement>("a.nav-link");
+  let pendingLink: HTMLElement | null = null;
+
+  function getActiveLink() {
+    return nav.querySelector<HTMLElement>("a.nav-link--active");
+  }
+
+  function moveIndicatorTo(el: HTMLElement) {
+    const navRect = nav.getBoundingClientRect();
+    const rect = el.getBoundingClientRect();
+    const pad = 12;
+    indicator.style.left = `${rect.left - navRect.left - pad}px`;
+    indicator.style.width = `${rect.width + pad * 2}px`;
+    indicator.style.opacity = "1";
+  }
+
+  function resetIndicator() {
+    const active = pendingLink ?? getActiveLink();
+    if (active) {
+      moveIndicatorTo(active);
+    } else {
+      indicator.style.opacity = "0";
+      indicator.style.width = "0";
+    }
+  }
+
+  // Init after full layout (fonts + layout computed) — no flash
+  window.addEventListener("load", () => {
+    indicator.style.transition = "none";
+    resetIndicator();
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      indicator.style.transition = "";
+    }));
+  });
+
+  let resetTimer: ReturnType<typeof setTimeout> | null = null;
+
+  function setHoverText(target: HTMLElement | null) {
+    links.forEach((link) => {
+      const isActive = link.classList.contains("nav-link--active");
+      if (link === target || isActive) {
+        link.classList.remove("text-on-surface");
+        link.classList.add("text-on-primary");
+      } else {
+        link.classList.remove("text-on-primary");
+        link.classList.add("text-on-surface");
+      }
+    });
+  }
+
+  links.forEach((link) => {
+    link.addEventListener("click", () => { pendingLink = link; });
+    link.addEventListener("mouseenter", () => {
+      if (resetTimer) { clearTimeout(resetTimer); resetTimer = null; }
+      moveIndicatorTo(link);
+      setHoverText(link);
+    });
+    link.addEventListener("mouseleave", () => {
+      resetTimer = setTimeout(() => {
+        resetIndicator();
+        setHoverText(null);
+      }, 400);
+    });
+  });
+
+  // Update indicator after swup navigation.
+  // setTimeout(0) ensures updateNavActive() in BaseLayout has already run
+  // before we re-query nav-link--active.
+  document.addEventListener("swup:page:view", () => {
+    setTimeout(() => {
+      pendingLink = null;
+      resetIndicator();
+    }, 0);
+  });
+
+  // Scroll: opaque + blur when content scrolls under
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 8) {
+      header.classList.add("shadow-md", "backdrop-blur-md", "bg-surface/60");
+    } else {
+      header.classList.remove("shadow-md", "backdrop-blur-md", "bg-surface/60");
+    }
+  }, { passive: true });
+</script>
+
+<style>
+  /* Chiffre plus discret, label plein contraste sur état actif/hover */
+  .nav-link--active .nav-num,
+  .nav-link:hover .nav-num {
+    opacity: 0.45;
+  }
+
+  /* Label toujours en gras — pas de shift de layout au hover */
+  .nav-link {
+    font-weight: 700;
+  }
+</style>
