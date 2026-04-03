@@ -43,7 +43,7 @@ jobs:
           ASTRO_SERVER_PREVIEW_PORT=${{ vars.ASTRO_SERVER_PREVIEW_PORT }}
           ASTRO_SERVER_BASE_PATH=${{ vars.ASTRO_SERVER_BASE_PATH }}
           EOF
-        shell: bash
+        shell: bash #test
 
       - name: 🗏 Setup Pages
         id: pages
@@ -83,6 +83,34 @@ jobs:
         if: env.ACT != 'true'
         with:
           artifact_name: github-pages
+
+  preview:
+    name: 👀 Preview on Cloudflare Pages
+    if: ${{ github.event_name == 'pull_request' }}
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    outputs:
+      preview_url: ${{ steps.deploy.outputs.url }}
+    steps:
+      - name: 📥 Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: build-output
+          path: ./dist/
+      - name: ☁️ Publish to Cloudflare Pages
+        id: deploy
+        uses: cloudflare/pages-action@v1
+        if: env.ACT != 'true'
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: ${{ vars.CLOUDFLARE_PROJECT_NAME }}
+          directory: ./dist
+          branch: ${{ github.head_ref }}
+          wranglerVersion: '3'
 
   audit:
     name: 📊 Performance Audit
