@@ -1,40 +1,39 @@
-name: "Slack Notification Generator"
-description: "Génère et envoie un message Slack pour le déploiement d'une preview"
+name: 'Slack Notification'
+description: 'Send deployment notification to Slack'
 
 inputs:
   webhook_url:
-    description: "The Slack incoming webhook URL"
+    description: 'Slack webhook URL'
     required: true
   job_status:
-    description: "The job status (success, failure)"
+    description: 'Job status (success/failure)'
     required: true
   deploy_type:
-    description: "Deployment type: preview or production"
+    description: 'Deployment type (production/preview)'
     required: true
   pr_title:
-    description: "The Pull Request title"
+    description: 'Pull request title'
     required: true
   pr_number:
-    description: "The Pull Request number"
+    description: 'Pull request number'
     required: true
   pr_author:
-    description: "The PR author username"
+    description: 'Pull request author'
     required: true
   preview_url:
-    description: "The Cloudflare Pages preview URL"
-    required: true
+    description: 'Preview deployment URL'
+    required: false
   pr_url:
-    description: "The Pull Request URL"
+    description: 'Pull request URL'
     required: true
   commit_hash:
-    description: "The commit SHA (short)"
-    required: false
-    default: ""
+    description: 'Commit hash'
+    required: true
 
 runs:
-  using: composite
+  using: 'composite'
   steps:
-    - name: Set status variables
+    - name: Send Slack notification
       shell: bash
       run: |
         if [ "${{ inputs.job_status }}" == "success" ]; then
