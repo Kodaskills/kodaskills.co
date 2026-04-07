@@ -1,0 +1,65 @@
+name: "Slack Notification Generator"
+description: "Génère et envoie un message Slack pour le déploiement d'une preview"
+
+inputs:
+  webhook_url:
+    description: "The Slack incoming webhook URL"
+    required: true
+  job_status:
+    description: "The job status (success, failure)"
+    required: true
+  pr_title:
+    description: "The Pull Request title"
+    required: true
+  pr_number:
+    description: "The Pull Request number"
+    required: true
+  pr_author:
+    description: "The PR author username"
+    required: true
+  preview_url:
+    description: "The Cloudflare Pages preview URL"
+    required: true
+  pr_url:
+    description: "The Pull Request URL"
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Set status variables
+      shell: bash
+      run: |
+        if [ "${{ inputs.job_status }}" == "success" ]; then
+          echo "STATUS_EMOJI=🟢" >> $GITHUB_ENV
+        elif [ "${{ inputs.job_status }}" == "failure" ]; then
+          echo "STATUS_EMOJI=🔴" >> $GITHUB_ENV
+        else
+          echo "STATUS_EMOJI=🟡" >> $GITHUB_ENV
+        fi
+        echo "PR_NAME=${{ inputs.pr_title }}" >> $GITHUB_ENV
+        echo "PR_NUMBER=${{ inputs.pr_number }}" >> $GITHUB_ENV
+        echo "PR_AUTHOR=${{ inputs.pr_author }}" >> $GITHUB_ENV
+        echo "TIME=$(date '+%H:%M:%S')" >> $GITHUB_ENV
+        echo "PREVIEW_URL=${{ inputs.preview_url }}" >> $GITHUB_ENV
+        echo "PR_URL=${{ inputs.pr_url }}" >> $GITHUB_ENV
+        echo "LOGS_URL=${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_ENV
+
+    - name: Send Slack notification
+      uses: slackapi/slack-github-action@v3.0.1
+      with:
+        method: incoming-webhook
+        webhook: ${{ inputs.webhook_url }}
+        payload: |
+          {
+            "text": "${{ env.STATUS_EMOJI }} PR: #${{ env.PR_NUMBER }} — ${{ env.PR_NAME }}",
+            "blocks": [
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "${{ env.STATUS_EMOJI }} *PR: #${{ env.PR_NUMBER }} — ${{ env.PR_NAME }}*\n📦 kodaskills.co\n🌐 <${{ env.PREVIEW_URL }}|${{ env.PREVIEW_URL }}>\n👤 ${{ env.PR_AUTHOR }}\n🔗 <${{ env.LOGS_URL }}|Logs> | <${{ env.PR_URL }}|PR>\n🕒 ${{ env.TIME }}"
+                }
+              }
+            ]
+          }
