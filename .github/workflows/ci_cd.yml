@@ -54,10 +54,11 @@ jobs:
           retention-days: 1
 
   deploy-cloudflare:
-    name: 👀 Preview on Cloudflare Pages
-    if: ${{ github.event_name == 'pull_request' }}
+    name: ☁️ Deploy to Cloudflare Pages
+    if: ${{ github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref == 'refs/heads/main') }}
     needs: build
     runs-on: ubuntu-latest
+    environment: ${{ github.event_name == 'push' && 'production' || 'preview' }}
     steps:
       - name: 📥 Download build artifact
         uses: actions/download-artifact@v4
@@ -73,7 +74,10 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         with:
-          command: pages deploy ./dist --project-name=${{ vars.CLOUDFLARE_PROJECT_NAME }} --branch=${{ github.head_ref }} --commit-hash=${{ github.event.pull_request.head.sha }}
+          command: >-
+            pages deploy ./dist
+            --project-name=${{ vars.CLOUDFLARE_PROJECT_NAME }}
+            ${{ github.event_name == 'push' && '--branch=main' || format('--branch={0} --commit-hash={1}', github.head_ref, github.event.pull_request.head.sha) }}
 
       - name: 💬 Slack notification
         if: env.ACT != 'true' && always()
@@ -81,11 +85,13 @@ jobs:
         with:
           webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
           job_status: ${{ job.status }}
-          pr_title: ${{ github.event.pull_request.title }}
-          pr_number: ${{ github.event.pull_request.number }}
-          pr_author: ${{ github.event.pull_request.user.login }}
+          deploy_type: ${{ github.event_name == 'push' && 'production' || 'preview' }}
+          pr_title: ${{ github.event.pull_request.title || format('Push to {0}', github.ref_name) }}
+          pr_number: ${{ github.event.pull_request.number || 0 }}
+          pr_author: ${{ github.event.pull_request.user.login || github.actor }}
           preview_url: ${{ steps.deploy.outputs.deployment-url }}
-          pr_url: ${{ github.event.pull_request.html_url }}
+          pr_url: ${{ github.event.pull_request.html_url || format('{0}/{1}/actions/runs/{2}', github.server_url, github.repository, github.run_id) }}
+          commit_hash: ${{ github.sha }}
 
   audit:
     name: 📊 Performance Audit
