@@ -1,6 +1,6 @@
 # Run lightouse audit
 [group('Audit commands')]
-audit url="https://kodaskills.github.io/kodaskills.co/" chromeFlags="":
+audit url="https://kodaskills.co/" chromeFlags="":
     @echo "ℹ️  {{ BLUE }}Do not forget to have Chrome installed before running this recipe"
     @mkdir -p ./.reports
     @domain=$(echo "{{ url }}" | awk -F[/:] '{print $4 ":" $5}') && \

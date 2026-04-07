@@ -44,7 +44,6 @@ runs:
         else
           echo "STATUS_EMOJI=🟡" >> $GITHUB_ENV
         fi
-        echo "DEPLOY_TYPE=${{ inputs.deploy_type }}" >> $GITHUB_ENV
         echo "PR_NAME=${{ inputs.pr_title }}" >> $GITHUB_ENV
         echo "PR_NUMBER=${{ inputs.pr_number }}" >> $GITHUB_ENV
         echo "PR_AUTHOR=${{ inputs.pr_author }}" >> $GITHUB_ENV
@@ -54,20 +53,41 @@ runs:
         echo "PR_URL=${{ inputs.pr_url }}" >> $GITHUB_ENV
         echo "LOGS_URL=${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_ENV
 
-    - name: Send Slack notification
+    - name: Send Slack notification (preview)
+      if: inputs.deploy_type == 'preview'
       uses: slackapi/slack-github-action@v3.0.1
       with:
         method: incoming-webhook
         webhook: ${{ inputs.webhook_url }}
         payload: |
           {
-            "text": "${{ env.STATUS_EMOJI }} ${{ env.DEPLOY_TYPE == 'production' && 'Production deploy' || format('PR #{0} — {1}', env.PR_NUMBER, env.PR_NAME) }}",
+            "text": "${{ env.STATUS_EMOJI }} PR #${{ env.PR_NUMBER }} — ${{ env.PR_NAME }}",
             "blocks": [
               {
                 "type": "section",
                 "text": {
                   "type": "mrkdwn",
-                  "text": "${{ env.DEPLOY_TYPE == 'production' && format('{0} *Production deploy*\n📦 kodaskills.co\n🔖 {1}\n👤 {2}\n🔗 <{3}|Logs> | <{4}|PR>\n🕒 {5}', env.STATUS_EMOJI, env.COMMIT_HASH, env.PR_AUTHOR, env.LOGS_URL, env.PR_URL, env.TIME) || format('{0} *PR #{1} — {2}*\n📦 kodaskills.co\n🌐 <{3}|{3}>\n👤 {4}\n🔗 <{5}|Logs> | <{6}|PR>\n🕒 {7}', env.STATUS_EMOJI, env.PR_NUMBER, env.PR_NAME, env.PREVIEW_URL, env.PR_AUTHOR, env.LOGS_URL, env.PR_URL, env.TIME) }}"
+                  "text": "${{ env.STATUS_EMOJI }} *PR #${{ env.PR_NUMBER }} — ${{ env.PR_NAME }}*\n📦 kodaskills.co\n🌐 <${{ env.PREVIEW_URL }}|${{ env.PREVIEW_URL }}>\n👤 ${{ env.PR_AUTHOR }}\n🔗 <${{ env.LOGS_URL }}|Logs> | <${{ env.PR_URL }}|PR>\n🕒 ${{ env.TIME }}"
+                }
+              }
+            ]
+          }
+
+    - name: Send Slack notification (production)
+      if: inputs.deploy_type == 'production'
+      uses: slackapi/slack-github-action@v3.0.1
+      with:
+        method: incoming-webhook
+        webhook: ${{ inputs.webhook_url }}
+        payload: |
+          {
+            "text": "${{ env.STATUS_EMOJI }} Production deploy",
+            "blocks": [
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "${{ env.STATUS_EMOJI }} *Production deploy*\n📦 kodaskills.co\n🔖 ${{ env.COMMIT_HASH }}\n👤 ${{ env.PR_AUTHOR }}\n🔗 <${{ env.LOGS_URL }}|Logs> | <${{ env.PR_URL }}|PR>\n🕒 ${{ env.TIME }}"
                 }
               }
             ]
