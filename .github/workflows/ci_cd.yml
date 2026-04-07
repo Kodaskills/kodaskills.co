@@ -66,7 +66,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           name: github-pages
-          path: ./dist
+          path: ./dist/
           retention-days: 1
 
   deploy:
@@ -100,10 +100,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: github-pages
-          path: ./dist
-
-      - name: Extract artifact for Wrangler
-        run: tar -xzf ./dist/*.tar.gz -C ./build-preview-output
+          path: ./dist/
 
       - name: ☁️ Deploy to Cloudflare Pages
         id: deploy
@@ -112,7 +109,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy ./build-preview-output --project-name=${{ vars.CLOUDFLARE_PROJECT_NAME }} --branch=${{ github.head_ref }} --commit-hash=${{ github.event.pull_request.head.sha }}
+          command: pages deploy ./dist/ --project-name=${{ vars.CLOUDFLARE_PROJECT_NAME }} --branch=${{ github.head_ref }} --commit-hash=${{ github.event.pull_request.head.sha }}
 
   audit:
     name: 📊 Performance Audit
