@@ -103,7 +103,7 @@ jobs:
           path: ./dist/
 
       - name: Extract artifact for Wrangler
-        run: mkdir -p ./build-preview-output && unzip ./dist/*.zip -d ./build-preview-output
+        run: mkdir -p ./build-preview-output && tar -xf ./dist/artifact.tar -C ./build-preview-output
 
       - name: ☁️ Deploy to Cloudflare Pages
         id: deploy
