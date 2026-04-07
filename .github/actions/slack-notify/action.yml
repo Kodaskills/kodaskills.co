@@ -54,10 +54,10 @@ runs:
 
     - name: Send Slack notification (preview)
       if: inputs.deploy_type == 'preview'
-      uses: slackapi/slack-github-action@v3.0.1
+      uses: slackapi/slack-github-action@v3
       with:
-        method: incoming-webhook
         webhook: ${{ inputs.webhook_url }}
+        webhook-type: incoming-webhook
         payload: |
           {
             "text": "${{ env.STATUS_EMOJI }} PR #${{ env.PR_NUMBER }} — ${{ env.PR_NAME }}",
@@ -74,10 +74,10 @@ runs:
 
     - name: Send Slack notification (production)
       if: inputs.deploy_type == 'production'
-      uses: slackapi/slack-github-action@v3.0.1
+      uses: slackapi/slack-github-action@v3
       with:
-        method: incoming-webhook
         webhook: ${{ inputs.webhook_url }}
+        webhook-type: incoming-webhook
         payload: |
           {
             "text": "${{ env.STATUS_EMOJI }} Production deploy",

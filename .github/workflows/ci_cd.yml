@@ -70,7 +70,7 @@ jobs:
     steps:
       - name: 📋 Checkout repository 
         uses: actions/checkout@v4
-
+        
       - name: 📥 Download build artifact
         uses: actions/download-artifact@v4
         with:
@@ -84,7 +84,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: ${{ env.DEPLOY_TYPE == 'production' && format('pages deploy ./dist --project-name={0} --branch={1} --commit-hash={2}', vars.CLOUDFLARE_PROJECT_NAME, env.DEPLOY_BRANCH, env.DEPLOY_COMMIT) || format('pages deploy ./dist --project-name={0} --branch={1}', vars.CLOUDFLARE_PROJECT_NAME, env.DEPLOY_BRANCH) }}
+          command: pages deploy ./dist --project-name=${{ vars.CLOUDFLARE_PROJECT_NAME }} --branch=${{ env.DEPLOY_BRANCH }}${{ env.DEPLOY_TYPE == 'preview' && format(' --commit-hash={0}', env.DEPLOY_COMMIT) || '' }}
 
       - name: 💬 Slack notification
         if: env.ACT != 'true' && always()
