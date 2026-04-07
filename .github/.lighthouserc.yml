@@ -1,7 +1,7 @@
 ci:
   collect:
     headful: false,
-    url: https://kodaskills.github.io/kodaskills.co/
+    url: https://kodaskills.co/
     settings:
       chromeFlags: --disable-gpu --no-sandbox --no-zygote
   assertions:

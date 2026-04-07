@@ -11,14 +11,12 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
+  deployments: write
 
 jobs:
   build:
     name: 🏗️ Build & Test
     runs-on: ubuntu-latest
-    environment: github-pages
     steps:
       - name: 🧪 Set ACT flag
         run: echo "ACT=$(echo $ACT | false)" >> $GITHUB_ENV
@@ -38,20 +36,6 @@ jobs:
       - name: 📦 Install dependencies
         run: npm ci
 
-      - name: 📝 Create .env file
-        run: |
-          cat << EOF > .env
-          ASTRO_SERVER_PORT=${{ vars.ASTRO_SERVER_PORT }}
-          ASTRO_SERVER_HOST=${{ vars.ASTRO_SERVER_HOST }}
-          ASTRO_SERVER_PREVIEW_PORT=${{ vars.ASTRO_SERVER_PREVIEW_PORT }}
-          ASTRO_SERVER_BASE_PATH=${{ vars.ASTRO_SERVER_BASE_PATH }}
-          EOF
-        shell: bash #test
-
-      - name: 🗏 Setup Pages
-        id: pages
-        uses: actions/configure-pages@v5
-
       - name: 🧹 Run Lefthook pre-commit & pre-push
         run: |
           npx --yes lefthook run pre-commit --all-files
@@ -60,50 +44,26 @@ jobs:
           LEFTHOOK_EXCLUDE: no-ci
 
       - name: 🏗️ Build Astro site
-        run: npm run build -- --site "${{ steps.pages.outputs.origin }}" --base "${{ steps.pages.outputs.base_path }}"
+        run: npm run build
 
-      - name: 🚀 Upload artifact to job
-        uses: actions/upload-pages-artifact@v3
+      - name: 🚀 Upload build artifact
+        uses: actions/upload-artifact@v4
         with:
-          name: github-pages
+          name: build-output
           path: ./dist/
           retention-days: 1
 
-  deploy:
-    name: 🚀 Deploy to GitHub Pages
-    if: ${{ github.event_name == 'push' }}
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    outputs:
-      deploy_page_url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: 🚚 Deploy
-        id: deployment
-        uses: actions/deploy-pages@v4
-        if: env.ACT != 'true'
-        with:
-          artifact_name: github-pages
-
-  preview:
+  preview-cloudflare:
     name: 👀 Preview on Cloudflare Pages
     if: ${{ github.event_name == 'pull_request' }}
     needs: build
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      deployments: write
     steps:
       - name: 📥 Download build artifact
         uses: actions/download-artifact@v4
         with:
-          name: github-pages
+          name: build-output
           path: ./dist/
-
-      - name: Extract artifact for Wrangler
-        run: mkdir -p ./build-preview-output && tar -xf ./dist/artifact.tar -C ./build-preview-output
 
       - name: ☁️ Deploy to Cloudflare Pages
         id: deploy
@@ -112,12 +72,12 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy ./build-preview-output --project-name=${{ vars.CLOUDFLARE_PROJECT_NAME }} --branch=${{ github.head_ref }} --commit-hash=${{ github.event.pull_request.head.sha }}
+          command: pages deploy ./dist --project-name=${{ vars.CLOUDFLARE_PROJECT_NAME }} --branch=${{ github.head_ref }} --commit-hash=${{ github.event.pull_request.head.sha }}
 
   audit:
     name: 📊 Performance Audit
     if: ${{ github.event_name == 'push' }}
-    needs: deploy
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: 📋 Checkout repository
@@ -151,7 +111,7 @@ jobs:
         env:
           CHROME_PATH: ${{ steps.setup-chrome.outputs.chrome-path }}
         run: |
-          npx --yes lighthouse-badges --url https://kodaskills.github.io/kodaskills.co/ --output ./.lighthouse-badges -s
+          npx --yes lighthouse-badges --url https://kodaskills.co/ --output ./.lighthouse-badges -s
 
       - name: 📤 Upload Lighthouse badge artifact
         id: lighthouse-cache-badge
