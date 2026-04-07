@@ -102,6 +102,9 @@ jobs:
           name: github-pages
           path: ./dist/
 
+      - name: Extract artifact for Wrangler
+        run: mkdir -p ./build-preview-output && unzip ./dist/*.zip -d ./build-preview-output
+
       - name: ☁️ Deploy to Cloudflare Pages
         id: deploy
         if: env.ACT != 'true'
@@ -109,7 +112,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy ./dist/ --project-name=${{ vars.CLOUDFLARE_PROJECT_NAME }} --branch=${{ github.head_ref }} --commit-hash=${{ github.event.pull_request.head.sha }}
+          command: pages deploy ./build-preview-output --project-name=${{ vars.CLOUDFLARE_PROJECT_NAME }} --branch=${{ github.head_ref }} --commit-hash=${{ github.event.pull_request.head.sha }}
 
   audit:
     name: 📊 Performance Audit
