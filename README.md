@@ -97,6 +97,8 @@ just lint     # Biome format + lint with auto-fix
 
 ## 🤝 Contributing
 
+Please read our [Contributing Guidelines](CONTRIBUTING.md) before submitting a pull request.
+
 ### Branch Naming
 
 ```
