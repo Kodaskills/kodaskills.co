@@ -2,7 +2,7 @@ name: Deploy
 
 on:
   workflow_run:
-    workflows: [Build]
+    workflows: [CI]
     types: [completed]
     branches: [main]
   workflow_dispatch:
@@ -17,7 +17,7 @@ on:
           - production
 
 concurrency:
-  group: deploy-${{ github.event.inputs.environment || 'preview' }}
+  group: "deploy-${{ github.event_name == 'workflow_dispatch' && github.event.inputs.environment || 'preview' }}"
   cancel-in-progress: false
 
 permissions:
@@ -25,16 +25,23 @@ permissions:
   id-token: write
 
 jobs:
-  deploy-preview:
-    needs: build
-    if: >
-      (github.event.workflow_run.event == 'pull_request' || 
-       github.event.inputs.environment == 'preview')
+  deploy-cloudflare:
+    name: ☁️ Deploy to Cloudflare Pages
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     environment:
-      name: preview
-      url: ${{ steps.deploy.outputs.url }}
-
+      name: ${{ github.event.workflow_run.event == 'push' && 'production' || github.event.inputs.environment == 'production' && 'production' || 'preview' }}
+      url: ${{ steps.deploy.outputs.deployment-url }}
+    env:
+      DEPLOY_TYPE: ${{ github.event.workflow_run.event == 'push' && 'production' || github.event.inputs.environment == 'production' && 'production' || 'preview' }}
+      DEPLOY_BRANCH: ${{ github.event.workflow_run.event == 'push' && 'main' || github.event.workflow_run.head_branch }}
+      DEPLOY_COMMIT: ${{ github.event.workflow_run.head_sha }}
+      NOTIFY_TITLE: ${{ github.event.workflow_run.display_title }}
+      NOTIFY_PR_NUMBER: 0
+      NOTIFY_AUTHOR: ${{ github.event.workflow_run.triggering_actor.login || github.actor }}
+      NOTIFY_PR_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -52,28 +59,25 @@ jobs:
           path: .astro/
         continue-on-error: true
 
-      - name: Deploy to Cloudflare Pages (Preview)
+      - name: 🚀 Deploy
+        id: deploy
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: kodaskills
-          directory: dist/
-          branch: ${{ github.event.workflow_run.head_branch }}
-        id: deploy
+          command: pages deploy ./dist --project-name=${{ vars.CLOUDFLARE_PROJECT_NAME }} --branch=${{ env.DEPLOY_BRANCH }}${{ env.DEPLOY_TYPE == 'preview' && format(' --commit-hash={0}', env.DEPLOY_COMMIT) || '' }}
 
       - name: Post deployment comment
         if: github.event.workflow_run.event == 'pull_request'
         uses: actions/github-script@v7
         with:
           script: |
-            const url = '${{ steps.deploy.outputs.url }}';
+            const url = '${{ steps.deploy.outputs.deployment-url }}';
             const branch = '${{ github.event.workflow_run.head_branch }}';
-            // Find PR for this branch
             const { data: prs } = await github.rest.pulls.list({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              head: branch,
+              head: context.repo.owner + ':' + branch,
               state: 'open'
             });
             if (prs.length > 0 && url) {
@@ -85,37 +89,16 @@ jobs:
               });
             }
 
-  deploy-production:
-    needs: build
-    if: >
-      github.event.workflow_run.event == 'push' &&
-      github.event.inputs.environment != 'preview'
-    runs-on: ubuntu-latest
-    environment:
-      name: production
-      url: https://kodaskills.co
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Download dist artifact
-        uses: actions/download-artifact@v4
+      - name: 💬 Slack notification
+        if: always()
+        uses: ./.github/actions/slack-notify
         with:
-          name: dist
-          path: dist/
-
-      - name: Download astro-cache artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: astro-cache
-          path: .astro/
-        continue-on-error: true
-
-      - name: Deploy to Cloudflare Pages (Production)
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: kodaskills
-          directory: dist/
+          webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
+          job_status: ${{ job.status }}
+          deploy_type: ${{ env.DEPLOY_TYPE }}
+          pr_title: ${{ env.NOTIFY_TITLE }}
+          pr_number: ${{ env.NOTIFY_PR_NUMBER }}
+          pr_author: ${{ env.NOTIFY_AUTHOR }}
+          preview_url: ${{ steps.deploy.outputs.deployment-url }}
+          pr_url: ${{ env.NOTIFY_PR_URL }}
+          commit_hash: ${{ env.DEPLOY_COMMIT }}
