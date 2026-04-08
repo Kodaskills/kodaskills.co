@@ -74,11 +74,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+<<<<<<< HEAD
 
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
           node-version: "24"
+=======
+>>>>>>> eabca9a (👷 chore: upgrades versions for download/upload artifact, gh actions and gh script)
 
       - name: Setup Node.js
         uses: actions/setup-node@v6
