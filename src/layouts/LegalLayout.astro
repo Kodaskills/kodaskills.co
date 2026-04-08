@@ -1,6 +1,7 @@
 ---
 import Text from "@components/typography/Text.astro";
 import Title from "@components/typography/Title.astro";
+import { useI18n } from "@i18n/index";
 import BaseLayout from "@layouts/BaseLayout.astro";
 
 interface Props {
@@ -13,7 +14,9 @@ interface Props {
 }
 
 const { frontmatter } = Astro.props;
-const labelLastUpdated = frontmatter.lang === "en" ? "Last updated: " : "Dernière mise à jour : ";
+const lang = frontmatter.lang === "en" ? "en" : "fr";
+await useI18n(lang);
+const labelLastUpdated = lang === "en" ? "Last updated: " : "Dernière mise à jour : ";
 ---
 
 <BaseLayout title={`${frontmatter.title} | Kodaskills`} activePage="none" alternates={frontmatter.alternates ?? []}>
