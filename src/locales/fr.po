@@ -29,7 +29,7 @@ msgid "ACCESS_CONTROL"
 msgstr "CONTRÔLE_ACCÈS"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/expertises.astro:60
+#: src/pages/[...locale]/expertises.astro:58
 msgid "AI Transformation & Strategy"
 msgstr "Transformation IA & Stratégie"
 
@@ -44,12 +44,12 @@ msgid "Approach"
 msgstr "Approche"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/expertises.astro:49
+#: src/pages/[...locale]/expertises.astro:47
 msgid "Architecting systems that grow without friction. Kubernetes orchestration, serverless migrations, and database optimization to ensure 99.99% uptime during peak traffic loads."
 msgstr "Concevoir des systèmes qui croissent sans friction. Orchestration Kubernetes, migrations serverless et optimisation des bases de données pour 99,99% de disponibilité."
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/approach.astro:102
+#: src/pages/[...locale]/approach.astro:101
 msgid "Authority_Lock"
 msgstr "Autorité_Verrouillée"
 
@@ -64,12 +64,12 @@ msgid "Book a 30-minute technical health diagnostic. No sales pitch. Just hard d
 msgstr "Réservez un diagnostic technique de 30 minutes. Pas d'argumentaire commercial. Juste des données réelles et une expertise pointue."
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/expertises.astro:23
+#: src/pages/[...locale]/expertises.astro:21
 msgid "Bridging the gap between business objectives and technical execution. We provide high-level architectural oversight, talent roadmapping, and vendor management for scaling operations."
 msgstr "Combler le fossé entre les objectifs commerciaux et l'exécution technique. Supervision architecturale, feuille de route des talents et gestion des fournisseurs pour les opérations en croissance."
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/expertises.astro:93
+#: src/pages/[...locale]/expertises.astro:91
 msgid "CAPABILITIES_MANIFEST"
 msgstr "MANIFESTE_CAPACITÉS"
 
@@ -114,17 +114,17 @@ msgid "COORDINATES_LOC"
 msgstr "COORDONNÉES_LOC"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/expertises.astro:96
+#: src/pages/[...locale]/expertises.astro:94
 msgid "Core"
 msgstr "Expertise"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/approach.astro:76
+#: src/pages/[...locale]/approach.astro:75
 msgid "CRISIS_TASK_FORCE"
 msgstr "FORCE_INTERVENTION_CRISE"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/approach.astro:174
+#: src/pages/[...locale]/approach.astro:173
 msgid "Critical system failure? Our rapid response task force is available for immediate deployment."
 msgstr "Défaillance critique du système ? Notre équipe de réponse rapide est disponible pour un déploiement immédiat."
 
@@ -149,12 +149,12 @@ msgid "DEBT_AUDITS"
 msgstr "AUDITS_DETTE"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/approach.astro:114
+#: src/pages/[...locale]/approach.astro:113
 msgid "Deep_Diagnostic"
 msgstr "Diagnostic_Approfondi"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/approach.astro:173
+#: src/pages/[...locale]/approach.astro:172
 msgid "EMERGENCY_ACCESS"
 msgstr "ACCÈS_URGENCE"
 
@@ -164,13 +164,13 @@ msgid "ENCRYPTION_AT_REST"
 msgstr "CHIFFREMENT_AU_REPOS"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/expertises.astro:36
+#: src/pages/[...locale]/expertises.astro:34
 msgid "End-to-end engineering of resilient digital products. We specialize in high-performance web applications, complex data dashboards, and mobile ecosystems built on modern, maintainable stacks."
 msgstr "Ingénierie bout-en-bout de produits numériques résilients. Applications web haute performance, tableaux de bord complexes et écosystèmes mobiles sur des stacks modernes et maintenables."
 
 #. js-lingui-explicit-id
 #: src/components/nav/Footer.astro:51
-#: src/pages/[...locale]/expertises.astro:96
+#: src/pages/[...locale]/expertises.astro:94
 msgid "Expertise"
 msgstr "Expertise"
 
@@ -190,7 +190,7 @@ msgid "Full Name"
 msgstr "Nom Complet"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/approach.astro:41
+#: src/pages/[...locale]/approach.astro:40
 msgid "Full-spectrum diagnostic of infrastructure, code integrity, and architectural bottlenecks. 48-hour rapid intake cycle."
 msgstr "Diagnostic complet de l'infrastructure, de l'intégrité du code et des goulets d'étranglement architecturaux. Cycle d'intégration rapide de 48 heures."
 
@@ -200,7 +200,7 @@ msgid "FULL-SPECTRUM."
 msgstr "SPECTRE COMPLET."
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/expertises.astro:160
+#: src/pages/[...locale]/expertises.astro:158
 msgid "Global Financial Terminal Upgrade"
 msgstr "Mise à Niveau Terminal Financier Global"
 
@@ -210,7 +210,7 @@ msgid "Hardening systems from the core out. SOC2 readiness, penetration testing,
 msgstr "Durcissement des systèmes de l'intérieur. Préparation SOC2, tests de pénétration et mise en œuvre du protocole zéro-confiance."
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/expertises.astro:173
+#: src/pages/[...locale]/expertises.astro:171
 msgid "High-contrast close-up of computer circuit board with cyan glowing lights and technical server hardware in a dark room"
 msgstr "Gros plan à fort contraste d'une carte mère avec des lumières cyan brillantes et du matériel serveur dans une pièce sombre"
 
@@ -231,22 +231,22 @@ msgid "IDENTITY_VERIFIED"
 msgstr "IDENTITÉ_VÉRIFIÉE"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/approach.astro:78
+#: src/pages/[...locale]/approach.astro:77
 msgid "Immediate intervention for critical system failures or high-stakes launches. Deployment of elite senior engineers within 4 hours."
 msgstr "Intervention immédiate pour les défaillances critiques ou les lancements à enjeux élevés. Déploiement d'ingénieurs seniors d'élite dans les 4 heures."
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/expertises.astro:47
+#: src/pages/[...locale]/expertises.astro:45
 msgid "Infrastructure & Scalability"
 msgstr "Infrastructure & Scalabilité"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/expertises.astro:133
+#: src/pages/[...locale]/expertises.astro:131
 msgid "INITIALIZE_CONTACT"
 msgstr "INITIALISER_CONTACT"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/approach.astro:176
+#: src/pages/[...locale]/approach.astro:175
 msgid "INITIATE_CONTACT"
 msgstr "INITIALISER_CONTACT"
 
@@ -266,17 +266,17 @@ msgid "INITIATING THE"
 msgstr "INITIATION DU"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/approach.astro:60
+#: src/pages/[...locale]/approach.astro:59
 msgid "INTEGRATED_SUPPORT"
 msgstr "SUPPORT_INTÉGRÉ"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/approach.astro:17
+#: src/pages/[...locale]/approach.astro:16
 msgid "KODASKILLS | Approach & Methodology"
 msgstr "KODASKILLS | Approche & Méthodologie"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/expertises.astro:86
+#: src/pages/[...locale]/expertises.astro:84
 msgid "KODASKILLS | Core Expertise"
 msgstr "KODASKILLS | Expertise Principale"
 
@@ -301,18 +301,23 @@ msgid "Kodaskills?"
 msgstr "Kodaskills ?"
 
 #. js-lingui-explicit-id
+#: src/layouts/LegalLayout.astro:18
+msgid "Last updated: "
+msgstr "Dernière mise à jour : "
+
+#. js-lingui-explicit-id
 #: src/components/nav/Footer.astro:102
 #: src/components/nav/Footer.astro:113
 msgid "Legal"
 msgstr "Mentions légales"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/expertises.astro:62
+#: src/pages/[...locale]/expertises.astro:60
 msgid "Leveraging Large Language Models and custom machine learning pipelines to automate workflows, enhance data analysis, and build next-generation user experiences."
 msgstr "Exploiter les grands modèles de langage et des pipelines ML personnalisés pour automatiser les flux de travail, améliorer l'analyse des données et créer des expériences de nouvelle génération."
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/approach.astro:62
+#: src/pages/[...locale]/approach.astro:61
 msgid "Long-term structural alignment. We embed as senior technical leads within your existing ecosystem to ensure sustained evolution."
 msgstr "Alignement structurel à long terme. Nous nous intégrons en tant que responsables techniques seniors dans votre écosystème existant pour assurer une évolution soutenue."
 
@@ -322,7 +327,7 @@ msgid "Methodology"
 msgstr "Méthodologie"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/expertises.astro:163
+#: src/pages/[...locale]/expertises.astro:161
 msgid "Modernizing a legacy transactional system for a tier-1 banking client. We implemented a micro-services architecture that reduced operational overhead by 40% and improved security compliance scores by 2 grades."
 msgstr "Modernisation d'un système transactionnel hérité pour un client bancaire de premier rang. Architecture micro-services qui a réduit les coûts opérationnels de 40% et amélioré les scores de conformité sécurité de 2 niveaux."
 
@@ -332,7 +337,7 @@ msgid "MULTI_REGION_STRAT"
 msgstr "STRATÉGIE_MULTI_RÉGION"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/expertises.astro:131
+#: src/pages/[...locale]/expertises.astro:129
 msgid "Need a custom audit?"
 msgstr "Besoin d'un audit personnalisé ?"
 
@@ -342,7 +347,7 @@ msgid "OPERATIONAL_EXPERTISE"
 msgstr "EXPERTISE_OPÉRATIONNELLE"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/approach.astro:20
+#: src/pages/[...locale]/approach.astro:19
 msgid "OPERATIONAL_FRAMEWORK"
 msgstr "CADRE_OPÉRATIONNEL"
 
@@ -362,17 +367,17 @@ msgid "Our Expertise"
 msgstr "Notre Expertise"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/approach.astro:128
+#: src/pages/[...locale]/approach.astro:127
 msgid "Our partnership is built on uptime and output. We function as a fail-safe layer for your core product team."
 msgstr "Notre partenariat est fondé sur la disponibilité et la performance. Nous fonctionnons comme une couche de sécurité pour votre équipe produit principale."
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/approach.astro:93
+#: src/pages/[...locale]/approach.astro:92
 msgid "PARTNER_ARCHETYPE"
 msgstr "ARCHÉTYPE_PARTENAIRE"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/approach.astro:22
+#: src/pages/[...locale]/approach.astro:21
 msgid "PRECISION THROUGH"
 msgstr "PRÉCISION PAR"
 
@@ -392,12 +397,12 @@ msgid "Privacy"
 msgstr "Politique de confidentialité"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/expertises.astro:75
+#: src/pages/[...locale]/expertises.astro:73
 msgid "Proactive vulnerability assessment and rapid-response recovery. We harden your perimeter and provide continuous monitoring against emerging digital threats."
 msgstr "Évaluation proactive des vulnérabilités et reprise rapide. Nous renforçons votre périmètre et fournissons une surveillance continue contre les menaces numériques émergentes."
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/expertises.astro:34
+#: src/pages/[...locale]/expertises.astro:32
 msgid "Product Development"
 msgstr "Développement Produit"
 
@@ -412,7 +417,7 @@ msgid "READY_TO_SECURE_YOUR_TECH_FUTURE?"
 msgstr "PRÊT_À_SÉCURISER_VOTRE_AVENIR_TECH ?"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/approach.astro:126
+#: src/pages/[...locale]/approach.astro:125
 msgid "Reliability_Mesh"
 msgstr "Fiabilité_Intégrée"
 
@@ -427,7 +432,7 @@ msgid "SECURITY"
 msgstr "SÉCURITÉ"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/expertises.astro:73
+#: src/pages/[...locale]/expertises.astro:71
 msgid "Security & Crisis Management"
 msgstr "Sécurité & Gestion de Crise"
 
@@ -452,7 +457,7 @@ msgid "STRATEGIC DIAGNOSTIC"
 msgstr "DIAGNOSTIC STRATÉGIQUE"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/expertises.astro:99
+#: src/pages/[...locale]/expertises.astro:97
 msgid "Strategic engineering solutions for high-density information environments. We provide the technical rigor required for resilient digital infrastructure."
 msgstr "Solutions d'ingénierie stratégiques pour environnements à haute densité d'information. Nous fournissons la rigueur technique requise pour une infrastructure numérique résiliente."
 
@@ -462,7 +467,7 @@ msgid "STRATEGY"
 msgstr "STRATÉGIE"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/approach.astro:23
+#: src/pages/[...locale]/approach.astro:22
 msgid "STRUCTURAL RIGOR"
 msgstr "LA RIGUEUR STRUCTURELLE"
 
@@ -472,7 +477,7 @@ msgid "SUCCESSFUL_DEPLOYS"
 msgstr "DÉPLOIEMENTS_RÉUSSIS"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/approach.astro:116
+#: src/pages/[...locale]/approach.astro:115
 msgid "Surface-level fixes are rejected. We investigate the root architectural cause of every failure point."
 msgstr "Les correctifs superficiels sont rejetés. Nous enquêtons sur la cause architecturale racine de chaque point de défaillance."
 
@@ -487,7 +492,7 @@ msgid "SYSTEM_ARCHITECTURE_READY"
 msgstr "ARCHITECTURE_SYSTÈME_PRÊTE"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/approach.astro:39
+#: src/pages/[...locale]/approach.astro:38
 msgid "SYSTEM_AUDIT"
 msgstr "AUDIT_SYSTÈME"
 
@@ -497,7 +502,7 @@ msgid "TALENT_PIPELINES"
 msgstr "PIPELINES_TALENTS"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/expertises.astro:21
+#: src/pages/[...locale]/expertises.astro:19
 msgid "Tech Leadership & Strategy"
 msgstr "Leadership Tech & Stratégie"
 
@@ -527,7 +532,7 @@ msgid "TRUSTED."
 msgstr "DIGNE_DE_CONFIANCE"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/expertises.astro:182
+#: src/pages/[...locale]/expertises.astro:180
 msgid "Verified System Architecture"
 msgstr "Architecture Système Vérifiée"
 
@@ -537,12 +542,12 @@ msgid "VIEW_METHODOLOGY"
 msgstr "VOIR_MÉTHODOLOGIE"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/approach.astro:26
+#: src/pages/[...locale]/approach.astro:25
 msgid "We do not believe in generic consulting. Kodaskills operates as a high-density technical partner, applying surgical methodology to complex engineering challenges."
 msgstr "Nous ne croyons pas aux conseils génériques. Kodaskills opère comme un partenaire technique à haute densité, appliquant une méthodologie chirurgicale aux défis d'ingénierie complexes."
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/approach.astro:104
+#: src/pages/[...locale]/approach.astro:103
 msgid "We provide absolute clarity in decision-making. No ambiguous recommendations, only technical directives backed by data."
 msgstr "Nous fournissons une clarté absolue dans la prise de décision. Pas de recommandations ambiguës, uniquement des directives techniques étayées par des données."
 

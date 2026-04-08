@@ -1,33 +1,42 @@
 ---
 import Text from "@components/typography/Text.astro";
 import Title from "@components/typography/Title.astro";
+import { type Locale, useI18n } from "@i18n/index";
 import BaseLayout from "@layouts/BaseLayout.astro";
 
 interface Props {
   frontmatter: {
     title: string;
     lastUpdated: string;
-    lang?: string;
-    alternates?: { locale: string; href: string }[];
+    lang?: Locale;
+    alternates?: { locale: Locale; href: string }[];
   };
 }
 
 const { frontmatter } = Astro.props;
-const labelLastUpdated = frontmatter.lang === "en" ? "Last updated: " : "Dernière mise à jour : ";
+const { _ } = await useI18n(frontmatter.lang);
+const labelLastUpdated = _("Last updated: ");
 ---
 
-<BaseLayout title={`${frontmatter.title} | Kodaskills`} activePage="none" alternates={frontmatter.alternates ?? []}>
+<BaseLayout
+  title={`${frontmatter.title} | Kodaskills`}
+  activePage="none"
+  alternates={frontmatter.alternates ?? []}
+>
   <div class="px-6 md:px-12 py-16 max-w-4xl mx-auto">
     <!-- Page header -->
     <div class="mb-12 border-b border-outline-variant pb-8">
-      <div class="font-mono text-[10px] uppercase tracking-[0.2em] text-primary mb-4">
+      <div
+        class="font-mono text-[10px] uppercase tracking-[0.2em] text-primary mb-4"
+      >
         LEGAL_DOC
       </div>
       <Title as="h1" variant="h1" class="md:text-4xl mb-4">
-      	{frontmatter.title}
+        {frontmatter.title}
       </Title>
       <Text as="p" variant="captionMono">
-      	{labelLastUpdated} {frontmatter.lastUpdated}
+        {labelLastUpdated}
+        {frontmatter.lastUpdated}
       </Text>
     </div>
     <!-- Prose content -->
