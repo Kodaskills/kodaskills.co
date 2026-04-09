@@ -80,11 +80,6 @@ jobs:
         with:
           node-version: "24"
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: "24"
-
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
         with:
@@ -142,11 +137,6 @@ jobs:
         with:
           node-version: "24"
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: "24"
-
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
         with:
@@ -194,4 +184,8 @@ jobs:
     uses: ./.github/workflows/deploy.yml
     with:
       environment: ${{ github.event_name == 'pull_request' && 'preview' || 'production' }}
+      branch: ${{ github.head_ref }}
+      commit_sha: ${{ github.event.pull_request.head.sha }}
+      pr_number: ${{ github.event.pull_request.number }}
+      pr_url: ${{ github.event.pull_request.html_url }}
     secrets: inherit
