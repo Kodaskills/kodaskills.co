@@ -61,38 +61,43 @@ runs:
         payload: |
           {
             "text": "${{ env.STATUS_EMOJI }} Deploy ${{ inputs.job_status }}",
-            "blocks": [
+            "attachments": [
               {
-                "type": "section",
-                "fields": [
+                "color": "${{ env.COLOR }}",
+                "blocks": [
                   {
-                    "type": "mrkdwn",
-                    "text": "*Status*\n${{ env.STATUS_EMOJI }} ${{ inputs.job_status }}"
+                    "type": "section",
+                    "fields": [
+                      {
+                        "type": "mrkdwn",
+                        "text": "*Status*\n${{ env.STATUS_EMOJI }} ${{ inputs.job_status }}"
+                      },
+                      {
+                        "type": "mrkdwn",
+                        "text": "*Commit*\n`${{ env.COMMIT_HASH }}`"
+                      },
+                      {
+                        "type": "mrkdwn",
+                        "text": "*PR*\n<${{ env.PR_URL }}|#${{ env.PR_NUMBER }} — ${{ env.PR_NAME }}>"
+                      },
+                      {
+                        "type": "mrkdwn",
+                        "text": "*Logs*\n<${{ env.LOGS_URL }}|View workflow logs>"
+                      },
+                      {
+                        "type": "mrkdwn",
+                        "text": "*URL*\n<${{ env.DEPLOY_URL }}|${{ env.DEPLOY_URL }}>"
+                      }
+                    ]
                   },
                   {
-                    "type": "mrkdwn",
-                    "text": "*Commit*\n`${{ env.COMMIT_HASH }}`"
-                  },
-                  {
-                    "type": "mrkdwn",
-                    "text": "*PR*\n<${{ env.PR_URL }}|#${{ env.PR_NUMBER }} — ${{ env.PR_NAME }}>"
-                  },
-                  {
-                    "type": "mrkdwn",
-                    "text": "*Logs*\n<${{ env.LOGS_URL }}|View workflow logs>"
-                  },
-                  {
-                    "type": "mrkdwn",
-                    "text": "*URL*\n<${{ env.DEPLOY_URL }}|${{ env.DEPLOY_URL }}>"
-                  }
-                ]
-              },
-              {
-                "type": "context",
-                "elements": [
-                  {
-                    "type": "mrkdwn",
-                    "text": "kodaskills.co • ${{ env.TIME }} • via GitHub Actions"
+                    "type": "context",
+                    "elements": [
+                      {
+                        "type": "mrkdwn",
+                        "text": "kodaskills.co • ${{ env.TIME }} • via GitHub Actions"
+                      }
+                    ]
                   }
                 ]
               }
