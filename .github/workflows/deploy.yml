@@ -49,12 +49,14 @@ jobs:
         uses: actions/download-artifact@v8
         with:
           name: dist
+          run-id: ${{ github.event.workflow_run.id }}
           path: dist/
 
       - name: Download astro-cache artifact
         uses: actions/download-artifact@v8
         with:
           name: astro-cache
+          run-id: ${{ github.event.workflow_run.id }}
           path: .astro/
         continue-on-error: true
 
