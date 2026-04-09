@@ -1,0 +1,19 @@
+name: "Setup Bun"
+description: "Setup Node JS, Bun and install dependencies"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Setup Node.js
+      uses: actions/setup-node@v6
+      with:
+        node-version: "24"
+
+    - name: Setup Bun
+      uses: oven-sh/setup-bun@v2
+      with:
+        bun-version: ${{ env.BUN_VERSION }}
+
+    - name: Install dependencies
+      shell: bash
+      run: bun install --frozen-lockfile
