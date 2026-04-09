@@ -40,6 +40,7 @@ permissions:
 
 jobs:
   lint:
+    name: 🔍 Lint
     runs-on: ubuntu-latest
 
     steps:
@@ -69,6 +70,7 @@ jobs:
         run: bun knip
 
   typecheck:
+    name: 🧪 Typecheck
     runs-on: ubuntu-latest
 
     steps:
@@ -100,6 +102,7 @@ jobs:
         run: bun astro check
 
   i18n:
+    name: 🌍 i18n
     runs-on: ubuntu-latest
 
     steps:
@@ -126,6 +129,7 @@ jobs:
         run: bun lingui compile --strict
 
   build:
+    name: 🏗️ Build
     runs-on: ubuntu-latest
 
     steps:
@@ -179,6 +183,7 @@ jobs:
           retention-days: 7
 
   deploy:
+    name: 🚀 Deploy
     needs: [lint, typecheck, i18n, build]
     if: github.event_name == 'pull_request' && success()
     uses: ./.github/workflows/deploy.yml
