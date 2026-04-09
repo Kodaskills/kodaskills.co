@@ -181,16 +181,3 @@ jobs:
           name: astro-cache
           path: .astro/
           retention-days: 7
-
-  deploy:
-    name: 🚀 Deploy
-    needs: [lint, typecheck, i18n, build]
-    if: github.event_name == 'pull_request' && success()
-    uses: ./.github/workflows/deploy.yml
-    with:
-      environment: ${{ github.event_name == 'pull_request' && 'preview' || 'production' }}
-      branch: ${{ github.head_ref }}
-      commit_sha: ${{ github.event.pull_request.head.sha }}
-      pr_number: ${{ github.event.pull_request.number }}
-      pr_url: ${{ github.event.pull_request.html_url }}
-    secrets: inherit

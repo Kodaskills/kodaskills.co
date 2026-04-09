@@ -1,32 +1,8 @@
 name: Deploy
 
 on:
-  workflow_call:
-    inputs:
-      environment:
-        description: 'Deployment environment'
-        required: true
-        type: string
-      branch:
-        description: 'Branch to deploy'
-        required: true
-        type: string
-      commit_sha:
-        description: 'Commit SHA to deploy'
-        required: true
-        type: string
-      pr_number:
-        description: 'Pull request number'
-        required: false
-        type: string
-        default: '0'
-      pr_url:
-        description: 'Pull request URL'
-        required: false
-        type: string
-        default: ''
   workflow_run:
-    workflows: [CI]
+    workflows: ["CI"]
     types: [completed]
   workflow_dispatch:
     inputs:
@@ -40,7 +16,7 @@ on:
           - production
 
 concurrency:
-  group: "deploy-${{ inputs.environment || (github.event_name == 'workflow_dispatch' && github.event.inputs.environment) || 'preview' }}"
+  group: "deploy-${{ github.event_name == 'workflow_dispatch' && github.event.inputs.environment || 'preview' }}"
   cancel-in-progress: false
 
 permissions:
@@ -52,20 +28,19 @@ jobs:
     name: ☁️ Deploy to Cloudflare Pages
     if: >-
       github.event_name == 'workflow_dispatch' ||
-      github.event_name == 'workflow_call' ||
       github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     environment:
-      name: ${{ inputs.environment || (github.event.workflow_run.event == 'push' && 'production' || github.event.inputs.environment == 'production' && 'production' || 'preview') }}
+      name: ${{ github.event.workflow_run.event == 'push' && 'production' || github.event.inputs.environment == 'production' && 'production' || 'preview' }}
       url: ${{ steps.deploy.outputs.deployment-url }}
     env:
-      DEPLOY_TYPE: ${{ inputs.environment || (github.event.workflow_run.event == 'push' && 'production' || github.event.inputs.environment == 'production' && 'production' || 'preview') }}
-      DEPLOY_BRANCH: ${{ inputs.branch || (github.event.workflow_run.event == 'push' && 'main' || github.event.workflow_run.head_branch) }}
-      DEPLOY_COMMIT: ${{ inputs.commit_sha || github.event.workflow_run.head_sha }}
-      NOTIFY_TITLE: ${{ inputs.pr_url && github.event.workflow_run.display_title || github.event.workflow_run.display_title || '' }}
-      NOTIFY_PR_NUMBER: ${{ inputs.pr_number || 0 }}
-      NOTIFY_AUTHOR: ${{ github.event.workflow_run.triggering_actor.login || github.actor }}
-      NOTIFY_PR_URL: ${{ inputs.pr_url || format('{0}/{1}/actions/runs/{2}', github.server_url, github.repository, github.run_id) }}
+      DEPLOY_TYPE: ${{ github.event.workflow_run.event == 'push' && 'production' || github.event.inputs.environment == 'production' && 'production' || 'preview' }}
+      DEPLOY_BRANCH: ${{ github.event.workflow_run.event == 'push' && 'main' || github.event.workflow_run.head_branch }}
+      DEPLOY_COMMIT: ${{ github.event.workflow_run.head_sha }}
+      NOTIFY_TITLE: ${{ github.event.workflow_run.name }}
+      NOTIFY_PR_NUMBER: 0
+      NOTIFY_AUTHOR: ${{ github.actor }}
+      NOTIFY_PR_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -92,17 +67,23 @@ jobs:
           command: pages deploy ./dist --project-name=${{ vars.CLOUDFLARE_PROJECT_NAME }} --branch=${{ env.DEPLOY_BRANCH }}${{ env.DEPLOY_TYPE == 'preview' && format(' --commit-hash={0}', env.DEPLOY_COMMIT) || '' }}
 
       - name: Post deployment comment
-        if: ${{ inputs.pr_number != '0' || github.event.workflow_run.event == 'pull_request' }}
+        if: github.event.workflow_run.event == 'pull_request'
         uses: actions/github-script@v8
         with:
           script: |
             const url = '${{ steps.deploy.outputs.deployment-url }}';
-            const prNumber = ${{ inputs.pr_number || 0 }};
-            if (prNumber && prNumber > 0 && url) {
+            const branch = '${{ github.event.workflow_run.head_branch }}';
+            const { data: prs } = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              head: context.repo.owner + ':' + branch,
+              state: 'open'
+            });
+            if (prs.length > 0 && url) {
               await github.rest.issues.createComment({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                issue_number: prNumber,
+                issue_number: prs[0].number,
                 body: `🚀 Preview deployed: ${url}`
               });
             }
