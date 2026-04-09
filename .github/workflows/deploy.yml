@@ -51,6 +51,7 @@ jobs:
         with:
           name: dist
           run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           path: dist/
 
       - name: Download astro-cache artifact
@@ -58,6 +59,7 @@ jobs:
         with:
           name: astro-cache
           run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           path: .astro/
         continue-on-error: true
 
