@@ -15,20 +15,20 @@ on:
       - "docker-compose*.yml"
       - "*.dockerfile"
       - "Justfile"
-  push:
-    branches: [main]
-    paths-ignore:
-      - "*.md"
-      - ".gitignore"
-      - ".dockerignore"
-      - ".env*"
-      - "biome.json"
-      - "knip.config.ts"
-      - "commitlint.config.ts"
-      - "Dockerfile"
-      - "docker-compose*.yml"
-      - "*.dockerfile"
-      - "Justfile"
+  # push:
+  #   branches: [main]
+  #   paths-ignore:
+  #     - "*.md"
+  #     - ".gitignore"
+  #     - ".dockerignore"
+  #     - ".env*"
+  #     - "biome.json"
+  #     - "knip.config.ts"
+  #     - "commitlint.config.ts"
+  #     - "Dockerfile"
+  #     - "docker-compose*.yml"
+  #     - "*.dockerfile"
+  #     - "Justfile"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -187,3 +187,11 @@ jobs:
           name: astro-cache
           path: .astro/
           retention-days: 7
+
+  deploy:
+    needs: [lint, typecheck, i18n, build]
+    if: github.event_name == 'pull_request'
+    uses: ./.github/workflows/deploy.yml
+    with:
+      environment: preview
+    secrets: inherit

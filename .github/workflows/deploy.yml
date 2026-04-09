@@ -1,6 +1,12 @@
 name: Deploy
 
 on:
+  workflow_call:
+    inputs:
+      environment:
+        description: 'Deployment environment'
+        required: true
+        type: string
   workflow_run:
     workflows: [CI]
     types: [completed]
@@ -9,7 +15,7 @@ on:
       environment:
         description: 'Deployment environment'
         required: true
-        default: 'production'
+        default: 'preview'
         type: choice
         options:
           - preview
