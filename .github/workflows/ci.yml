@@ -74,14 +74,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
-<<<<<<< HEAD
 
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
           node-version: "24"
-=======
->>>>>>> eabca9a (👷 chore: upgrades versions for download/upload artifact, gh actions and gh script)
 
       - name: Setup Node.js
         uses: actions/setup-node@v6
@@ -193,8 +190,8 @@ jobs:
 
   deploy:
     needs: [lint, typecheck, i18n, build]
-    if: github.event_name == 'pull_request'
+    if: github.event_name == 'pull_request' && success()
     uses: ./.github/workflows/deploy.yml
     with:
-      environment: preview
+      environment: ${{ github.event_name == 'pull_request' && 'preview' || 'production' }}
     secrets: inherit
