@@ -13,9 +13,8 @@ const config = {
 		"@biomejs/biome",
 		"@commitlint/cli",
 		"validate-branch-name",
-    "@iconify-json/*",
-    "@astrojs/check",
-		"czg"
+    	"@iconify-json/*",
+    	"@astrojs/check"
 	],
 	ignoreBinaries: [],
 };

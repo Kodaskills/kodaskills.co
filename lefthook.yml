@@ -2,7 +2,7 @@ prepare-commit-msg:
   commands:
     czg:
       interactive: true
-      run: '[ "{2}" = "message" ] || docker compose run --rm dev bunx czg --hook --name {1} --source {2}'
+      run: '[ "{2}" = "message" ] || bun czg --hook --name {1} --source {2}'
       skip:
         - merge
         - rebase
