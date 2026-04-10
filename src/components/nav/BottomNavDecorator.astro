@@ -1,0 +1,46 @@
+---
+/**
+ * BottomNavDecorator — activates i18n and scopes the fixed mobile nav into the preview.
+ */
+import { activateLingui } from "@i18n/index";
+
+interface Props {
+  scheme?: "dark" | "light";
+}
+
+const { scheme = "dark" } = Astro.props;
+
+await activateLingui("en");
+---
+
+<div class="sidebar-decorator-root {scheme}">
+  <div class="bg-surface flex items-center justify-center" style="padding: 2rem;">
+    <div class="preview-container" style="width: 375px; border-radius: 0.75rem;">
+      <slot />
+    </div>
+  </div>
+</div>
+
+<style is:global>
+  .sidebar-decorator-root {
+    --sb-height: 600px;
+  }
+  .sidebar-decorator-root .preview-container {
+    position: relative;
+    width: 375px;
+    height: 667px;
+    border: 1px solid rgb(128 128 128 / 0.3);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  }
+  .sidebar-decorator-root .preview-container nav {
+    position: relative !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    display: flex !important;
+  }
+  .sidebar-decorator-root .preview-container nav a {
+    pointer-events: none !important;
+  }
+</style>

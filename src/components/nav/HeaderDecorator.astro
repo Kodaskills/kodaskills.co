@@ -1,0 +1,47 @@
+---
+/**
+ * HeaderDecorator — scopes the fixed header into the Astrobook preview.
+ */
+import { activateLingui } from "@i18n/index";
+
+interface Props {
+  scheme?: "dark" | "light";
+}
+
+const { scheme = "dark" } = Astro.props;
+
+await activateLingui("en");
+---
+
+<div class="sidebar-decorator-root {scheme}">
+  <div class="bg-surface flex items-center justify-center" style="padding: 2rem;">
+    <div class="preview-container" style="max-width: 72rem; width: 100%;">
+      <slot />
+    </div>
+  </div>
+</div>
+
+<style is:global>
+  .sidebar-decorator-root {
+    --sb-height: 600px;
+  }
+  .sidebar-decorator-root .preview-container {
+    position: relative;
+    width: 100%;
+    border: 1px solid rgb(128 128 128 / 0.3);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  }
+  .sidebar-decorator-root .preview-container header {
+    position: relative !important;
+    width: 100% !important;
+  }
+  .sidebar-decorator-root .preview-container header #main-nav {
+    display: flex !important;
+  }
+  .sidebar-decorator-root .preview-container header a,
+  .sidebar-decorator-root .preview-container header button {
+    pointer-events: none !important;
+  }
+</style>

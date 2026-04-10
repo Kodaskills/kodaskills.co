@@ -1,0 +1,50 @@
+---
+/**
+ * SidebarDecorator — scopes the fixed sidebar into the Astrobook preview.
+ */
+import { activateLingui } from "@i18n/index";
+
+interface Props {
+  scheme?: "dark" | "light";
+  height?: number;
+}
+
+const { scheme = "dark", height = 600 } = Astro.props;
+
+await activateLingui("en");
+---
+
+<div class="sidebar-decorator-root {scheme}">
+  <div class="bg-surface flex items-start justify-center" style={`min-height: ${height}px; padding: 2rem;`}>
+    <div class="preview-container" style={`height: ${height}px;`}>
+      <slot />
+    </div>
+  </div>
+</div>
+
+<style is:global>
+  .sidebar-decorator-root {
+    --sb-height: 600px;
+  }
+  .sidebar-decorator-root .preview-container {
+    position: relative;
+    width: 5rem;
+    border: 1px solid rgb(128 128 128 / 0.3);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  }
+  /* Force the slotted aside to be visible and scoped to the preview */
+  .sidebar-decorator-root .preview-container aside {
+    display: flex !important;
+    position: relative !important;
+    left: 0 !important;
+    top: 0 !important;
+    height: 100% !important;
+    min-height: var(--sb-height);
+  }
+  /* Disable all link interactions inside the preview */
+  .sidebar-decorator-root .preview-container aside a {
+    pointer-events: none !important;
+  }
+</style>
