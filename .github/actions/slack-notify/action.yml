@@ -47,6 +47,7 @@ runs:
         echo "PR_NUMBER=${{ inputs.pr_number }}" >> $GITHUB_ENV
         echo "PR_AUTHOR=${{ inputs.pr_author }}" >> $GITHUB_ENV
         echo "COMMIT_HASH=${{ inputs.commit_hash }}" >> $GITHUB_ENV
+        echo "SHORT_COMMIT_HASH=$(echo '${{ inputs.commit_hash }}' | cut -c1-7)" >> $GITHUB_ENV
         echo "TIME=$(date '+%H:%M:%S')" >> $GITHUB_ENV
         echo "DEPLOY_URL=${{ inputs.deploy_url }}" >> $GITHUB_ENV
         echo "PR_URL=${{ inputs.pr_url }}" >> $GITHUB_ENV
@@ -70,23 +71,34 @@ runs:
                     "fields": [
                       {
                         "type": "mrkdwn",
-                        "text": "*Status*\n${{ env.STATUS_EMOJI }} ${{ inputs.job_status }}"
+                        "text": "*Last changes from PR*\n<${{ env.PR_URL }}|#${{ env.PR_NUMBER }} — ${{ env.PR_NAME }}>"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "actions",
+                    "elements": [
+                      {
+                        "type": "button",
+                        "text": {
+                          "type": "plain_text",
+                          "text": "🚀 Go to deployed url",
+                          "emoji": true
+                        },
+                        "url": "${{ env.DEPLOY_URL }}",
+                        "value": "${{ env.DEPLOY_URL }}",
+                        "action_id": "preview-url"
                       },
                       {
-                        "type": "mrkdwn",
-                        "text": "*Commit*\n`${{ env.COMMIT_HASH }}`"
-                      },
-                      {
-                        "type": "mrkdwn",
-                        "text": "*PR*\n<${{ env.PR_URL }}|#${{ env.PR_NUMBER }} — ${{ env.PR_NAME }}>"
-                      },
-                      {
-                        "type": "mrkdwn",
-                        "text": "*Logs*\n<${{ env.LOGS_URL }}|View workflow logs>"
-                      },
-                      {
-                        "type": "mrkdwn",
-                        "text": "*URL*\n<${{ env.DEPLOY_URL }}|${{ env.DEPLOY_URL }}>"
+                        "type": "button",
+                        "text": {
+                          "type": "plain_text",
+                          "text": "🤓 Go to action logs",
+                          "emoji": true
+                        },
+                        "url": "${{ env.LOGS_URL }}",
+                        "value": "${{ env.LOGS_URL }}",
+                        "action_id": "view-action-logs"
                       }
                     ]
                   },
@@ -95,7 +107,7 @@ runs:
                     "elements": [
                       {
                         "type": "mrkdwn",
-                        "text": "kodaskills.co • ${{ env.TIME }} • via GitHub Actions"
+                        "text": "*Commit*: `${{ env.SHORT_COMMIT_HASH }}` • via GitHub Actions"
                       }
                     ]
                   }
