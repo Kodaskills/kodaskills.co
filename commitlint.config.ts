@@ -28,7 +28,7 @@ export default defineConfig({
 			{ value: "⚡️ perf", name: "⚡️  perf:     A code change that improves performance" },
 			{ value: "✅ test", name: "✅  test:     Adding missing tests or correcting existing tests" },
 			{ value: "📦️ build", name: "📦️  build:    Changes that affect the build system or external dependencies" },
-			{ value: "🎡 ci", name: "🎡  ci:       Changes to our CI configuration files and scripts" },
+			{ value: "👷 ci", name: "👷  ci:       Changes to our CI configuration files and scripts" },
 			{ value: "🔨 chore", name: "🔨  chore:    Other changes that don't modify src or test files" },
 			{ value: "⏪️ revert", name: "⏪️  revert:   Reverts a previous commit" },
 		],
