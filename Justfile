@@ -114,6 +114,51 @@ i18n-sync: i18n-extract i18n-compile
 run *args:
     docker compose run --rm dev {{args}}
 
+# ── Git ────────────────────────────────────────────────────────────────────────
+
+# Remove all local branches that have been merged into main (pass 'dry' to preview only)
+[group('git')]
+git-cleanup dry='':
+    #!/usr/bin/env bash
+    if ! command -v gh &> /dev/null; then
+      echo -e '{{BOLD + RED}}Error: GitHub CLI (gh) is required for this recipe.{{NORMAL}}'
+      echo 'Install it: https://github.com/cli/cli#installation'
+      exit 1
+    fi
+    git checkout main
+    git pull
+
+    main_commit=$(git rev-parse main)
+    to_delete=""
+
+    # Get branch names from all merged PRs (works for squash, rebase, and merge)
+    merged_pr_branches=$(gh pr list -s merged --limit 100 --json headRefName --jq '.[].headRefName' 2>/dev/null || true)
+
+    # Filter: only delete local branches that match a merged PR name and point to a different commit than main
+    for branch in $merged_pr_branches; do
+      if git rev-parse --verify "$branch" >/dev/null 2>&1; then
+        branch_commit=$(git rev-parse "$branch")
+        if [ "$branch_commit" != "$main_commit" ]; then
+          to_delete="$to_delete $branch"
+        fi
+      fi
+    done
+
+    if [ -z "$to_delete" ]; then
+      echo -e '{{BOLD + GREEN}}✓ No merged branches to clean up{{NORMAL}}'
+      exit 0
+    fi
+
+    echo -e '{{BOLD + CYAN}}🧹 Branches to delete:{{NORMAL}}'
+    for b in $to_delete; do echo -e "  {{MAGENTA}}- $b{{NORMAL}}"; done
+
+    if [ '{{dry}}' != 'dry' ]; then
+      for b in $to_delete; do git branch -d "$b" 2>/dev/null || true; done
+      echo -e '{{BOLD + GREEN}}✓ Done — merged branches removed{{NORMAL}}'
+    else
+      echo -e '{{BOLD + YELLOW}}! Dry run — no branches deleted{{NORMAL}}'
+    fi
+
 # ── Docker & Cleanup ───────────────────────────────────────────────────────────
 
 # Remove node_modules and dist inside the container
