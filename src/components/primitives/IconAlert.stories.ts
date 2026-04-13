@@ -1,8 +1,10 @@
 import IconDecorator from "./IconDecorator.astro";
 
 export default {
-  title: "primitives/Icon/All",
+  title: "primitives/Icon/Alert",
   component: IconDecorator,
 };
 
-export const All = {};
+export const Alert = {
+  args: { type: "alert" },
+};

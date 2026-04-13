@@ -4,18 +4,12 @@
  */
 import { activateLingui } from "@i18n/index";
 
-interface Props {
-  scheme?: "dark" | "light";
-}
-
-const { scheme = "dark" } = Astro.props;
-
 await activateLingui("en");
 ---
 
-<div class="sidebar-decorator-root {scheme}">
-  <div class="bg-surface flex items-center justify-center" style="padding: 2rem;">
-    <div class="preview-container" style="width: 375px; border-radius: 0.75rem;">
+<div class="sidebar-decorator-root bg-surface">
+  <div class="flex items-center justify-center" style="padding: 2rem;">
+    <div class="preview-container">
       <slot />
     </div>
   </div>

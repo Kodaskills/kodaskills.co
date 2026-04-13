@@ -1,8 +1,10 @@
 import IconDecorator from "./IconDecorator.astro";
 
 export default {
-  title: "primitives/Icon/All",
+  title: "primitives/Icon/Nav",
   component: IconDecorator,
 };
 
-export const All = {};
+export const Nav = {
+  args: { type: "nav" },
+};

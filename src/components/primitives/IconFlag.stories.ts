@@ -1,8 +1,10 @@
 import IconDecorator from "./IconDecorator.astro";
 
 export default {
-  title: "primitives/Icon/All",
+  title: "primitives/Icon/Flag",
   component: IconDecorator,
 };
 
-export const All = {};
+export const Flag = {
+  args: { type: "flag" },
+};
