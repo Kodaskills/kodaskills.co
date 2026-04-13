@@ -5,17 +5,16 @@
 import { activateLingui } from "@i18n/index";
 
 interface Props {
-  scheme?: "dark" | "light";
   height?: number;
 }
 
-const { scheme = "dark", height = 600 } = Astro.props;
+const { height = 600 } = Astro.props;
 
 await activateLingui("en");
 ---
 
-<div class="sidebar-decorator-root {scheme}">
-  <div class="bg-surface flex items-start justify-center" style={`min-height: ${height}px; padding: 2rem;`}>
+<div class="sidebar-decorator-root bg-surface">
+  <div class="flex items-start justify-center" style={`min-height: ${height}px; padding: 2rem;`}>
     <div class="preview-container" style={`height: ${height}px;`}>
       <slot />
     </div>
@@ -34,7 +33,6 @@ await activateLingui("en");
     overflow: hidden;
     box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   }
-  /* Force the slotted aside to be visible and scoped to the preview */
   .sidebar-decorator-root .preview-container aside {
     display: flex !important;
     position: relative !important;
@@ -43,7 +41,6 @@ await activateLingui("en");
     height: 100% !important;
     min-height: var(--sb-height);
   }
-  /* Disable all link interactions inside the preview */
   .sidebar-decorator-root .preview-container aside a {
     pointer-events: none !important;
   }

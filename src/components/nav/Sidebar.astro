@@ -8,11 +8,9 @@ import type { IconName } from "@lib/icons";
 
 interface Props {
   activePage: "home" | "expertises" | "approach" | "contact" | "none";
-  /** Whether links are actually clickable. Defaults to true. */
-  clickable?: boolean;
 }
 
-const { activePage, clickable = true } = Astro.props;
+const { activePage } = Astro.props;
 const { lp } = getI18n();
 
 const navItems: {
