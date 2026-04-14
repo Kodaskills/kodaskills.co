@@ -32,6 +32,11 @@ jobs:
       - name: 📦 Setup
         uses: ./.github/actions/setup-bun
 
+      - name: Debug
+        run: |
+          echo "***** DEBUG EVENT WORKFLOW RUN *****"
+          echo "${{ github.event.workflow_run.pull_requests }} " | jq '.'
+
       - name: 📥 Download dist artifact
         uses: actions/download-artifact@v8
         with:
