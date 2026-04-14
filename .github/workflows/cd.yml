@@ -22,9 +22,9 @@ jobs:
     env:
       DEPLOY_BRANCH: ${{ github.event.workflow_run.head_branch }}
       DEPLOY_COMMIT: ${{ github.event.workflow_run.head_sha }}
-      NOTIFY_PR_TITLE: ${{ github.event.workflow_run.pull_requests[0].title || github.event.workflow_run.head_commit.message }}
-      NOTIFY_PR_NUMBER: ${{ github.event.workflow_run.pull_requests[0].number || 0 }}
-      NOTIFY_PR_URL: ${{ github.event.workflow_run.pull_requests[0].html_url }}
+      NOTIFY_PR_TITLE: ${{ github.event.workflow_run.pull_requests[0].head.ref }}
+      NOTIFY_PR_NUMBER: ${{ github.event.workflow_run.pull_requests[0].number }}
+      NOTIFY_PR_URL: ${{ github.event.workflow_run.pull_requests[0].url }}
     steps:
       - name: 📦 Checkout
         uses: actions/checkout@v6
