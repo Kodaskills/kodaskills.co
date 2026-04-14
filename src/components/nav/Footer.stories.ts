@@ -10,7 +10,6 @@ export const Footer = {
     items: [
       {
         label: "Main Footer",
-        props: {},
       },
     ],
   },
