@@ -1,9 +1,17 @@
-import BlockDecorator from "../BlockDecorator.astro";
+import Showcase from "../Showcase.astro";
 import FooterComponent from "./Footer.astro";
 
-export default { component: FooterComponent };
+export default { component: Showcase };
 
 export const Footer = {
-  args: {},
-  decorators: [{ component: BlockDecorator }],
+  args: {
+    component: FooterComponent,
+    layout: "row",
+    items: [
+      {
+        label: "Main Footer",
+        props: {},
+      },
+    ],
+  },
 };

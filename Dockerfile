@@ -19,3 +19,14 @@ FROM nginx:alpine AS production
 COPY --from=builder /app/dist /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
+
+# ── book builder stage ──────────────────────────────────────────────────────────
+FROM dev AS book-builder
+COPY . .
+RUN bun run build --config astro.config.book.ts
+
+# ── book production stage (nginx static) ───────────────────────────────────────
+FROM nginx:alpine AS book-production
+COPY --from=book-builder /app/dist-book /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+EXPOSE 80

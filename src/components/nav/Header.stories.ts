@@ -1,9 +1,19 @@
-import BlockDecorator from "../BlockDecorator.astro";
+import Showcase from "../Showcase.astro";
 import HeaderComponent from "./Header.astro";
 
-export default { component: HeaderComponent };
+export default { component: Showcase };
 
 export const Header = {
-  args: { activePage: "home" },
-  decorators: [{ component: BlockDecorator }],
+  args: {
+    component: HeaderComponent,
+    layout: "row",
+    containerClassName: "w-full",
+    itemClassName: "[&>header]:fixed [&>header]:!left-0 [&>header]:!top-0 [&>header]:!relative",
+    items: [
+      {
+        label: "Main Header",
+        props: { activePage: "home" },
+      },
+    ],
+  },
 };

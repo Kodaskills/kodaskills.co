@@ -56,21 +56,21 @@ export const Placements = {
     type: "hover",
     items: [
       {
-        label: "Right",
-        props: {
-          title: "Leadership",
-          content: "CTO as a Service · Strategy · Tech Lead",
-          variant: "primary",
-          placement: "right",
-        },
-      },
-      {
         label: "Left",
         props: {
           title: "Security",
           content: "Security · Compliance · Monitoring",
           variant: "primary",
           placement: "left",
+        },
+      },
+      {
+        label: "Right",
+        props: {
+          title: "Leadership",
+          content: "CTO as a Service · Strategy · Tech Lead",
+          variant: "primary",
+          placement: "right",
         },
       },
       {

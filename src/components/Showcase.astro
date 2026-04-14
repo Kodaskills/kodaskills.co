@@ -1,31 +1,21 @@
 ---
 /**
- * Showcase — generic story wrapper for rendering multiple component instances
- * side by side with different props (variants, placements, sizes, etc.).
- *
- * Usage in a .stories.ts file:
- *
- *   export default { component: Showcase };
- *
- *   export const Variants = {
- *     args: {
- *       component: Tooltip,
- *       items: [
- *         { label: "Primary", props: { content: "...", variant: "primary", placement: "top" } },
- *       ],
- *     },
- *   };
+ * Showcase — renders a labelled collection of component instances.
  *
  * layout:
  *   "row"   (default) — flex row, wraps on small screens
- *   "grid"            — 2-column grid, useful for placement grids
- *   "stack"           — vertical column, full-width (for AlertBar, cards…)
+ *   "grid"            — 2-column grid, for placement comparisons
+ *   "stack"           — vertical column, full-width (AlertBar, cards…)
  *
  * type:
- *   "hover"           — wraps each item in a HOVER trigger button (for Tooltip, Popover…)
- *   "text"            — renders the component directly with text as slot (for typography)
- *   null    (default) — renders the component directly (for Tag, Badge, Button…)
+ *   "hover"           — wraps each item in a HOVER trigger (Tooltip, Popover…)
+ *   "text"            — renders component with text as slot (typography)
+ *   null    (default) — renders component directly (Tag, Badge, Button…)
+ *
+ * containerClassName / itemClassName — optional overrides for the layout container
+ * and per-item wrapper. Only use when the built-in layouts don't fit.
  */
+import { activateLingui } from "@i18n/index";
 import StoryDecorator from "./StoryDecorator.astro";
 
 interface Item {
@@ -34,55 +24,98 @@ interface Item {
   text?: string;
 }
 
+interface Group {
+  type: string;
+  items: Item[];
+}
+
 interface Props {
   // biome-ignore lint/suspicious/noExplicitAny: Astro has no Component type
   component: any;
-  items: Item[];
+  items?: Item[];
+  groups?: Group[];
   layout?: "row" | "grid" | "stack";
   type?: "hover" | "text";
+  containerClassName?: string;
+  itemClassName?: string;
 }
 
-const { component: Component, items, layout = "row", type } = Astro.props;
+const CONTAINER: Record<string, string> = {
+  row: "flex gap-12 items-end justify-center flex-wrap",
+  grid: "grid grid-cols-2 gap-24",
+  stack: "flex flex-col gap-4 w-full",
+};
 
-const containerClass =
-  layout === "grid"
-    ? "grid grid-cols-2 gap-24"
-    : layout === "stack"
-      ? "flex flex-col gap-4 w-full"
-      : "flex gap-12 items-end justify-center flex-wrap";
+const ITEM: Record<string, string> = {
+  row: "flex flex-col items-center gap-3",
+  grid: "flex flex-col items-center gap-3",
+  stack: "flex flex-col items-center gap-3",
+};
+
+const {
+  component: Component,
+  items = [],
+  groups,
+  layout = "row",
+  type,
+  containerClassName,
+  itemClassName,
+} = Astro.props;
+const containerClass = containerClassName ?? CONTAINER[layout] ?? CONTAINER.row;
+const itemClass = itemClassName ?? ITEM[layout] ?? ITEM.row;
+
+await activateLingui("en");
 ---
 
 <StoryDecorator padding="py-20 px-16">
-  <div class={containerClass}>
-    {items.map(({ label, props }) => (
-      <div class="flex flex-col items-center gap-3">
-
-      <!-- Standard Type (none) -->
-      {!type && (
-       <Component {...props} />
-      )}
-
-      <!-- Text Type -->
-      {type === "text" && (
-        <Component {...props}>
-        	{props?.text}
-        </Component>
-      )}
-
-      <!-- Hover Type -->
-      {type === "hover" && (
-      <div class="relative inline-flex cursor-pointer">
-        <span class="bg-surface-container border border-outline-variant text-on-surface font-mono font-bold uppercase tracking-widest text-[10px] px-6 py-2 pointer-events-none select-none">
-          HOVER
-        </span>
-        <div class="absolute inset-0 [&>*]:block [&>*]:w-full [&>*]:h-full">
-          <Component {...props} />
+  {groups && groups.length > 0 ? (
+    <div class="flex flex-col gap-12">
+      {groups.map((group) => (
+        <div>
+          <h3 class="col-span-full text-sm font-bold uppercase tracking-wide mb-4">
+            {group.type.charAt(0).toUpperCase() + group.type.slice(1)}
+          </h3>
+          <div class={containerClass}>
+            {group.items.map(({ label, props, text }) => (
+              <div class={itemClass}>
+                {!type && <Component {...props} />}
+                {type === "text" && <Component {...props}>{text ?? props?.text}</Component>}
+                {type === "hover" && (
+                  <div class="relative inline-flex cursor-pointer">
+                    <span class="bg-surface-container border border-outline-variant text-on-surface font-mono font-bold uppercase tracking-widest text-[10px] px-6 py-2 pointer-events-none select-none">
+                      HOVER
+                    </span>
+                    <div class="absolute inset-0 [&>*]:block [&>*]:w-full [&>*]:h-full">
+                      <Component {...props} />
+                    </div>
+                  </div>
+                )}
+                <span class="font-mono text-[8px] uppercase tracking-widest text-outline">{label}</span>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-      )}
-
-        <span class="font-mono text-[8px] uppercase tracking-widest text-outline">{label}</span>
-      </div>
-    ))}
-  </div>
+      ))}
+    </div>
+  ) : (
+    <div class={containerClass}>
+      {items.map(({ label, props, text }) => (
+        <div class={itemClass}>
+          {!type && <Component {...props} />}
+          {type === "text" && <Component {...props}>{text ?? props?.text}</Component>}
+          {type === "hover" && (
+            <div class="relative inline-flex cursor-pointer">
+              <span class="bg-surface-container border border-outline-variant text-on-surface font-mono font-bold uppercase tracking-widest text-[10px] px-6 py-2 pointer-events-none select-none">
+                HOVER
+              </span>
+              <div class="absolute inset-0 [&>*]:block [&>*]:w-full [&>*]:h-full">
+                <Component {...props} />
+              </div>
+            </div>
+          )}
+          <span class="font-mono text-[8px] uppercase tracking-widest text-outline">{label}</span>
+        </div>
+      ))}
+    </div>
+  )}
 </StoryDecorator>

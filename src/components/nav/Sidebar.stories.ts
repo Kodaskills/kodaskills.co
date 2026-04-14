@@ -1,9 +1,20 @@
-import BlockDecorator from "../BlockDecorator.astro";
+import Showcase from "../Showcase.astro";
 import SidebarComponent from "./Sidebar.astro";
 
-export default { component: SidebarComponent };
+export default { component: Showcase };
 
 export const Sidebar = {
-  args: { activePage: "home" },
-  decorators: [{ component: BlockDecorator }],
+  args: {
+    component: SidebarComponent,
+    layout: "row",
+    containerClassName: "relative bg-surface border-r border-outline-variant overflow-hidden",
+    itemClassName:
+      "w-full h-full relative flex flex-col [&>aside]:fixed [&>aside]:!left-0 [&>aside]:!top-0 [&>aside]:!relative",
+    items: [
+      {
+        label: "Main Sidebar",
+        props: { activePage: "home" },
+      },
+    ],
+  },
 };

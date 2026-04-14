@@ -10,7 +10,6 @@ export const ThemeToggle = {
     items: [
       {
         label: "ThemeToggle",
-        props: {},
       },
     ],
   },

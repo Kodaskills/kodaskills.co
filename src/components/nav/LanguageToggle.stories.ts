@@ -10,7 +10,6 @@ export const LanguageToggle = {
     items: [
       {
         label: "LanguageToggle",
-        props: {},
       },
     ],
   },

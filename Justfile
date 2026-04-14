@@ -55,16 +55,18 @@ update all='':
 
 # ── Build & Preview ────────────────────────────────────────────────────────────
 
-# Build the static site inside the container (output: ./dist)
+# Build the static site or astrobook (target: dev [default] | book)
 [group('build')]
-build:
-    docker compose run --rm dev bun run build
+[arg('target', pattern='dev|book')]
+build target='dev':
+    docker compose run --rm {{ target }} bun run build {{ if target == "book" { "--config astro.config.book.ts" } else { "" } }}
 
-# Preview the production build via nginx → http://localhost:8080
+# Preview the previously built dist via nginx (target: dev [default] | book) → http://localhost:8080
 [group('build')]
-preview:
-    docker build --target production -t kodaskills-preview .
-    docker run --rm -p 8080:80 kodaskills-preview
+[arg('target', pattern='dev|book')]
+preview target='dev':
+    docker build --target {{ if target == "book" { "book-production" } else { "production" } }} -t kodaskills-{{ target }}-preview .
+    docker run --rm -p 8080:80 kodaskills-{{ target }}-preview
 
 # ── Code Quality ───────────────────────────────────────────────────────────────
 
