@@ -24,7 +24,7 @@ jobs:
       DEPLOY_COMMIT: ${{ github.event.workflow_run.head_sha }}
       NOTIFY_PR_TITLE: ${{ github.event.workflow_run.pull_requests[0].head.ref }}
       NOTIFY_PR_NUMBER: ${{ github.event.workflow_run.pull_requests[0].number }}
-      NOTIFY_PR_URL: ${{ github.event.workflow_run.pull_requests[0].url }}
+      NOTIFY_PR_URL: https://github.com/${{ github.repository }}/pull/${{ github.event.pull_request.number }}/
     steps:
       - name: 📦 Checkout
         uses: actions/checkout@v6
