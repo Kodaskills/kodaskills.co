@@ -9,42 +9,47 @@
  * Browse icons: https://iconify.design
  */
 export const ICON_REGISTRY = {
-  // Theme toggle
-  "theme-auto": "material-symbols:brightness-auto",
-  "theme-dark": "material-symbols:dark-mode",
-  "theme-light": "material-symbols:light-mode",
+  // Alerts
+  "alert-error": "material-symbols:error",
+  "alert-info": "material-symbols:info",
+  "alert-success": "material-symbols:check-circle",
+  "alert-warning": "material-symbols:warning",
 
-  // Navigation
-  "nav-skills": "material-symbols:terminal",
-  "nav-memory": "material-symbols:memory",
-  "nav-lab": "material-symbols:biotech",
-  "nav-security": "material-symbols:security",
-  "nav-expand": "material-symbols:chevron-right",
+  // Card / feature icons
+  "card-ai": "material-symbols:psychology",
+  "card-analytics": "material-symbols:analytics",
+  "card-audit": "material-symbols:biotech",
+  "card-bolt": "material-symbols:bolt",
+  "card-cto": "material-symbols:precision-manufacturing",
+  "card-dns": "material-symbols:dns",
+  "card-encrypted": "material-symbols:encrypted",
+  "card-finops": "material-symbols:savings",
+  "card-handshake": "material-symbols:handshake",
+  "card-hub": "material-symbols:hub",
+  "card-infra": "material-symbols:account-tree",
+  "card-leadership": "material-symbols:leaderboard",
+  "card-product": "material-symbols:inventory-2",
+  "card-security": "material-symbols:security",
+  "card-shield": "material-symbols:security-update-good",
+  "card-strategy": "material-symbols:schema",
+  "card-verified": "material-symbols:verified",
 
   // CTAs
   "cta-arrow": "material-symbols:arrow-forward",
-  "cta-rocket": "material-symbols:rocket-launch",
   "cta-bolt": "material-symbols:bolt",
+  "cta-rocket": "material-symbols:rocket-launch",
   "cta-send": "material-symbols:send",
 
-  // Card / feature icons
-  "card-strategy": "material-symbols:schema",
-  "card-infra": "material-symbols:account-tree",
-  "card-encrypted": "material-symbols:encrypted",
-  "card-cto": "material-symbols:precision-manufacturing",
-  "card-leadership": "material-symbols:leaderboard",
-  "card-product": "material-symbols:inventory-2",
-  "card-dns": "material-symbols:dns",
-  "card-ai": "material-symbols:psychology",
-  "card-verified": "material-symbols:verified",
-  "card-audit": "material-symbols:biotech",
-  "card-hub": "material-symbols:hub",
-  "card-bolt": "material-symbols:bolt",
-  "card-analytics": "material-symbols:analytics",
-  "card-handshake": "material-symbols:handshake",
-  "card-security": "material-symbols:security",
-  "card-shield": "material-symbols:security-update-good",
-  "card-finops": "material-symbols:savings",
+  // Language flags
+  "flag-en": "circle-flags:uk",
+  "flag-fr": "circle-flags:fr",
+
+  // Navigation
+  "nav-expand": "material-symbols:chevron-right",
+  "nav-lab": "material-symbols:biotech",
+  "nav-memory": "material-symbols:memory",
+  "nav-security": "material-symbols:security",
+  "nav-skills": "material-symbols:terminal",
 
   // Social
   "social-github": "mdi:github",
@@ -52,15 +57,10 @@ export const ICON_REGISTRY = {
   "social-x": "ri:twitter-x-fill",
   "social-youtube": "mdi:youtube",
 
-  // Language flags
-  "flag-en": "circle-flags:uk",
-  "flag-fr": "circle-flags:fr",
-
-  // Alerts
-  "alert-warning": "material-symbols:warning",
-  "alert-error": "material-symbols:error",
-  "alert-info": "material-symbols:info",
-  "alert-success": "material-symbols:check-circle",
+  // Theme toggle
+  "theme-auto": "material-symbols:brightness-auto",
+  "theme-dark": "material-symbols:dark-mode",
+  "theme-light": "material-symbols:light-mode",
 } as const;
 
 export type IconName = keyof typeof ICON_REGISTRY;
