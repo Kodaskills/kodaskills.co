@@ -14,9 +14,6 @@ inputs:
   pr_number:
     description: 'Pull request number'
     required: true
-  pr_author:
-    description: 'Pull request author'
-    required: true
   deploy_url:
     description: 'Deployment URL'
     required: true
@@ -45,14 +42,11 @@ runs:
         fi
         echo "PR_NAME=${{ inputs.pr_title }}" >> $GITHUB_ENV
         echo "PR_NUMBER=${{ inputs.pr_number }}" >> $GITHUB_ENV
-        echo "PR_AUTHOR=${{ inputs.pr_author }}" >> $GITHUB_ENV
         echo "COMMIT_HASH=${{ inputs.commit_hash }}" >> $GITHUB_ENV
         echo "SHORT_COMMIT_HASH=$(echo '${{ inputs.commit_hash }}' | cut -c1-7)" >> $GITHUB_ENV
-        echo "TIME=$(date '+%H:%M:%S')" >> $GITHUB_ENV
         echo "DEPLOY_URL=${{ inputs.deploy_url }}" >> $GITHUB_ENV
         echo "PR_URL=${{ inputs.pr_url }}" >> $GITHUB_ENV
         echo "LOGS_URL=${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_ENV
-        echo "TIMESTAMP=$(date +%s)" >> $GITHUB_ENV
 
     - name: Send Slack notification
       uses: slackapi/slack-github-action@v3
