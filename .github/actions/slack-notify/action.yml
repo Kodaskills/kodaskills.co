@@ -14,9 +14,6 @@ inputs:
   pr_number:
     description: 'Pull request number'
     required: true
-  pr_author:
-    description: 'Pull request author'
-    required: true
   deploy_url:
     description: 'Deployment URL'
     required: true
@@ -31,28 +28,32 @@ runs:
   using: 'composite'
   steps:
     - name: Set environment variables
+      env:
+        JOB_STATUS: ${{ inputs.job_status }}
+        PR_TITLE: ${{ inputs.pr_title }}
+        PR_NUMBER: ${{ inputs.pr_number }}
+        COMMIT_HASH: ${{ inputs.commit_hash }}
+        DEPLOY_URL: ${{ inputs.deploy_url }}
+        PR_URL: ${{ inputs.pr_url }}
       shell: bash
       run: |
-        if [ "${{ inputs.job_status }}" == "success" ]; then
+        if [ "$JOB_STATUS" == "success" ]; then
           echo "STATUS_EMOJI=🟢" >> $GITHUB_ENV
           echo "COLOR=#2EB67D" >> $GITHUB_ENV
-        elif [ "${{ inputs.job_status }}" == "failure" ]; then
+        elif [ "$JOB_STATUS" == "failure" ]; then
           echo "STATUS_EMOJI=🔴" >> $GITHUB_ENV
           echo "COLOR=#E01E5A" >> $GITHUB_ENV
         else
           echo "STATUS_EMOJI=🟡" >> $GITHUB_ENV
           echo "COLOR=#ECB22E" >> $GITHUB_ENV
         fi
-        echo "PR_NAME=${{ inputs.pr_title }}" >> $GITHUB_ENV
-        echo "PR_NUMBER=${{ inputs.pr_number }}" >> $GITHUB_ENV
-        echo "PR_AUTHOR=${{ inputs.pr_author }}" >> $GITHUB_ENV
-        echo "COMMIT_HASH=${{ inputs.commit_hash }}" >> $GITHUB_ENV
-        echo "SHORT_COMMIT_HASH=$(echo '${{ inputs.commit_hash }}' | cut -c1-7)" >> $GITHUB_ENV
-        echo "TIME=$(date '+%H:%M:%S')" >> $GITHUB_ENV
-        echo "DEPLOY_URL=${{ inputs.deploy_url }}" >> $GITHUB_ENV
-        echo "PR_URL=${{ inputs.pr_url }}" >> $GITHUB_ENV
+        echo "PR_NAME=$PR_TITLE" >> $GITHUB_ENV
+        echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_ENV
+        echo "COMMIT_HASH=$COMMIT_HASH" >> $GITHUB_ENV
+        echo "SHORT_COMMIT_HASH=$(echo "$COMMIT_HASH" | cut -c1-7)" >> $GITHUB_ENV
+        echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
+        echo "PR_URL=$PR_URL" >> $GITHUB_ENV
         echo "LOGS_URL=${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_ENV
-        echo "TIMESTAMP=$(date +%s)" >> $GITHUB_ENV
 
     - name: Send Slack notification
       uses: slackapi/slack-github-action@v3

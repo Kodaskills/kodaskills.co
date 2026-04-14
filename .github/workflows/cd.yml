@@ -8,6 +8,7 @@ on:
 permissions:
   contents: read
   actions: read
+  pull-requests: read
   id-token: write
 
 jobs:
@@ -21,16 +22,20 @@ jobs:
     env:
       DEPLOY_BRANCH: ${{ github.event.workflow_run.head_branch }}
       DEPLOY_COMMIT: ${{ github.event.workflow_run.head_sha }}
-      NOTIFY_TITLE: ${{ github.event.workflow_run.name }}
+      NOTIFY_PR_TITLE: ${{ github.event.workflow_run.pull_requests[0].title || github.event.workflow_run.head_commit.message }}
       NOTIFY_PR_NUMBER: ${{ github.event.workflow_run.pull_requests[0].number || 0 }}
-      NOTIFY_AUTHOR: ${{ github.actor }}
-      NOTIFY_PR_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+      NOTIFY_PR_URL: ${{ github.event.workflow_run.pull_requests[0].html_url }}
     steps:
       - name: 📦 Checkout
         uses: actions/checkout@v6
 
       - name: 📦 Setup
         uses: ./.github/actions/setup-bun
+
+      - name: Debug
+        run: |
+          echo "***** DEBUG EVENT WORKFLOW RUN *****"
+          echo "${{ github.event.workflow_run.pull_requests }} " | jq '.'
 
       - name: 📥 Download dist artifact
         uses: actions/download-artifact@v8
@@ -54,9 +59,8 @@ jobs:
         with:
           webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
           job_status: ${{ job.status }}
-          pr_title: ${{ env.NOTIFY_TITLE }}
+          pr_title: ${{ env.NOTIFY_PR_TITLE }}
           pr_number: ${{ env.NOTIFY_PR_NUMBER }}
-          pr_author: ${{ env.NOTIFY_AUTHOR }}
           deploy_url: ${{ steps.deploy.outputs.deployment-url }}
           pr_url: ${{ env.NOTIFY_PR_URL }}
           commit_hash: ${{ env.DEPLOY_COMMIT }}
