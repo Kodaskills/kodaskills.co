@@ -16,6 +16,18 @@ await activateLingui("en");
   </div>
 </div>
 
+<script>
+  // Intercept all clicks on links inside the frame and prevent navigation
+  document.addEventListener("click", (e) => {
+    const link = (e.target as HTMLElement).closest("a");
+    if (!link) return;
+    const frame = link.closest(".block-decorator-root .frame");
+    if (!frame) return;
+    e.preventDefault();
+    e.stopPropagation();
+  }, true);
+</script>
+
 <style is:global>
   /* ═══ Root ═══ */
   .block-decorator-root {
@@ -46,12 +58,6 @@ await activateLingui("en");
     right: auto !important;
     bottom: auto !important;
     z-index: auto !important;
-  }
-
-  /* Disable interactive elements */
-  .block-decorator-root .frame a,
-  .block-decorator-root .frame button {
-    pointer-events: none !important;
   }
 
   /* ═══ Sidebar frame (detects <aside>) ═══ */

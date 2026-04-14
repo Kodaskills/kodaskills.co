@@ -1,9 +1,9 @@
 import BlockDecorator from "../BlockDecorator.astro";
-import Sidebar from "./Sidebar.astro";
+import SidebarComponent from "./Sidebar.astro";
 
-export default { component: Sidebar };
+export default { component: SidebarComponent };
 
-export const Default = {
+export const Sidebar = {
   args: { activePage: "home" },
   decorators: [{ component: BlockDecorator }],
 };

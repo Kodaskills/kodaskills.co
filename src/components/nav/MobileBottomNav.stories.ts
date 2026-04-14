@@ -1,9 +1,9 @@
 import BlockDecorator from "../BlockDecorator.astro";
-import MobileBottomNav from "./MobileBottomNav.astro";
+import MobileBottomNavComponent from "./MobileBottomNav.astro";
 
-export default { component: MobileBottomNav };
+export default { component: MobileBottomNavComponent };
 
-export const Default = {
+export const MobileBottomNav = {
   args: { activePage: "home" },
   decorators: [{ component: BlockDecorator }],
 };

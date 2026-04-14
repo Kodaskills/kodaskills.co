@@ -1,9 +1,9 @@
 import BlockDecorator from "../BlockDecorator.astro";
-import Header from "./Header.astro";
+import HeaderComponent from "./Header.astro";
 
-export default { component: Header };
+export default { component: HeaderComponent };
 
-export const Default = {
+export const Header = {
   args: { activePage: "home" },
   decorators: [{ component: BlockDecorator }],
 };

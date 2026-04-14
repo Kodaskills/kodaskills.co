@@ -1,11 +1,11 @@
 import Showcase from "../Showcase.astro";
-import LanguageToggle from "./LanguageToggle.astro";
+import LanguageToggleComponent from "./LanguageToggle.astro";
 
 export default { component: Showcase };
 
-export const Default = {
+export const LanguageToggle = {
   args: {
-    component: LanguageToggle,
+    component: LanguageToggleComponent,
     layout: "stack",
     items: [
       {

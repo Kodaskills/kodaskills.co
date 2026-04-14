@@ -1,11 +1,11 @@
 import Showcase from "../Showcase.astro";
-import ThemeToggle from "./ThemeToggle.astro";
+import ThemeToggleComponent from "./ThemeToggle.astro";
 
 export default { component: Showcase };
 
-export const Default = {
+export const ThemeToggle = {
   args: {
-    component: ThemeToggle,
+    component: ThemeToggleComponent,
     layout: "stack",
     items: [
       {
