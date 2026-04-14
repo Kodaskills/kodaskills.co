@@ -24,13 +24,13 @@ for (const [key, value] of entries) {
   groups[prefix].push([key, value]);
 }
 
-// Sort groups: preserve registry order of first appearance
-const groupOrder = ["theme", "nav", "cta", "card", "social", "flag", "alert"];
-const sortedKeys = Object.keys(groups).sort((a, b) => {
-  const ai = groupOrder.indexOf(a);
-  const bi = groupOrder.indexOf(b);
-  return (ai === -1 ? 999 : ai) - (bi === -1 ? 999 : bi);
-});
+// Sort icons within each group alphabetically by key
+for (const prefix of Object.keys(groups)) {
+  groups[prefix].sort((a, b) => a[0].localeCompare(b[0]));
+}
+
+// Sort groups alphabetically
+const sortedKeys = Object.keys(groups).sort((a, b) => a.localeCompare(b));
 
 // If type is specified, only show that group
 const activeGroups: Record<string, [string, string][]> = {};
