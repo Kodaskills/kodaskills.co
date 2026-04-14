@@ -1,11 +1,12 @@
-import StoryDecorator from "../StoryDecorator.astro";
+import Showcase from "../Showcase.astro";
 import SectionTitleComponent from "./SectionTitle.astro";
 
-export default {
-  component: SectionTitleComponent,
-};
+export default { component: Showcase };
 
 export const SectionTitle = {
-  args: { number: "01", title: "OPERATIONAL_EXPERTISE" },
-  decorators: [{ component: StoryDecorator }],
+  args: {
+    component: SectionTitleComponent,
+    layout: "row",
+    items: [{ label: "Default", props: { number: "01", title: "OPERATIONAL_EXPERTISE" } }],
+  },
 };

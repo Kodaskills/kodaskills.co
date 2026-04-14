@@ -1,6 +1,16 @@
 import { defineConfig, presetWind4 } from "unocss";
 
 export default defineConfig({
+ 	content: {
+		pipeline: {
+			include: [
+				// UnoCSS defaults (astro, vue, svelte, tsx, etc.)
+				/\.(vue|svelte|[jt]sx?|mdx?|astro|elm|php|phtml|html)($|\?)/,
+				// also extract from story files
+				/\.stories\.ts$/,
+			],
+		},
+	},
 	presets: [presetWind4()],
 	theme: {
 		colors: {

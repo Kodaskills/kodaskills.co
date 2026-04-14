@@ -1,23 +1,46 @@
 ---
 /**
- * StoryDecorator — lightweight Astrobook wrapper.
- *
- * Applies the surface background and padding so design tokens (colors,
- * typography) render correctly in the story preview. Does NOT include
- * nav or Alpine stores — stories are component-level, not page-level.
+ * StoryDecorator — canvas for stories.
+ * Provides background, min-height, padding, and centering.
+ * Layout is owned by Showcase (or the story itself).
  */
 interface Props {
-  /** Force a color scheme. Defaults to "dark" to match the site default. */
   scheme?: "dark" | "light";
-  /** Extra padding classes. Defaults to "p-8". */
   padding?: string;
 }
 
 const { scheme = "dark", padding = "p-8" } = Astro.props;
 ---
 
-<div
-    class={`${scheme} bg-surface min-h-screen ${padding} flex items-center justify-center`}
->
-    <slot />
+<div class={`k-book-container ${scheme} bg-surface min-h-screen ${padding} flex items-center justify-center`}>
+  <slot />
 </div>
+
+<script>
+  // We remove all internal links and prevent navigation buttons inside the container
+  document.addEventListener("click", (e) => {
+    const target = e.target as HTMLElement;
+    const link = target.closest("a");
+    const button = target.closest("button");
+    const container = target.closest(".k-book-container");
+    if (!container) return;
+
+    // Handle links
+    if (link && !link.href?.startsWith("https")) {
+      link.href = "#";
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
+    // Handle buttons with location navigation
+    if (button) {
+      const onclick = button.getAttribute("onclick") || "";
+      const ariaAttr = button.getAttribute("@click") || "";
+      if (onclick.includes("window.location") || onclick.includes("location.href") || 
+          ariaAttr.includes("window.location") || ariaAttr.includes("location.href")) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }
+  }, true);
+</script>
