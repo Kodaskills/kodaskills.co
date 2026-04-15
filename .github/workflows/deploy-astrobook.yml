@@ -1,0 +1,84 @@
+name: Deploy Astrobook
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/components/**'
+      - 'astro.config.book.ts'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'src/components/**'
+      - 'astro.config.book.ts'
+
+concurrency:
+  group: astrobook-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  BUN_VERSION: ${{ vars.BUN_VERSION }}
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  build:
+    name: 📖 Build Astrobook
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📦 Checkout
+        uses: actions/checkout@v6
+
+      - name: 📦 Setup
+        uses: ./.github/actions/setup-bun
+
+      - name: 🔨 Build
+        run: bun run build --config astro.config.book.ts
+
+      - name: 📤 Upload dist-book artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: dist-book
+          path: dist-book/
+          retention-days: 1
+
+  deploy:
+    name: 📖 Deploy Astrobook to Cloudflare Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ github.event_name == 'push' && 'production' || 'preview' }}
+      url: ${{ steps.deploy.outputs.deployment-url }}
+    env:
+      DEPLOY_BRANCH: ${{ github.ref_name }}
+      DEPLOY_COMMIT: ${{ github.sha }}
+      NOTIFY_PR_TITLE: ${{ github.event_name == 'pull_request' && github.event.pull_request.title || github.ref_name }}
+      NOTIFY_PR_NUMBER: ${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.sha }}
+      NOTIFY_PR_URL: ${{ github.event_name == 'pull_request' && github.event.pull_request.html_url || format('https://github.com/{0}/commit/{1}', github.repository, github.sha) }}
+    steps:
+      - name: 🚀 Deploy
+        id: deploy
+        uses: ./.github/actions/deploy-cloudflare
+        with:
+          artifact_name: dist-book
+          dist_path: ./dist-book
+          project_name: ${{ vars.CLOUDFLARE_PROJECT_NAME_ASTROBOOK }}
+          branch: ${{ env.DEPLOY_BRANCH }}
+          commit_hash: ${{ env.DEPLOY_COMMIT }}
+          api_token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          account_id: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+      - name: 💬 Slack notification
+        if: always()
+        uses: ./.github/actions/slack-notify
+        with:
+          webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
+          job_status: ${{ job.status }}
+          pr_title: ${{ env.NOTIFY_PR_TITLE }}
+          pr_number: ${{ env.NOTIFY_PR_NUMBER }}
+          deploy_url: ${{ steps.deploy.outputs.deployment-url }}
+          pr_url: ${{ env.NOTIFY_PR_URL }}
+          commit_hash: ${{ env.DEPLOY_COMMIT }}

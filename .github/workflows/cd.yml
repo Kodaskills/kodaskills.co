@@ -39,21 +39,19 @@ jobs:
           echo "***** PULL REQUESTS DATA *****"
           echo "$PR_DATA"
 
-      - name: 📥 Download dist artifact
-        uses: actions/download-artifact@v8
-        with:
-          name: dist
-          run-id: ${{ github.event.workflow_run.id }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          path: dist/
-
       - name: 🚀 Deploy
         id: deploy
-        uses: cloudflare/wrangler-action@v3
+        uses: ./.github/actions/deploy-cloudflare
         with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy ./dist --project-name=${{ vars.CLOUDFLARE_PROJECT_NAME }} --branch=${{ env.DEPLOY_BRANCH }} --commit-hash=${{ env.DEPLOY_COMMIT }}
+          artifact_name: dist
+          dist_path: ./dist
+          project_name: ${{ vars.CLOUDFLARE_PROJECT_NAME }}
+          branch: ${{ env.DEPLOY_BRANCH }}
+          commit_hash: ${{ env.DEPLOY_COMMIT }}
+          run_id: ${{ github.event.workflow_run.id }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          api_token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          account_id: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
       - name: 💬 Slack notification
         if: always()
