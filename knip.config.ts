@@ -8,7 +8,7 @@ const config = {
     "**/*.ts",
 		"**/*.astro"
 	],
-	project: ["src/**/*.{astro,ts}"],
+	project: ["src/**/*.ts"],
 	ignoreDependencies: [
 		"@biomejs/biome",
 		"@commitlint/cli",
