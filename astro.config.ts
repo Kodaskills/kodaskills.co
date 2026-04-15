@@ -50,9 +50,6 @@ export default defineConfig({
 			// Spotlight re-runs dep optimisation, causing "Failed to fetch dynamically
 			// imported module" on every dev server restart.
 			include: ["swup", "@swup/astro > swup"],
-		},
-		server: {
-			watch: { usePolling: true }, // required for hot-reload inside Docker
-		},
+		}
 	},
 });

@@ -1,4 +1,4 @@
-import Showcase from "../Showcase.astro";
+import Showcase from "@components/astrobook/Showcase.astro";
 import FooterComponent from "./Footer.astro";
 
 export default { component: Showcase };
@@ -10,7 +10,6 @@ export const Footer = {
     items: [
       {
         label: "Main Footer",
-        props: {},
       },
     ],
   },
