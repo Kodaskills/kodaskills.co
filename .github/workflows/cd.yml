@@ -64,3 +64,4 @@ jobs:
           deploy_url: ${{ steps.deploy.outputs.deployment-url }}
           pr_url: ${{ env.NOTIFY_PR_URL }}
           commit_hash: ${{ env.DEPLOY_COMMIT }}
+          project_name: Website
