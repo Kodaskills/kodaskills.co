@@ -5,12 +5,13 @@ import Popover from "@components/primitives/Popover.astro";
 import Tooltip from "@components/primitives/Tooltip.astro";
 import { getI18n } from "@i18n/index";
 import type { IconName } from "@lib/icons";
+import type { HTMLAttributes } from "astro/types";
 
-interface Props {
+interface Props extends HTMLAttributes<"aside"> {
   activePage: "home" | "expertises" | "approach" | "contact" | "none";
 }
 
-const { activePage } = Astro.props;
+const { activePage, class: className, ...attrs } = Astro.props;
 const { lp } = getI18n();
 
 const navItems: {
@@ -72,19 +73,15 @@ const navItems: {
 ];
 ---
 
-<aside class="hidden lg:flex flex-col fixed left-0 top-0 h-full w-20 bg-surface z-[51] border-r border-outline-variant">
-	<!-- Logo -->
-	<div class="h-16 flex items-center justify-center shrink-0">
+<aside class:list={["hidden lg:flex flex-col fixed left-0 top-0 h-full w-20 bg-surface z-[51] border-r border-outline-variant", className]} {...attrs}>
+	<header class="h-16 flex items-center justify-center shrink-0">
 		<a href={lp("/")} class="text-primary font-headline font-bold tracking-widest text-2xl leading-none">
 			K
 		</a>
-	</div>
+	</header>
 
-	<!-- Nav items -->
-	<nav class="flex-1 py-4 font-headline text-xs tracking-tight">
-		<div class="flex justify-center py-2">
-			<span class="uppercase text-[7px] tracking-widest font-bold text-secondary/40">Services</span>
-		</div>
+	<nav class="flex-1 py-4 font-headline text-xs tracking-tight" aria-label="Services">
+		<p class="flex justify-center py-2 uppercase text-[7px] tracking-widest font-bold text-secondary/40">Services</p>
 		{navItems.map((item) => {
 			const isActive = activePage === item.key;
 			return (
@@ -108,8 +105,7 @@ const navItems: {
 		})}
 	</nav>
 
-	<!-- Bottom controls -->
-	<div class="mt-auto py-2 w-full font-headline text-[10px] uppercase tracking-widest">
+	<footer class="mt-auto py-2 w-full font-headline text-[10px] uppercase tracking-widest">
 		<Tooltip content="LinkedIn" placement="right" class="block">
 			<a
 				href="https://www.linkedin.com/company/kodaskills/"
@@ -134,7 +130,7 @@ const navItems: {
 			</a>
 		</Tooltip>
 
-		<div class="mx-3 my-1 border-t border-outline-variant"></div>
+		<hr class="mx-3 my-1 border-outline-variant" />
 		<ThemeToggle />
-	</div>
+	</footer>
 </aside>

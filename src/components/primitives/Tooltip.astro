@@ -1,4 +1,6 @@
 ---
+import type { HTMLAttributes } from "astro/types";
+
 type Placement =
   | "top"
   | "top-start"
@@ -15,12 +17,11 @@ type Placement =
 
 type Variant = "default" | "primary" | "secondary" | "tertiary" | "error";
 
-interface Props {
+interface Props extends HTMLAttributes<"span"> {
   content: string;
   variant?: Variant;
   placement?: Placement;
   offset?: number;
-  [key: string]: unknown;
 }
 
 const {
@@ -29,20 +30,20 @@ const {
   placement = "top",
   offset = 8,
   class: className = "inline-block",
-  ...rest
+  ...attrs
 } = Astro.props;
 ---
 
-<div
+<span
   class:list={["tooltip-root", className]}
   data-tooltip={content}
   data-tooltip-variant={variant}
   data-placement={placement}
   data-offset={offset}
-  {...rest}
+  {...attrs}
 >
   <slot />
-</div>
+</span>
 
 <script>
   import {
@@ -53,7 +54,6 @@ const {
     shift,
   } from "@floating-ui/dom";
 
-  // Full class strings per variant — kept static so UnoCSS scans every token.
   const variantClasses: Record<string, string> = {
     default:   "block bg-surface border border-outline-variant text-on-surface-variant font-mono text-[9px] uppercase tracking-[0.15em] px-2 py-1 whitespace-nowrap",
     primary:   "block bg-primary text-on-primary font-mono text-[9px] uppercase tracking-[0.15em] px-2 py-1 whitespace-nowrap",
@@ -70,7 +70,6 @@ const {
     const offsetPx = Number(root.dataset.offset ?? 8);
     const cls = variantClasses[root.dataset.tooltipVariant ?? "default"] ?? variantClasses.default;
 
-    // Portal: create popup in body to escape overflow:hidden containers
     const popup = document.createElement("div");
     popup.setAttribute("role", "tooltip");
     popup.className =

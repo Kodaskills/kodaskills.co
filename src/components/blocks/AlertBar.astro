@@ -14,8 +14,11 @@ import Icon from "@components/primitives/Icon.astro";
 import Text from "@components/typography/Text.astro";
 import Title from "@components/typography/Title.astro";
 import type { IconName } from "@lib/icons";
+import type { HTMLAttributes } from "astro/types";
 
-interface Props {
+type SectionProps = HTMLAttributes<"section">;
+
+interface Props extends SectionProps {
   title: string;
   description: string;
   href: string;
@@ -31,6 +34,8 @@ const {
   ctaLabel,
   variant = "tertiary",
   icon = "alert-warning",
+  class: className,
+  ...attrs
 } = Astro.props;
 
 const colorMap = {
@@ -53,15 +58,24 @@ const { section, button } = colorMap[variant];
 ---
 
 <section
-  class:list={["border p-8 flex flex-col md:flex-row items-center justify-between gap-6 relative z-10", section]}
+  class:list={[
+    "border p-8 flex flex-col md:flex-row items-center justify-between gap-6 relative z-10",
+    section,
+    className,
+  ]}
+  {...attrs}
+  role="region"
+  aria-label={title}
 >
   <div class="flex gap-6 items-center">
-    <div class={`text-${variant}`}>
+    <figure class={`text-${variant}`}>
       <Icon name={icon} size={48} />
-    </div>
-    <div>
-     <Title as="h3" variant="h3" color={variant} >{title}</Title>
-     <Text as="p" variant="sm" weight="bold" color={variant}>{description}</Text>
+    </figure>
+    <div class="flex flex-col gap-1">
+      <Title as="h3" variant="h3" color={variant}>{title}</Title>
+      <Text as="p" variant="sm" weight="bold" color={variant}
+        >{description}</Text
+      >
     </div>
   </div>
   <Button href={href} variant={button} size="md">

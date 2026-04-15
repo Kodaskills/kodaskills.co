@@ -24,26 +24,22 @@ const legalLinks =
 ---
 
 <footer class="lg:ml-20 bg-surface border-t border-outline-variant">
-  <div class="py-12 px-6 grid grid-cols-1 md:grid-cols-2 gap-12">
-    <!-- Brand -->
-    <div>
-      <div class="font-headline text-lg font-bold text-on-surface tracking-widest mb-4 uppercase">
+  <section class="py-12 px-6 grid grid-cols-1 md:grid-cols-2 gap-12">
+    <section aria-label="Brand">
+      <p class="font-headline text-lg font-bold text-on-surface tracking-widest mb-4 uppercase">
         KODASKILLS
-      </div>
+      </p>
       <p class="font-sans text-xs text-outline mb-6 leading-relaxed">
         {_("OPERATOR-GRADE PRECISION FOR ENTERPRISE ARCHITECTURE. WE BUILD WHAT OTHERS ONLY THEORIZE.")}
       </p>
-      <div class="font-mono text-[10px] uppercase tracking-[0.2em] text-primary font-bold">
+      <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-primary font-bold">
         EST. 2024 / V6.0.4
-      </div>
-    </div>
+      </p>
+    </section>
 
-    <!-- Right: 3-column nav grid -->
-    <div class="grid grid-cols-3 gap-8">
-
-      <!-- Your Journey -->
-      <div class="space-y-4">
-        <div class="font-mono text-[10px] uppercase tracking-widest text-primary font-bold">{_("Your Journey")}</div>
+    <nav class="grid grid-cols-3 gap-8" aria-label={_("Footer navigation")}>
+      <section class="space-y-4">
+        <h3 class="font-mono text-[10px] uppercase tracking-widest text-primary font-bold">{_("Your Journey")}</h3>
         <ul class="space-y-2 font-sans text-xs">
           <li>
             <a class="flex items-center gap-2 text-outline hover:text-primary transition-colors" href="#">
@@ -70,11 +66,10 @@ const legalLinks =
             </a>
           </li>
         </ul>
-      </div>
+      </section>
 
-      <!-- Connect -->
-      <div class="space-y-4">
-        <div class="font-mono text-[10px] uppercase tracking-widest text-primary font-bold">{_("Connect")}</div>
+      <section class="space-y-4">
+        <h3 class="font-mono text-[10px] uppercase tracking-widest text-primary font-bold">{_("Connect")}</h3>
         <ul class="space-y-2 font-sans text-xs">
           <li>
             <a class="flex items-center gap-2 text-outline hover:text-primary transition-colors" href="https://www.linkedin.com/company/kodaskills/" target="_blank" rel="noopener noreferrer" onclick="window.posthog?.capture('social_link_clicked', { platform: 'linkedin' })">
@@ -95,11 +90,10 @@ const legalLinks =
             </a>
           </li>
         </ul>
-      </div>
+      </section>
 
-      <!-- Legal -->
-      <div class="space-y-4">
-        <div class="font-mono text-[10px] uppercase tracking-widest text-primary font-bold">{_("Legal")}</div>
+      <section class="space-y-4">
+        <h3 class="font-mono text-[10px] uppercase tracking-widest text-primary font-bold">{_("Legal")}</h3>
         <ul class="space-y-2 font-sans text-xs">
           <li>
             <a class="flex items-center gap-2 text-outline hover:text-primary transition-colors" href={legalLinks.privacy}>
@@ -120,15 +114,14 @@ const legalLinks =
             </a>
           </li>
         </ul>
-      </div>
+      </section>
 
-    </div>
-  </div>
+    </nav>
+  </section>
 
-  <!-- Bottom bar — same height as sidebar collapse button (py-2 pt-3 + 18px icon = ~38px) -->
-  <div class="border-t border-outline-variant px-6 h-11 flex items-center">
-    <span class="font-mono text-[10px] uppercase tracking-widest text-outline">
+  <section class="border-t border-outline-variant px-6 h-11 flex items-center">
+    <p class="font-mono text-[10px] uppercase tracking-widest text-outline">
       © {year} KODASKILLS_OPERATIONS. ALL_RIGHTS_RESERVED.
-    </span>
-  </div>
+    </p>
+  </section>
 </footer>

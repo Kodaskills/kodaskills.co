@@ -14,10 +14,10 @@ interface Props {
 const { number, title } = Astro.props;
 ---
 
-<div>
+<section>
 	<Title as="h2" variant="h1" class="uppercase tracking-widest flex items-center gap-4">
 		<Text as="span" color="primary">{number}</Text>
     {title}
 	</Title>
-  <div class="h-px w-full bg-outline-variant mt-4"></div>
-</div>
+  <hr class="h-px w-full bg-outline-variant mt-4" />
+</section>

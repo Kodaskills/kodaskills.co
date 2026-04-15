@@ -2,6 +2,7 @@
 import Badge from "@components/primitives/Badge.astro";
 import Text from "@components/typography/Text.astro";
 import Title from "@components/typography/Title.astro";
+import type { HTMLAttributes } from "astro/types";
 
 /**
  * PageHeader — semantic page header composed of:
@@ -13,15 +14,14 @@ import Title from "@components/typography/Title.astro";
  * Pass `class` to override the default bottom margin when the hero contains
  * additional content alongside the header (e.g., the contact telemetry panel).
  */
-interface Props {
+interface Props extends HTMLAttributes<"header"> {
   badge: string;
-  class?: string;
 }
 
-const { badge, class: className = "" } = Astro.props;
+const { badge, class: className = "", ...attrs } = Astro.props;
 ---
 
-<header class={`relative z-10 space-y-8 mb-20 ${className}`}>
+<header class:list={["relative z-10 space-y-8 mb-20", className]} {...attrs}>
   <Badge label={badge} />
 
   <Title as="h1" variant="headline" >

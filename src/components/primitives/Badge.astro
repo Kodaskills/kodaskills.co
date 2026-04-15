@@ -1,4 +1,6 @@
 ---
+import type { HTMLAttributes } from "astro/types";
+
 /**
  * Badge — status indicator with a colored dot and a label.
  *
@@ -8,12 +10,12 @@
  *  - "tertiary"  : amber dot, pulsing  — warning
  *  - "error"     : red dot, pulsing    — critical / error
  */
-interface Props {
+interface Props extends HTMLAttributes<"span"> {
   label: string;
   variant?: "primary" | "secondary" | "tertiary" | "error";
 }
 
-const { label, variant = "primary" } = Astro.props;
+const { label, variant = "primary", class: className, ...attrs } = Astro.props;
 
 const dotClasses: Record<string, string> = {
   primary: "bg-primary animate-pulse",
@@ -23,11 +25,12 @@ const dotClasses: Record<string, string> = {
 };
 ---
 
-<div
-  class="inline-flex items-center gap-2 px-3 py-1 bg-surface-container-high border border-outline-variant"
+<span
+  class:list={["inline-flex items-center gap-2 px-3 py-1 bg-surface-container-high border border-outline-variant", className]}
+  {...attrs}
 >
   <span class={`w-2 h-2 ${dotClasses[variant]}`}></span>
   <span class="font-label text-[10px] uppercase tracking-[0.2em] text-on-surface-variant">
     {label}
   </span>
-</div>
+</span>

@@ -1,4 +1,6 @@
 ---
+import type { HTMLAttributes } from "astro/types";
+
 /**
  * StatCard — displays a single metric with a label.
  *
@@ -6,25 +8,43 @@
  *  - "accent"  : left border accent, compact padding — hero trust stats (50+, $2B+)
  *  - "metric"  : full border, looser padding, primary-colored value — system params (0ms, 99.9%)
  */
-interface Props {
+interface Props extends HTMLAttributes<"article"> {
   value: string;
   label: string;
   variant?: "accent" | "metric";
 }
 
-const { value, label, variant = "accent" } = Astro.props;
+const { value, label, variant = "accent", class: className, ...attrs } = Astro.props;
 ---
 
 {
   variant === "accent" ? (
-    <div class="p-4 bg-surface-container border-l-2 border-primary">
-      <div class="text-2xl font-bold font-headline">{value}</div>
-      <div class="text-[10px] font-mono uppercase tracking-widest text-outline">{label}</div>
-    </div>
+    <article
+      class:list={[
+        "p-4 bg-surface-container border-l-2 border-primary",
+        className,
+      ]}
+      {...attrs}
+    >
+      <output class="text-2xl font-bold font-headline">{value}</output>
+      <footer class="text-[10px] font-mono uppercase tracking-widest text-outline">
+        {label}
+      </footer>
+    </article>
   ) : (
-    <div class="bg-surface-container p-6 border border-outline-variant">
-      <div class="text-primary text-2xl font-headline font-bold mb-1">{value}</div>
-      <div class="text-[10px] font-mono text-outline uppercase">{label}</div>
-    </div>
+    <article
+      class:list={[
+        "bg-surface-container p-6 border border-outline-variant",
+        className,
+      ]}
+      {...attrs}
+    >
+      <output class="text-primary text-2xl font-headline font-bold mb-1">
+        {value}
+      </output>
+      <footer class="text-[10px] font-mono text-outline uppercase">
+        {label}
+      </footer>
+    </article>
   )
 }

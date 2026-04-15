@@ -1,4 +1,6 @@
 ---
+import type { HTMLAttributes } from "astro/types";
+
 /**
  * Popover — rich contextual overlay with a title and description.
  *
@@ -23,13 +25,12 @@ type Placement =
 
 type Variant = "primary" | "secondary" | "tertiary" | "neutral";
 
-interface Props {
+interface Props extends HTMLAttributes<"span"> {
   title: string;
   content: string;
   variant?: Variant;
   placement?: Placement;
   offset?: number;
-  [key: string]: unknown;
 }
 
 const {
@@ -39,21 +40,21 @@ const {
   placement = "top",
   offset = 12,
   class: className = "inline-block",
-  ...rest
+  ...attrs
 } = Astro.props;
 ---
 
-<div
+<span
   class:list={["popover-root", className]}
   data-popover-title={title}
   data-popover-content={content}
   data-popover-variant={variant}
   data-placement={placement}
   data-offset={offset}
-  {...rest}
+  {...attrs}
 >
   <slot />
-</div>
+</span>
 
 <script>
   import {
@@ -64,7 +65,6 @@ const {
     shift,
   } from "@floating-ui/dom";
 
-  // Full class strings per variant — kept static so UnoCSS scans every token.
   const variantHtml: Record<string, (title: string, content: string) => string> = {
     primary:   (t, c) => `<div class="bg-surface-container border-l-4 border-primary px-3 py-2.5 min-w-[200px] max-w-[260px]"><p class="font-headline text-[8px] uppercase tracking-widest text-primary font-bold">${t}</p><p class="font-headline text-[10px] text-on-surface-variant mt-1.5 leading-relaxed">${c}</p></div>`,
     secondary: (t, c) => `<div class="bg-surface-container border-l-4 border-secondary px-3 py-2.5 min-w-[200px] max-w-[260px]"><p class="font-headline text-[8px] uppercase tracking-widest text-secondary font-bold">${t}</p><p class="font-headline text-[10px] text-on-surface-variant mt-1.5 leading-relaxed">${c}</p></div>`,

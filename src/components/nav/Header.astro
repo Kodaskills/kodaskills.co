@@ -20,62 +20,76 @@ const navLinks = [
 ---
 
 <header
-id="main-header"
-class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 border-b border-outline-variant transition-all duration-300"
+  id="main-header"
+  class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 border-b border-outline-variant transition-all duration-300"
 >
-	<!-- Left: mobile logo / desktop spacer -->
-	<div class="flex-1">
-		<a
-		href={lp("/")}
-		class="font-bold tracking-widest text-primary font-headline"
-		style="font-size: 2rem"
-		>K</a>
-	</div>
+  <a
+    href={lp("/")}
+    class="flex-1 font-bold tracking-widest text-primary font-headline"
+    style="font-size: 2rem"
+    aria-label="Kodaskills home">K</a
+  >
 
-	<nav
-	id="main-nav"
-	class="hidden md:flex items-center gap-8 font-headline uppercase tracking-tighter text-sm relative"
-	>
-		<div id="nav-indicator" class="absolute top-1/2 -translate-y-1/2 bg-primary transition-all duration-300 ease-out pointer-events-none" style="height:2rem;width:0;opacity:0"></div>
-		{
-		navLinks.map((link, i) => (
-		<>
-			{i > 0 && (
-				<span class="flex items-center gap-0.5 text-outline-variant pointer-events-none select-none" aria-hidden="true">
-					<span class="w-1 h-1 bg-current opacity-30"></span>
-					<span class="w-1 h-1 bg-current opacity-60"></span>
-					<span class="w-1 h-1 bg-current opacity-90"></span>
-				</span>
-			)}
-			<a
-			href={link.href}
-			data-nav-key={link.key}
-			data-active-class="text-on-primary nav-link--active"
-			data-inactive-class="text-on-surface transition-colors duration-200"
-			class={
-			activePage === link.key
-			? "nav-link relative text-on-primary nav-link--active"
-			: "nav-link relative text-on-surface transition-colors duration-200"
-			}
-			>
-				<span class="inline-flex items-baseline gap-2.5">
-					<span class="nav-num font-mono leading-none opacity-50" style="font-size:0.85em">{String(i + 1).padStart(2, "0")}</span>{link.label}
-				</span>
-			</a>
-		</>
-		))
-		}
-	</nav>
+  <nav
+    id="main-nav"
+    class="hidden md:flex items-center gap-8 font-headline uppercase tracking-tighter text-sm relative"
+    aria-label="Main navigation"
+  >
+    <div
+      id="nav-indicator"
+      class="absolute top-1/2 -translate-y-1/2 bg-primary transition-all duration-300 ease-out pointer-events-none"
+      style="height:2rem;width:0;opacity:0"
+      aria-hidden="true"
+    >
+    </div>
+    {
+      navLinks.map((link, i) => (
+        <>
+          {i > 0 && (
+            <div
+              class="flex items-center gap-0.5 text-outline-variant pointer-events-none select-none"
+              aria-hidden="true"
+            >
+              <span class="w-1 h-1 bg-current opacity-30" aria-hidden="true" />
+              <span class="w-1 h-1 bg-current opacity-60" aria-hidden="true" />
+              <span class="w-1 h-1 bg-current opacity-90" aria-hidden="true" />
+            </div>
+          )}
+          <a
+            href={link.href}
+            data-nav-key={link.key}
+            data-active-class="text-on-primary nav-link--active"
+            data-inactive-class="text-on-surface transition-colors duration-200"
+            class={
+              activePage === link.key
+                ? "nav-link relative text-on-primary nav-link--active"
+                : "nav-link relative text-on-surface transition-colors duration-200"
+            }
+          >
+            <div class="inline-flex items-baseline gap-2.5">
+              <div
+                class="nav-num font-mono leading-none opacity-50"
+                style="font-size:0.85em"
+                aria-hidden="true"
+              >
+                {String(i + 1).padStart(2, "0")}
+              </div>
+              {link.label}
+            </div>
+          </a>
+        </>
+      ))
+    }
+  </nav>
 
-	<!-- Right: controls -->
-	<div class="flex-1 flex justify-end items-center gap-3">
-		<LanguageToggle/>
-		<span class="w-px h-6 bg-outline-variant mx-2"></span>
-		<Button href={lp("/contact")} size="xs">
-			<Icon name="cta-rocket" />
-			{_("START_DIAGNOSTIC")}
-		</Button>
-	</div>
+  <div class="flex-1 flex justify-end items-center gap-3">
+    <LanguageToggle />
+    <div class="w-px h-6 bg-outline-variant mx-2" aria-hidden="true"></div>
+    <Button href={lp("/contact")} size="xs">
+      <Icon name="cta-rocket" />
+      {_("START_DIAGNOSTIC")}
+    </Button>
+  </div>
 </header>
 
 <script>
@@ -108,13 +122,14 @@ class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 borde
     }
   }
 
-  // Init after full layout (fonts + layout computed) — no flash
   window.addEventListener("load", () => {
     indicator.style.transition = "none";
     resetIndicator();
-    requestAnimationFrame(() => requestAnimationFrame(() => {
-      indicator.style.transition = "";
-    }));
+    requestAnimationFrame(() =>
+      requestAnimationFrame(() => {
+        indicator.style.transition = "";
+      }),
+    );
   });
 
   let resetTimer: ReturnType<typeof setTimeout> | null = null;
@@ -133,9 +148,14 @@ class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 borde
   }
 
   links.forEach((link) => {
-    link.addEventListener("click", () => { pendingLink = link; });
+    link.addEventListener("click", () => {
+      pendingLink = link;
+    });
     link.addEventListener("mouseenter", () => {
-      if (resetTimer) { clearTimeout(resetTimer); resetTimer = null; }
+      if (resetTimer) {
+        clearTimeout(resetTimer);
+        resetTimer = null;
+      }
       moveIndicatorTo(link);
       setHoverText(link);
     });
@@ -147,9 +167,6 @@ class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 borde
     });
   });
 
-  // Update indicator after swup navigation.
-  // setTimeout(0) ensures updateNavActive() in BaseLayout has already run
-  // before we re-query nav-link--active.
   document.addEventListener("swup:page:view", () => {
     setTimeout(() => {
       pendingLink = null;
@@ -157,24 +174,29 @@ class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 borde
     }, 0);
   });
 
-  // Scroll: opaque + blur when content scrolls under
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 8) {
-      header.classList.add("shadow-md", "backdrop-blur-md", "bg-surface/60");
-    } else {
-      header.classList.remove("shadow-md", "backdrop-blur-md", "bg-surface/60");
-    }
-  }, { passive: true });
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (window.scrollY > 8) {
+        header.classList.add("shadow-md", "backdrop-blur-md", "bg-surface/60");
+      } else {
+        header.classList.remove(
+          "shadow-md",
+          "backdrop-blur-md",
+          "bg-surface/60",
+        );
+      }
+    },
+    { passive: true },
+  );
 </script>
 
 <style>
-  /* Chiffre plus discret, label plein contraste sur état actif/hover */
   .nav-link--active .nav-num,
   .nav-link:hover .nav-num {
     opacity: 0.45;
   }
 
-  /* Label toujours en gras — pas de shift de layout au hover */
   .nav-link {
     font-weight: 700;
   }
