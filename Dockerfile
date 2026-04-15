@@ -6,6 +6,7 @@ COPY package.json bun.lock* ./
 ARG CI=true
 ENV CI=${CI}
 RUN bun install
+RUN git config --global --add safe.directory /app
 EXPOSE 4321
 CMD ["bun", "run", "dev", "--", "--host", "0.0.0.0"]
 
