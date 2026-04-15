@@ -1,5 +1,5 @@
+import Showcase from "@components/astrobook/Showcase.astro";
 import MobileBottomNavComponent from "../nav/MobileBottomNav.astro";
-import Showcase from "../Showcase.astro";
 
 export default { component: Showcase };
 

@@ -1,4 +1,4 @@
-import Showcase from "../Showcase.astro";
+import Showcase from "@components/astrobook/Showcase.astro";
 import BadgeComponent from "./Badge.astro";
 
 export default { component: Showcase };

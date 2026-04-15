@@ -1,4 +1,4 @@
-import Showcase from "../Showcase.astro";
+import Showcase from "@components/astrobook/Showcase.astro";
 import Tag from "./Tag.astro";
 
 export default { component: Showcase };

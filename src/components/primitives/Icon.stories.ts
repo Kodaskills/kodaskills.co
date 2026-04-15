@@ -1,5 +1,5 @@
+import Showcase from "@components/astrobook/Showcase.astro";
 import { ICON_REGISTRY } from "@lib/icons";
-import Showcase from "../Showcase.astro";
 import IconComponent from "./Icon.astro";
 
 export default { component: Showcase };

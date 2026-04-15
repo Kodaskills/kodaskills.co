@@ -23,9 +23,13 @@ import type { IconName } from "@lib/icons";
  *
  * Renders as <a> when href is provided, <button> otherwise.
  */
+import type { HTMLAttributes } from "astro/types";
 import Icon from "./Icon.astro";
 
-interface Props {
+type ButtonHTMLProps = HTMLAttributes<"button">;
+type AnchorHTMLProps = HTMLAttributes<"a">;
+
+type Props = (ButtonHTMLProps | AnchorHTMLProps) & {
   variant?:
     | "primary"
     | "outlined"
@@ -36,13 +40,11 @@ interface Props {
   size?: "xs" | "sm" | "md" | "lg";
   href?: string;
   type?: "button" | "submit" | "reset";
-  class?: string;
   disabled?: boolean;
-  onclick?: string;
   label?: string;
   iconLeft?: IconName;
   iconRight?: IconName;
-}
+};
 
 const {
   variant = "primary",
@@ -51,11 +53,13 @@ const {
   type = "button",
   class: className,
   disabled = false,
-  onclick,
   label,
   iconLeft,
   iconRight,
+  ...rest
 } = Astro.props;
+
+const isAnchor = !!href;
 
 const base =
   "font-headline font-bold uppercase tracking-widest transition-all inline-flex items-center gap-3";
@@ -80,11 +84,11 @@ const variants: Record<string, string> = {
 ---
 
 {
-  href ? (
+  isAnchor ? (
     <a
       href={href}
       class:list={[base, sizes[size], variants[variant], className]}
-      onclick={onclick}
+      {...(rest as AnchorHTMLProps)}
     >
       {iconLeft && <Icon name={iconLeft} size={16} />}
       <slot>{label}</slot>
@@ -95,6 +99,7 @@ const variants: Record<string, string> = {
       type={type}
       class:list={[base, sizes[size], variants[variant], className]}
       disabled={disabled}
+      {...(rest as ButtonHTMLProps)}
     >
       {iconLeft && <Icon name={iconLeft} size={16} />}
       <slot>{label}</slot>

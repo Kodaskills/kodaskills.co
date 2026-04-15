@@ -1,4 +1,4 @@
-import Showcase from "../Showcase.astro";
+import Showcase from "@components/astrobook/Showcase.astro";
 import SidebarComponent from "./Sidebar.astro";
 
 export default { component: Showcase };

@@ -1,4 +1,4 @@
-import Showcase from "../Showcase.astro";
+import Showcase from "@components/astrobook/Showcase.astro";
 import Tooltip from "./Tooltip.astro";
 
 export default { component: Showcase };
