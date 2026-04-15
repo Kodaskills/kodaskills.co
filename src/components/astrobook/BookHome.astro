@@ -1,0 +1,34 @@
+---
+/**
+ * Custom homepage for Astrobook - follows the Kodaskills design system.
+ */
+import Button from "@components/primitives/Button.astro";
+import Tag from "@components/primitives/Tag.astro";
+import Text from "@components/typography/Text.astro";
+import Title from "@components/typography/Title.astro";
+import { getVersion } from "@lib/version";
+
+const version = getVersion();
+---
+<div class="min-h-[100%] flex flex-col items-center justify-center text-center gap-12">
+  <Title as="h1" variant="headline" color="primary">
+    Kodaskills
+  </Title>
+  <div>
+	  <Title as="h2" color="muted">
+	    Component library & design tokens
+	  </Title>
+	  <Text as="p" variant="sm" color="muted">
+	    Browse components in the sidebar to preview and test.
+	  </Text>
+  </div>
+	<div class="flex w-fit gap-4">
+		<Button variant="primary" size="sm" href="https://kodaskills.co" target="_blank" rel="noopener noreferrer" iconLeft="cta-rocket">
+			Visit Live Website
+		</Button>
+	  <Button variant="outlined" size="sm" href="https://github.com/kodaskills/kodaskills.co" target="_blank" rel="noopener noreferrer" iconLeft="social-github">
+	   	Github Repository
+	  </Button>
+	</div>
+	<Tag id="version-badge" text={version} color="tertiary" variant="outlined" />
+</div>

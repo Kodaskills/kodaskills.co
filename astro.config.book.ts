@@ -22,24 +22,10 @@ export default defineConfig({
     UnoCSS(),
 		alpinejs({ entrypoint: "/src/alpine-entrypoint" }),
 		astrobook({
-			directory: "src/components",
-			title: "Kodaskills\r\nDesign System",
-			// Inject design tokens, patterns, and Google Fonts @import
-			// (fonts are imported via @import in global.css to avoid Vite module errors)
-			css: ["./src/styles/global.css"],
+      directory: "src/components",
+      title: "Design System",
+      home: "./src/components/astrobook/BookHome.astro",
+      css: ["./src/styles/global.css"],
 		}),
-	],
-	vite: {
-		server: {
-			watch: { usePolling: true }, // required for hot-reload inside Docker
-			// warmup: {
-			// 	// Pre-transform all component and story files on startup so UnoCSS
-			// 	// extracts every class before the first story renders (prevents FOUC).
-			// 	clientFiles: [
-			// 		"./src/components/**/*.astro",
-			// 		"./src/components/**/*.stories.ts",
-			// 	],
-			// },
-		},
-	},
+	]
 });
