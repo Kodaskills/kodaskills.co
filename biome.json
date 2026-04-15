@@ -59,6 +59,6 @@
     "useIgnoreFile": true
   },
   "files": {
-    "includes": ["src/**"]
+    "includes": ["src/**", "!!src/locales/fr.ts"]
   }
 }
