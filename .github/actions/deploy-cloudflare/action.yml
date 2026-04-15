@@ -1,0 +1,65 @@
+name: 'Deploy to Cloudflare Pages'
+description: 'Download build artifact and deploy to Cloudflare Pages'
+
+inputs:
+  artifact_name:
+    description: 'Artifact name to download'
+    required: true
+  dist_path:
+    description: 'Path to the dist directory'
+    required: true
+  project_name:
+    description: 'Cloudflare Pages project name'
+    required: true
+  branch:
+    description: 'Branch name'
+    required: true
+  commit_hash:
+    description: 'Commit SHA'
+    required: true
+  api_token:
+    description: 'Cloudflare API token'
+    required: true
+  account_id:
+    description: 'Cloudflare account ID'
+    required: true
+  run_id:
+    description: 'Workflow run ID (optional, for cross-workflow downloads)'
+    required: false
+    default: ''
+  github_token:
+    description: 'GitHub token (required for cross-workflow downloads)'
+    required: false
+    default: ''
+
+outputs:
+  deployment-url:
+    description: 'URL of the deployed site'
+    value: ${{ steps.deploy.outputs.deployment-url }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Download artifact (same run)
+      if: inputs.run_id == ''
+      uses: actions/download-artifact@v8
+      with:
+        name: ${{ inputs.artifact_name }}
+        path: ${{ inputs.dist_path }}
+
+    - name: Download artifact (cross run)
+      if: inputs.run_id != ''
+      uses: actions/download-artifact@v8
+      with:
+        name: ${{ inputs.artifact_name }}
+        run-id: ${{ inputs.run_id }}
+        github-token: ${{ inputs.github_token }}
+        path: ${{ inputs.dist_path }}
+
+    - name: Deploy
+      id: deploy
+      uses: cloudflare/wrangler-action@v3
+      with:
+        apiToken: ${{ inputs.api_token }}
+        accountId: ${{ inputs.account_id }}
+        command: pages deploy ${{ inputs.dist_path }} --project-name=${{ inputs.project_name }} --branch=${{ inputs.branch }} --commit-hash=${{ inputs.commit_hash }}

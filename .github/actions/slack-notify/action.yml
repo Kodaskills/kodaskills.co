@@ -23,6 +23,9 @@ inputs:
   commit_hash:
     description: 'Commit hash'
     required: true
+  project_name:
+    description: 'Project name (e.g. Website, Astrobook)'
+    required: true
 
 runs:
   using: 'composite'
@@ -62,7 +65,7 @@ runs:
         webhook-type: incoming-webhook
         payload: |
           {
-            "text": "${{ env.STATUS_EMOJI }} Deploy ${{ inputs.job_status }}",
+            "text": "${{ env.STATUS_EMOJI }} ${{ inputs.project_name }} - Deploy ${{ inputs.job_status }}",
             "attachments": [
               {
                 "color": "${{ env.COLOR }}",
