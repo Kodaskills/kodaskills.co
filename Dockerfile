@@ -1,12 +1,11 @@
 # ── dev stage ──────────────────────────────────────────────────────────────────
 FROM oven/bun:alpine AS dev
 WORKDIR /app
-RUN apk add --no-cache git
+RUN apk add --no-cache git && git config --global --add safe.directory /app
 COPY package.json bun.lock* ./
 ARG CI=true
 ENV CI=${CI}
 RUN bun install
-RUN git config --global --add safe.directory /app
 EXPOSE 4321
 CMD ["bun", "run", "dev", "--", "--host", "0.0.0.0"]
 
