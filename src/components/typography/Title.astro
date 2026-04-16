@@ -1,6 +1,6 @@
 ---
 /**
- * Title — heading component with variant sizes and colors.
+ * Title — heading component with variant sizes.
  *
  * Variants:
  *  - "headline": Hero/display text (text-5xl md:text-8xl/tight)
@@ -12,20 +12,14 @@
  *  - "h5": Small heading (text-base/snug)
  *  - "h6": Extra small heading (text-sm/snug)
  *
- * Colors:
- *  - "default": text-on-surface
- *  - "muted": text-on-surface-variant
- *  - "primary": text-primary
- *  - "error": text-error
  */
 export interface Props {
   as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "span" | "p";
   variant?: "headline" | "display" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-  color?: "default" | "muted" | "primary" | "secondary" | "tertiary" | "error";
   class?: string;
 }
 
-const { as: Tag = "h2", variant = "h2", color = "default", class: className = "" } = Astro.props;
+const { as: Tag = "h2", variant = "h2", class: className = "" } = Astro.props;
 
 const variants: Record<string, string> = {
   headline: "font-headline text-5xl md:text-8xl font-bold tracking-tighter leading-none",
@@ -37,17 +31,8 @@ const variants: Record<string, string> = {
   h5: "font-heading text-base leading-snug font-semibold",
   h6: "font-heading text-sm leading-snug font-semibold",
 };
-
-const colors: Record<string, string> = {
-  default: "text-on-surface",
-  muted: "text-on-surface-variant",
-  primary: "text-primary",
-  secondary: "text-secondary",
-  tertiary: "text-tertiary",
-  error: "text-error",
-};
 ---
 
-<Tag class:list={[variants[variant], colors[color], className]}>
+<Tag class:list={[variants[variant], className]}>
   <slot />
 </Tag>

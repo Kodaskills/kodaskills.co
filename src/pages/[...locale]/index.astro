@@ -5,6 +5,9 @@ import StatCard from "@components/blocks/StatCard.astro";
 import SectionTitle from "@components/patterns/SectionTitle.astro";
 import Button from "@components/primitives/Button.astro";
 import Icon from "@components/primitives/Icon.astro";
+import Link from "@components/typography/Link.astro";
+import Text from "@components/typography/Text.astro";
+import Title from "@components/typography/Title.astro";
 import { useI18n } from "@i18n/index";
 import BaseLayout from "@layouts/BaseLayout.astro";
 
@@ -39,7 +42,7 @@ const { _, lp } = await useI18n(Astro.currentLocale);
     </nav>
 
     <address class="absolute bottom-12 right-12 hidden xl:block text-right not-italic">
-      <p class="text-xs font-mono text-outline-variant mb-2">{_("COORDINATES_LOC")}</p>
+      <Text variant="xs" class="font-mono text-outline-variant mb-2">{_("COORDINATES_LOC")}</Text>
       <output class="text-sm font-mono text-on-surface-variant tracking-widest">52.3676° N, 4.9041° E</output>
     </address>
   </PageHero>
@@ -54,10 +57,10 @@ const { _, lp } = await useI18n(Astro.currentLocale);
           <figure class="mb-12">
             <Icon name="card-strategy" size={36} class="text-primary" />
           </figure>
-          <h3 class="font-headline text-xl font-bold mb-4 uppercase">{_("STRATEGY")}</h3>
-          <p class="font-body text-sm text-on-surface-variant leading-relaxed">
+          <Title as="h3" variant="h3" class="font-headline text-xl font-bold mb-4 uppercase">{_("STRATEGY")}</Title>
+          <Text variant="sm" class="leading-relaxed text-on-surface-variant">
             {_("Technical roadmapping aligned with Series A-D business objectives. We prevent architecture from becoming a bottleneck.")}
-          </p>
+          </Text>
           <ul class="mt-8 space-y-2 font-mono text-[10px] text-primary">
             <li>[01] {_("SCALING_FRAMEWORKS")}</li>
             <li>[02] {_("DEBT_AUDITS")}</li>
@@ -69,10 +72,10 @@ const { _, lp } = await useI18n(Astro.currentLocale);
           <figure class="mb-12 text-tertiary">
             <Icon name="card-infra" size={36} />
           </figure>
-          <h3 class="font-headline text-xl font-bold mb-4 uppercase">INFRA_ARCH</h3>
-          <p class="font-body text-sm text-on-surface-variant leading-relaxed">
+          <Title as="h3" variant="h3" class="font-headline text-xl font-bold mb-4 uppercase">INFRA_ARCH</Title>
+          <Text variant="sm" class="leading-relaxed text-on-surface-variant">
             {_("Precision-engineered cloud infrastructure. High availability, low latency, and cost-optimized deployments.")}
-          </p>
+          </Text>
           <ul class="mt-8 space-y-2 font-mono text-[10px] text-tertiary">
             <li>[01] KUBERNETES_OPS</li>
             <li>[02] {_("MULTI_REGION_STRAT")}</li>
@@ -84,10 +87,10 @@ const { _, lp } = await useI18n(Astro.currentLocale);
           <figure class="mb-12">
             <Icon name="card-encrypted" size={36} class="text-primary" />
           </figure>
-          <h3 class="font-headline text-xl font-bold mb-4 uppercase">{_("SECURITY")}</h3>
-          <p class="font-body text-sm text-on-surface-variant leading-relaxed">
+          <Title as="h3" variant="h3" class="font-headline text-xl font-bold mb-4 uppercase">{_("SECURITY")}</Title>
+          <Text variant="sm" class="leading-relaxed text-on-surface-variant">
             {_("Hardening systems from the core out. SOC2 readiness, penetration testing, and zero-trust protocol implementation.")}
-          </p>
+          </Text>
           <ul class="mt-8 space-y-2 font-mono text-[10px] text-primary">
             <li>[01] {_("THREAT_MODELING")}</li>
             <li>[02] {_("ENCRYPTION_AT_REST")}</li>
@@ -99,12 +102,12 @@ const { _, lp } = await useI18n(Astro.currentLocale);
           <figure class="mb-12">
             <Icon name="card-cto" size={36} class="text-primary" />
           </figure>
-          <h3 class="font-headline text-xl font-bold mb-4 uppercase">{_("CTO_AS_SERVICE")}</h3>
-          <p class="font-body text-sm text-on-surface-variant leading-relaxed">
+          <Title as="h3" variant="h3" class="font-headline text-xl font-bold mb-4 uppercase">{_("CTO_AS_SERVICE")}</Title>
+          <Text variant="sm" class="leading-relaxed text-on-surface-variant">
             {_("Fractional leadership for teams needing senior guidance without the $400k+ overhead of a full-time hire.")}
-          </p>
+          </Text>
           <aside class="mt-8 p-4 bg-surface-container-highest border border-primary">
-            <p class="text-[10px] font-mono text-primary mb-1">{_("CURRENT_AVAILABILITY")}</p>
+            <Text variant="captionMono" class="mb-1 text-primary">{_("CURRENT_AVAILABILITY")}</Text>
             <output class="text-sm font-bold font-headline uppercase">{_("1_OPEN_SLOT")}</output>
           </aside>
         </article>
@@ -115,10 +118,10 @@ const { _, lp } = await useI18n(Astro.currentLocale);
   <section class="py-24 px-6 md:px-12 bg-surface-container-lowest overflow-hidden">
     <section class="max-w-7xl mx-auto flex flex-col md:flex-row gap-12 items-center">
       <section class="w-full md:w-1/2 space-y-6">
-        <h2 class="font-headline text-4xl font-bold tracking-tight">{_("20_YEARS_OPERATIONAL_EXCELLENCE.")}</h2>
-        <p class="font-body text-on-surface-variant leading-relaxed text-lg">
+        <Title as="h2" variant="h2" class="font-headline text-4xl font-bold tracking-tight">{_("20_YEARS_OPERATIONAL_EXCELLENCE.")}</Title>
+        <Text variant="lg" class="leading-relaxed text-on-surface-variant">
           Kodaskills isn't just advisory—it's execution. We've built platforms for fintech, medtech, and high-frequency trading. We speak the language of engineering and the language of the boardroom.
-        </p>
+        </Text>
         <dl class="grid grid-cols-2 gap-4">
           <StatCard value="50+" label={_("SUCCESSFUL_DEPLOYS")} variant="accent" />
           <StatCard value="$2B+" label={_("CLIENT_CAP_MANAGED")} variant="accent" />
@@ -141,18 +144,18 @@ const { _, lp } = await useI18n(Astro.currentLocale);
   </section>
 
   <section class="py-32 px-6 md:px-12 bg-primary flex flex-col items-center text-center">
-    <h2 class="font-headline text-4xl md:text-6xl font-extrabold tracking-tighter text-on-primary mb-8 max-w-3xl uppercase">
+    <Title as="h2" variant="h2" class="font-headline text-4xl md:text-6xl font-extrabold tracking-tighter text-on-primary mb-8 max-w-3xl uppercase">
       {_("READY_TO_SECURE_YOUR_TECH_FUTURE?")}
-    </h2>
-    <p class="font-body text-on-primary font-medium text-lg mb-12 max-w-xl opacity-90">
+    </Title>
+    <Text variant="lg" weight="medium" class="mb-12 max-w-xl opacity-90 text-on-primary">
       {_("Book a 30-minute technical health diagnostic. No sales pitch. Just hard data and expert assessment.")}
-    </p>
-    <a
+    </Text>
+    <Link
       href={lp("/contact")}
       class="bg-surface text-primary font-headline font-bold uppercase tracking-widest text-sm px-12 py-4 hover:bg-surface-container transition-colors inline-flex items-center gap-4"
     >
       {_("INITIATE_DIAGNOSTIC_PROTOCOL")}
       <Icon name="cta-bolt" />
-    </a>
+    </Link>
   </section>
 </BaseLayout>

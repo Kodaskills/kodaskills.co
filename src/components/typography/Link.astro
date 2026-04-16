@@ -1,0 +1,38 @@
+---
+/**
+ * Link — anchor/link component with variant styles.
+ *
+ * Variants:
+ *  - "default": text-primary with underline
+ *  - "muted": text-on-surface-variant
+ *  - "primary": text-primary
+ *  - "secondary": text-secondary
+ */
+export interface Props {
+  href: string;
+  variant?: "default" | "muted" | "primary" | "secondary" | "tertiary";
+  class?: string;
+  target?: string;
+  rel?: string;
+}
+
+const { href, variant = "default", class: className = "", target, rel } = Astro.props;
+
+const variants: Record<string, string> = {
+  default:
+    "text-primary underline underline-offset-2 decoration-primary/50 hover:decoration-primary transition-colors",
+  muted: "text-on-surface-variant hover:text-on-surface transition-colors",
+  primary: "text-primary hover:text-primary-dim transition-colors",
+  secondary: "text-secondary hover:text-secondary-dim transition-colors",
+  tertiary: "text-tertiary hover:text-tertiary-dim transition-colors",
+};
+---
+
+<a
+  href={href}
+  target={target}
+  rel={rel}
+  class:list={[variants[variant], className]}
+>
+  <slot />
+</a>

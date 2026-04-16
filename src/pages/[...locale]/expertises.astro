@@ -3,6 +3,8 @@ import StatCard from "@components/blocks/StatCard.astro";
 import SpecRow from "@components/patterns/SpecRow.astro";
 import Button from "@components/primitives/Button.astro";
 import Icon from "@components/primitives/Icon.astro";
+import Text from "@components/typography/Text.astro";
+import Title from "@components/typography/Title.astro";
 import { useI18n } from "@i18n/index";
 import BaseLayout from "@layouts/BaseLayout.astro";
 
@@ -86,15 +88,15 @@ const expertiseCards = [
     <section class="max-w-7xl mx-auto">
 
       <header class="mb-16 border-l-4 border-primary pl-6">
-        <p class="text-primary font-headline text-xs tracking-[0.3em] uppercase mb-2">
+        <Text variant="label" class="mb-2 text-primary">
           {_("CAPABILITIES_MANIFEST")}
-        </p>
-        <h1 class="text-5xl md:text-7xl font-headline font-bold uppercase tracking-tighter leading-none mb-4">
+        </Text>
+        <Title as="h1" variant="headline" class="mb-4 leading-none">
           {_("Core")} <span class="text-primary">{_("Expertise")}</span>
-        </h1>
-        <p class="max-w-2xl text-on-surface-variant font-body text-lg leading-relaxed">
+        </Title>
+        <Text variant="lg" class="max-w-2xl leading-relaxed text-on-surface-variant">
           {_("Strategic engineering solutions for high-density information environments. We provide the technical rigor required for resilient digital infrastructure.")}
-        </p>
+        </Text>
       </header>
 
       <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border border-outline-variant">
@@ -104,13 +106,13 @@ const expertiseCards = [
               <Icon name={card.icon} size={36} class="text-primary" />
               <output class="text-outline-variant font-headline text-4xl font-bold">{card.num}</output>
             </header>
-            <h3 class="text-2xl font-headline font-bold uppercase tracking-tight mb-4 group-hover:text-primary transition-colors">
+            <Title as="h3" variant="h3" class="mb-4 group-hover:text-primary transition-colors">
               {card.title}
-            </h3>
-            <p class="text-xs font-mono text-tertiary mb-6">{card.tag}</p>
-            <p class="text-on-surface-variant text-sm font-body leading-relaxed mb-8 flex-1">
+            </Title>
+            <Text variant="captionMono" class="mb-6 text-tertiary">{card.tag}</Text>
+            <Text variant="sm" class="mb-8 flex-1 leading-relaxed text-on-surface-variant">
               {card.description}
-            </p>
+            </Text>
             <dl class="space-y-2 border-t border-outline-variant pt-6">
               {card.specs.map((spec) => (
                 <SpecRow label={spec.label} value={spec.value} highlight={spec.highlight} />
@@ -122,8 +124,8 @@ const expertiseCards = [
         <section class="bg-surface-container-lowest border border-outline-variant p-8 flex flex-col justify-center items-center group relative overflow-hidden">
           <span aria-hidden="true" class="technical-grid-dots absolute inset-0 opacity-10"></span>
           <section class="relative z-10 text-center">
-            <p class="text-outline-variant font-headline text-sm tracking-widest uppercase mb-4">Diagnostic_Ready</p>
-            <h4 class="text-xl font-headline font-bold uppercase mb-6">{_("Need a custom audit?")}</h4>
+            <Text variant="sm" class="mb-4 tracking-widest text-outline-variant">Diagnostic_Ready</Text>
+            <Title as="h4" variant="h4" class="mb-6">{_("Need a custom audit?")}</Title>
             <Button href={lp("/contact")} variant="outlined-primary" size="sm">
               {_("INITIALIZE_CONTACT")}
             </Button>
@@ -134,7 +136,7 @@ const expertiseCards = [
       <section class="mt-20">
         <section class="flex items-center gap-4 mb-8">
           <hr class="h-px flex-1 bg-outline-variant border-0" />
-          <p class="text-[10px] font-mono text-outline uppercase tracking-[0.5em]">System_Parameters</p>
+          <Text variant="captionMono" class="tracking-[0.5em] text-outline">System_Parameters</Text>
           <hr class="h-px flex-1 bg-outline-variant border-0" />
         </div>
         <dl class="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -148,13 +150,13 @@ const expertiseCards = [
       <article class="mt-20 border border-outline-variant overflow-hidden">
         <section class="grid grid-cols-1 lg:grid-cols-12">
           <section class="lg:col-span-7 bg-surface-container p-12 border-b lg:border-b-0 lg:border-r border-outline-variant">
-            <p class="text-tertiary font-mono text-[10px] uppercase tracking-widest mb-4">Featured_Deployment</p>
-            <h2 class="text-4xl font-headline font-bold uppercase tracking-tighter mb-6">
+            <Text variant="captionMono" class="mb-4 tracking-widest text-tertiary">Featured_Deployment</Text>
+            <Title as="h2" variant="h2" class="mb-6">
               {_("Global Financial Terminal Upgrade")}
-            </h2>
-            <p class="text-on-surface-variant font-body leading-relaxed mb-8">
+            </Title>
+            <Text class="mb-8 leading-relaxed text-on-surface-variant">
               {_("Modernizing a legacy transactional system for a tier-1 banking client. We implemented a micro-services architecture that reduced operational overhead by 40% and improved security compliance scores by 2 grades.")}
-            </p>
+            </Text>
             <ul class="flex flex-wrap gap-2">
               {["Rust", "gRPC", "PostgreSQL", "EKS"].map((tag) => (
                 <li class="bg-surface-variant text-on-surface text-[9px] px-2 py-1 font-mono uppercase">{tag}</li>

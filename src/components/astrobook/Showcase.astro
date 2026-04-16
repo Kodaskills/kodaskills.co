@@ -1,4 +1,6 @@
 ---
+import Text from "@components/typography/Text.astro";
+import Title from "@components/typography/Title.astro";
 /**
  * Showcase — renders a labelled collection of component instances.
  *
@@ -30,6 +32,7 @@ interface Group {
 }
 
 interface Props {
+  // biome-ignore lint/suspicious/noExplicitAny: Astro has no Component type
   component: any;
   items?: Item[];
   groups?: Group[];
@@ -73,9 +76,9 @@ await activateLingui("en");
         {groups.map((group) => (
           <article>
             <header>
-              <h3 class="col-span-full text-sm font-bold uppercase tracking-wide mb-4">
+              <Title as="h3" variant="h4" class="col-span-full mb-4">
                 {group.type.charAt(0).toUpperCase() + group.type.slice(1)}
-              </h3>
+              </Title>
             </header>
             <ul class={containerClass}>
               {group.items.map(({ label, props, text }) => (

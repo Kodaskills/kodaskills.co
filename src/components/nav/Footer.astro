@@ -4,6 +4,9 @@
  * 2-column grid layout: brand left, 3-column nav grid right.
  */
 import Icon from "@components/primitives/Icon.astro";
+import Link from "@components/typography/Link.astro";
+import Text from "@components/typography/Text.astro";
+import Title from "@components/typography/Title.astro";
 import { getI18n } from "@i18n/index";
 
 const { _, locale } = getI18n();
@@ -26,92 +29,92 @@ const legalLinks =
 <footer class="lg:ml-20 bg-surface border-t border-outline-variant">
   <section class="py-12 px-6 grid grid-cols-1 md:grid-cols-2 gap-12">
     <section aria-label="Brand">
-      <p class="font-headline text-lg font-bold text-on-surface tracking-widest mb-4 uppercase">
+      <Title as="p" variant="h4" class="text-on-surface tracking-widest mb-4 uppercase">
         KODASKILLS
-      </p>
-      <p class="font-sans text-xs text-outline mb-6 leading-relaxed">
+      </Title>
+      <Text variant="xs" class="mb-6 leading-relaxed text-outline">
         {_("OPERATOR-GRADE PRECISION FOR ENTERPRISE ARCHITECTURE. WE BUILD WHAT OTHERS ONLY THEORIZE.")}
-      </p>
-      <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-primary font-bold">
+      </Text>
+      <Text variant="captionMono" class="text-primary">
         EST. 2024 / V6.0.4
-      </p>
+      </Text>
     </section>
 
     <nav class="grid grid-cols-3 gap-8" aria-label={_("Footer navigation")}>
       <section class="space-y-4">
-        <h3 class="font-mono text-[10px] uppercase tracking-widest text-primary font-bold">{_("Your Journey")}</h3>
+        <Title as="h3" variant="h4" class="text-primary">{_("Your Journey")}</Title>
         <ul class="space-y-2 font-sans text-xs">
           <li>
-            <a class="flex items-center gap-2 text-outline hover:text-primary transition-colors" href="#">
+            <Link href="#" class="flex items-center gap-2">
               <span class="font-mono text-[10px] text-primary/60 shrink-0">01</span>
               {_("Expertise")}
-            </a>
+            </Link>
           </li>
           <li>
-            <a class="flex items-center gap-2 text-outline hover:text-primary transition-colors" href="#">
+            <Link href="#" class="flex items-center gap-2">
               <span class="font-mono text-[10px] text-primary/60 shrink-0">02</span>
               {_("Approach")}
-            </a>
+            </Link>
           </li>
           <li>
-            <a class="flex items-center gap-2 text-outline hover:text-primary transition-colors" href="#">
+            <Link href="#" class="flex items-center gap-2">
               <span class="font-mono text-[10px] text-primary/60 shrink-0">03</span>
               {_("Methodology")}
-            </a>
+            </Link>
           </li>
           <li>
-            <a class="flex items-center gap-2 text-outline hover:text-primary transition-colors" href="#">
+            <Link href="#" class="flex items-center gap-2">
               <span class="font-mono text-[10px] text-primary/60 shrink-0">04</span>
               {_("Contact")}
-            </a>
+            </Link>
           </li>
         </ul>
       </section>
 
       <section class="space-y-4">
-        <h3 class="font-mono text-[10px] uppercase tracking-widest text-primary font-bold">{_("Connect")}</h3>
+        <Title as="h3" variant="h4" class="text-primary">{_("Connect")}</Title>
         <ul class="space-y-2 font-sans text-xs">
           <li>
-            <a class="flex items-center gap-2 text-outline hover:text-primary transition-colors" href="https://www.linkedin.com/company/kodaskills/" target="_blank" rel="noopener noreferrer" onclick="window.posthog?.capture('social_link_clicked', { platform: 'linkedin' })">
+            <Link href="https://www.linkedin.com/company/kodaskills/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2">
               <Icon name="social-linkedin" size={14} class="shrink-0" />
               LinkedIn
-            </a>
+            </Link>
           </li>
           <li>
-            <a class="flex items-center gap-2 text-outline hover:text-primary transition-colors" href="https://github.com/Kodaskills/kodaskills.co" target="_blank" rel="noopener noreferrer" onclick="window.posthog?.capture('social_link_clicked', { platform: 'github' })">
+            <Link href="https://github.com/Kodaskills/kodaskills.co" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2">
               <Icon name="social-github" size={14} class="shrink-0" />
               GitHub
-            </a>
+            </Link>
           </li>
           <li>
-            <a class="flex items-center gap-2 text-outline hover:text-primary transition-colors" href="#" onclick="window.posthog?.capture('social_link_clicked', { platform: 'x' })">
+            <Link href="#" class="flex items-center gap-2">
               <Icon name="social-x" size={14} class="shrink-0" />
               X
-            </a>
+            </Link>
           </li>
         </ul>
       </section>
 
       <section class="space-y-4">
-        <h3 class="font-mono text-[10px] uppercase tracking-widest text-primary font-bold">{_("Legal")}</h3>
+        <Title as="h3" variant="h4" class="text-primary">{_("Legal")}</Title>
         <ul class="space-y-2 font-sans text-xs">
           <li>
-            <a class="flex items-center gap-2 text-outline hover:text-primary transition-colors" href={legalLinks.privacy}>
+            <Link href={legalLinks.privacy} class="flex items-center gap-2">
               <Icon name="card-encrypted" size={14} class="shrink-0" />
               {_("Privacy")}
-            </a>
+            </Link>
           </li>
           <li>
-            <a class="flex items-center gap-2 text-outline hover:text-primary transition-colors" href={legalLinks.legal}>
+            <Link href={legalLinks.legal} class="flex items-center gap-2">
               <Icon name="card-shield" size={14} class="shrink-0" />
               {_("Legal")}
-            </a>
+            </Link>
           </li>
           <li>
-            <a class="flex items-center gap-2 text-outline hover:text-primary transition-colors" href={legalLinks.terms}>
+            <Link href={legalLinks.terms} class="flex items-center gap-2">
               <Icon name="card-verified" size={14} class="shrink-0" />
               {_("Terms of Op")}
-            </a>
+            </Link>
           </li>
         </ul>
       </section>
@@ -120,8 +123,8 @@ const legalLinks =
   </section>
 
   <section class="border-t border-outline-variant px-6 h-11 flex items-center">
-    <p class="font-mono text-[10px] uppercase tracking-widest text-outline">
+    <Text variant="captionMono" class="text-outline">
       © {year} KODASKILLS_OPERATIONS. ALL_RIGHTS_RESERVED.
-    </p>
+    </Text>
   </section>
 </footer>

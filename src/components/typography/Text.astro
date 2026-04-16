@@ -1,6 +1,6 @@
 ---
 /**
- * Text — body text component with variant sizes and colors.
+ * Text — body text component with variant sizes.
  *
  * Variants:
  *  - "lg": Large body text (text-lg/relaxed)
@@ -8,15 +8,6 @@
  *  - "sm": Small body text (text-sm/normal)
  *  - "xs": Extra small text (text-xs/normal)
  *  - "label": Label style (text-xs/uppercase/tracking-wider)
- *
- * Colors:
- *  - "default": text-on-surface
- *  - "muted": text-on-surface-variant
- *  - "primary": text-primary
- *  - "secondary": text-secondary
- *  - "tertiary": text-tertiary
- *  - "error": text-error
- *  - "on-primary": text-on-primary (for primary backgrounds)
  *
  * Weights:
  *  - "regular": font-normal
@@ -27,18 +18,11 @@
 export interface Props {
   as?: "p" | "span" | "div" | "label" | "strong" | "em";
   variant?: "lg" | "md" | "sm" | "xs" | "label" | "caption" | "captionMono";
-  color?: "default" | "muted" | "primary" | "secondary" | "tertiary" | "error" | "on-primary";
   weight?: "regular" | "medium" | "semibold" | "bold";
   class?: string;
 }
 
-const {
-  as: Tag = "p",
-  variant = "",
-  color = "default",
-  weight = "",
-  class: className = "",
-} = Astro.props;
+const { as: Tag = "p", variant = "", weight = "", class: className = "" } = Astro.props;
 
 const variants: Record<string, string> = {
   lg: "font-body text-lg leading-relaxed",
@@ -50,16 +34,6 @@ const variants: Record<string, string> = {
   captionMono: "font-mono text-xs leading-normal",
 };
 
-const colors: Record<string, string> = {
-  default: "text-on-surface",
-  muted: "text-on-surface-variant",
-  primary: "text-primary",
-  secondary: "text-secondary",
-  tertiary: "text-tertiary",
-  error: "text-error",
-  "on-primary": "text-on-primary",
-};
-
 const weights: Record<string, string> = {
   regular: "font-normal",
   medium: "font-medium",
@@ -68,14 +42,12 @@ const weights: Record<string, string> = {
 };
 
 const hasVariant = variant && variants[variant];
-const hasColor = color && colors[color];
 const hasWeight = weight && weights[weight];
 ---
 
 <Tag
   class:list={[
     hasVariant ? variants[variant] : "font-body text-base leading-relaxed",
-    hasColor ? colors[color] : "text-on-surface",
     hasWeight ? weights[weight] : "font-normal",
     className,
   ]}

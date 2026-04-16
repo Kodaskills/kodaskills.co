@@ -10,27 +10,42 @@ import { getVersion } from "@lib/version";
 
 const version = getVersion();
 ---
-<main class="min-h-[100%] flex flex-col items-center justify-center text-center gap-12">
+
+<main
+  class="min-h-[100%] flex flex-col items-center justify-center text-center gap-12"
+>
   <header>
-    <Title as="h1" variant="headline" color="primary">
-      Kodaskills
-    </Title>
+    <Title as="h1" variant="headline" class="text-primary"> Kodaskills </Title>
   </header>
   <section class="flex flex-col gap-1">
-	  <Title as="h2" color="muted">
-	    Component library & design tokens
-	  </Title>
-	  <Text as="p" variant="sm" color="muted">
-	    Browse components in the sidebar to preview and test.
-	  </Text>
+    <Title as="h2" class="text-muted">
+      Component library & design tokens
+    </Title>
+    <Text as="p" variant="sm" class="text-muted">
+      Browse components in the sidebar to preview and test.
+    </Text>
   </section>
-	<nav class="flex w-fit gap-4" aria-label="External links">
-		<Button variant="primary" size="sm" href="https://kodaskills.co" target="_blank" rel="noopener noreferrer" iconLeft="cta-rocket">
-			Visit Live Website
-		</Button>
-	  <Button variant="outlined" size="sm" href="https://github.com/kodaskills/kodaskills.co" target="_blank" rel="noopener noreferrer" iconLeft="social-github">
-	   	Github Repository
-	  </Button>
-	</nav>
-	<Tag id="version-badge" text={version} color="tertiary" variant="outlined" />
+  <nav class="flex w-fit gap-4" aria-label="External links">
+    <Button
+      variant="primary"
+      size="sm"
+      href="https://kodaskills.co"
+      target="_blank"
+      rel="noopener noreferrer"
+      iconLeft="cta-rocket"
+    >
+      Visit Live Website
+    </Button>
+    <Button
+      variant="outlined"
+      size="sm"
+      href="https://github.com/kodaskills/kodaskills.co"
+      target="_blank"
+      rel="noopener noreferrer"
+      iconLeft="social-github"
+    >
+      Github Repository
+    </Button>
+  </nav>
+  <Tag id="version-badge" text={version} color="tertiary" variant="outlined" />
 </main>

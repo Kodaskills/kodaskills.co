@@ -3,6 +3,8 @@ import AlertBar from "@components/blocks/AlertBar.astro";
 import PageHeader from "@components/blocks/PageHeader.astro";
 import PageHero from "@components/blocks/PageHero.astro";
 import Icon from "@components/primitives/Icon.astro";
+import Text from "@components/typography/Text.astro";
+import Title from "@components/typography/Title.astro";
 import { useI18n } from "@i18n/index";
 import BaseLayout from "@layouts/BaseLayout.astro";
 
@@ -32,8 +34,8 @@ const { _, lp } = await useI18n(Astro.currentLocale);
         <output class="text-3xl font-headline font-bold text-outline-variant group-hover:text-primary transition-colors">01</output>
         <Icon name="card-audit" class="text-primary" />
       </header>
-      <h3 class="font-headline text-xl font-bold mb-4 tracking-tight">{_("SYSTEM_AUDIT")}</h3>
-      <p class="text-sm font-body text-on-surface-variant mb-6 leading-relaxed">
+      <Title as="h3" variant="h3" class="mb-4 tracking-tight">{_("SYSTEM_AUDIT")}</Title>
+      <Text variant="sm" class="mb-6 leading-relaxed text-on-surface-variant">
         {_("Full-spectrum diagnostic of infrastructure, code integrity, and architectural bottlenecks. 48-hour rapid intake cycle.")}
       </p>
       <ul class="space-y-2">
@@ -52,8 +54,8 @@ const { _, lp } = await useI18n(Astro.currentLocale);
         <output class="text-3xl font-headline font-bold text-primary">02</output>
         <Icon name="card-hub" class="text-primary" />
       </header>
-      <h3 class="font-headline text-xl font-bold mb-4 tracking-tight text-on-surface">{_("INTEGRATED_SUPPORT")}</h3>
-      <p class="text-sm font-body text-on-surface-variant mb-6 leading-relaxed">
+      <Title as="h3" variant="h3" class="mb-4 tracking-tight">{_("INTEGRATED_SUPPORT")}</Title>
+      <Text variant="sm" class="mb-6 leading-relaxed text-on-surface-variant">
         {_("Long-term structural alignment. We embed as senior technical leads within your existing ecosystem to ensure sustained evolution.")}
       </p>
       <ul class="flex flex-wrap gap-2">
@@ -67,14 +69,14 @@ const { _, lp } = await useI18n(Astro.currentLocale);
         <output class="text-3xl font-headline font-bold text-outline-variant group-hover:text-tertiary transition-colors">03</output>
         <Icon name="card-bolt" class="text-tertiary" />
       </header>
-      <h3 class="font-headline text-xl font-bold mb-4 tracking-tight">{_("CRISIS_TASK_FORCE")}</h3>
-      <p class="text-sm font-body text-on-surface-variant mb-6 leading-relaxed">
+      <Title as="h3" variant="h3" class="mb-4 tracking-tight">{_("CRISIS_TASK_FORCE")}</Title>
+      <Text variant="sm" class="mb-6 leading-relaxed text-on-surface-variant">
         {_("Immediate intervention for critical system failures or high-stakes launches. Deployment of elite senior engineers within 4 hours.")}
       </p>
       <aside class="bg-surface-container-lowest border border-error/30 p-3">
-        <p class="text-[10px] font-mono text-error flex items-center gap-2">
-          <Icon name="alert-warning" size={14} /> EMERGENCY_PROTOCOL_ENABLED
-        </p>
+<Text variant="captionMono" class="text-error flex items-center gap-2">
+            <Icon name="alert-warning" size={14} /> EMERGENCY_PROTOCOL_ENABLED
+          </Text>
       </aside>
     </article>
   </section>
@@ -82,19 +84,19 @@ const { _, lp } = await useI18n(Astro.currentLocale);
   <section class="mt-24 relative z-10">
     <section class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
       <section>
-        <h2 class="font-headline text-3xl font-bold mb-8 border-b border-primary w-fit pr-12 pb-2">
+        <Title as="h2" variant="h2" class="mb-8 border-b border-primary w-fit pr-12 pb-2">
           {_("PARTNER_ARCHETYPE")}
-        </h2>
+        </Title>
         <ul class="space-y-8">
           <li class="flex gap-6">
             <figure class="shrink-0 w-12 h-12 border border-outline-variant flex items-center justify-center text-primary">
               <Icon name="card-security" />
             </figure>
             <section>
-              <h4 class="font-headline font-bold text-sm tracking-widest uppercase mb-2">{_("Authority_Lock")}</h4>
-              <p class="text-sm text-on-surface-variant leading-relaxed">
+              <Title as="h4" variant="h4" class="tracking-widest uppercase mb-2">{_("Authority_Lock")}</Title>
+              <Text variant="sm" class="leading-relaxed text-on-surface-variant">
                 {_("We provide absolute clarity in decision-making. No ambiguous recommendations, only technical directives backed by data.")}
-              </p>
+              </Text>
             </section>
           </li>
           <li class="flex gap-6">
@@ -102,10 +104,10 @@ const { _, lp } = await useI18n(Astro.currentLocale);
               <Icon name="card-analytics" />
             </figure>
             <section>
-              <h4 class="font-headline font-bold text-sm tracking-widest uppercase mb-2">{_("Deep_Diagnostic")}</h4>
-              <p class="text-sm text-on-surface-variant leading-relaxed">
+              <Title as="h4" variant="h4" class="tracking-widest uppercase mb-2">{_("Deep_Diagnostic")}</Title>
+              <Text variant="sm" class="leading-relaxed text-on-surface-variant">
                 {_("Surface-level fixes are rejected. We investigate the root architectural cause of every failure point.")}
-              </p>
+              </Text>
             </section>
           </li>
           <li class="flex gap-6">
@@ -113,10 +115,10 @@ const { _, lp } = await useI18n(Astro.currentLocale);
               <Icon name="card-handshake" />
             </figure>
             <section>
-              <h4 class="font-headline font-bold text-sm tracking-widest uppercase mb-2">{_("Reliability_Mesh")}</h4>
-              <p class="text-sm text-on-surface-variant leading-relaxed">
+              <Title as="h4" variant="h4" class="tracking-widest uppercase mb-2">{_("Reliability_Mesh")}</Title>
+              <Text variant="sm" class="leading-relaxed text-on-surface-variant">
                 {_("Our partnership is built on uptime and output. We function as a fail-safe layer for your core product team.")}
-              </p>
+              </Text>
             </section>
           </li>
         </ul>

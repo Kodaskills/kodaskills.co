@@ -2,6 +2,8 @@
 import Badge from "@components/primitives/Badge.astro";
 import Button from "@components/primitives/Button.astro";
 import Icon from "@components/primitives/Icon.astro";
+import Text from "@components/typography/Text.astro";
+import Title from "@components/typography/Title.astro";
 import { useI18n } from "@i18n/index";
 import BaseLayout from "@layouts/BaseLayout.astro";
 
@@ -22,21 +24,24 @@ const { _ } = await useI18n(Astro.currentLocale);
         <header class="mb-4">
           <Badge label={`Terminal Connection: Secured`} variant="primary" />
         </header>
-        <h1
-          class="text-4xl md:text-6xl font-headline font-bold tracking-tighter text-on-surface mb-6 leading-none"
+        <Title
+          as="h1"
+          variant="h1"
+          class="mb-6 leading-none"
         >
           {_("INITIATING THE")}<br />
           <span class="text-primary">{_("STRATEGIC DIAGNOSTIC")}</span>
-        </h1>
-        <p
-          class="text-on-surface-variant max-w-lg font-body leading-relaxed text-lg"
+        </Title>
+        <Text
+          variant="lg"
+          class="max-w-lg leading-relaxed text-on-surface-variant"
         >
           {
             _(
               "Kodaskills operates at the intersection of technical rigor and operational excellence. Provide the parameters below to authorize a deep-system audit of your technical architecture.",
             )
           }
-        </p>
+        </Text>
       </section>
 
       <aside class="lg:col-span-5 hidden lg:block">
@@ -56,9 +61,9 @@ const { _ } = await useI18n(Astro.currentLocale);
               >
             </header>
             <section>
-              <p class="text-xs font-mono text-primary mb-2">
+              <Text variant="captionMono" class="mb-2 text-primary">
                 CORE_METRIC: LATENCY_AUDIT
-              </p>
+              </Text>
               <div
                 class="h-1 w-full bg-outline-variant mb-4"
                 role="progressbar"
@@ -68,11 +73,12 @@ const { _ } = await useI18n(Astro.currentLocale);
               >
                 <span class="block h-full bg-primary w-2/3"></span>
               </div>
-              <p
-                class="text-[10px] font-mono text-on-surface-variant uppercase tracking-widest"
+              <Text
+                variant="captionMono"
+                class="tracking-widest text-on-surface-variant"
               >
                 {_("Awaiting local operator input for diagnostic deployment.")}
-              </p>
+              </Text>
             </section>
           </section>
         </figure>
@@ -82,14 +88,16 @@ const { _ } = await useI18n(Astro.currentLocale);
     <section class="grid grid-cols-1 md:grid-cols-2 gap-12">
       <section class="space-y-12">
         <header class="border-l-2 border-outline-variant pl-8 py-2">
-          <h3
-            class="font-headline font-bold text-xl uppercase tracking-widest mb-2"
+          <Title
+            as="h3"
+            variant="h3"
+            class="uppercase tracking-widest mb-2"
           >
             {_("Protocol 01")}
-          </h3>
-          <p class="text-on-surface-variant font-body text-sm">
+          </Title>
+          <Text variant="sm" class="text-on-surface-variant">
             {_("Identity & Entity mapping for session clearance.")}
-          </p>
+          </Text>
         </header>
 
         <form class="space-y-8" action="" method="POST">
@@ -169,13 +177,13 @@ const { _ } = await useI18n(Astro.currentLocale);
               >{_("Security Protocol")}</span
             >
           </header>
-          <p class="text-xs font-body text-on-surface-variant leading-relaxed">
+          <Text variant="xs" class="leading-relaxed text-on-surface-variant">
             {
               _(
                 "All diagnostic data is encrypted via military-grade AES-256 protocols. Your system architecture remains confidential. Kodaskills does not store raw telemetry beyond the diagnostic session duration.",
               )
             }
-          </p>
+          </Text>
         </article>
 
         <article

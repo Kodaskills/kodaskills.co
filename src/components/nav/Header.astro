@@ -2,6 +2,7 @@
 import LanguageToggle from "@components/nav/LanguageToggle.astro";
 import Button from "@components/primitives/Button.astro";
 import Icon from "@components/primitives/Icon.astro";
+import Link from "@components/typography/Link.astro";
 import { getI18n } from "@i18n/index";
 
 interface Props {
@@ -23,11 +24,10 @@ const navLinks = [
   id="main-header"
   class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 border-b border-outline-variant transition-all duration-300"
 >
-  <a
+  <Link
     href={lp("/")}
-    class="flex-1 font-bold tracking-widest text-primary font-headline"
-    style="font-size: 2rem"
-    aria-label="Kodaskills home">K</a
+    class="flex-1 font-bold tracking-widest text-primary font-headline text-2xl"
+    aria-label="Kodaskills home">K</Link
   >
 
   <nav
@@ -55,7 +55,7 @@ const navLinks = [
               <span class="w-1 h-1 bg-current opacity-90" aria-hidden="true" />
             </div>
           )}
-          <a
+          <Link
             href={link.href}
             data-nav-key={link.key}
             data-active-class="text-on-primary nav-link--active"
@@ -76,7 +76,7 @@ const navLinks = [
               </div>
               {link.label}
             </div>
-          </a>
+          </Link>
         </>
       ))
     }
@@ -96,11 +96,11 @@ const navLinks = [
   const header = document.getElementById("main-header")!;
   const nav = document.getElementById("main-nav")!;
   const indicator = document.getElementById("nav-indicator")!;
-  const links = nav.querySelectorAll<HTMLElement>("a.nav-link");
+  const links = nav.querySelectorAll<HTMLElement>("Link.nav-link");
   let pendingLink: HTMLElement | null = null;
 
   function getActiveLink() {
-    return nav.querySelector<HTMLElement>("a.nav-link--active");
+    return nav.querySelector<HTMLElement>("Link.nav-link--active");
   }
 
   function moveIndicatorTo(el: HTMLElement) {

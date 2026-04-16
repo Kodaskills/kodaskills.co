@@ -3,6 +3,9 @@ import ThemeToggle from "@components/nav/ThemeToggle.astro";
 import Icon from "@components/primitives/Icon.astro";
 import Popover from "@components/primitives/Popover.astro";
 import Tooltip from "@components/primitives/Tooltip.astro";
+import Link from "@components/typography/Link.astro";
+import Text from "@components/typography/Text.astro";
+import Title from "@components/typography/Title.astro";
 import { getI18n } from "@i18n/index";
 import type { IconName } from "@lib/icons";
 import type { HTMLAttributes } from "astro/types";
@@ -75,13 +78,13 @@ const navItems: {
 
 <aside class:list={["hidden lg:flex flex-col fixed left-0 top-0 h-full w-20 bg-surface z-[51] border-r border-outline-variant", className]} {...attrs}>
 	<header class="h-16 flex items-center justify-center shrink-0">
-		<a href={lp("/")} class="text-primary font-headline font-bold tracking-widest text-2xl leading-none">
+		<Link href={lp("/")} class="text-primary font-headline font-bold tracking-widest text-2xl leading-none">
 			K
-		</a>
+		</Link>
 	</header>
 
 	<nav class="flex-1 py-4 font-headline text-xs tracking-tight" aria-label="Services">
-		<p class="flex justify-center py-2 uppercase text-[7px] tracking-widest font-bold text-secondary/40">Services</p>
+		<Text variant="xs" class="flex justify-center py-2 text-secondary/40">Services</Text>
 		{navItems.map((item) => {
 			const isActive = activePage === item.key;
 			return (
