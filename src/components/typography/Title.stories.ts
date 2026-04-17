@@ -31,19 +31,31 @@ export const Colors = {
     items: [
       {
         label: "default",
-        props: { variant: "h1", color: "default", text: "Default Title" },
+        props: { variant: "h1", class: "default", text: "Default Title" },
       },
       {
         label: "muted",
-        props: { variant: "h1", color: "muted", text: "Muted Title" },
+        props: { variant: "h1", class: "text-surface-variant", text: "Muted Title" },
       },
       {
         label: "primary",
-        props: { variant: "h1", color: "primary", text: "Primary Title" },
+        props: { variant: "h1", class: "text-primary", text: "Primary Title" },
+      },
+      {
+        label: "secondary",
+        props: { variant: "h1", class: "text-secondary", text: "Secondary Title" },
+      },
+      {
+        label: "tertiary",
+        props: { variant: "h1", class: "text-tertiary", text: "Tertiary Title" },
       },
       {
         label: "error",
-        props: { variant: "h1", color: "error", text: "Error Title" },
+        props: { variant: "h1", class: "text-error", text: "Error Title" },
+      },
+      {
+        label: "on-primary",
+        props: { variant: "h1", class: "text-on-primary", text: "On primary Title" },
       },
     ],
   },

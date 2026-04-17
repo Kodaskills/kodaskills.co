@@ -48,31 +48,31 @@ export const Colors = {
     items: [
       {
         label: "default",
-        props: { variant: "md", color: "default", text: "Default text" },
+        props: { variant: "md", class: "default", text: "Default text" },
       },
       {
         label: "muted",
-        props: { variant: "md", color: "muted", text: "Muted text" },
+        props: { variant: "md", class: "text-surface-variant", text: "Muted text" },
       },
       {
         label: "primary",
-        props: { variant: "md", color: "primary", text: "Primary text" },
+        props: { variant: "md", class: "text-primary", text: "Primary text" },
       },
       {
         label: "secondary",
-        props: { variant: "md", color: "secondary", text: "Secondary text" },
+        props: { variant: "md", class: "text-secondary", text: "Secondary text" },
       },
       {
         label: "tertiary",
-        props: { variant: "md", color: "tertiary", text: "Tertiary text" },
+        props: { variant: "md", class: "text-tertiary", text: "Tertiary text" },
       },
       {
         label: "error",
-        props: { variant: "md", color: "error", text: "Error text" },
+        props: { variant: "md", class: "text-error", text: "Error text" },
       },
       {
         label: "on-primary",
-        props: { variant: "md", color: "on-primary", text: "On primary text" },
+        props: { variant: "md", class: "text-on-primary", text: "On primary text" },
       },
     ],
   },
