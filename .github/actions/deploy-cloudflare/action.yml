@@ -14,9 +14,10 @@ inputs:
   branch:
     description: 'Branch name'
     required: true
-  commit_hash:
-    description: 'Commit SHA'
-    required: true
+  pr_number:
+    description: 'Pull request number (optional, for PR deployments)'
+    required: false
+    default: ''
   api_token:
     description: 'Cloudflare API token'
     required: true
@@ -62,4 +63,4 @@ runs:
       with:
         apiToken: ${{ inputs.api_token }}
         accountId: ${{ inputs.account_id }}
-        command: pages deploy ${{ inputs.dist_path }} --project-name=${{ inputs.project_name }} --branch=${{ inputs.branch }} --commit-hash=${{ inputs.commit_hash }}
+        command: pages deploy ${{ inputs.dist_path }} --project-name=${{ inputs.project_name }} --branch=${{ inputs.pr_number != '' && format('pr-{0}', inputs.pr_number) || inputs.branch }}
