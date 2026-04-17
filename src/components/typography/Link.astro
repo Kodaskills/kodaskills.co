@@ -19,8 +19,7 @@ export interface Props {
 const { href, variant = "default", class: className = "", target, rel } = Astro.props;
 
 const variants: Record<string, string> = {
-  default:
-    "text-primary underline underline-offset-2 decoration-primary/50 hover:decoration-primary transition-colors",
+  default: "text-outline hover:text-primary transition-colors",
   muted: "text-on-surface-variant hover:text-on-surface transition-colors",
   primary: "text-primary hover:text-primary-dim transition-colors",
   secondary: "text-secondary hover:text-secondary-dim transition-colors",

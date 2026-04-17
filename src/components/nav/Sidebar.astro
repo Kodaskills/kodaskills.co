@@ -5,7 +5,6 @@ import Popover from "@components/primitives/Popover.astro";
 import Tooltip from "@components/primitives/Tooltip.astro";
 import Link from "@components/typography/Link.astro";
 import Text from "@components/typography/Text.astro";
-import Title from "@components/typography/Title.astro";
 import { getI18n } from "@i18n/index";
 import type { IconName } from "@lib/icons";
 import type { HTMLAttributes } from "astro/types";
@@ -28,7 +27,7 @@ const navItems: {
     key: "leadership",
     icon: "card-leadership",
     label: "Leadership",
-    tooltip: "CTO as a Service · Strategy · Tech Lead",
+    tooltip: "CTO as Link Service · Strategy · Tech Lead",
     href: "#",
   },
   {
@@ -76,64 +75,89 @@ const navItems: {
 ];
 ---
 
-<aside class:list={["hidden lg:flex flex-col fixed left-0 top-0 h-full w-20 bg-surface z-[51] border-r border-outline-variant", className]} {...attrs}>
-	<header class="h-16 flex items-center justify-center shrink-0">
-		<Link href={lp("/")} class="text-primary font-headline font-bold tracking-widest text-2xl leading-none">
-			K
-		</Link>
-	</header>
+<aside
+  class:list={[
+    "hidden lg:flex flex-col fixed left-0 top-0 h-full w-20 bg-surface z-[51] border-r border-outline-variant",
+    className,
+  ]}
+  {...attrs}
+>
+  <header class="h-16 flex items-center justify-center shrink-0">
+    <Link
+      href={lp("/")}
+      class="text-primary font-headline font-bold tracking-widest text-2xl leading-none"
+    >
+      K
+    </Link>
+  </header>
 
-	<nav class="flex-1 py-4 font-headline text-xs tracking-tight" aria-label="Services">
-		<Text variant="xs" class="flex justify-center py-2 text-secondary/40">Services</Text>
-		{navItems.map((item) => {
-			const isActive = activePage === item.key;
-			return (
-				<Popover title={item.label} content={item.tooltip} placement="right" class="block">
-					<a
-						href={item.href}
-						data-nav-key={item.key}
-						data-active-class="bg-surface-container text-primary border-l-4 border-primary"
-						data-inactive-class="text-outline hover:bg-surface-container hover:text-primary"
-						class={`flex flex-col items-center justify-center py-4 px-2 gap-1 transition-all ${
-							isActive
-								? "bg-surface-container text-primary border-l-4 border-primary"
-								: "text-outline hover:bg-surface-container hover:text-primary"
-						}`}
-					>
-						<Icon name={item.icon} size={18} class="shrink-0" />
-						<span class="uppercase text-[7px] tracking-widest font-bold">{item.label.split(" ")[0]}</span>
-					</a>
-				</Popover>
-			);
-		})}
-	</nav>
+  <nav
+    class="flex-1 py-4 font-headline text-xs tracking-tight"
+    aria-label="Services"
+  >
+    <Text variant="xs" class="flex justify-center py-2 text-secondary/40"
+      >Services</Text
+    >
+    {
+      navItems.map((item) => {
+        const isActive = activePage === item.key;
+        return (
+          <Popover
+            title={item.label}
+            content={item.tooltip}
+            placement="right"
+            class="block"
+          >
+            <Link
+              href={item.href}
+              data-nav-key={item.key}
+              data-active-class="bg-surface-container text-primary border-l-4 border-primary"
+              data-inactive-class="text-outline hover:bg-surface-container hover:text-primary"
+              class={`flex flex-col items-center justify-center py-4 px-2 gap-1 transition-all ${
+                isActive
+                  ? "bg-surface-container text-primary border-l-4 border-primary"
+                  : "text-outline hover:bg-surface-container hover:text-primary"
+              }`}
+            >
+              <Icon name={item.icon} size={18} class="shrink-0" />
+              <span class="uppercase text-[7px] tracking-widest font-bold">
+                {item.label.split(" ")[0]}
+              </span>
+            </Link>
+          </Popover>
+        );
+      })
+    }
+  </nav>
 
-	<footer class="mt-auto py-2 w-full font-headline text-[10px] uppercase tracking-widest">
-		<Tooltip content="LinkedIn" placement="right" class="block">
-			<a
-				href="https://www.linkedin.com/company/kodaskills/"
-				target="_blank"
-				rel="noopener noreferrer"
-				aria-label="LinkedIn"
-				class="flex items-center justify-center py-2 text-outline hover:text-on-surface transition-colors"
-			>
-				<Icon name="social-linkedin" size={18} class="shrink-0" />
-			</a>
-		</Tooltip>
+  <footer
+    class="mt-auto py-2 w-full font-headline text-[10px] uppercase tracking-widest"
+  >
+    <Tooltip content="LinkedIn" placement="right" class="block">
+      <Link
+        href="https://www.linkedin.com/company/kodaskills/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="LinkedIn"
+        class="flex items-center justify-center py-2 text-outline hover:text-on-surface transition-colors"
+      >
+        <Icon name="social-linkedin" size={18} class="shrink-0" />
+      </Link>
+    </Tooltip>
 
-		<Tooltip content="GitHub" placement="right" class="block">
-			<a
-				href="https://github.com/Kodaskills/kodaskills.co"
-				target="_blank"
-				rel="noopener noreferrer"
-				aria-label="GitHub"
-				class="flex items-center justify-center py-2 text-outline hover:text-on-surface transition-colors"
-			>
-				<Icon name="social-github" size={18} class="shrink-0" />
-			</a>
-		</Tooltip>
+    <Tooltip content="GitHub" placement="right" class="block">
+      <Link
+        href="https://github.com/Kodaskills/kodaskills.co"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="GitHub"
+        class="flex items-center justify-center py-2 text-outline hover:text-on-surface transition-colors"
+      >
+        <Icon name="social-github" size={18} class="shrink-0" />
+      </Link>
+    </Tooltip>
 
-		<hr class="mx-3 my-1 border-outline-variant" />
-		<ThemeToggle />
-	</footer>
+    <hr class="mx-3 my-1 border-outline-variant" />
+    <ThemeToggle />
+  </footer>
 </aside>
