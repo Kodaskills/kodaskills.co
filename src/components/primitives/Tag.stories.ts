@@ -3,84 +3,54 @@ import Tag from "./Tag.astro";
 
 export default { component: Showcase };
 
+const colorOptions = ["default", "primary", "secondary", "tertiary", "error"];
+
+function capitalize(str: string) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+function getOutlinedItems() {
+  const items: { label: string; props: Record<string, string> }[] = [];
+  colorOptions.forEach((color) => {
+    items.push({
+      label: capitalize(color),
+      props: {
+        text: color === "error" ? "SYS_STATUS: CRITICAL" : "SCALABILITY_L2",
+        variant: "outlined",
+        color: color,
+      },
+    });
+  });
+  return items;
+}
+
 export const Outlined = {
   args: {
     component: Tag,
     layout: "stack",
-    items: [
-      {
-        label: "Default",
-        props: {
-          text: "SCALABILITY_L2",
-          variant: "outlined",
-          color: "default",
-        },
-      },
-      {
-        label: "Primary",
-        props: {
-          text: "SCALABILITY_L2",
-          variant: "outlined",
-          color: "primary",
-        },
-      },
-      {
-        label: "Secondary",
-        props: {
-          text: "SCALABILITY_L2",
-          variant: "outlined",
-          color: "secondary",
-        },
-      },
-      {
-        label: "Tertiary",
-        props: {
-          text: "SCALABILITY_L2",
-          variant: "outlined",
-          color: "tertiary",
-        },
-      },
-      {
-        label: "Error",
-        props: {
-          text: "SYS_STATUS: CRITICAL",
-          variant: "outlined",
-          color: "error",
-        },
-      },
-    ],
+    items: getOutlinedItems(),
   },
 };
+
+function getFilledItems() {
+  const items: { label: string; props: Record<string, string> }[] = [];
+  colorOptions.forEach((color) => {
+    items.push({
+      label: capitalize(color),
+      props: {
+        text: color === "error" ? "SYS_STATUS: CRITICAL" : "Rust",
+        variant: "filled",
+        color: color,
+      },
+    });
+  });
+  return items;
+}
 
 export const Filled = {
   args: {
     component: Tag,
     layout: "stack",
-    items: [
-      {
-        label: "Default",
-        props: { text: "Rust", variant: "filled", color: "default" },
-      },
-      {
-        label: "Primary",
-        props: { text: "Rust", variant: "filled", color: "primary" },
-      },
-      {
-        label: "Secondary",
-        props: { text: "Rust", variant: "filled", color: "secondary" },
-      },
-      {
-        label: "Tertiary",
-        props: { text: "Rust", variant: "filled", color: "tertiary" },
-      },
-      {
-        label: "Error",
-        props: {
-          text: "SYS_STATUS: CRITICAL",
-          variant: "filled",
-          color: "error",
-        },
-      },
-    ],
+    items: getFilledItems(),
   },
 };

@@ -40,66 +40,62 @@ export const Variants = {
   },
 };
 
+const colorOptions = [
+  "default",
+  "surface-variant",
+  "primary",
+  "secondary",
+  "tertiary",
+  "error",
+  "on-primary",
+];
+
+function capitalize(str: string) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+function getColorItems() {
+  const items: { label: string; props: Record<string, string> }[] = [];
+  colorOptions.forEach((color) => {
+    items.push({
+      label: color,
+      props: {
+        variant: "md",
+        class: color === "default" ? "" : `text-${color}`,
+        text: `${capitalize(color)} text`,
+      },
+    });
+  });
+  return items;
+}
+
 export const Colors = {
   args: {
     component: Text,
     layout: "stack",
     type: "text",
-    items: [
-      {
-        label: "default",
-        props: { variant: "md", class: "default", text: "Default text" },
-      },
-      {
-        label: "muted",
-        props: { variant: "md", class: "text-surface-variant", text: "Muted text" },
-      },
-      {
-        label: "primary",
-        props: { variant: "md", class: "text-primary", text: "Primary text" },
-      },
-      {
-        label: "secondary",
-        props: { variant: "md", class: "text-secondary", text: "Secondary text" },
-      },
-      {
-        label: "tertiary",
-        props: { variant: "md", class: "text-tertiary", text: "Tertiary text" },
-      },
-      {
-        label: "error",
-        props: { variant: "md", class: "text-error", text: "Error text" },
-      },
-      {
-        label: "on-primary",
-        props: { variant: "md", class: "text-on-primary", text: "On primary text" },
-      },
-    ],
+    items: getColorItems(),
   },
 };
+
+const weightOptions = ["regular", "medium", "semibold", "bold"];
+
+function getWeightItems() {
+  const items: { label: string; props: Record<string, string> }[] = [];
+  weightOptions.forEach((weight) => {
+    items.push({
+      label: weight,
+      props: { variant: "md", weight: weight, text: `${capitalize(weight)} weight` },
+    });
+  });
+  return items;
+}
 
 export const Weights = {
   args: {
     component: Text,
     layout: "stack",
     type: "text",
-    items: [
-      {
-        label: "regular",
-        props: { variant: "md", weight: "regular", text: "Regular weight" },
-      },
-      {
-        label: "medium",
-        props: { variant: "md", weight: "medium", text: "Medium weight" },
-      },
-      {
-        label: "semibold",
-        props: { variant: "md", weight: "semibold", text: "Semibold weight" },
-      },
-      {
-        label: "bold",
-        props: { variant: "md", weight: "bold", text: "Bold weight" },
-      },
-    ],
+    items: getWeightItems(),
   },
 };

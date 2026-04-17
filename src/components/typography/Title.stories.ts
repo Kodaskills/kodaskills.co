@@ -23,40 +23,40 @@ export const Variants = {
   },
 };
 
+const colorOptions = [
+  "default",
+  "surface-variant",
+  "primary",
+  "secondary",
+  "tertiary",
+  "error",
+  "on-primary",
+];
+
+function capitalize(str: string) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+function getColorItems() {
+  const items: { label: string; props: Record<string, string> }[] = [];
+  colorOptions.forEach((color) => {
+    items.push({
+      label: color,
+      props: {
+        variant: "h1",
+        class: color === "default" ? "" : `text-${color}`,
+        text: `${capitalize(color)} Title`,
+      },
+    });
+  });
+  return items;
+}
+
 export const Colors = {
   args: {
     component: Title,
     layout: "stack",
     type: "text",
-    items: [
-      {
-        label: "default",
-        props: { variant: "h1", class: "default", text: "Default Title" },
-      },
-      {
-        label: "muted",
-        props: { variant: "h1", class: "text-surface-variant", text: "Muted Title" },
-      },
-      {
-        label: "primary",
-        props: { variant: "h1", class: "text-primary", text: "Primary Title" },
-      },
-      {
-        label: "secondary",
-        props: { variant: "h1", class: "text-secondary", text: "Secondary Title" },
-      },
-      {
-        label: "tertiary",
-        props: { variant: "h1", class: "text-tertiary", text: "Tertiary Title" },
-      },
-      {
-        label: "error",
-        props: { variant: "h1", class: "text-error", text: "Error Title" },
-      },
-      {
-        label: "on-primary",
-        props: { variant: "h1", class: "text-on-primary", text: "On primary Title" },
-      },
-    ],
+    items: getColorItems(),
   },
 };
