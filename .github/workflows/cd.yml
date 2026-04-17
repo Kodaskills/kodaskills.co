@@ -21,7 +21,6 @@ jobs:
       url: ${{ steps.deploy.outputs.deployment-url }}
     env:
       DEPLOY_BRANCH: ${{ github.event.workflow_run.head_branch }}
-      DEPLOY_COMMIT: ${{ github.event.workflow_run.head_sha }}
       NOTIFY_PR_TITLE: ${{ github.event.workflow_run.pull_requests[0].head.ref }}
       NOTIFY_PR_NUMBER: ${{ github.event.workflow_run.pull_requests[0].number }}
       NOTIFY_PR_URL: https://github.com/${{ github.repository }}/pull/${{ github.event.workflow_run.pull_requests[0].number }}/
@@ -56,5 +55,4 @@ jobs:
           pr_number: ${{ env.NOTIFY_PR_NUMBER }}
           deploy_url: ${{ steps.deploy.outputs.deployment-url }}
           pr_url: ${{ env.NOTIFY_PR_URL }}
-          commit_hash: ${{ env.DEPLOY_COMMIT }}
           project_name: Website
