@@ -54,11 +54,13 @@ jobs:
       url: ${{ steps.deploy.outputs.deployment-url }}
     env:
       DEPLOY_BRANCH: ${{ github.ref_name }}
-      DEPLOY_COMMIT: ${{ github.sha }}
       NOTIFY_PR_TITLE: ${{ github.event_name == 'pull_request' && github.event.pull_request.title || github.ref_name }}
       NOTIFY_PR_NUMBER: ${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.sha }}
       NOTIFY_PR_URL: ${{ github.event_name == 'pull_request' && github.event.pull_request.html_url || format('https://github.com/{0}/commit/{1}', github.repository, github.sha) }}
     steps:
+      - name: 📦 Checkout
+        uses: actions/checkout@v6
+
       - name: 🚀 Deploy
         id: deploy
         uses: ./.github/actions/deploy-cloudflare
@@ -67,7 +69,7 @@ jobs:
           dist_path: ./dist-book
           project_name: ${{ vars.CLOUDFLARE_PROJECT_NAME_ASTROBOOK }}
           branch: ${{ env.DEPLOY_BRANCH }}
-          commit_hash: ${{ env.DEPLOY_COMMIT }}
+          pr_number: ${{ env.NOTIFY_PR_NUMBER }}
           api_token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           account_id: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
@@ -81,5 +83,4 @@ jobs:
           pr_number: ${{ env.NOTIFY_PR_NUMBER }}
           deploy_url: ${{ steps.deploy.outputs.deployment-url }}
           pr_url: ${{ env.NOTIFY_PR_URL }}
-          commit_hash: ${{ env.DEPLOY_COMMIT }}
           project_name: Astrobook
