@@ -12,12 +12,11 @@ interface Props {
 const { scheme = "dark", padding = "p-8" } = Astro.props;
 ---
 
-<div class={`k-book-container ${scheme} bg-surface min-h-screen ${padding} flex items-center justify-center`}>
+<main class={`k-book-container ${scheme} bg-surface min-h-screen ${padding} flex items-center justify-center`}>
   <slot />
-</div>
+</main>
 
 <script>
-  // We remove all internal links and prevent navigation buttons inside the container
   document.addEventListener("click", (e) => {
     const target = e.target as HTMLElement;
     const link = target.closest("a");
@@ -25,14 +24,12 @@ const { scheme = "dark", padding = "p-8" } = Astro.props;
     const container = target.closest(".k-book-container");
     if (!container) return;
 
-    // Handle links
     if (link && !link.href?.startsWith("https")) {
       link.href = "#";
       e.preventDefault();
       e.stopPropagation();
     }
 
-    // Handle buttons with location navigation
     if (button) {
       const onclick = button.getAttribute("onclick") || "";
       const ariaAttr = button.getAttribute("@click") || "";

@@ -3,6 +3,8 @@ import StatCard from "@components/blocks/StatCard.astro";
 import SpecRow from "@components/patterns/SpecRow.astro";
 import Button from "@components/primitives/Button.astro";
 import Icon from "@components/primitives/Icon.astro";
+import Text from "@components/typography/Text.astro";
+import Title from "@components/typography/Title.astro";
 import { useI18n } from "@i18n/index";
 import BaseLayout from "@layouts/BaseLayout.astro";
 
@@ -82,109 +84,162 @@ const expertiseCards = [
 ---
 
 <BaseLayout title={_("KODASKILLS | Core Expertise")} activePage="expertises">
-  <div class="py-24 px-6 md:px-12">
-    <div class="max-w-7xl mx-auto">
-
-      <!-- Page Header -->
+  <main class="py-24 px-6 md:px-12">
+    <section class="max-w-7xl mx-auto">
       <header class="mb-16 border-l-4 border-primary pl-6">
-        <div class="text-primary font-headline text-xs tracking-[0.3em] uppercase mb-2">
+        <Text variant="label" class="mb-2 text-primary">
           {_("CAPABILITIES_MANIFEST")}
-        </div>
-        <h1 class="text-5xl md:text-7xl font-headline font-bold uppercase tracking-tighter leading-none mb-4">
-          {_("Core")} <span class="text-primary">{_("Expertise")}</span>
-        </h1>
-        <p class="max-w-2xl text-on-surface-variant font-body text-lg leading-relaxed">
-          {_("Strategic engineering solutions for high-density information environments. We provide the technical rigor required for resilient digital infrastructure.")}
-        </p>
+        </Text>
+        <Title as="h1" variant="headline" class="mb-4 leading-none">
+          {_("Core")}
+          <span class="text-primary">{_("Expertise")}</span>
+        </Title>
+        <Text
+          variant="lg"
+          class="max-w-2xl leading-relaxed text-on-surface-variant"
+        >
+          {
+            _(
+              "Strategic engineering solutions for high-density information environments. We provide the technical rigor required for resilient digital infrastructure.",
+            )
+          }
+        </Text>
       </header>
 
-      <!-- Expertise Cards Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border border-outline-variant">
-        {expertiseCards.map((card) => (
-          <section class="bg-surface-container border border-outline-variant p-8 flex flex-col group hover:bg-surface-container-high transition-colors">
-            <div class="flex justify-between items-start mb-12">
-              <Icon name={card.icon} size={36} class="text-primary" />
-              <span class="text-outline-variant font-headline text-4xl font-bold">{card.num}</span>
-            </div>
-            <h3 class="text-2xl font-headline font-bold uppercase tracking-tight mb-4 group-hover:text-primary transition-colors">
-              {card.title}
-            </h3>
-            <div class="text-xs font-mono text-tertiary mb-6">{card.tag}</div>
-            <p class="text-on-surface-variant text-sm font-body leading-relaxed mb-8 flex-1">
-              {card.description}
-            </p>
-            <div class="space-y-2 border-t border-outline-variant pt-6">
-              {card.specs.map((spec) => (
-                <SpecRow label={spec.label} value={spec.value} highlight={spec.highlight} />
-              ))}
-            </div>
-          </section>
-        ))}
+      <section
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border border-outline-variant"
+      >
+        {
+          expertiseCards.map((card) => (
+            <article class="bg-surface-container border border-outline-variant p-8 flex flex-col group hover:bg-surface-container-high transition-colors">
+              <header class="flex justify-between items-start mb-12">
+                <Icon name={card.icon} size={36} class="text-primary" />
+                <output class="text-outline-variant font-headline text-4xl font-bold">
+                  {card.num}
+                </output>
+              </header>
+              <Title
+                as="h3"
+                variant="h3"
+                class="mb-4 group-hover:text-primary transition-colors"
+              >
+                {card.title}
+              </Title>
+              <Text variant="captionMono" class="mb-6 text-tertiary">
+                {card.tag}
+              </Text>
+              <Text
+                variant="sm"
+                class="mb-8 flex-1 leading-relaxed text-on-surface-variant"
+              >
+                {card.description}
+              </Text>
+              <dl class="space-y-2 border-t border-outline-variant pt-6">
+                {card.specs.map((spec) => (
+                  <SpecRow
+                    label={spec.label}
+                    value={spec.value}
+                    highlight={spec.highlight}
+                  />
+                ))}
+              </dl>
+            </article>
+          ))
+        }
 
-        <!-- Custom Audit CTA Card -->
-        <section class="bg-surface-container-lowest border border-outline-variant p-8 flex flex-col justify-center items-center group relative overflow-hidden">
-          <div class="technical-grid-dots absolute inset-0 opacity-10"></div>
-          <div class="relative z-10 text-center">
-            <div class="text-outline-variant font-headline text-sm tracking-widest uppercase mb-4">Diagnostic_Ready</div>
-            <h4 class="text-xl font-headline font-bold uppercase mb-6">{_("Need a custom audit?")}</h4>
+        <section
+          class="bg-surface-container-lowest border border-outline-variant p-8 flex flex-col justify-center items-center group relative overflow-hidden"
+        >
+          <span
+            aria-hidden="true"
+            class="technical-grid-dots absolute inset-0 opacity-10"></span>
+          <section class="relative z-10 text-center">
+            <Text variant="sm" class="mb-4 tracking-widest text-outline-variant"
+              >Diagnostic_Ready</Text
+            >
+            <Title as="h4" variant="h4" class="mb-6"
+              >{_("Need a custom audit?")}</Title
+            >
             <Button href={lp("/contact")} variant="outlined-primary" size="sm">
               {_("INITIALIZE_CONTACT")}
             </Button>
-          </div>
+          </section>
         </section>
-      </div>
+      </section>
 
-      <!-- System Parameters -->
-      <div class="mt-20">
-        <div class="flex items-center gap-4 mb-8">
-          <div class="h-px flex-1 bg-outline-variant"></div>
-          <div class="text-[10px] font-mono text-outline uppercase tracking-[0.5em]">System_Parameters</div>
-          <div class="h-px flex-1 bg-outline-variant"></div>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <section class="mt-20">
+        <section class="flex items-center gap-4 mb-8">
+          <hr class="h-px flex-1 bg-outline-variant border-0" />
+          <Text variant="captionMono" class="tracking-[0.5em] text-outline"
+            >System_Parameters</Text
+          >
+          <hr class="h-px flex-1 bg-outline-variant border-0" />
+        </section>
+        <dl class="grid grid-cols-1 md:grid-cols-4 gap-4">
           <StatCard value="0ms" label="Latency_Target" variant="metric" />
           <StatCard value="99.9%" label="Availability_SLA" variant="metric" />
-          <StatCard value="ISO_27001" label="Compliance_Standard" variant="metric" />
+          <StatCard
+            value="ISO_27001"
+            label="Compliance_Standard"
+            variant="metric"
+          />
           <StatCard value="24/7/365" label="Operator_Watch" variant="metric" />
-        </div>
-      </div>
+        </dl>
+      </section>
 
-      <!-- Featured Project -->
-      <section class="mt-20 border border-outline-variant overflow-hidden">
-        <div class="grid grid-cols-1 lg:grid-cols-12">
-          <div class="lg:col-span-7 bg-surface-container p-12 border-b lg:border-b-0 lg:border-r border-outline-variant">
-            <div class="text-tertiary font-mono text-[10px] uppercase tracking-widest mb-4">Featured_Deployment</div>
-            <h2 class="text-4xl font-headline font-bold uppercase tracking-tighter mb-6">
+      <article class="mt-20 border border-outline-variant overflow-hidden">
+        <section class="grid grid-cols-1 lg:grid-cols-12">
+          <section
+            class="lg:col-span-7 bg-surface-container p-12 border-b lg:border-b-0 lg:border-r border-outline-variant"
+          >
+            <Text
+              variant="captionMono"
+              class="mb-4 tracking-widest text-tertiary"
+              >Featured_Deployment</Text
+            >
+            <Title as="h2" variant="h2" class="mb-6">
               {_("Global Financial Terminal Upgrade")}
-            </h2>
-            <p class="text-on-surface-variant font-body leading-relaxed mb-8">
-              {_("Modernizing a legacy transactional system for a tier-1 banking client. We implemented a micro-services architecture that reduced operational overhead by 40% and improved security compliance scores by 2 grades.")}
-            </p>
-            <div class="flex flex-wrap gap-2">
-              {["Rust", "gRPC", "PostgreSQL", "EKS"].map((tag) => (
-                <span class="bg-surface-variant text-on-surface text-[9px] px-2 py-1 font-mono uppercase">{tag}</span>
-              ))}
-            </div>
-          </div>
-          <div class="lg:col-span-5 relative min-h-[300px] bg-black">
+            </Title>
+            <Text class="mb-8 leading-relaxed text-on-surface-variant">
+              {
+                _(
+                  "Modernizing a legacy transactional system for a tier-1 banking client. We implemented a micro-services architecture that reduced operational overhead by 40% and improved security compliance scores by 2 grades.",
+                )
+              }
+            </Text>
+            <ul class="flex flex-wrap gap-2">
+              {
+                ["Rust", "gRPC", "PostgreSQL", "EKS"].map((tag) => (
+                  <li class="bg-surface-variant text-on-surface text-[9px] px-2 py-1 font-mono uppercase">
+                    {tag}
+                  </li>
+                ))
+              }
+            </ul>
+          </section>
+          <section class="lg:col-span-5 relative min-h-[300px] bg-black">
             <img
-              alt={_("High-contrast close-up of computer circuit board with cyan glowing lights and technical server hardware in a dark room")}
+              alt="High-contrast close-up of computer circuit board with cyan glowing lights and technical server hardware in a dark room"
               class="absolute inset-0 w-full h-full object-cover grayscale opacity-40"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyusT6KSIEWYW37EU37gk0pNVfK2QNnBWVz1c20BHLpX30IO8a8xlGVWeZekyCOI4xbw0klunqnOsbHJ5fkvIYHvSc0t5Oh5IgW_0Gf9qvCMXRsDaoQ5KB0mDN5hM2p8cVW3SyjQqjhtrNVsjZh5dWz3OLFIHScFCcvfixZNjYCxkD5VqkfAm_IxXc7i2kxKRh1_KWzFCHvPkzHz49befRQPU_7_BJdG4t5AjOvST4DzXDN05qZyi-q2pWH5zzXcMGJzFerNMnwb0"
             />
-            <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
-            <div class="absolute bottom-6 left-6 right-6">
-              <div class="flex items-center gap-3">
+            <figure
+              class="absolute inset-0 bg-gradient-to-t from-black to-transparent"
+            >
+            </figure>
+            <figcaption class="absolute bottom-6 left-6 right-6">
+              <span class="flex items-center gap-3">
                 <Icon name="card-verified" class="text-primary" />
-                <span class="text-xs font-mono uppercase tracking-widest text-on-surface">
+                <span
+                  class="text-xs font-mono uppercase tracking-widest text-on-surface"
+                >
                   {_("Verified System Architecture")}
                 </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-    </div>
-  </div>
+              </span>
+            </figcaption>
+          </section>
+        </section>
+      </article>
+    </section>
+  </main>
 </BaseLayout>

@@ -1,4 +1,6 @@
 ---
+import type { HTMLAttributes } from "astro/types";
+
 /**
  * PageHero — full-viewport hero section wrapper shared across all pages.
  *
@@ -6,12 +8,18 @@
  * bottom border, and max-w-7xl content constraint.
  * All hero content goes through the default slot.
  */
+interface Props extends HTMLAttributes<"section"> {}
+
+const { class: className, ...attrs } = Astro.props;
 ---
 
 <section
-  class="relative min-h-[819px] flex flex-col justify-center px-6 md:px-12 border-b border-outline-variant operator-grid"
+  class:list={["relative min-h-[819px] flex flex-col justify-center px-6 md:px-12 border-b border-outline-variant operator-grid", className]}
+  {...attrs}
 >
-  <div class="max-w-7xl mx-auto w-full relative">
-    <slot />
-  </div>
+  <section class="max-w-7xl mx-auto w-full relative">
+    <main>
+      <slot />
+    </main>
+  </section>
 </section>

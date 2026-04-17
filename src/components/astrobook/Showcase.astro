@@ -1,4 +1,5 @@
 ---
+import Title from "@components/typography/Title.astro";
 /**
  * Showcase — renders a labelled collection of component instances.
  *
@@ -68,54 +69,74 @@ await activateLingui("en");
 ---
 
 <StoryDecorator padding="py-20 px-16">
-  {groups && groups.length > 0 ? (
-    <div class="flex flex-col gap-12">
-      {groups.map((group) => (
-        <div>
-          <h3 class="col-span-full text-sm font-bold uppercase tracking-wide mb-4">
-            {group.type.charAt(0).toUpperCase() + group.type.slice(1)}
-          </h3>
-          <div class={containerClass}>
-            {group.items.map(({ label, props, text }) => (
-              <div class={itemClass}>
-                {!type && <Component {...props} />}
-                {type === "text" && <Component {...props}>{text ?? props?.text}</Component>}
-                {type === "hover" && (
-                  <div class="relative inline-flex cursor-pointer">
-                    <span class="bg-surface-container border border-outline-variant text-on-surface font-mono font-bold uppercase tracking-widest text-[10px] px-6 py-2 pointer-events-none select-none">
-                      HOVER
-                    </span>
-                    <div class="absolute inset-0 [&>*]:block [&>*]:w-full [&>*]:h-full">
-                      <Component {...props} />
+  {
+    groups && groups.length > 0 ? (
+      <section class="flex flex-col gap-12">
+        {groups.map((group) => (
+          <article>
+            <header>
+              <Title as="h3" variant="h4" class="col-span-full mb-4">
+                {group.type.charAt(0).toUpperCase() + group.type.slice(1)}
+              </Title>
+            </header>
+            <ul class={containerClass}>
+              {group.items.map(({ label, props, text }) => (
+                <li class={itemClass}>
+                  {!type && <Component {...props} />}
+                  {type === "text" && (
+                    <Component {...props}>{text ?? props?.text}</Component>
+                  )}
+                  {type === "hover" && (
+                    <div
+                      class="relative inline-flex cursor-pointer"
+                      role="button"
+                      tabindex="0"
+                    >
+                      <div class="bg-surface-container border border-outline-variant text-on-surface font-mono font-bold uppercase tracking-widest text-[10px] px-6 py-2 pointer-events-none select-none">
+                        HOVER
+                      </div>
+                      <div class="absolute inset-0 [&>*]:block [&>*]:w-full [&>*]:h-full">
+                        <Component {...props} />
+                      </div>
                     </div>
+                  )}
+                  <div class="font-mono text-[8px] uppercase tracking-widest text-outline">
+                    {label}
                   </div>
-                )}
-                <span class="font-mono text-[8px] uppercase tracking-widest text-outline">{label}</span>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </section>
+    ) : (
+      <ul class={containerClass}>
+        {items.map(({ label, props, text }) => (
+          <li class={itemClass}>
+            {!type && <Component {...props} />}
+            {type === "text" && (
+              <Component {...props}>{text ?? props?.text}</Component>
+            )}
+            {type === "hover" && (
+              <div
+                class="relative inline-flex cursor-pointer"
+                role="button"
+                tabindex="0"
+              >
+                <div class="bg-surface-container border border-outline-variant text-on-surface font-mono font-bold uppercase tracking-widest text-[10px] px-6 py-2 pointer-events-none select-none">
+                  HOVER
+                </div>
+                <div class="absolute inset-0 [&>*]:block [&>*]:w-full [&>*]:h-full">
+                  <Component {...props} />
+                </div>
               </div>
-            ))}
-          </div>
-        </div>
-      ))}
-    </div>
-  ) : (
-    <div class={containerClass}>
-      {items.map(({ label, props, text }) => (
-        <div class={itemClass}>
-          {!type && <Component {...props} />}
-          {type === "text" && <Component {...props}>{text ?? props?.text}</Component>}
-          {type === "hover" && (
-            <div class="relative inline-flex cursor-pointer">
-              <span class="bg-surface-container border border-outline-variant text-on-surface font-mono font-bold uppercase tracking-widest text-[10px] px-6 py-2 pointer-events-none select-none">
-                HOVER
-              </span>
-              <div class="absolute inset-0 [&>*]:block [&>*]:w-full [&>*]:h-full">
-                <Component {...props} />
-              </div>
+            )}
+            <div class="font-mono text-[8px] uppercase tracking-widest text-outline">
+              {label}
             </div>
-          )}
-          <span class="font-mono text-[8px] uppercase tracking-widest text-outline">{label}</span>
-        </div>
-      ))}
-    </div>
-  )}
+          </li>
+        ))}
+      </ul>
+    )
+  }
 </StoryDecorator>

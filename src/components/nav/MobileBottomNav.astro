@@ -2,12 +2,13 @@
 import Icon from "@components/primitives/Icon.astro";
 import { getI18n } from "@i18n/index";
 import type { IconName } from "@lib/icons";
+import type { HTMLAttributes } from "astro/types";
 
-interface Props {
+interface Props extends HTMLAttributes<"nav"> {
   activePage: "home" | "expertises" | "approach" | "contact" | "none";
 }
 
-const { activePage } = Astro.props;
+const { activePage, class: className, ...attrs } = Astro.props;
 const { _, lp } = getI18n();
 
 const items: { key: string; icon: IconName; label: string }[] = [
@@ -19,7 +20,11 @@ const items: { key: string; icon: IconName; label: string }[] = [
 ---
 
 <nav
-  class="md:hidden fixed bottom-0 left-0 w-full bg-surface border-t border-outline-variant flex justify-around items-center h-16 z-50"
+  class:list={[
+    "md:hidden fixed bottom-0 left-0 w-full bg-surface border-t border-outline-variant flex justify-around items-center h-16 z-50",
+    className,
+  ]}
+  {...attrs}
 >
   {
     items.map((item) => (
@@ -31,7 +36,7 @@ const items: { key: string; icon: IconName; label: string }[] = [
         class={`flex flex-col items-center gap-1 ${activePage === item.key ? "text-primary" : "text-outline"}`}
       >
         <Icon name={item.icon} size={24} />
-        <span class="text-[8px] font-headline uppercase">{item.label}</span>
+        <div class="text-[8px] font-headline uppercase">{item.label}</div>
       </a>
     ))
   }

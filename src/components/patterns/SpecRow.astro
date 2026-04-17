@@ -14,7 +14,7 @@ interface Props {
 const { label, value, highlight = false } = Astro.props;
 ---
 
-<div class="flex justify-between text-[10px] font-mono">
-  <span class="text-outline uppercase">{label}</span>
-  <span class={highlight ? "text-primary" : "text-on-surface"}>{value}</span>
-</div>
+<dl class="flex justify-between text-[10px] font-mono">
+  <dt class="text-outline uppercase">{label}</dt>
+  <dd class={highlight ? "text-primary" : "text-on-surface"}>{value}</dd>
+</dl>

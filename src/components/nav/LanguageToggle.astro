@@ -1,30 +1,17 @@
 ---
 import Icon from "@components/primitives/Icon.astro";
+import type { HTMLAttributes } from "astro/types";
 
-const lang = (Astro.currentLocale ?? "en") as "en" | "fr";
-const first = lang;
-const second = lang === "en" ? "fr" : "en";
+interface Props extends HTMLAttributes<"span"> {}
 
-const meta = {
-  en: {
-    flag: "flag-en" as const,
-    label: "EN",
-    title: "Switch to English",
-    aria: "Switch to English",
-  },
-  fr: {
-    flag: "flag-fr" as const,
-    label: "FR",
-    title: "Passer en français",
-    aria: "Passer en français",
-  },
-};
+const { class: className = "", ...attrs } = Astro.props;
 ---
 
-<div
-  class="hidden md:block relative"
+<section
+  class:list={["hidden md:block relative", className]}
   style="width: 60px; height: 32px;"
-  x-data={`{ open: false, ready: false, snap: false, currentLang: '${lang}' }`}
+  {...attrs}
+  x-data={`{ open: false, ready: false, snap: false, currentLang: '${Astro.currentLocale ?? "en"}' }`}
   x-init="
     const prev = sessionStorage.getItem('ks-lang');
     sessionStorage.setItem('ks-lang', currentLang);
@@ -45,36 +32,38 @@ const meta = {
     style="width: 60px; border-radius: 0; background: var(--color-surface); box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-outline-variant) 40%, transparent); z-index: 50;"
     :style="open ? 'height: 64px' : 'height: 32px'"
   >
-    <div
+    <menu
       class="flex flex-col"
       :style="ready ? 'transform: translateY(0)' : 'transform: translateY(32px)'"
     >
-      <!-- Active language -->
-      <button
-        @click={`window.location.href = $store.lang.pathFor('${first}')`}
-        role="radio"
-        aria-checked="true"
-        class="text-primary shrink-0 h-8 px-3 flex items-center gap-2 text-[10px] font-mono font-bold cursor-pointer"
-        title={meta[first].title}
-        aria-label={meta[first].aria}
-      >
-        <Icon name={meta[first].flag} size={14} />
-        {meta[first].label}
-      </button>
+      <li>
+        <button
+          @click={`window.location.href = $store.lang.pathFor('${Astro.currentLocale ?? "en"}')`}
+          role="radio"
+          aria-checked="true"
+          class="text-primary shrink-0 h-8 px-3 flex items-center gap-2 text-[10px] font-mono font-bold cursor-pointer w-full"
+          title="Switch to English"
+          aria-label="Switch to English"
+        >
+          <Icon name="flag-en" size={14} />
+          EN
+        </button>
+      </li>
 
-      <!-- Inactive language -->
-      <button
-        @click={`window.posthog?.capture('language_changed', { from_lang: '${first}', to_lang: '${second}' }); window.location.href = $store.lang.pathFor('${second}')`}
-        role="radio"
-        aria-checked="false"
-        class="text-outline hover:text-on-surface shrink-0 h-8 px-3 flex items-center gap-2 transition-colors duration-150 text-[10px] font-mono font-bold cursor-pointer"
-        style="filter: grayscale(1);"
-        title={meta[second].title}
-        aria-label={meta[second].aria}
-      >
-        <Icon name={meta[second].flag} size={14} />
-        {meta[second].label}
-      </button>
-    </div>
+      <li>
+        <button
+          @click={`window.posthog?.capture('language_changed', { from_lang: '${Astro.currentLocale ?? "en"}', to_lang: 'fr' }); window.location.href = $store.lang.pathFor('fr')`}
+          role="radio"
+          aria-checked="false"
+          class="text-outline hover:text-on-surface shrink-0 h-8 px-3 flex items-center gap-2 transition-colors duration-150 text-[10px] font-mono font-bold cursor-pointer w-full"
+          style="filter: grayscale(1);"
+          title="Passer en français"
+          aria-label="Passer en français"
+        >
+          <Icon name="flag-fr" size={14} />
+          FR
+        </button>
+      </li>
+    </menu>
   </div>
-</div>
+</section>

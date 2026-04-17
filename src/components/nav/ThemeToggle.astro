@@ -1,12 +1,18 @@
 ---
 import Icon from "@components/primitives/Icon.astro";
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"span"> {}
+
+const { class: className = "", ...attrs } = Astro.props;
 ---
 
 <div
+  class:list={["relative h-11 flex items-center", className]}
+  {...attrs}
   x-data="{ open: false }"
   @mouseenter="open = true"
   @mouseleave="open = false"
-  class="relative h-11 flex items-center"
   role="radiogroup"
   aria-label="Color scheme"
   @keydown.left.prevent="$store.theme.set('light')"
