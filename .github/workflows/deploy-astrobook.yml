@@ -54,12 +54,16 @@ jobs:
       url: ${{ steps.deploy.outputs.deployment-url }}
     env:
       DEPLOY_BRANCH: ${{ github.ref_name }}
+      DEPLOY_COMMIT: ${{ github.event.pull_request.head.sha }}
       NOTIFY_PR_TITLE: ${{ github.event_name == 'pull_request' && github.event.pull_request.title || github.ref_name }}
       NOTIFY_PR_NUMBER: ${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.sha }}
       NOTIFY_PR_URL: ${{ github.event_name == 'pull_request' && github.event.pull_request.html_url || format('https://github.com/{0}/commit/{1}', github.repository, github.sha) }}
     steps:
       - name: 📦 Checkout
         uses: actions/checkout@v6
+
+      - name: 📦 Setup
+        uses: ./.github/actions/setup-bun  
 
       - name: 🚀 Deploy
         id: deploy
