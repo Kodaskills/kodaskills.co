@@ -94,8 +94,8 @@ check-branch-name *args:
 
 # Extract translatable strings from source → update .po catalogs
 [group('i18n')]
-i18n-extract:
-    docker compose run --rm dev bun lingui extract --clean
+i18n-extract *args:
+    docker compose run --rm dev bun lingui extract --clean {{args}}
 
 # Compile .po catalogs → compiled .ts message files
 [group('i18n')]
