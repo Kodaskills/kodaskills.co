@@ -16,6 +16,7 @@ export const ICON_REGISTRY = {
   "alert-warning": "material-symbols:warning",
 
   // Card / feature icons
+  "architecture": "material-symbols:architecture",
   "card-ai": "material-symbols:psychology",
   "card-analytics": "material-symbols:analytics",
   "card-audit": "material-symbols:biotech",
@@ -33,6 +34,7 @@ export const ICON_REGISTRY = {
   "card-shield": "material-symbols:security-update-good",
   "card-strategy": "material-symbols:schema",
   "card-verified": "material-symbols:verified",
+  "verified-user": "material-symbols:verified-user",
 
   // CTAs
   "cta-arrow": "material-symbols:arrow-forward",

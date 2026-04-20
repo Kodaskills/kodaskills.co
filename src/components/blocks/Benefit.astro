@@ -1,0 +1,51 @@
+---
+import Title from "@components/typography/Title.astro";
+import Text from "@components/typography/Text.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  stats: { label: string; value: string; description: string }[];
+  figureLabel: string;
+  class?: string;
+}
+
+const { title, description, stats, figureLabel, class: className } = Astro.props;
+---
+
+<section class="py-32 px-6 md:px-12 max-w-7xl mx-auto reveal-on-scroll">
+  <div class="flex flex-col md:flex-row gap-20 items-center">
+    <article class="w-full md:w-3/5">
+      <header>
+        <Title as="h2" variant="headline" class="font-headline font-bold mb-8">
+          {title}
+        </Title>
+        <Text variant="lg" class="text-on-surface-variant leading-relaxed mb-12">
+          {description}
+        </Text>
+      </header>
+      <div class="grid grid-cols-2 gap-10">
+        {stats.map((stat) => (
+          <article>
+            <Text variant="xs" class="font-bold uppercase tracking-widest text-on-surface-variant mb-3">
+              {stat.label}
+            </Text>
+            <Title as="p" variant="h2" class="font-headline font-bold">
+              {stat.value}
+            </Title>
+            <Text variant="sm" class="text-on-surface-variant mt-2">
+              {stat.description}
+            </Text>
+          </article>
+        ))}
+      </div>
+    </article>
+    <figure class="w-full md:w-2/5 aspect-square blueprint-x relative shadow-lg shadow-black/5 parallax-bg">
+      <figcaption class="absolute inset-0 flex items-center justify-center">
+        <Text variant="captionMono" class="font-bold uppercase tracking-widest bg-surface px-2">
+          {figureLabel}
+        </Text>
+      </figcaption>
+    </figure>
+  </div>
+</section>

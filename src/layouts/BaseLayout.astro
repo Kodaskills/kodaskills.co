@@ -96,6 +96,79 @@ const xDefaultHref =
     <Footer />
     <MobileBottomNav activePage={activePage} />
 
+    <!-- Template scroll effects -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Scroll Reveal Observer
+        const revealObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('active');
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => revealObserver.observe(el));
+
+        // Parallax Effect
+        window.addEventListener('scroll', () => {
+          const scrolled = window.pageYOffset;
+          document.querySelectorAll<HTMLElement>('.parallax-bg').forEach(bg => {
+            const speed = 0.05;
+            bg.style.setProperty('--parallax-offset', (scrolled * speed) % 20 + 'px');
+          });
+        });
+
+        // Spotlight Logic
+        const architectureImg = document.getElementById('architecture-img');
+        if (architectureImg) {
+          architectureImg.addEventListener('mousemove', (e) => {
+            const rect = architectureImg.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+            architectureImg.style.setProperty('--mouse-x', `${x}%`);
+            architectureImg.style.setProperty('--mouse-y', `${y}%`);
+          });
+        }
+
+        // Scroll-Triggered Steps (Process section)
+        const triggers = document.querySelectorAll('.trigger-step');
+        const cards = Array.from({length: 5}, (_, i) => document.getElementById(`card-0${i+1}`));
+        const indicators = Array.from({length: 5}, (_, i) => document.getElementById(`indicator-0${i+1}`));
+
+        const stepObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const stepAttr = entry.target.getAttribute('data-step');
+              if (stepAttr) {
+                updateContent(parseInt(stepAttr) - 1);
+              }
+            }
+          });
+        }, { rootMargin: '-40% 0% -40% 0%' });
+
+        triggers.forEach(trigger => stepObserver.observe(trigger));
+
+        function updateContent(index: number) {
+          cards.forEach((card, i) => {
+            if (card) {
+              card.style.opacity = i === index ? '1' : '0';
+              card.style.transform = i === index ? 'translateY(0)' : 'translateY(20px)';
+            }
+          });
+          indicators.forEach((ind, i) => {
+            if (ind) {
+              ind.classList.toggle('opacity-100', i === index);
+              ind.classList.toggle('scale-110', i === index);
+              ind.classList.toggle('text-primary', i === index);
+              ind.classList.toggle('opacity-20', i !== index);
+            }
+          });
+        }
+      });
+    </script>
+
     <!-- Re-initialize Alpine directives on new page content after swup swap -->
     <script>
       document.addEventListener("swup:page:view", () => {

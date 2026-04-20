@@ -16,13 +16,17 @@ import type { HTMLAttributes } from "astro/types";
  */
 interface Props extends HTMLAttributes<"header"> {
   badge: string;
+  badges?: string[];
 }
 
-const { badge, class: className = "", ...attrs } = Astro.props;
+const { badge, badges = [], class: className = "", ...attrs } = Astro.props;
 ---
 
 <header class:list={["relative z-10 space-y-8 mb-20", className]} {...attrs}>
-  <Badge label={badge} />
+  <div class="flex flex-wrap gap-3">
+    <Badge label={badge} />
+    {badges.map((b) => <Badge label={b} />)}
+  </div>
 
   <Title as="h1" variant="headline" >
   	<slot name="title" />
