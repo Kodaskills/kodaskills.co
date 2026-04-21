@@ -588,11 +588,6 @@ msgid "TRANSMIT_PARAMETERS"
 msgstr "TRANSMETTRE_PARAMÈTRES"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:134
-msgid "Upskilling internal teams to own the new stack. We aren't successful until you don't need us daily."
-msgstr ""
-
-#. js-lingui-explicit-id
 #: src/pages/[...locale]/expertises.astro:236
 msgid "Verified System Architecture"
 msgstr "Architecture Système Vérifiée"
@@ -636,11 +631,6 @@ msgstr "Nous répondons personnellement sous 48h. Pas de campaigns automatisées
 #: src/pages/[...locale]/index.astro:102
 msgid "X/10 OpenSSF Score"
 msgstr "Score X/10 OpenSSF"
-
-#. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:152
-msgid "You decide if we're useful."
-msgstr ""
 
 #. js-lingui-explicit-id
 #: src/pages/[...locale]/index.astro:86
