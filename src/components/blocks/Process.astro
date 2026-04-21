@@ -6,10 +6,9 @@ interface Props {
   subtitle: string;
   title: string;
   steps: { number: string; title: string; description: string; phase: string }[];
-  class?: string;
 }
 
-const { subtitle, title, steps, class: className } = Astro.props;
+const { subtitle, title, steps } = Astro.props;
 ---
 
 <section class="relative bg-surface-container-high overflow-visible reveal-on-scroll">

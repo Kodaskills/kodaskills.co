@@ -11,19 +11,9 @@ interface Props {
   contactUrl: string;
   linkLabel: string;
   footerText: string;
-  class?: string;
 }
 
-const {
-  title,
-  description,
-  steps,
-  buttonLabel,
-  contactUrl,
-  linkLabel,
-  footerText,
-  class: className,
-} = Astro.props;
+const { title, description, steps, buttonLabel, contactUrl, linkLabel, footerText } = Astro.props;
 ---
 
 <section class="py-40 px-6 md:px-12 text-center max-w-6xl mx-auto reveal-on-scroll">

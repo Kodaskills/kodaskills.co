@@ -7,10 +7,9 @@ interface Props {
   description: string;
   stats: { label: string; value: string; description: string }[];
   figureLabel: string;
-  class?: string;
 }
 
-const { title, description, stats, figureLabel, class: className } = Astro.props;
+const { title, description, stats, figureLabel } = Astro.props;
 ---
 
 <section class="py-32 px-6 md:px-12 max-w-7xl mx-auto reveal-on-scroll">
