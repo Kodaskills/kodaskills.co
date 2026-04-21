@@ -18,7 +18,7 @@ import type { HTMLAttributes } from "astro/types";
 
 type SectionProps = HTMLAttributes<"section">;
 
-interface Props extends SectionProps {
+export interface AlertBarProps extends SectionProps {
   title: string;
   description: string;
   href: string;

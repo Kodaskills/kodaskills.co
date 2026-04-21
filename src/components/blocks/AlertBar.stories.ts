@@ -1,9 +1,15 @@
 import Showcase from "@components/astrobook/Showcase.astro";
-import AlertBarComponent from "./AlertBar.astro";
+import { capitalize } from "@lib/utils";
+import AlertBarComponent, { type AlertBarProps } from "./AlertBar.astro";
 
 export default { component: Showcase };
 
-const alertVariantOptions = ["tertiary", "primary", "secondary", "error"];
+const alertVariantOptions: NonNullable<AlertBarProps["variant"]>[] = [
+  "tertiary",
+  "primary",
+  "secondary",
+  "error",
+];
 
 const alertData: Record<string, { title: string; description: string }> = {
   tertiary: {
@@ -25,23 +31,19 @@ const alertData: Record<string, { title: string; description: string }> = {
   },
 };
 
-function capitalize(str: string) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
-
 function getAlertItems() {
-  const items: { label: string; props: Record<string, string> }[] = [];
+  const items: { label: string; props: AlertBarProps }[] = [];
   alertVariantOptions.forEach((variant) => {
     items.push({
       label: capitalize(variant),
       props: {
-        variant: variant,
+        variant: variant as AlertBarProps["variant"],
         title: alertData[variant].title,
         description: alertData[variant].description,
         href: "/contact",
         ctaLabel: "INITIATE_CONTACT",
         icon: "alert-warning",
-      },
+      } satisfies AlertBarProps,
     });
   });
   return items;
@@ -54,3 +56,4 @@ export const AlertBar = {
     items: getAlertItems(),
   },
 };
+//

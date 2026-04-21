@@ -8,7 +8,7 @@ import type { HTMLAttributes } from "astro/types";
  *  - "accent"  : left border accent, compact padding — hero trust stats (50+, $2B+)
  *  - "metric"  : full border, looser padding, primary-colored value — system params (0ms, 99.9%)
  */
-interface Props extends HTMLAttributes<"article"> {
+export interface StatCardProps extends HTMLAttributes<"article"> {
   value: string;
   label: string;
   variant?: "accent" | "metric";
