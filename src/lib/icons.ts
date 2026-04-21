@@ -16,9 +16,9 @@ export const ICON_REGISTRY = {
   "alert-warning": "material-symbols:warning",
 
   // Card / feature icons
-  "architecture": "material-symbols:architecture",
   "card-ai": "material-symbols:psychology",
   "card-analytics": "material-symbols:analytics",
+  "card-architecture": "material-symbols:architecture",
   "card-audit": "material-symbols:biotech",
   "card-bolt": "material-symbols:bolt",
   "card-cto": "material-symbols:precision-manufacturing",
