@@ -10,6 +10,9 @@ on:
       - "astro.config.*"
       - "package.json"
       - "tsconfig.json"
+      - "biome.json"
+      - "lingui.config.ts"
+      - "knip.json"
     paths-ignore:
       - "src/components/astrobook/**"
       - "**.stories.*"
