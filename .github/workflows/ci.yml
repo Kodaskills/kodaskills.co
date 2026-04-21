@@ -5,27 +5,25 @@ on:
     branches: [main]
     paths:
       - "src/**"
+      - "!src/components/astrobook/**"
+      - "!**.stories.*"
       - "public/**"
       - "uno.config.ts"
       - "astro.config.*"
       - "package.json"
       - "tsconfig.json"
-    paths-ignore:
-      - "src/components/astrobook/**"
-      - "**.stories.*"
     
   # push:
   #   branches: [main]
   #   paths:
   #     - "src/**"
+  #     - "!src/components/astrobook/**"
+  #     - "!**.stories.*"
   #     - "public/**"
   #     - "uno.config.ts"
   #     - "astro.config.*"
   #     - "package.json"
   #     - "tsconfig.json"
-  # paths-ignore:
-  #     - "src/components/astrobook/**"
-  #     - "**.stories.*"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
