@@ -13,15 +13,25 @@
  *  - "h6": Extra small heading (text-sm/snug)
  *
  */
-export interface Props {
-  as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "span" | "p";
-  variant?: "headline" | "display" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-  class?: string;
+import type { HTMLAttributes } from "astro/types";
+
+const HEADING_LEVELS = [1, 2, 3, 4, 5, 6] as const;
+const VARIANTS = ["headline", "display", "h1", "h2", "h3", "h4", "h5", "h6"] as const;
+
+type HeadingLevel = (typeof HEADING_LEVELS)[number];
+type Variant = (typeof VARIANTS)[number];
+type Variants = Record<Variant, string>;
+
+export interface TitleProps extends HTMLAttributes<"h1" | "h2" | "h3" | "h4" | "h5" | "h6"> {
+  level?: HeadingLevel;
+  variant?: Variant;
 }
 
-const { as: Tag = "h2", variant = "h2", class: className = "" } = Astro.props;
+const { level = 2, variant = "h2", class: className = "" } = Astro.props as TitleProps;
 
-const variants: Record<string, string> = {
+const Tag = `h${level}`;
+
+const variants: Variants = {
   headline: "font-headline text-5xl md:text-8xl font-bold tracking-tighter leading-none",
   display: "font-heading text-4xl leading-tight font-bold",
   h1: "font-heading text-3xl leading-tight tracking-tight font-bold",

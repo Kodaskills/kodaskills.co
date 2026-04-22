@@ -1,7 +1,20 @@
 import Showcase from "@components/astrobook/Showcase.astro";
-import Title from "./Title.astro";
+import { capitalize } from "@lib/utils";
+import unoConfig from "../../../uno.config";
+import Title, { type TitleProps } from "./Title.astro";
 
 export default { component: Showcase };
+
+interface item {
+  label: string;
+  props: TitleProps;
+}
+
+const excludePrefixes = ["on-", "inverse-", "surface"];
+
+const cOptions = Object.keys(unoConfig?.theme?.colors ?? {})
+  .filter((key) => excludePrefixes.every((prefix) => !key.startsWith(prefix)))
+  .map((key) => `text-${key}`);
 
 export const Variants = {
   args: {
@@ -23,40 +36,20 @@ export const Variants = {
   },
 };
 
-const colorOptions = [
-  "default",
-  "surface-variant",
-  "primary",
-  "secondary",
-  "tertiary",
-  "error",
-  "on-primary",
-];
-
-function capitalize(str: string) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
-
-function getColorItems() {
-  const items: { label: string; props: Record<string, string> }[] = [];
-  colorOptions.forEach((color) => {
-    items.push({
-      label: color,
-      props: {
-        variant: "h1",
-        class: color === "default" ? "" : `text-${color}`,
-        text: `${capitalize(color)} Title`,
-      },
-    });
-  });
-  return items;
-}
+const colorItems: item[] = cOptions.map((color) => ({
+  label: color,
+  props: {
+    variant: "h1",
+    class: color,
+    text: `${capitalize(color)} Title`,
+  },
+}));
 
 export const Colors = {
   args: {
     component: Title,
     layout: "stack",
     type: "text",
-    items: getColorItems(),
+    items: colorItems,
   },
 };
