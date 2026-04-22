@@ -89,10 +89,12 @@ const { _, lp } = await useI18n(Astro.currentLocale);
         ),
       },
     ]}
-    ctaTitle={_("KNOWLEDGE TRANSFER GUARANTEED")}
-    ctaSubtitle={_("You own :")}
+    cta={{
+      title: _("KNOWLEDGE TRANSFER GUARANTEED"),
+      subtitle: _("You own :"),
+      final: _("No vendor lock-in"),
+    }}
     subItems={[_("The IP"), _("The code"), _("The runbooks")]}
-    ctaFinal={_("No vendor lock-in")}
   />
 
   <Benefit

@@ -2,10 +2,17 @@
 import Text from "@components/typography/Text.astro";
 import Title from "@components/typography/Title.astro";
 
+interface Step {
+  number: string;
+  title: string;
+  description: string;
+  phase: string;
+}
+
 interface Props {
   subtitle: string;
   title: string;
-  steps: { number: string; title: string; description: string; phase: string }[];
+  steps: Step[];
   class?: string;
 }
 

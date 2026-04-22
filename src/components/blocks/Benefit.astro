@@ -2,10 +2,16 @@
 import Text from "@components/typography/Text.astro";
 import Title from "@components/typography/Title.astro";
 
+interface Stat {
+  label: string;
+  value: string;
+  description: string;
+}
+
 interface Props {
   title: string;
   description: string;
-  stats: { label: string; value: string; description: string }[];
+  stats: Stat[];
   figureLabel: string;
   class?: string;
 }

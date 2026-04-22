@@ -3,10 +3,15 @@ import Button from "@components/primitives/Button.astro";
 import Text from "@components/typography/Text.astro";
 import Title from "@components/typography/Title.astro";
 
+interface Step {
+  number: string;
+  label: string;
+}
+
 interface Props {
   title: string;
   description: string;
-  steps: { number: string; label: string }[];
+  steps: Step[];
   buttonLabel: string;
   contactUrl: string;
   linkLabel: string;
