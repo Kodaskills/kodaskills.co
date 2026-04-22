@@ -1,17 +1,17 @@
 import Showcase from "@components/astrobook/Showcase.astro";
 import { capitalize } from "@lib/utils";
-import AlertBarComponent, { type AlertBarProps } from "./AlertBar.astro";
+import AlertBarComponent, { type AlertBarProps, type AlertBarVariant } from "./AlertBar.astro";
 
 export default { component: Showcase };
 
-const alertVariantOptions: NonNullable<AlertBarProps["variant"]>[] = [
-  "tertiary",
-  "primary",
-  "secondary",
-  "error",
-];
+const alertVariantOptions: AlertBarVariant[] = ["tertiary", "primary", "secondary", "error"];
 
-const alertData: Record<string, { title: string; description: string }> = {
+interface AlertBarData {
+  title: string;
+  description: string;
+}
+
+const alertData: Record<AlertBarVariant, AlertBarData> = {
   tertiary: {
     title: "EMERGENCY_ACCESS",
     description:
@@ -37,7 +37,7 @@ function getAlertItems() {
     items.push({
       label: capitalize(variant),
       props: {
-        variant: variant as AlertBarProps["variant"],
+        variant: variant,
         title: alertData[variant].title,
         description: alertData[variant].description,
         href: "/contact",
