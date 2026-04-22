@@ -15,16 +15,14 @@ import type { HTMLAttributes } from "astro/types";
  * additional content alongside the header (e.g., the contact telemetry panel).
  */
 interface Props extends HTMLAttributes<"header"> {
-  badge: string;
-  badges?: string[];
+  badges: string[];
 }
 
-const { badge, badges = [], class: className = "", ...attrs } = Astro.props;
+const { badges = [], class: className = "", ...attrs } = Astro.props;
 ---
 
 <header class:list={["relative z-10 space-y-8 mb-20", className]} {...attrs}>
   <div class="flex flex-wrap gap-3">
-    <Badge label={badge} />
     {badges.map((b) => <Badge label={b} />)}
   </div>
 
