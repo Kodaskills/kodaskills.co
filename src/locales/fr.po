@@ -24,7 +24,7 @@ msgid "20+ YEARS OPERATIONAL EXPERIENCE"
 msgstr "20+ ANNÉES D'EXPÉRIENCE OPÉRATIONNELLES"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:67
+#: src/pages/[...locale]/index.astro:65
 msgid "A Playbook For Technical Founders"
 msgstr "Un Manuel pour les Fondateurs Techniques"
 
@@ -34,7 +34,7 @@ msgid "A single, focused conversation.No strings attached."
 msgstr "Une conversation unique et focalisée. Sans engagement."
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:88
+#: src/pages/[...locale]/index.astro:86
 msgid "AI & Growth Enablement"
 msgstr "IA & Activation de Croissance"
 
@@ -44,7 +44,7 @@ msgid "AI Transformation & Strategy"
 msgstr "Transformation IA & Stratégie"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:39
+#: src/pages/[...locale]/index.astro:37
 msgid "and accelerate delivery."
 msgstr "et accélérer la livraison"
 
@@ -124,7 +124,7 @@ msgid "Contact"
 msgstr "Contact"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:58
+#: src/pages/[...locale]/index.astro:56
 msgid "COORDINATES_LOC"
 msgstr "COORDONNÉES_LOC"
 
@@ -149,7 +149,7 @@ msgid "Current Tech Challenge"
 msgstr "Défi Technologique Actuel"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:37
+#: src/pages/[...locale]/index.astro:36
 msgid "de-risk your roadmap"
 msgstr "réduire les risques de votre feuille de route"
 
@@ -205,12 +205,12 @@ msgid "Forensics"
 msgstr "Forensique"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:35
-msgid "Fractional CTO and Elite Engineering. We embed senior technical leadership to <strong>de-risk your roadmap</strong> and accelerate delivery."
-msgstr ""
+#: src/pages/[...locale]/index.astro:34
+msgid "Fractional CTO and Elite Engineering. We embed senior technical leadership to "
+msgstr "CTO à temps partiel et ingénierie de haut niveau. Nous assurons un encadrement technique de haut niveau pour"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:28
+#: src/pages/[...locale]/index.astro:27
 msgid "FRACTIONAL, NOT FREELANCE"
 msgstr "À TEMPS PARTIEL, PAS EN FREELANCE"
 
@@ -281,7 +281,7 @@ msgid "Knowledge Transfer"
 msgstr "Transfert de Connaissances"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:94
+#: src/pages/[...locale]/index.astro:93
 msgid "KNOWLEDGE TRANSFER GUARANTEED"
 msgstr "TRANSFERT DE CONNAISSANCES GARANTI"
 
@@ -343,12 +343,12 @@ msgid "Need a custom audit?"
 msgstr "Besoin d'un audit personnalisé ?"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:97
+#: src/pages/[...locale]/index.astro:95
 msgid "No vendor lock-in"
 msgstr "Pas de verrouillage fournisseur"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:28
+#: src/pages/[...locale]/index.astro:27
 msgid "OPEN CORE METHODOLOGY"
 msgstr "MÉTHODOLOGIE OPEN CORE"
 
@@ -393,7 +393,7 @@ msgid "PARTNER_ARCHETYPE"
 msgstr "ARCHÉTYPE_PARTENAIRE"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:81
+#: src/pages/[...locale]/index.astro:79
 msgid "Platform Engineering"
 msgstr "Ingénierie de Plateforme"
 
@@ -443,7 +443,7 @@ msgid "Reliability_Mesh"
 msgstr "Fiabilité_Intégrée"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:46
+#: src/pages/[...locale]/index.astro:44
 msgid "Request Technical Assessment"
 msgstr "Demander une Évaluation Technique"
 
@@ -458,7 +458,7 @@ msgid "Security Protocol"
 msgstr "Protocole de Sécurité"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:32
+#: src/pages/[...locale]/index.astro:31
 msgid "Start Augmenting."
 msgstr "Commencez à Croître."
 
@@ -468,7 +468,7 @@ msgid "START_DIAGNOSTIC"
 msgstr "LANCER_DIAGNOSTIC"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:31
+#: src/pages/[...locale]/index.astro:30
 msgid "Stop Outsourcing"
 msgstr "Cessez d'Externaliser"
 
@@ -513,7 +513,7 @@ msgid "Tech Leadership & Strategy"
 msgstr "Leadership Tech & Stratégie"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:74
+#: src/pages/[...locale]/index.astro:72
 msgid "Technical Forensics"
 msgstr "Forensique Technique"
 
@@ -528,17 +528,17 @@ msgid "The 90-Day Sprint"
 msgstr "Le Sprint de 90 Jours"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:96
+#: src/pages/[...locale]/index.astro:97
 msgid "The code"
 msgstr "Le code"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:96
+#: src/pages/[...locale]/index.astro:97
 msgid "The IP"
 msgstr "La PI"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:96
+#: src/pages/[...locale]/index.astro:97
 msgid "The runbooks"
 msgstr "Les runbooks"
 
@@ -553,7 +553,7 @@ msgid "Verified System Architecture"
 msgstr "Architecture Système Vérifiée"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:49
+#: src/pages/[...locale]/index.astro:47
 msgid "View Open Source Framework"
 msgstr "Consulter le Framework Open Source"
 
@@ -578,7 +578,7 @@ msgid "X/10 OpenSSF Score"
 msgstr "Score X/10 OpenSSF"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:95
+#: src/pages/[...locale]/index.astro:94
 msgid "You own :"
 msgstr "Vous possédez :"
 

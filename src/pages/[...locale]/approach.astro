@@ -17,7 +17,7 @@ const { _, lp } = await useI18n(Astro.currentLocale);
 
 <BaseLayout title={_("KODASKILLS | Approach & Methodology")} activePage="approach">
   <PageHero>
-    <PageHeader badge={_("OPERATIONAL_FRAMEWORK")}>
+    <PageHeader badges={[_("OPERATIONAL_FRAMEWORK")]}>
       <Fragment slot="title">
         {_("PRECISION THROUGH")}<br />
         <span class="text-primary">{_("STRUCTURAL RIGOR")}</span><br />
