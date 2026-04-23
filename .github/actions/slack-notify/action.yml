@@ -50,6 +50,14 @@ runs:
           echo "STATUS_EMOJI=🟡" >> $GITHUB_ENV
           echo "COLOR=#ECB22E" >> $GITHUB_ENV
         fi
+        if [ -n "$PR_NUMBER" ]; then
+          echo "LABEL_PREFIX=Last changes from PR" >> $GITHUB_ENV
+          echo "PR_DISPLAY=#$PR_NUMBER — $PR_TITLE" >> $GITHUB_ENV
+        else
+          echo "LABEL_PREFIX=Last changes from main" >> $GITHUB_ENV
+          MAIN_TITLE="$(git show --pretty=format:%s -s HEAD)"
+          echo "PR_DISPLAY=$MAIN_TITLE" >> $GITHUB_ENV
+        fi
         echo "PR_NAME=$PR_TITLE" >> $GITHUB_ENV
         echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_ENV
         echo "COMMIT_HASH=$COMMIT_HASH" >> $GITHUB_ENV
@@ -75,7 +83,7 @@ runs:
                     "fields": [
                       {
                         "type": "mrkdwn",
-                        "text": "*Last changes from PR*\n<${{ env.PR_URL }}|#${{ env.PR_NUMBER }} — ${{ env.PR_NAME }}>"
+                        "text": "*${{ env.LABEL_PREFIX }}*\n<${{ env.PR_URL }}|${{ env.PR_DISPLAY }}>"
                       }
                     ]
                   },
