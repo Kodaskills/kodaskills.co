@@ -63,23 +63,17 @@ const { _, lp } = await useI18n(Astro.currentLocale);
 
   <Playbook
     title={_("A Playbook For Technical Founders")}
-    description={_(
-      "De-risk, build, and scale with a unified architectural vision.",
-    )}
+    description={_("De-risk, build, and scale with a unified architectural vision.")}
     items={[
       {
         number: "01",
         title: _("Technical Forensics"),
-        description: _(
-          "We do not just audit we perform a deep structural autopsy identifying critical points before they manifest as downtime.",
-        ),
+        description: _("We do not just audit we perform a deep structural autopsy identifying critical points before they manifest as downtime.")
       },
       {
         number: "02",
         title: _("Platform Engineering"),
-        description: _(
-          "Infrastructure as an enabler. We build Zero-Trust systems that scale horizontally without human intervention.",
-        ),
+        description: _("Infrastructure as an enabler. We build Zero-Trust systems that scale horizontally without human intervention.")
       },
       {
         number: "03",
@@ -99,20 +93,18 @@ const { _, lp } = await useI18n(Astro.currentLocale);
 
   <Benefit
     title={_("Deploy with confidence.Scale without limits.")}
-    description={_(
-      "We embed senior fractional CTO leadership to transform your infrastructure from a bottleneck into a competitive advantage.",
-    )}
+    description={_("We embed senior fractional CTO leadership to transform your infrastructure from a bottleneck into a competitive advantage.")}
     stats={[
       {
         label: _("Qualitative code"),
         value: _("0 Critical incidents"),
-        description: _("Related to our infrastructure module"),
+        description: _("Related to our infrastructure module")
       },
       {
         label: _("certification"),
         value: _("X/10 OpenSSF Score"),
-        description: _("Ensuring a secure, production-ready foundation"),
-      },
+        description: _("Ensuring a secure, production-ready foundation")
+      }
     ]}
     figureLabel={_("System Schema")}
   />
@@ -124,51 +116,39 @@ const { _, lp } = await useI18n(Astro.currentLocale);
       {
         number: "01",
         title: _("Forensics"),
-        description: _(
-          "Deep analysis of existing infrastructure and codebase. We find the skeletons before they find you.",
-        ),
-        phase: _("Diagnosis"),
+        description: _("Deep analysis of existing infrastructure and codebase. We find the skeletons before they find you."),
+        phase: _("Diagnosis")
       },
       {
         number: "02",
         title: _("Architecture Review"),
-        description: _(
-          "Stress-testing the vision against scalability requirements. Validating every assumption in the stack.",
-        ),
-        phase: _("Blueprint"),
+        description: _("Stress-testing the vision against scalability requirements. Validating every assumption in the stack."),
+        phase: _("Blueprint")
       },
       {
         number: "03",
         title: _("The 90-Day Sprint"),
-        description: _(
-          "Rapid implementation of the core architectural changes. Zero-downtime migrations and clean-room deploys.",
-        ),
-        phase: _("Execution"),
+        description: _("Rapid implementation of the core architectural changes. Zero-downtime migrations and clean-room deploys."),
+        phase: _("Execution")
       },
       {
         number: "04",
         title: _("Knowledge Transfer"),
-        description: _(
-          "Upskilling internal teams to own the new stack. We aren't successful until you don't need us daily.",
-        ),
-        phase: _("Autonomy"),
+        description: _("Upskilling internal teams to own the new stack. We aren't successful until you don't need us daily."),
+        phase: _("Autonomy")
       },
       {
         number: "05",
         title: _("Guardian SLA"),
-        description: _(
-          "Continuous oversight and quarterly strategic pivot. We remain on-call for your most critical architectural decisions.",
-        ),
-        phase: _("Oversight"),
+        description: _("Continuous oversight and quarterly strategic pivot. We remain on-call for your most critical architectural decisions."),
+        phase: _("Oversight")
       },
     ]}
   />
 
   <ConversionSection
     title={_("A single, focused conversation.No strings attached.")}
-    description={_(
-      "Most firms hide behind forms and automated sequences. We start with a 30-minute technical discussion focused entirely on your current challenge.",
-    )}
+    description={_("Most firms hide behind forms and automated sequences. We start with a 30-minute technical discussion focused entirely on your current challenge.")}
     steps={[
       { number: "1", label: _("You share context") },
       { number: "2", label: _("We discuss technical options") },
@@ -177,8 +157,6 @@ const { _, lp } = await useI18n(Astro.currentLocale);
     buttonLabel={_("Book a Technical Discussion")}
     contactUrl={lp("/contact")}
     linkLabel={_("or if you prefer the old way")}
-    footerText={_(
-      "We reply personally within 48h. No automated drip campaigns.",
-    )}
+    footerText={_("We reply personally within 48h. No automated drip campaigns.")}
   />
 </BaseLayout>

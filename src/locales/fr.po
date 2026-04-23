@@ -14,7 +14,7 @@ msgstr ""
 "Language-Team: \n"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:108
+#: src/pages/[...locale]/index.astro:97
 msgid "0 Critical incidents"
 msgstr "0 Incident Critique"
 
@@ -24,17 +24,17 @@ msgid "20+ YEARS OPERATIONAL EXPERIENCE"
 msgstr "20+ ANNÉES D'EXPÉRIENCE OPÉRATIONNELLES"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:65
+#: src/pages/[...locale]/index.astro:66
 msgid "A Playbook For Technical Founders"
 msgstr "Un Manuel pour les Fondateurs Techniques"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:168
+#: src/pages/[...locale]/index.astro:147
 msgid "A single, focused conversation.No strings attached."
 msgstr "Une conversation unique et focalisée. Sans engagement."
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:86
+#: src/pages/[...locale]/index.astro:81
 msgid "AI & Growth Enablement"
 msgstr "IA & Activation de Croissance"
 
@@ -44,7 +44,7 @@ msgid "AI Transformation & Strategy"
 msgstr "Transformation IA & Stratégie"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:37
+#: src/pages/[...locale]/index.astro:38
 msgid "and accelerate delivery."
 msgstr "et accélérer la livraison"
 
@@ -59,7 +59,7 @@ msgid "Architecting systems that grow without friction. Kubernetes orchestration
 msgstr "Concevoir des systèmes qui croissent sans friction. Orchestration Kubernetes, migrations serverless et optimisation des bases de données pour 99,99% de disponibilité."
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:134
+#: src/pages/[...locale]/index.astro:121
 msgid "Architecture Review"
 msgstr "Revue d'Architecture"
 
@@ -69,7 +69,7 @@ msgid "Authority_Lock"
 msgstr "Autorité_Verrouillée"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:154
+#: src/pages/[...locale]/index.astro:135
 msgid "Autonomy"
 msgstr "Autonomie"
 
@@ -79,12 +79,12 @@ msgid "Awaiting local operator input for diagnostic deployment."
 msgstr "En attente de la saisie de l'opérateur local pour le déploiement du diagnostic."
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:138
+#: src/pages/[...locale]/index.astro:123
 msgid "Blueprint"
 msgstr "Plan d'Architecture"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:177
+#: src/pages/[...locale]/index.astro:154
 msgid "Book a Technical Discussion"
 msgstr "Planifier une Discussion Technique"
 
@@ -99,7 +99,7 @@ msgid "CAPABILITIES_MANIFEST"
 msgstr "MANIFESTE_DES_CAPACITÉS"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:112
+#: src/pages/[...locale]/index.astro:101
 msgid "certification"
 msgstr "certification"
 
@@ -124,7 +124,12 @@ msgid "Contact"
 msgstr "Contact"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:56
+#: src/pages/[...locale]/index.astro:140
+msgid "Continuous oversight and quarterly strategic pivot. We remain on-call for your most critical architectural decisions."
+msgstr "Surveillance continue et pivot stratégique trimestriel. Nous restons disponibles pour vos décisions architecturales les plus critiques."
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/index.astro:57
 msgid "COORDINATES_LOC"
 msgstr "COORDONNÉES_LOC"
 
@@ -149,9 +154,19 @@ msgid "Current Tech Challenge"
 msgstr "Défi Technologique Actuel"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:36
+#: src/pages/[...locale]/index.astro:37
 msgid "de-risk your roadmap"
 msgstr "réduire les risques de votre feuille de route"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/index.astro:67
+msgid "De-risk, build, and scale with a unified architectural vision."
+msgstr "Réduire les risques, construire et scaler avec une vision architecturale unifiée."
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/index.astro:116
+msgid "Deep analysis of existing infrastructure and codebase. We find the skeletons before they find you."
+msgstr "Analyse approfondie de l'infrastructure et du code existants. Nous trouvons les faiblesses avant qu'elles ne vous trouvent."
 
 #. js-lingui-explicit-id
 #: src/pages/[...locale]/approach.astro:107
@@ -159,12 +174,12 @@ msgid "Deep_Diagnostic"
 msgstr "Diagnostic_Approfondi"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:101
+#: src/pages/[...locale]/index.astro:92
 msgid "Deploy with confidence.Scale without limits."
 msgstr "Déployez avec confiance. Scaler sans limites."
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:130
+#: src/pages/[...locale]/index.astro:117
 msgid "Diagnosis"
 msgstr "Diagnostic"
 
@@ -179,12 +194,12 @@ msgid "End-to-end engineering of resilient digital products. We specialize in hi
 msgstr "Ingénierie bout-en-bout de produits numériques résilients. Nous nous spécialisons dans les applications web haute performance, les tableaux de bord complexes et les écosystèmes mobiles construits sur des stacks modernes et maintenables."
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:114
+#: src/pages/[...locale]/index.astro:103
 msgid "Ensuring a secure, production-ready foundation"
 msgstr "Garantissant une base sécurisée et prête pour la production"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:146
+#: src/pages/[...locale]/index.astro:129
 msgid "Execution"
 msgstr "Exécution"
 
@@ -200,17 +215,17 @@ msgid "Footer navigation"
 msgstr "Navigation du pied de page"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:126
+#: src/pages/[...locale]/index.astro:115
 msgid "Forensics"
 msgstr "Forensique"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:34
+#: src/pages/[...locale]/index.astro:35
 msgid "Fractional CTO and Elite Engineering. We embed senior technical leadership to "
-msgstr "CTO à temps partiel et ingénierie de haut niveau. Nous assurons un encadrement technique de haut niveau pour"
+msgstr " Fractionnaire et Ingénierie d'Élite. Nous intégrons une direction technique senior pour "
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:27
+#: src/pages/[...locale]/index.astro:28
 msgid "FRACTIONAL, NOT FREELANCE"
 msgstr "À TEMPS PARTIEL, PAS EN FREELANCE"
 
@@ -230,7 +245,7 @@ msgid "Global Financial Terminal Upgrade"
 msgstr "Mise à Niveau du Terminal Financier Global"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:158
+#: src/pages/[...locale]/index.astro:139
 msgid "Guardian SLA"
 msgstr "SLA de Garantie"
 
@@ -256,6 +271,11 @@ msgid "Infrastructure & Scalability"
 msgstr "Infrastructure et Scalabilité"
 
 #. js-lingui-explicit-id
+#: src/pages/[...locale]/index.astro:77
+msgid "Infrastructure as an enabler. We build Zero-Trust systems that scale horizontally without human intervention."
+msgstr "Infrastructure comme facilitateur. Nous construisons des systèmes Zero-Trust qui scale horizontalement sans intervention humaine."
+
+#. js-lingui-explicit-id
 #: src/pages/[...locale]/expertises.astro:164
 msgid "INITIALIZE_CONTACT"
 msgstr "INITIALISER_CONTACT"
@@ -276,12 +296,12 @@ msgid "INTEGRATED_SUPPORT"
 msgstr "SUPPORT_INTÉGRÉ"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:150
+#: src/pages/[...locale]/index.astro:133
 msgid "Knowledge Transfer"
 msgstr "Transfert de Connaissances"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:93
+#: src/pages/[...locale]/index.astro:85
 msgid "KNOWLEDGE TRANSFER GUARANTEED"
 msgstr "TRANSFERT DE CONNAISSANCES GARANTI"
 
@@ -333,9 +353,14 @@ msgstr "Alignement structurel à long terme. Nous nous intégrons en tant que re
 
 #. js-lingui-explicit-id
 #: src/components/nav/Footer.astro:62
-#: src/pages/[...locale]/index.astro:121
+#: src/pages/[...locale]/index.astro:110
 msgid "Methodology"
 msgstr "Méthodologie"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/index.astro:148
+msgid "Most firms hide behind forms and automated sequences. We start with a 30-minute technical discussion focused entirely on your current challenge."
+msgstr "La plupart des entreprises se cachent derrière des formulaires et des séquences automatisées. Nous commençons par une discussion technique de 30 minutes entièrement focalisée sur votre défi actuel."
 
 #. js-lingui-explicit-id
 #: src/pages/[...locale]/expertises.astro:161
@@ -343,12 +368,12 @@ msgid "Need a custom audit?"
 msgstr "Besoin d'un audit personnalisé ?"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:95
+#: src/pages/[...locale]/index.astro:88
 msgid "No vendor lock-in"
 msgstr "Pas de verrouillage fournisseur"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:27
+#: src/pages/[...locale]/index.astro:28
 msgid "OPEN CORE METHODOLOGY"
 msgstr "MÉTHODOLOGIE OPEN CORE"
 
@@ -363,7 +388,7 @@ msgid "OPERATOR-GRADE PRECISION FOR ENTERPRISE ARCHITECTURE. WE BUILD WHAT OTHER
 msgstr "PRÉCISION DE NIVEAU OPÉRATIONNEL POUR L'ARCHITECTURE D'ENTREPRISE. NOUS CONSTRUISONS CE QUE D'AUTRES NE FONT QU'IMAGINER."
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:179
+#: src/pages/[...locale]/index.astro:156
 msgid "or if you prefer the old way"
 msgstr "ou si vous préférez l'ancienne méthode"
 
@@ -383,7 +408,7 @@ msgid "Our partnership is built on uptime and output. We function as a fail-safe
 msgstr "Notre partenariat est fondé sur la disponibilité et la performance. Nous fonctionnons comme une couche de sécurité pour votre équipe produit principale."
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:162
+#: src/pages/[...locale]/index.astro:141
 msgid "Oversight"
 msgstr "Surveillance"
 
@@ -393,7 +418,7 @@ msgid "PARTNER_ARCHETYPE"
 msgstr "ARCHÉTYPE_PARTENAIRE"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:79
+#: src/pages/[...locale]/index.astro:76
 msgid "Platform Engineering"
 msgstr "Ingénierie de Plateforme"
 
@@ -428,12 +453,17 @@ msgid "Protocol 01"
 msgstr "Protocole 01"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:107
+#: src/pages/[...locale]/index.astro:96
 msgid "Qualitative code"
 msgstr "Code de qualité"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:109
+#: src/pages/[...locale]/index.astro:128
+msgid "Rapid implementation of the core architectural changes. Zero-downtime migrations and clean-room deploys."
+msgstr "Implémentation rapide des changements architecturaux principaux. Migrations zero-downtime et déploiements en environnement propre."
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/index.astro:98
 msgid "Related to our infrastructure module"
 msgstr "Lié à notre module d'infrastructure"
 
@@ -443,7 +473,7 @@ msgid "Reliability_Mesh"
 msgstr "Fiabilité_Intégrée"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:44
+#: src/pages/[...locale]/index.astro:45
 msgid "Request Technical Assessment"
 msgstr "Demander une Évaluation Technique"
 
@@ -458,7 +488,7 @@ msgid "Security Protocol"
 msgstr "Protocole de Sécurité"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:31
+#: src/pages/[...locale]/index.astro:32
 msgid "Start Augmenting."
 msgstr "Commencez à Croître."
 
@@ -468,7 +498,7 @@ msgid "START_DIAGNOSTIC"
 msgstr "LANCER_DIAGNOSTIC"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:30
+#: src/pages/[...locale]/index.astro:31
 msgid "Stop Outsourcing"
 msgstr "Cessez d'Externaliser"
 
@@ -478,9 +508,14 @@ msgid "STRATEGIC DIAGNOSTIC"
 msgstr "DIAGNOSTIC STRATÉGIQUE"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:122
+#: src/pages/[...locale]/index.astro:111
 msgid "Strategic Implementation Protocol"
 msgstr "Protocole d'Implémentation Stratégique"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/index.astro:122
+msgid "Stress-testing the vision against scalability requirements. Validating every assumption in the stack."
+msgstr "Test de résistance de la vision contre les exigences de scalabilité. Validation de chaque hypothèse dans la stack."
 
 #. js-lingui-explicit-id
 #: src/pages/[...locale]/approach.astro:23
@@ -493,7 +528,7 @@ msgid "Surface-level fixes are rejected. We investigate the root architectural c
 msgstr "Les correctifs superficiels sont rejetés. Nous enquêtons sur la cause architecturale racine de chaque point de défaillance."
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:117
+#: src/pages/[...locale]/index.astro:106
 msgid "System Schema"
 msgstr "Schéma Système"
 
@@ -513,7 +548,7 @@ msgid "Tech Leadership & Strategy"
 msgstr "Leadership Tech & Stratégie"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:72
+#: src/pages/[...locale]/index.astro:71
 msgid "Technical Forensics"
 msgstr "Forensique Technique"
 
@@ -523,24 +558,29 @@ msgid "Terms of Op"
 msgstr "CGU"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:142
+#: src/pages/[...locale]/index.astro:127
 msgid "The 90-Day Sprint"
 msgstr "Le Sprint de 90 Jours"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:97
+#: src/pages/[...locale]/index.astro:87
 msgid "The code"
 msgstr "Le code"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:97
+#: src/pages/[...locale]/index.astro:87
 msgid "The IP"
 msgstr "La PI"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:97
+#: src/pages/[...locale]/index.astro:87
 msgid "The runbooks"
 msgstr "Les runbooks"
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/index.astro:82
+msgid "Transforming raw data into operational leverage through bespoke LLM implementations and autonomous workflows."
+msgstr "Transformer les données brutes en avantage opérationnel grâce à des implémentations LLM sur mesure et des workflows autonomes."
 
 #. js-lingui-explicit-id
 #: src/pages/[...locale]/contact.astro:162
@@ -553,12 +593,12 @@ msgid "Verified System Architecture"
 msgstr "Architecture Système Vérifiée"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:47
+#: src/pages/[...locale]/index.astro:48
 msgid "View Open Source Framework"
 msgstr "Consulter le Framework Open Source"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:174
+#: src/pages/[...locale]/index.astro:151
 msgid "We discuss technical options"
 msgstr "Nous discutons des options techniques"
 
@@ -568,22 +608,37 @@ msgid "We do not believe in generic consulting. Kodaskills operates as a high-de
 msgstr "Nous ne croyons pas aux conseils génériques. Kodaskills opère comme un partenaire technique à haute densité, appliquant une méthodologie chirurgicale aux défis d'ingénierie complexes."
 
 #. js-lingui-explicit-id
+#: src/pages/[...locale]/index.astro:72
+msgid "We do not just audit we perform a deep structural autopsy identifying critical points before they manifest as downtime."
+msgstr "Nous ne faisons pas qu'auditer, nous performons une autopsie structurelle profonde identifiant les points critiques avant qu'ils ne se manifestent comme des arrêts."
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/index.astro:93
+msgid "We embed senior fractional CTO leadership to transform your infrastructure from a bottleneck into a competitive advantage."
+msgstr "Nous intégrons une direction CTO fractionnaire senior pour transformer votre infrastructure d'un goulot d'étranglement en avantage concurrentiel."
+
+#. js-lingui-explicit-id
 #: src/pages/[...locale]/approach.astro:98
 msgid "We provide absolute clarity in decision-making. No ambiguous recommendations, only technical directives backed by data."
 msgstr "Nous fournissons une clarté absolue dans la prise de décision. Pas de recommandations ambiguës, uniquement des directives techniques étayées par des données."
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:113
+#: src/pages/[...locale]/index.astro:157
+msgid "We reply personally within 48h. No automated drip campaigns."
+msgstr "Nous répondons personnellement sous 48h. Pas de campaigns automatisées."
+
+#. js-lingui-explicit-id
+#: src/pages/[...locale]/index.astro:102
 msgid "X/10 OpenSSF Score"
 msgstr "Score X/10 OpenSSF"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:94
+#: src/pages/[...locale]/index.astro:86
 msgid "You own :"
 msgstr "Vous possédez :"
 
 #. js-lingui-explicit-id
-#: src/pages/[...locale]/index.astro:173
+#: src/pages/[...locale]/index.astro:150
 msgid "You share context"
 msgstr "Vous partagez le contexte"
 
