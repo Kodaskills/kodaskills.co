@@ -3,61 +3,61 @@ import Button from "./Button.astro";
 
 export default { component: Showcase };
 
+const variantOptions = ["primary", "outlined", "outlined-primary", "outlined-tertiary"];
+
+const sizeOptions = ["xs", "sm", "md", "lg"];
+
+function capitalize(str: string) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+function getVariantItems() {
+  const items: { label: string; props: Record<string, string> }[] = [];
+  const labels: Record<string, string> = {
+    primary: "INITIATE_DIAGNOSTIC",
+    outlined: "VIEW_METHODOLOGY",
+    "outlined-primary": "INITIALIZE_CONTACT",
+    "outlined-tertiary": "ACCESS_EMERGENCY_PROTOCOL",
+  };
+  variantOptions.forEach((variant) => {
+    items.push({
+      label: capitalize(variant),
+      props: { label: labels[variant], variant: variant, size: "md" },
+    });
+  });
+  return items;
+}
+
 export const Variants = {
   args: {
     component: Button,
     layout: "stack",
-    items: [
-      {
-        label: "Primary",
-        props: { label: "INITIATE_DIAGNOSTIC", variant: "primary", size: "md" },
-      },
-      {
-        label: "Outlined",
-        props: { label: "VIEW_METHODOLOGY", variant: "outlined", size: "md" },
-      },
-      {
-        label: "Outlined Primary",
-        props: {
-          label: "INITIALIZE_CONTACT",
-          variant: "outlined-primary",
-          size: "md",
-        },
-      },
-      {
-        label: "Outlined Tertiary",
-        props: {
-          label: "ACCESS_EMERGENCY_PROTOCOL",
-          variant: "outlined-tertiary",
-          size: "md",
-        },
-      },
-    ],
+    items: getVariantItems(),
   },
 };
+
+function getSizeItems() {
+  const items: { label: string; props: Record<string, string> }[] = [];
+  const labels: Record<string, string> = {
+    xs: "START_DIAGNOSTIC",
+    sm: "INITIALIZE_CONTACT",
+    md: "INITIATE_DIAGNOSTIC",
+    lg: "TRANSMIT_PARAMETERS",
+  };
+  sizeOptions.forEach((size) => {
+    items.push({
+      label: size,
+      props: { label: labels[size], variant: "primary", size: size },
+    });
+  });
+  return items;
+}
 
 export const Sizes = {
   args: {
     component: Button,
     layout: "stack",
-    items: [
-      {
-        label: "xs",
-        props: { label: "START_DIAGNOSTIC", variant: "primary", size: "xs" },
-      },
-      {
-        label: "sm",
-        props: { label: "INITIALIZE_CONTACT", variant: "primary", size: "sm" },
-      },
-      {
-        label: "md",
-        props: { label: "INITIATE_DIAGNOSTIC", variant: "primary", size: "md" },
-      },
-      {
-        label: "lg",
-        props: { label: "TRANSMIT_PARAMETERS", variant: "primary", size: "lg" },
-      },
-    ],
+    items: getSizeItems(),
   },
 };
 

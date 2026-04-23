@@ -1,0 +1,69 @@
+---
+import Text from "@components/typography/Text.astro";
+import Title from "@components/typography/Title.astro";
+
+interface Props {
+  subtitle: string;
+  title: string;
+  steps: { number: string; title: string; description: string; phase: string }[];
+}
+
+const { subtitle, title, steps } = Astro.props;
+---
+
+<section class="relative bg-surface-container-high overflow-visible reveal-on-scroll">
+  <div class="max-w-7xl mx-auto px-6 md:px-12">
+    <div class="sticky top-0 h-screen flex flex-col justify-center">
+      <header class="mb-16">
+        <Text variant="captionMono" class="font-bold uppercase tracking-[0.3em] text-on-surface-variant mb-6">
+          {subtitle}
+        </Text>
+        <Title as="h2" variant="headline" class="font-headline font-bold">
+          {title}
+        </Title>
+      </header>
+      <div class="flex gap-12 items-stretch min-h-[500px]">
+        <nav class="hidden md:flex flex-col justify-between py-12 w-32 border-r border-outline-variant" aria-label="Process steps navigation">
+          <ol class="flex flex-col gap-10">
+            {steps.map((step, i) => (
+              <li>
+                <div class="text-xl font-headline font-bold transition-all duration-300 opacity-20 scale-90 origin-left" id={`indicator-0${i + 1}`}>
+                  {step.number}/05
+                </div>
+              </li>
+            ))}
+          </ol>
+        </nav>
+        <div class="flex-1 relative bg-surface border border-outline-variant shadow-lg overflow-hidden">
+          {steps.map((step, i) => (
+            <article
+              class="absolute inset-0 p-12 md:p-20 flex flex-col justify-center transition-all duration-500"
+              id={`card-0${i + 1}`}
+              style={i > 0 ? "opacity: 0; transform: translateY(20px)" : "opacity: 1; transform: translateY(0)"}
+            >
+              <Title as="span" variant="headline" class="text-8xl font-headline font-bold text-outline-variant opacity-20 mb-8">
+                {step.number}
+              </Title>
+              <Title as="h3" variant="h1" class="font-headline font-bold mb-8">
+                {step.title}
+              </Title>
+              <Text variant="xl" class="text-on-surface-variant text-xl md:text-3xl leading-relaxed max-w-3xl">
+                {step.description}
+              </Text>
+              <div class="mt-12">
+                <Text variant="captionMono" class="font-bold uppercase tracking-widest text-on-surface-variant">
+                  Phase: {step.phase}
+                </Text>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+    <div class="h-screen w-full trigger-step" data-step="1" aria-hidden="true"></div>
+    <div class="h-screen w-full trigger-step" data-step="2" aria-hidden="true"></div>
+    <div class="h-screen w-full trigger-step" data-step="3" aria-hidden="true"></div>
+    <div class="h-screen w-full trigger-step" data-step="4" aria-hidden="true"></div>
+    <div class="h-screen w-full trigger-step" data-step="5" aria-hidden="true"></div>
+  </div>
+</section>

@@ -3,30 +3,27 @@ name: Continuous Integration
 on:
   pull_request:
     branches: [main]
-    paths-ignore:
-      - "*.stories.*"
-      - "*.md"
-      - ".gitignore"
-      - ".dockerignore"
-      - ".env*"
-      - "Dockerfile"
-      - "docker-compose*.yml"
-      - "*.dockerfile"
-      - "Justfile"
+    paths:
+      - "src/**"
+      - "!src/components/astrobook/**"
+      - "!**.stories.*"
+      - "public/**"
+      - "uno.config.ts"
+      - "astro.config.*"
+      - "package.json"
+      - "tsconfig.json"
+    
   # push:
   #   branches: [main]
-  #   paths-ignore:
-  #     - "*.md"
-  #     - ".gitignore"
-  #     - ".dockerignore"
-  #     - ".env*"
-  #     - "biome.json"
-  #     - "knip.config.ts"
-  #     - "commitlint.config.ts"
-  #     - "Dockerfile"
-  #     - "docker-compose*.yml"
-  #     - "*.dockerfile"
-  #     - "Justfile"
+  #   paths:
+  #     - "src/**"
+  #     - "!src/components/astrobook/**"
+  #     - "!**.stories.*"
+  #     - "public/**"
+  #     - "uno.config.ts"
+  #     - "astro.config.*"
+  #     - "package.json"
+  #     - "tsconfig.json"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}

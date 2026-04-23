@@ -23,28 +23,40 @@ export const Variants = {
   },
 };
 
+const colorOptions = [
+  "default",
+  "surface-variant",
+  "primary",
+  "secondary",
+  "tertiary",
+  "error",
+  "on-primary",
+];
+
+function capitalize(str: string) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+function getColorItems() {
+  const items: { label: string; props: Record<string, string> }[] = [];
+  colorOptions.forEach((color) => {
+    items.push({
+      label: color,
+      props: {
+        variant: "h1",
+        class: color === "default" ? "" : `text-${color}`,
+        text: `${capitalize(color)} Title`,
+      },
+    });
+  });
+  return items;
+}
+
 export const Colors = {
   args: {
     component: Title,
     layout: "stack",
     type: "text",
-    items: [
-      {
-        label: "default",
-        props: { variant: "h1", color: "default", text: "Default Title" },
-      },
-      {
-        label: "muted",
-        props: { variant: "h1", color: "muted", text: "Muted Title" },
-      },
-      {
-        label: "primary",
-        props: { variant: "h1", color: "primary", text: "Primary Title" },
-      },
-      {
-        label: "error",
-        props: { variant: "h1", color: "error", text: "Error Title" },
-      },
-    ],
+    items: getColorItems(),
   },
 };

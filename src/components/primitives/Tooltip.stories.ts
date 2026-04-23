@@ -3,94 +3,58 @@ import Tooltip from "./Tooltip.astro";
 
 export default { component: Showcase };
 
+const variantOptions = ["default", "primary", "secondary", "tertiary", "error"];
+
+const placementOptions = ["left", "right", "top", "bottom"];
+
+function capitalize(str: string) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+function getVariantItems() {
+  const items: { label: string; props: Record<string, string> }[] = [];
+  variantOptions.forEach((variant, index) => {
+    items.push({
+      label: variant,
+      props: {
+        content: "MODULE_IDENTIFIER",
+        variant: variant,
+        placement: index % 2 === 0 ? "left" : "right",
+      },
+    });
+  });
+  return items;
+}
+
 export const Variants = {
   args: {
     component: Tooltip,
     layout: "grid",
     type: "hover",
-    items: [
-      {
-        label: "Default",
-        props: {
-          content: "MODULE_IDENTIFIER",
-          variant: "default",
-          placement: "left",
-        },
-      },
-      {
-        label: "Primary",
-        props: {
-          content: "MODULE_IDENTIFIER",
-          variant: "primary",
-          placement: "right",
-        },
-      },
-      {
-        label: "Secondary",
-        props: {
-          content: "MODULE_IDENTIFIER",
-          variant: "secondary",
-          placement: "left",
-        },
-      },
-      {
-        label: "Tertiary",
-        props: {
-          content: "MODULE_IDENTIFIER",
-          variant: "tertiary",
-          placement: "right",
-        },
-      },
-      {
-        label: "Error",
-        props: {
-          content: "SYS_STATUS: CRITICAL",
-          variant: "error",
-          placement: "left",
-        },
-      },
-    ],
+    items: getVariantItems(),
   },
 };
+
+function getPlacementItems() {
+  const items: { label: string; props: Record<string, string> }[] = [];
+  placementOptions.forEach((placement) => {
+    items.push({
+      label: capitalize(placement),
+      props: {
+        content: "MODULE_IDENTIFIER",
+        variant: "default",
+        placement: placement,
+      },
+    });
+  });
+  return items;
+}
 
 export const Placements = {
   args: {
     component: Tooltip,
     layout: "grid",
     type: "hover",
-    items: [
-      {
-        label: "Left",
-        props: {
-          content: "MODULE_IDENTIFIER",
-          variant: "default",
-          placement: "left",
-        },
-      },
-      {
-        label: "Right",
-        props: {
-          content: "MODULE_IDENTIFIER",
-          variant: "default",
-          placement: "right",
-        },
-      },
-      {
-        label: "Top",
-        props: {
-          content: "MODULE_IDENTIFIER",
-          variant: "default",
-          placement: "top",
-        },
-      },
-      {
-        label: "Bottom",
-        props: {
-          content: "MODULE_IDENTIFIER",
-          variant: "default",
-          placement: "bottom",
-        },
-      },
-    ],
+    items: getPlacementItems(),
   },
 };
