@@ -16,16 +16,18 @@ import Title from "@components/typography/Title.astro";
 import type { IconName } from "@lib/icons";
 import type { HTMLAttributes } from "astro/types";
 
-type SectionProps = HTMLAttributes<"section">;
+export type AlertBarVariant = "tertiary" | "primary" | "error" | "secondary";
 
-interface Props extends SectionProps {
+export interface AlertBarProps extends HTMLAttributes<"section"> {
   title: string;
   description: string;
   href: string;
   ctaLabel: string;
-  variant?: "tertiary" | "primary" | "error" | "secondary";
+  variant?: AlertBarVariant;
   icon?: IconName;
 }
+
+const props = Astro.props as AlertBarProps;
 
 const {
   title,
@@ -36,7 +38,7 @@ const {
   icon = "alert-warning",
   class: className,
   ...attrs
-} = Astro.props;
+} = props;
 
 const colorMap = {
   primary: {

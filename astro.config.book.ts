@@ -27,5 +27,15 @@ export default defineConfig({
       home: "./src/components/astrobook/BookHome.astro",
       css: ["./src/styles/global.css"],
 		}),
-	]
+  ],
+
+  vite: {
+    build: {
+      rollupOptions: {
+        // TODO: remove this hook when fixes with new version
+				// Hook: https://github.com/unocss/unocss/issues/5150
+        external: ['oxc-parser'],
+      }
+    }
+	}
 });

@@ -3,17 +3,27 @@ import Icon from "@components/primitives/Icon.astro";
 import Text from "@components/typography/Text.astro";
 import Title from "@components/typography/Title.astro";
 
+interface Item {
+  number: string;
+  title: string;
+  description: string;
+}
+
+interface CTA {
+  title: string;
+  subtitle: string;
+  final: string;
+}
+
 interface Props {
   title: string;
   description: string;
-  items: { number: string; title: string; description: string }[];
-  ctaTitle: string;
-  ctaSubtitle: string;
+  items: Item[];
   subItems: string[];
-  ctaFinal: string;
+  cta: CTA;
 }
 
-const { title, description, items, ctaTitle, ctaSubtitle, subItems, ctaFinal } = Astro.props;
+const { title, description, items, subItems, cta } = Astro.props;
 ---
 
 <section class="bg-surface-container-low py-24 px-6 md:px-12 reveal-on-scroll">
@@ -33,9 +43,10 @@ const { title, description, items, ctaTitle, ctaSubtitle, subItems, ctaFinal } =
           class="w-4/5 md:w-80 lg:w-[400px] aspect-square blueprint-x relative spotlight transition-all duration-300 hover:scale-102 shadow-xl shadow-black/5 parallax-bg"
           data-alt="Technical system architecture diagram placeholder."
           id="architecture-img"
-          style="display: flex !important; align-items: center !important; justify-content: center !important;"
         >
-          <Icon name="architecture" size={48} class="text-outline-variant" />
+          <div class="absolute inset-0 flex items-center justify-center">
+            <Icon name="card-architecture" size={48} class="text-outline-variant" />
+          </div>
         </div>
         <figcaption class="mt-6">
           <Text
@@ -79,51 +90,55 @@ const { title, description, items, ctaTitle, ctaSubtitle, subItems, ctaFinal } =
       </article>
     </div>
 
-    <aside class="mt-24 p-10 bg-surface">
+<aside class="mt-24 p-10 bg-surface">
       <div class="w-full flex flex-col gap-10 items-center text-center">
-        <div class="flex gap-4 flex-col items-center">
-          <Icon
-            name="verified-user"
-            size={48}
-            class="text-on-inverse-surface"
-          />
-          <div>
-            <Title
-              as="h3"
-              variant="h2"
-              class="font-headline font-bold uppercase text-on-inverse-surface"
-            >
-              {ctaTitle}
-            </Title>
-            <Text variant="lg" class="font-medium mt-4 text-on-inverse-surface">
-              {ctaSubtitle}
-            </Text>
-          </div>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
-          {
-            subItems.map((subItem) => (
-              <article class="border border-outline-variant p-8 bg-surface-container-high">
+        {cta && (
+          <>
+            <div class="flex gap-4 flex-col">
+              <Icon
+                name="verified-user"
+                size={48}
+                class="text-on-inverse-surface"
+              />
+              <div>
                 <Title
-                  as="h4"
-                  variant="h4"
-                  class="font-headline font-bold tracking-tight"
+                  as="h3"
+                  variant="h2"
+                  class="font-headline font-bold uppercase text-on-inverse-surface"
                 >
-                  {subItem}
+                  {cta.title}
                 </Title>
-              </article>
-            ))
-          }
-        </div>
-        <div>
-          <Title
-            as="p"
-            variant="h4"
-            class="font-headline font-bold uppercase tracking-[0.2em] text-on-inverse-surface"
-          >
-            {ctaFinal}
-          </Title>
-        </div>
+                <Text variant="lg" class="font-medium mt-4 text-on-inverse-surface">
+                  {cta.subtitle}
+                </Text>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
+              {
+                subItems.map((subItem) => (
+                  <article class="border border-outline-variant p-8 bg-surface-container-high">
+                    <Title
+                      as="h4"
+                      variant="h4"
+                      class="font-headline font-bold tracking-tight"
+                    >
+                      {subItem}
+                    </Title>
+                  </article>
+                ))
+              }
+            </div>
+            <div>
+              <Title
+                as="p"
+                variant="h4"
+                class="font-headline font-bold uppercase tracking-[0.2em] text-on-inverse-surface"
+              >
+                {cta.final}
+              </Title>
+            </div>
+          </>
+        )}
       </div>
     </aside>
   </div>

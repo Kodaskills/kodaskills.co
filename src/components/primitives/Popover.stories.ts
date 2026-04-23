@@ -3,11 +3,21 @@ import Popover from "./Popover.astro";
 
 export default { component: Showcase };
 
+interface PopoverData {
+  title: string;
+  content: string;
+}
+
+interface StoryItem {
+  label: string;
+  props: Record<string, string>;
+}
+
 const popoverVariantOptions = ["primary", "secondary", "tertiary", "neutral"];
 
 const popoverPlacementOptions = ["left", "right", "top", "top-start"];
 
-const popoverData: Record<string, { title: string; content: string }> = {
+const popoverData: Record<string, PopoverData> = {
   primary: { title: "Leadership", content: "CTO as a Service · Strategy · Tech Lead" },
   secondary: { title: "Product", content: "Full & Part-time Product Development" },
   tertiary: { title: "Advisory", content: "On-Demand Expertise" },
@@ -19,7 +29,7 @@ function capitalize(str: string) {
 }
 
 function getVariantItems() {
-  const items: { label: string; props: Record<string, string> }[] = [];
+  const items: StoryItem[] = [];
   popoverVariantOptions.forEach((variant) => {
     items.push({
       label: capitalize(variant),
@@ -44,8 +54,8 @@ export const Variants = {
 };
 
 function getPlacementItems() {
-  const items: { label: string; props: Record<string, string> }[] = [];
-  const placementData: Record<string, { title: string; content: string }> = {
+  const items: StoryItem[] = [];
+  const placementData: Record<string, PopoverData> = {
     left: { title: "Security", content: "Security · Compliance · Monitoring" },
     right: { title: "Leadership", content: "CTO as a Service · Strategy · Tech Lead" },
     top: { title: "Ops", content: "Architecture · Scaling · Cloud · On-Prem" },

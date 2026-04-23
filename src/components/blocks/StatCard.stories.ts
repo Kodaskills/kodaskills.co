@@ -1,5 +1,5 @@
 import Showcase from "@components/astrobook/Showcase.astro";
-import StatCardComponent from "./StatCard.astro";
+import StatCardComponent, { type StatCardProps } from "./StatCard.astro";
 
 export default { component: Showcase };
 
@@ -9,11 +9,19 @@ export const StatCard = {
     items: [
       {
         label: "Accent",
-        props: { value: "50+", label: "SUCCESSFUL_DEPLOYS", variant: "accent" },
+        props: {
+          value: "50+",
+          label: "SUCCESSFUL_DEPLOYS",
+          variant: "accent",
+        } satisfies StatCardProps,
       },
       {
         label: "Metric",
-        props: { value: "99.9%", label: "Availability_SLA", variant: "metric" },
+        props: {
+          value: "99.9%",
+          label: "Availability_SLA",
+          variant: "metric",
+        } satisfies StatCardProps,
       },
     ],
   },

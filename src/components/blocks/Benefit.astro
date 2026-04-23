@@ -2,11 +2,18 @@
 import Text from "@components/typography/Text.astro";
 import Title from "@components/typography/Title.astro";
 
+interface Stat {
+  label: string;
+  value: string;
+  description: string;
+}
+
 interface Props {
   title: string;
   description: string;
-  stats: { label: string; value: string; description: string }[];
+  stats: Stat[];
   figureLabel: string;
+  class?: string;
 }
 
 const { title, description, stats, figureLabel } = Astro.props;
@@ -16,7 +23,7 @@ const { title, description, stats, figureLabel } = Astro.props;
   <div class="flex flex-col md:flex-row gap-20 items-center">
     <article class="w-full md:w-3/5">
       <header>
-        <Title as="h2" variant="headline" class="font-headline font-bold mb-8">
+        <Title level={2} variant="headline" class="font-headline font-bold mb-8">
           {title}
         </Title>
         <Text variant="lg" class="text-on-surface-variant leading-relaxed mb-12">

@@ -24,8 +24,7 @@ const { _, lp } = await useI18n(Astro.currentLocale);
 >
   <PageHero>
     <PageHeader
-      badge={_("20+ YEARS OPERATIONAL EXPERIENCE")}
-      badges={[_("OPEN CORE METHODOLOGY"), _("FRACTIONAL, NOT FREELANCE")]}
+      badges={[_("20+ YEARS OPERATIONAL EXPERIENCE"), _("OPEN CORE METHODOLOGY"), _("FRACTIONAL, NOT FREELANCE")]}
     >
       <Fragment slot="title">
         {_("Stop Outsourcing")}.<br />
@@ -79,13 +78,17 @@ const { _, lp } = await useI18n(Astro.currentLocale);
       {
         number: "03",
         title: _("AI & Growth Enablement"),
-        description: _("Transforming raw data into operational leverage through bespoke LLM implementations and autonomous workflows.")
-      }
+        description: _(
+          "Transforming raw data into operational leverage through bespoke LLM implementations and autonomous workflows.",
+        ),
+      },
     ]}
-    ctaTitle={_("KNOWLEDGE TRANSFER GUARANTEED")}
-    ctaSubtitle={_("You own :")}
+    cta={{
+      title: _("KNOWLEDGE TRANSFER GUARANTEED"),
+      subtitle: _("You own :"),
+      final: _("No vendor lock-in"),
+    }}
     subItems={[_("The IP"), _("The code"), _("The runbooks")]}
-    ctaFinal={_("No vendor lock-in")}
   />
 
   <Benefit
