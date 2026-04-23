@@ -63,4 +63,5 @@ runs:
       with:
         apiToken: ${{ inputs.api_token }}
         accountId: ${{ inputs.account_id }}
-        command: pages deploy ${{ inputs.dist_path }} --project-name=${{ inputs.project_name }} --branch=${{ inputs.pr_number != '' && format('pr-{0}', inputs.pr_number) || inputs.branch }}
+        # TODO: Flag to shorten commit message to fix build fails when commit message is too long (cf https://github.com/cloudflare/workers-sdk/issues/11749)
+        command: pages deploy ${{ inputs.dist_path }} --project-name=${{ inputs.project_name }} --branch=${{ inputs.pr_number != '' && format('pr-{0}', inputs.pr_number) || inputs.branch }} --commit-message="$(git show --pretty=format:%s -s HEAD)"
