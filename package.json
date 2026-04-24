@@ -51,7 +51,7 @@
 		"validate-branch-name": "^1.3.2"
 	},
 	"validate-branch-name": {
-		"pattern": "^(main|(feature|fix|chore|release|hotfix)/[a-z0-9-]+)$",
+		"pattern": "^(main|(feature|fix|chore|refactor|release|hotfix)/[a-z0-9-]+)$",
 		"errorMsg": "Branch must match: main | <type>/<slug> (e.g. feature/hero-section)"
 	}
 }
