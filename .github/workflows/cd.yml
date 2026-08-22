@@ -11,6 +11,10 @@ permissions:
   pull-requests: read
   id-token: write
 
+env:
+  # TEMP: allow Node20 actions after runners switched to Node24 (remove fall 2026)
+  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
+
 jobs:
   deploy-cloudflare:
     name: ☁️ Deploy to Cloudflare Pages

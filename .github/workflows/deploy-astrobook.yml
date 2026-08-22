@@ -18,6 +18,8 @@ concurrency:
 
 env:
   BUN_VERSION: ${{ vars.BUN_VERSION }}
+  # TEMP: allow Node20 actions after runners switched to Node24 (remove fall 2026)
+  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
 
 permissions:
   contents: read
