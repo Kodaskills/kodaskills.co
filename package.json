@@ -38,7 +38,7 @@
 		"@types/alpinejs": "^3.13.11",
 		"@types/alpinejs__intersect": "^3.13.4",
 		"@unocss/astro": "^66.6.8",
-		"astro": "^6.1.6",
+		"astro": "^7.3.2",
 		"astro-icon": "1.1.5",
 		"astrobook": "0.13.1",
 		"commitlint-config-gitmoji": "^2.0.1",
